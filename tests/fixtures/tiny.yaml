@@ -1,0 +1,126 @@
+id: tiny-fjord
+name: Tiny fjord fixture
+destination: Nowhere
+ce_id: null
+provenance: live_headout
+provenance_note: Synthetic fixture for tests. Not a real collection.
+fetched_on: "2026-11-26"
+audience_profile: fjord_cruise
+primary_surface:
+  page_type: headout.com
+  url: https://example.com/tiny
+  hero_title: Tiny cruise page
+  hero_copy: A short page used only in tests.
+  usps:
+    - Free cancellation on the cheap cruise
+  faqs:
+    - question: Can I cancel?
+      answer: Yes, you can cancel up to 24 hours before.
+    - question: How do I get there?
+      answer: Coach transfer or drive and park at the terminal.
+    - question: Is there wheelchair access?
+      answer: The main deck is step-free. Upper decks have stairs.
+  trust_signals:
+    - Rated 4.8 by travellers
+    - Marketplace page
+  discloses_headout: true
+microbrand:
+  page_type: microbrand
+  url: https://example.com/tiny-brand
+  hero_title: Tiny Sound Cruises
+  hero_copy: Looks like the place itself.
+  usps:
+    - Crafted by Headout
+  faqs: []
+  faq_capture: absent
+  trust_signals:
+    - Crafted by Headout
+  discloses_headout: true
+  not_official_venue_disclaimer: false
+products:
+  - id: cheap-cruise
+    title: Short scenic cruise
+    type: cruise
+    positioning: budget
+    price: 99
+    currency: NZD
+    price_label: from
+    duration: 2 hrs
+    duration_hours_min: 2
+    duration_hours_max: 2
+    days_min: 1
+    features:
+      - Open deck for photos
+    rating: 4.8
+    review_count: 20
+    inclusions:
+      - Cruise
+      - Tea
+    exclusions: []
+    pickup: null
+    pickup_status: excluded
+    cancellation: Free cancellation up to 24 hours
+    url: https://example.com/cheap
+    operator: Example Boats
+    source_urls:
+      - https://example.com/cheap
+  - id: luxury-fly
+    title: Fly and cruise
+    type: fly_cruise
+    positioning: luxury
+    price: 900
+    currency: NZD
+    price_label: from
+    duration: 6 hrs
+    duration_hours_min: 6
+    duration_hours_max: 6
+    days_min: 1
+    features:
+      - Scenic flight
+      - Window seats for photos
+    rating: 4.9
+    review_count: 5
+    inclusions:
+      - Flight
+      - Cruise
+    exclusions: []
+    pickup: Hotel pickup included
+    pickup_status: included
+    cancellation: null
+    url: https://example.com/fly
+    source_urls:
+      - https://example.com/fly
+price_claims:
+  - product_id: cheap-cruise
+    section: collection_card
+    price: 99
+    currency: NZD
+    kind: from
+    source_url: https://example.com/tiny
+  - product_id: cheap-cruise
+    section: product_page
+    price: 140
+    currency: NZD
+    kind: from
+    source_url: https://example.com/cheap
+price_bands:
+  currency: NZD
+  tiers:
+    - tier: budget
+      min_price: 0
+      max_price: 180
+    - tier: mid
+      min_price: 180
+      max_price: 350
+    - tier: premium
+      min_price: 350
+      max_price: 700
+    - tier: luxury
+      min_price: 700
+      max_price: 100000
+sources:
+  - url: https://example.com/tiny
+    fetched_on: "2026-11-26"
+    what: Fixture
+unknowns:
+  - This fixture is not a real page.
