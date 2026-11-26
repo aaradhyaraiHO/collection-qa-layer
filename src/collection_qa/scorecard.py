@@ -152,6 +152,10 @@ def render_markdown(payload: dict) -> str:
             )
             lines.append(f"  > {quote['text']}")
             lines.append("")
+    if payload.get("sensitivity"):
+        from collection_qa.sensitivity import render_sensitivity_section
+
+        lines.append(render_sensitivity_section(payload["sensitivity"]))
     lines.append("## Unknowns in the source capture")
     lines.append("")
     for item in payload.get("unknowns", []):

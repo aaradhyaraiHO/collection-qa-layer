@@ -68,6 +68,20 @@ def main(argv: list[str] | None = None) -> int:
     )
     run_parser.add_argument("--gates", default="A,B", help="Comma-separated: A, B")
 
+    sensitivity_parser = sub.add_parser(
+        "sensitivity",
+        help="Reweight a finished scorecard. Does not call the LLM",
+    )
+    sensitivity_parser.add_argument("spec", help="Collection spec YAML, used to name products")
+    sensitivity_parser.add_argument("--from-run", required=True, help="Scorecard JSON with panel_scores, or a cache is not enough")
+    sensitivity_parser.add_argument("--out", required=True, help="Directory for the sensitivity JSON and Markdown")
+    sensitivity_parser.add_argument("--shift", type=float, default=0.20, help="One-at-a-time probability shift, e.g. 0.20")
+    sensitivity_parser.add_argument("--dirichlet", type=int, default=40, help="Random mixes drawn around the base")
+    sensitivity_parser.add_argument("--concentration", type=float, default=50.0, help="Dirichlet concentration. Higher stays closer to the base mix")
+    sensitivity_parser.add_argument("--seed", type=int, default=None, help="Defaults to the scorecard seed")
+    sensitivity_parser.add_argument("--min-cell", type=int, default=8, help="Flag a mix level with fewer scored personas than this")
+    sensitivity_parser.add_argument("--target-cell", type=int, default=15, help="Cell size the extra-sample suggestion aims for")
+
     estimate_parser = sub.add_parser("estimate", help="Print a cost estimate and exit")
     _add_common(estimate_parser)
     estimate_parser.add_argument("specs", nargs="+")
@@ -83,6 +97,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "estimate":
         return _estimate(args)
+    if args.command == "sensitivity":
+        return _sensitivity(args)
     return _run(args)
 
 
@@ -97,6 +113,42 @@ def _gates(raw: str) -> set[str]:
     if unknown or not gates:
         raise SystemExit(f"gates must be A, B, or A,B (got {raw!r})")
     return gates
+
+
+def _sensitivity(args: argparse.Namespace) -> int:
+    import json
+
+    from collection_qa.sensitivity import analyze_scorecard, write_sensitivity
+
+    scorecard = json.loads(Path(args.from_run).read_text(encoding="utf-8"))
+    spec = load_spec(args.spec)
+    if scorecard.get("collection_id") and scorecard["collection_id"] != spec.id:
+        print(
+            f"Scorecard collection {scorecard['collection_id']} does not match spec {spec.id}.",
+            file=sys.stderr,
+        )
+        return 2
+    result = analyze_scorecard(
+        scorecard,
+        spec,
+        shift=args.shift,
+        n_dirichlet=args.dirichlet,
+        concentration=args.concentration,
+        seed=args.seed,
+        min_cell=args.min_cell,
+        target_cell=args.target_cell,
+    )
+    json_path, md_path = write_sensitivity(result, args.out, spec.id)
+    print(f"wrote {json_path}")
+    print(f"wrote {md_path}")
+    if result.get("status") != "ok":
+        print(result.get("message", "panel_scores are missing"), file=sys.stderr)
+        return 3
+    print(
+        f"  scenarios={result['n_scenarios']} gate_flip_rate={result['gate_flip_rate']} "
+        f"page_weight_sensitive={result['page_weight_sensitive']}"
+    )
+    return 0
 
 
 def _estimate(args: argparse.Namespace) -> int:

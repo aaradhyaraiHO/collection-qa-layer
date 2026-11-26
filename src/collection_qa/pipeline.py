@@ -32,6 +32,7 @@ from collection_qa.embeddings import DEFAULT_ST_MODEL, build_embedder
 from collection_qa.llm import DEFAULT_MAX_RETRIES, DEFAULT_MAX_TOKENS, DEFAULT_TIMEOUT_SECONDS, LLMClient, LLMResult
 from collection_qa.models import CollectionSpec, DistributionSummary, Quote
 from collection_qa.personas import ASSUMPTION_NOTE, Persona, sample_personas
+from collection_qa.sensitivity import analyze_panel
 from collection_qa.ssr import mean_rating, pmf_as_dict, ssr_pmf
 
 SEGMENT_AXES = ("trip_type", "budget_tier")
@@ -327,6 +328,25 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
             "Do not use these scores as market research or as a go-live decision."
         )
 
+    panel_scores = _panel_scores(persona_by_id, averaged)
+    page_ids = [f"page:{role}" for role, _surface in surfaces]
+    product_ids = list(product_means)
+    titles = {product_id: block["title"] for product_id, block in product_block.items()}
+    sensitivity = None
+    if panel_scores and (product_ids or page_ids):
+        sensitivity = analyze_panel(
+            panel_scores,
+            panel.weights,
+            product_ids=product_ids,
+            page_ids=page_ids,
+            titles=titles,
+            base_issues=issues,
+            spec=spec,
+            seed=config.seed,
+        )
+        sensitivity["collection_id"] = spec.id
+        sensitivity["mock"] = config.mock
+
     return {
         "banner": banner,
         "mock": config.mock,
@@ -366,6 +386,8 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
         "pages": page_block,
         "rankings": rankings,
         "quotes": [quote.model_dump() for quote in quotes],
+        "panel_scores": panel_scores,
+        "sensitivity": sensitivity,
         "unknowns": spec.unknowns,
         "sources": [source.model_dump() for source in spec.sources],
         "thresholds": {
@@ -389,6 +411,35 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
             ),
         },
     }
+
+
+def _panel_scores(persona_by_id: dict[str, Persona], averaged: dict[tuple[str, str], np.ndarray]) -> list[dict]:
+    by_persona: dict[str, dict] = defaultdict(dict)
+    for (persona_id, stimulus_id), pmf in averaged.items():
+        by_persona[persona_id][stimulus_id] = {
+            "mean": round(mean_rating(pmf), 6),
+            "pmf": pmf_as_dict(pmf),
+        }
+    rows = []
+    for persona_id in sorted(persona_by_id):
+        persona = persona_by_id[persona_id]
+        rows.append(
+            {
+                "persona_id": persona_id,
+                "attributes": {
+                    "source_market": persona.source_market,
+                    "age_band": persona.age_band,
+                    "trip_type": persona.trip_type,
+                    "budget_tier": persona.budget_tier,
+                    "planning_horizon": persona.planning_horizon,
+                    "experience": persona.experience,
+                    "accessibility": persona.accessibility,
+                    "device_channel": persona.device_channel,
+                },
+                "scores": by_persona.get(persona_id, {}),
+            }
+        )
+    return rows
 
 
 def _rankings(product_block: dict[str, dict]) -> dict:

@@ -147,6 +147,29 @@ Full text also lives in `collection_qa.anchors.CALIBRATION_PLAN`.
 5. **Do not gate on source-market or age slices** until they track the booking mix. The paper reproduced age and income better than gender or region. The weights in this package are priors.
 6. **Re-embed the same frozen reactions** with a second local model before locking an embedder. Keep cosine and minimum-subtraction fixed so the only change is the model.
 
+## Persona-mix sensitivity
+
+The weights are priors. A segment mean does not use them. It is the average of the personas who landed in that cell, so changing the cell's share of the mix does not change the cell. The blended page number and the overall product ranking do use the mix. That is the part this test moves.
+
+```bash
+collection-qa sensitivity specs/masai-mara.yaml \
+  --from-run reports/mock/masai-mara.json \
+  --out reports/mock/sensitivity
+```
+
+The command does not call Claude. It reads `panel_scores` from a finished scorecard and reweights those purchase-intent means. One-at-a-time shifts move each trip type, budget tier, source market, and planning horizon by ±20 percentage points, rescaling the other levels on that axis. Then it draws Dirichlet mixes centered on the base prior (`--dirichlet`, `--concentration`, `--seed`). For each mix it recomputes blended page intent, the product ranking, and the weight-dependent gate severities.
+
+The report gives Kendall tau and Spearman against the base ranking, top-3 and bottom-3 overlap, and the gate-flip rate. A finding is **ROBUST** when it holds in at least 90% of reliable scenarios, and **WEIGHT-SENSITIVE** otherwise. If the blended page number is weight-sensitive, the scorecard says to read the per-segment results instead. A cell with fewer than 8 scored personas is flagged, with how many more draws would bring its expected count to 15.
+
+The mix becomes evidence in four steps, not from this test alone:
+
+1. This sensitivity test shows which conclusions survive a different prior and which are an artifact of the assumed shares.
+2. Replace the prior with the booking mix of a similar live collection (source market, party, budget) before treating a segment gap as a gate.
+3. Check that prior against external demand signals: search and keyword clusters, competitor assortment, and the source-market mix already in the EOS deep-research doc.
+4. After launch, correct the weights with the collection's own sessions. The shadow-mode plan in the calibration section is that correction. Until it exists, a WEIGHT-SENSITIVE blended number is not a go-live result. The segment table is.
+
+`reports/live/` does not contain `panel_scores`, so the live sensitivity files record that gap instead of a fake reweight. Regenerating from the live cache is described there. A re-run with today's English prompt or the 640-token cap will miss the cache.
+
 ## Layout
 
 ```
@@ -155,6 +178,7 @@ specs/                pilot collection specs
 tests/                SSR, personas, checks, mock end-to-end
 reports/mock/         template scorecards, seed 7, labeled MOCK
 reports/live/         Claude Sonnet 5.5 scorecards from the pilot, seed 7
+reports/live/sensitivity/  why the live files cannot be reweighted yet
 ```
 
 ## Limits

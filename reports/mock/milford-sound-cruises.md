@@ -8,14 +8,14 @@
 - Provenance: **live_headout**. Live headout.com collection, not a competitor-built proposal. Prices are the "from" figures rendered on the public pages listed below. The product-card API returned HTTP 403 from this environment, so nothing here came from api-ho.headout.com.
 
 - Source pages fetched: 2026-11-26
-- Scorecard generated: 2026-11-26T21:59:27.355674+00:00
+- Scorecard generated: 2026-11-26T22:17:25.236600+00:00
 - Persona seed: **7**
 
 ## Method
 
 Semantic Similarity Rating (arXiv 2510.08338): free-text booking intent, embedded with `lexical-bow`, cosine similarity to 6 sets of travel Likert anchors, minimum-similarity subtraction (epsilon=0.0, temperature=1.0), then the per-set distributions are averaged.
 
-Panel: 30 personas, seed 7, profile weights are assumptions. Model `claude-sonnet-5-5`, 1 completion(s) per prompt. LLM calls made: 300. Cache hits: 0.
+Panel: 30 personas, seed 7, profile weights are assumptions. Model `claude-sonnet-5-5`, 1 completion(s) per prompt. LLM calls made: 0. Cache hits: 300.
 
 Assumption, not measured Headout demand. Replace with booking-mix weights before a segment gap is used as a go-live gate. Axes are sampled independently; real travelers are correlated.
 
@@ -131,6 +131,52 @@ These quotes were written by the mock template, not by Claude.
 
 - **p0015** on Milford Sound Cruise by RealNZ (mean PI 3.86, mock-template): 25-34 friends from United States, luxury budget, first timer, planning weeks 1 4, via mobile_web; interests: scenery, wildlife
   > I would book this for my upcoming trip. I would choose this over the alternatives I have seen. Looking at Milford Sound Cruise by RealNZ, it looks too basic for the kind of trip I want. I am a 25-34 traveler from United States on a friends trip, luxury budget, first timer.
+
+## Sensitivity
+
+Reweighted 30 already-scored personas across 80 reliable mixes (one-at-a-time ±20% on trip type, budget, source market, and planning horizon, plus 40 Dirichlet draws, concentration 50.0, seed 7). No new model calls.
+
+Within a segment, purchase intent is the average of the personas in that cell. The cell does not care what share of the mix it was assigned. Those ranks are invariant. The blended page number and the overall product ranking do use the mix.
+
+Product-rank stability versus the base mix: mean Kendall tau 0.951, minimum 0.833; mean Spearman 0.981, minimum 0.900. Top-3 set unchanged in 79% of scenarios (mean overlap 2.7875 of 3). Bottom-3 unchanged in 95%. Weight-dependent gate severity flipped in 0% of finding-scenario pairs.
+
+Dimensions, by how far a ±20 percentage-point shift moves the blended page score:
+
+- **budget_tier** — mean absolute page move 0.015, mean Kendall drop 0.097
+- **planning_horizon** — mean absolute page move 0.007, mean Kendall drop 0.028
+- **source_market** — mean absolute page move 0.006, mean Kendall drop 0.024
+- **trip_type** — mean absolute page move 0.005, mean Kendall drop 0.035
+
+Dirichlet mixes around the base: mean Kendall tau 0.9444.
+
+| Finding | Base | Holds | Verdict |
+| --- | --- | ---: | --- |
+| cannibalisation_intent ['e-18125', 'e-37309'] | warn | 100% | ROBUST |
+| product_intent milford-fly-cruise | warn | 100% | ROBUST |
+| relative_rank milford-fly-cruise | fail | 100% | ROBUST |
+| top3 | e-29695, e-37309, e-18103 | 79% | WEIGHT-SENSITIVE |
+| bottom3 | milford-fly-cruise, milford-pure-queenstown, e-40298 | 95% | ROBUST |
+| segment ranks (trip_type) | invariant | 100% | ROBUST |
+| segment ranks (budget_tier) | invariant | 100% | ROBUST |
+
+Page `page:primary`: base mean 3.676, scenario range 3.6321–3.7083, verdict **ROBUST**.
+
+Cells too small to reweight:
+
+- trip_type=solo has 6 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15.
+- trip_type=family_with_kids has 6 personas in a panel of 30 (design weight 26%). That is too few to reweight reliably. Sample about 28 more personas (panel size 58) so this cell's expected count reaches 15.
+- trip_type=friends has 7 personas in a panel of 30 (design weight 22%). That is too few to reweight reliably. Sample about 39 more personas (panel size 69) so this cell's expected count reaches 15.
+- budget_tier=budget has 4 personas in a panel of 30 (design weight 28%). That is too few to reweight reliably. Sample about 24 more personas (panel size 54) so this cell's expected count reaches 15.
+- budget_tier=luxury has 5 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15.
+- source_market=United States has 3 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15.
+- source_market=United Kingdom has 4 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15.
+- source_market=China has 2 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15.
+- source_market=New Zealand has 2 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15.
+- source_market=Germany has 3 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15.
+- source_market=Japan has 2 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15.
+- source_market=India has 4 personas in a panel of 30 (design weight 6%). That is too few to reweight reliably. Sample about 220 more personas (panel size 250) so this cell's expected count reaches 15.
+- planning_horizon=weeks_1_4 has 6 personas in a panel of 30 (design weight 34%). That is too few to reweight reliably. Sample about 15 more personas (panel size 45) so this cell's expected count reaches 15.
+- planning_horizon=months_3_plus has 2 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15.
 
 ## Unknowns in the source capture
 

@@ -8,14 +8,14 @@
 - Provenance: **live_headout**. Live Headout collection plus the Headout-operated microbrand masai-mara-safaris.com. This is not a competitor-built proposal. Numeric "from" prices were not rendered for these safaris in the captures below (the public product-card API returned HTTP 403, and the HTML render did not include a currency amount for the Mara cards). Prices are left null on purpose.
 
 - Source pages fetched: 2026-11-26
-- Scorecard generated: 2026-11-26T21:59:27.034235+00:00
+- Scorecard generated: 2026-11-26T22:17:25.083259+00:00
 - Persona seed: **7**
 
 ## Method
 
 Semantic Similarity Rating (arXiv 2510.08338): free-text booking intent, embedded with `lexical-bow`, cosine similarity to 6 sets of travel Likert anchors, minimum-similarity subtraction (epsilon=0.0, temperature=1.0), then the per-set distributions are averaged.
 
-Panel: 30 personas, seed 7, profile weights are assumptions. Model `claude-sonnet-5-5`, 1 completion(s) per prompt. LLM calls made: 480. Cache hits: 0.
+Panel: 30 personas, seed 7, profile weights are assumptions. Model `claude-sonnet-5-5`, 1 completion(s) per prompt. LLM calls made: 0. Cache hits: 480.
 
 Assumption, not measured Headout demand. Replace with booking-mix weights before a segment gap is used as a go-live gate. Axes are sampled independently; real travelers are correlated.
 
@@ -186,6 +186,70 @@ These quotes were written by the mock template, not by Claude.
 
 - **p0015** on From Nairobi: 3-Day Masai Mara Safari With Stays and Entry Fees (mean PI 3.73, mock-template): 25-34 friends from United Kingdom, luxury budget, first timer, planning months 1 3, via mobile_web; interests: big_five, photography
   > I would book this for my upcoming trip. I would choose this over the alternatives I have seen. Looking at From Nairobi: 3-Day Masai Mara Safari With Stays and Entry Fees, I cannot see a clear price, so I hesitate. I am a 25-34 traveler from United Kingdom on a friends trip, luxury budget, first timer.
+
+## Sensitivity
+
+Reweighted 30 already-scored personas across 80 reliable mixes (one-at-a-time ±20% on trip type, budget, source market, and planning horizon, plus 40 Dirichlet draws, concentration 50.0, seed 7). No new model calls.
+
+Within a segment, purchase intent is the average of the personas in that cell. The cell does not care what share of the mix it was assigned. Those ranks are invariant. The blended page number and the overall product ranking do use the mix.
+
+Product-rank stability versus the base mix: mean Kendall tau 0.962, minimum 0.890; mean Spearman 0.992, minimum 0.965. Top-3 set unchanged in 59% of scenarios (mean overlap 2.5875 of 3). Bottom-3 unchanged in 100%. Weight-dependent gate severity flipped in 8% of finding-scenario pairs.
+
+Dimensions, by how far a ±20 percentage-point shift moves the blended page score:
+
+- **budget_tier** — mean absolute page move 0.025, mean Kendall drop 0.047
+- **planning_horizon** — mean absolute page move 0.023, mean Kendall drop 0.033
+- **source_market** — mean absolute page move 0.022, mean Kendall drop 0.028
+- **trip_type** — mean absolute page move 0.016, mean Kendall drop 0.033
+
+Dirichlet mixes around the base: mean Kendall tau 0.9582.
+
+| Finding | Base | Holds | Verdict |
+| --- | --- | ---: | --- |
+| cannibalisation_intent ['e-57697', 'mara-4d-naivasha'] | warn | 100% | ROBUST |
+| cannibalisation_intent ['mara-6d-naivasha', 'mara-6d-nakuru'] | warn | 100% | ROBUST |
+| cannibalisation_intent ['mara-fly-5', 'mara-fly-5-amboseli'] | warn | 100% | ROBUST |
+| page_intent page:microbrand | warn | 99% | ROBUST |
+| page_intent page:primary | fail | 100% | ROBUST |
+| product_intent e-57723 | warn | 100% | ROBUST |
+| product_intent e-57724 | warn | 100% | ROBUST |
+| product_intent mara-4d-nakuru | warn | 96% | ROBUST |
+| product_intent mara-5d-lakes | warn | 57% | WEIGHT-SENSITIVE |
+| product_intent mara-6d-naivasha | warn | 100% | ROBUST |
+| product_intent mara-6d-nakuru | warn | 100% | ROBUST |
+| product_intent mara-fly-5 | warn | 100% | ROBUST |
+| product_intent mara-fly-5-amboseli | warn | 100% | ROBUST |
+| relative_rank mara-6d-naivasha | warn | 99% | ROBUST |
+| relative_rank mara-6d-nakuru | warn | 99% | ROBUST |
+| relative_rank mara-fly-5 | fail | 61% | WEIGHT-SENSITIVE |
+| relative_rank mara-fly-5-amboseli | fail | 61% | WEIGHT-SENSITIVE |
+| top3 | e-57795, e-57697, mara-4d-naivasha | 59% | WEIGHT-SENSITIVE |
+| bottom3 | mara-fly-5-amboseli, mara-fly-5, mara-6d-nakuru | 100% | ROBUST |
+| segment ranks (trip_type) | invariant | 100% | ROBUST |
+| segment ranks (budget_tier) | invariant | 100% | ROBUST |
+
+Page `page:primary`: base mean 2.7092, scenario range 2.6516–2.7609, verdict **ROBUST**.
+Page `page:microbrand`: base mean 3.2879, scenario range 3.1925–3.3727, verdict **WEIGHT-SENSITIVE**.
+
+**The blended page purchase intent is weight-sensitive. Read the per-segment results instead of the single blended number. A segment mean is the average of the personas already in that cell. It does not depend on how often the mix tried to sample that cell.**
+
+Cells too small to reweight:
+
+- trip_type=solo has 6 personas in a panel of 30 (design weight 18%). That is too few to reweight reliably. Sample about 54 more personas (panel size 84) so this cell's expected count reaches 15.
+- trip_type=family_with_kids has 5 personas in a panel of 30 (design weight 22%). That is too few to reweight reliably. Sample about 39 more personas (panel size 69) so this cell's expected count reaches 15.
+- trip_type=friends has 5 personas in a panel of 30 (design weight 18%). That is too few to reweight reliably. Sample about 54 more personas (panel size 84) so this cell's expected count reaches 15.
+- budget_tier=budget has 3 personas in a panel of 30 (design weight 15%). That is too few to reweight reliably. Sample about 70 more personas (panel size 100) so this cell's expected count reaches 15.
+- budget_tier=mid has 6 personas in a panel of 30 (design weight 35%). That is too few to reweight reliably. Sample about 13 more personas (panel size 43) so this cell's expected count reaches 15.
+- source_market=United Kingdom has 5 personas in a panel of 30 (design weight 20%). That is too few to reweight reliably. Sample about 45 more personas (panel size 75) so this cell's expected count reaches 15.
+- source_market=Germany has 4 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15.
+- source_market=India has 2 personas in a panel of 30 (design weight 14%). That is too few to reweight reliably. Sample about 78 more personas (panel size 108) so this cell's expected count reaches 15.
+- source_market=United Arab Emirates has 2 personas in a panel of 30 (design weight 10%). That is too few to reweight reliably. Sample about 120 more personas (panel size 150) so this cell's expected count reaches 15.
+- source_market=France has 3 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15.
+- source_market=Australia has 2 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15.
+- source_market=China has 4 personas in a panel of 30 (design weight 6%). That is too few to reweight reliably. Sample about 220 more personas (panel size 250) so this cell's expected count reaches 15.
+- planning_horizon=last_minute has 4 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15.
+- planning_horizon=weeks_1_4 has 7 personas in a panel of 30 (design weight 20%). That is too few to reweight reliably. Sample about 45 more personas (panel size 75) so this cell's expected count reaches 15.
+- planning_horizon=months_3_plus has 7 personas in a panel of 30 (design weight 30%). That is too few to reweight reliably. Sample about 20 more personas (panel size 50) so this cell's expected count reaches 15.
 
 ## Unknowns in the source capture
 
