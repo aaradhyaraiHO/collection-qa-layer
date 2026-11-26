@@ -10,6 +10,7 @@ from pathlib import Path
 from collection_qa.anchors import CALIBRATION_PLAN
 from collection_qa.cost import DEFAULT_MODEL, estimate_cost, planned_calls
 from collection_qa.embeddings import DEFAULT_ST_MODEL
+from collection_qa.llm import DEFAULT_MAX_RETRIES, DEFAULT_MAX_TOKENS, DEFAULT_TIMEOUT_SECONDS
 from collection_qa.models import load_spec
 from collection_qa.pipeline import RunConfig, run_collection
 from collection_qa.scorecard import write_scorecard
@@ -25,7 +26,11 @@ def main(argv: list[str] | None = None) -> int:
     run_parser = sub.add_parser("run", help="Score one or more collection specs")
     _add_common(run_parser)
     run_parser.add_argument("specs", nargs="+", help="Collection spec YAML files")
-    run_parser.add_argument("--out", default="reports", help="Directory for JSON and Markdown scorecards")
+    run_parser.add_argument(
+        "--out",
+        default=None,
+        help="Scorecard directory. Default is reports/mock with --mock and reports/live otherwise",
+    )
     run_parser.add_argument("--mock", "--dry-run", action="store_true", dest="mock", help="Template reactions, no API key")
     run_parser.add_argument("--model", default=os.environ.get("COLLECTION_QA_MODEL", DEFAULT_MODEL))
     run_parser.add_argument(
@@ -39,11 +44,28 @@ def main(argv: list[str] | None = None) -> int:
         default=os.environ.get("COLLECTION_QA_EMBEDDING_MODEL", DEFAULT_ST_MODEL),
     )
     run_parser.add_argument("--cache", default=".collection_qa_cache/llm.sqlite")
-    run_parser.add_argument("--concurrency", type=int, default=8)
+    run_parser.add_argument("--concurrency", type=int, default=8, help="Parallel LLM calls")
+    run_parser.add_argument(
+        "--timeout",
+        type=float,
+        default=DEFAULT_TIMEOUT_SECONDS,
+        help="Per-request timeout in seconds for the Anthropic client",
+    )
+    run_parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=DEFAULT_MAX_RETRIES,
+        help="SDK retries for a failed Anthropic request",
+    )
     run_parser.add_argument("--completions", type=int, default=1, help="Paper used 2; default 1 to limit cost")
     run_parser.add_argument("--epsilon", type=float, default=0.0)
-    run_parser.add_argument("--temperature", type=float, default=1.0, help="SSR pmf temperature, not the LLM")
-    run_parser.add_argument("--max-tokens", type=int, default=320)
+    run_parser.add_argument("--temperature", type=float, default=1.0, help="SSR pmf temperature. Not sent to Claude")
+    run_parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=DEFAULT_MAX_TOKENS,
+        help="Reply cap. 320 truncated about 15 percent of the live pilot",
+    )
     run_parser.add_argument("--gates", default="A,B", help="Comma-separated: A, B")
 
     estimate_parser = sub.add_parser("estimate", help="Print a cost estimate and exit")
@@ -130,13 +152,17 @@ def _run(args: argparse.Namespace) -> int:
         temperature=args.temperature,
         gates=gates,
         max_tokens=args.max_tokens,
+        timeout=args.timeout,
+        max_retries=args.max_retries,
     )
+    out = args.out or ("reports/mock" if mock else "reports/live")
     for path in args.specs:
         spec = load_spec(path)
         print(f"Scoring {spec.id} ({spec.name})")
         print(
-            f"  personas={config.n_personas} gates={','.join(sorted(gates))} "
-            f"mock={config.mock} embedder={config.embedder} model={config.model}"
+            f"  personas={config.n_personas} seed={config.seed} gates={','.join(sorted(gates))} "
+            f"mock={config.mock} embedder={config.embedder} model={config.model} "
+            f"concurrency={config.concurrency} timeout={config.timeout}s retries={config.max_retries}"
         )
         planned = planned_calls(
             n_personas=config.n_personas,
@@ -150,7 +176,7 @@ def _run(args: argparse.Namespace) -> int:
         for line in preview.lines():
             print(f"    {line}")
         payload = run_collection(spec, config)
-        json_path, md_path = write_scorecard(payload, args.out)
+        json_path, md_path = write_scorecard(payload, out)
         print("  After run:")
         for line in _cost_lines(payload):
             print(f"    {line}")

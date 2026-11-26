@@ -50,15 +50,14 @@ cp .env.example .env
 set -a && source .env && set +a
 
 collection-qa estimate specs/masai-mara.yaml specs/milford-sound.yaml --personas 30
-collection-qa run specs/masai-mara.yaml specs/milford-sound.yaml \
-  --personas 30 --out reports
+collection-qa run specs/masai-mara.yaml specs/milford-sound.yaml --personas 30 --seed 7
 ```
 
-Without a key, the live command exits. Mock mode still builds the scorecard:
+Without a key, the live command exits. Mock mode still builds the scorecard, under `reports/mock/` unless you pass `--out`:
 
 ```bash
 collection-qa run specs/masai-mara.yaml specs/milford-sound.yaml \
-  --mock --personas 30 --out reports
+  --mock --personas 30 --seed 7
 ```
 
 `--dry-run` is the same switch as `--mock`.
@@ -69,16 +68,20 @@ Useful flags:
 | --- | --- | --- |
 | `--model` | `claude-sonnet-5-5` (or `COLLECTION_QA_MODEL`) | Anthropic model id |
 | `--embedder` | `sentence-transformers` live, `lexical` in mock | `sentence-transformers`, `lexical`, or `hash` |
-| `--embedding-model` | `sentence-transformers/all-MiniLM-L6-v2` | Local model name |
+| `--embedding-model` | `paraphrase-multilingual-MiniLM-L12-v2` | Local model. Multilingual, because a live run produced some German and French replies |
 | `--personas` | 30 | Panel size |
+| `--seed` | 7 | Persona sample. Written on the scorecard as `seed` and in the header |
 | `--completions` | 1 | Paper averaged 2 draws per prompt. Raise this when you care more about stability than cost |
 | `--concurrency` | 8 | Parallel LLM calls |
+| `--timeout` | 90 | Seconds per Anthropic request. The SDK default is 10 minutes and hung a live run |
+| `--max-retries` | 5 | SDK retries after a timeout or a 429/529 |
+| `--max-tokens` | 640 | Reply cap. 320 truncated about 15% of the live pilot. The prompt also asks for at most 80 English words |
 | `--cache` | `.collection_qa_cache/llm.sqlite` | Exact-prompt cache |
-| `--epsilon` / `--temperature` | 0 / 1 | SSR map, not the LLM temperature |
+| `--epsilon` / `--temperature` | 0 / 1 | SSR map. `--temperature` is not sent to Claude. Sonnet 5.5 rejects that argument |
 | `--gates` | `A,B` | Either gate on its own |
-| `--seed` | 7 | Persona sample |
+| `--out` | `reports/mock` or `reports/live` | Mock runs default to `reports/mock`. Live runs default to `reports/live` |
 
-The LLM temperature is 0.5, matching the paper's main setting. It is not a CLI flag.
+Claude Sonnet 5.5 does not accept a sampling temperature. The client does not send one. The paper's LLM temperature of 0.5 is recorded on the cache key only, so older cache rows stay distinct. SSR temperature (the pmf sharpening parameter) is still `--temperature` and still defaults to 1.
 
 A run prints a cost estimate before any calls, then the token totals after. Prices are the public Claude rates recorded on 2026-11-26 (Sonnet 5.5 is $2 / million input tokens and $10 / million output tokens). Unknown model ids are billed at the Sonnet 5.5 rate and the printout says so.
 
@@ -103,7 +106,11 @@ A third file, `tests/fixtures/tiny.yaml`, is synthetic and is not a collection.
 
 ## Output
 
-Each run writes `reports/<collection-id>.json` and `.md`:
+Each run writes `<out>/<collection-id>.json` and `.md`. The persona seed is a top-level field and a line in the header, so two scorecards can be matched to the same panel.
+
+Product rows include a z-score against the mean of product means in that run. `relative_rank` warns at one standard deviation below the collection and fails at 1.5. `score_compression` warns when the product means span less than 0.40 points. Absolute pass lines (page 3.6, segment 3.4, product 3.3) stay in the file and are marked uncalibrated. The live pilot below is why: every product mean landed between 3.17 and 3.46, so those lines mostly warn and do not rank the page.
+
+The files also contain:
 
 - Purchase-intent distribution and mean, overall and by trip type and budget tier, for the page and for each product
 - Top and bottom products in each segment
@@ -111,7 +118,23 @@ Each run writes `reports/<collection-id>.json` and `.md`:
 - A few persona quotes
 - Sources, unknowns, and the threshold values that were applied
 
-The committed files under `reports/` are **MOCK**. `ANTHROPIC_API_KEY` was not available. Reactions are templates. Embeddings are lexical. The banner in each file says that. Use them to see the shape of a scorecard, and use the deterministic rows as findings about the captured pages. Do not treat the mock purchase-intent numbers as demand.
+## Live pilot versus mock
+
+Both panels used 30 personas. The live run used seed **7**. The mock files under `reports/mock/` were regenerated with that same seed after the prompt and ranking changes, so the persona lists match. They are still templates plus a lexical embedder. The banner says MOCK. Do not read those means as demand.
+
+`reports/live/` is the Claude run and is not regenerated here. It used `claude-sonnet-5-5`, English-only `all-MiniLM-L6-v2`, `max_tokens` 320, and seed 7. 780 calls cost about US$3.15 (Masai Mara about $1.88 including 230 cache hits from a resumed run, Milford Sound about $1.27). That tree did not send z-scores, and it still had the temperature argument removed only on the machine that ran it.
+
+What agrees, because it does not depend on the model:
+
+- Masai Mara: the microbrand's "Nakuru on every 4+ day safari" claim fails. The day trip is 17 hours on the card and 13–14 hours on the itinerary. Cancellation and pickup are missing on several cards. There is no numeric Headout price, so the ladder cannot be judged. The microbrand names Headout and does not say it is not the operator site. Fourteen products is a choice-overload warn. Conservancy night drives and a standalone balloon are gaps.
+- Milford Sound: the optional-lunch cruise is NZ$143.20 on the card and NZ$155 on the product page. Te Anau is inside the pass band (NZ$207.20 vs NZ$205). No priced overnight card, despite the long-form and RealNZ's NZ$799 overnight. The lead cards do not name the operator. The FAQ covers cancellation, getting there, and access. The price ladder has a product in each band.
+
+What the live model added, and what the mock does not:
+
+- Means sit in a tight band, about 3.17 to 3.46 across both collections. Masai Mara's top product is the 4-day private fly-in (3.44) and the bottom is the private day trip (3.17). The 2-day and 3-day road safaris sit near that bottom. Milford's top is the boutique small boat (3.46) and the bottom is the Queenstown fly-cruise (3.21). Page means are 3.37 and 3.39 on Mara and 3.32 on Milford. Absolute pass lines of 3.6 and 3.4 mostly warn. The rank order is the usable part, and it is not the mock order: the template had ranked short Mara road safaris above fly-in luxury. On the live Milford panel, luxury travelers lift the ultra-premium cruise to a tie for first (3.43) and still rank the fly-cruise last (3.09).
+- About 15% of replies (115 of 780) were cut off at 320 tokens. The default cap is now 640 and the prompt asks for at most 80 English words.
+- 25 replies came back in German or French for non-English personas. One Mara quote in the live file is in French. The prompt now requires English, and the default embedder is multilingual MiniLM so a leftover reply can still be scored.
+- Mock means spread more widely, because the template pastes an anchor sentence. That spread, and the mock rank order, are artifacts. Use the mock files for the scorecard shape and the deterministic rows. Use the live files for the Claude rank order. On the next run, read z-scores rather than the absolute cuts.
 
 ## Validation plan
 
@@ -130,7 +153,8 @@ Full text also lives in `collection_qa.anchors.CALIBRATION_PLAN`.
 src/collection_qa/    package and CLI
 specs/                pilot collection specs
 tests/                SSR, personas, checks, mock end-to-end
-reports/              generated scorecards
+reports/mock/         template scorecards, seed 7, labeled MOCK
+reports/live/         Claude Sonnet 5.5 scorecards from the pilot, seed 7
 ```
 
 ## Limits

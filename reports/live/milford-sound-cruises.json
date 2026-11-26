@@ -1,0 +1,1793 @@
+{
+  "banner": null,
+  "mock": false,
+  "collection_id": "milford-sound-cruises",
+  "collection_name": "Milford Sound cruises",
+  "destination": "Milford Sound, Fiordland, New Zealand",
+  "ce_id": "3945",
+  "provenance": "live_headout",
+  "provenance_note": "Live headout.com collection, not a competitor-built proposal. Prices are the \"from\" figures rendered on the public pages listed below. The product-card API returned HTTP 403 from this environment, so nothing here came from api-ho.headout.com.\n",
+  "fetched_on": "2026-11-26",
+  "generated_at": "2026-11-26T21:54:15.381104+00:00",
+  "method": {
+    "paper": "arXiv 2510.08338",
+    "epsilon": 0.0,
+    "temperature": 1.0,
+    "anchor_sets": 6,
+    "embedder": "sentence-transformers:sentence-transformers/all-MiniLM-L6-v2",
+    "model": "claude-sonnet-5-5",
+    "completions": 1,
+    "n_personas": 30,
+    "seed": 7,
+    "gates": [
+      "A",
+      "B"
+    ],
+    "llm_calls_made": 300,
+    "cache_hits": 0
+  },
+  "persona_assumption": "Assumption, not measured Headout demand. Replace with booking-mix weights before a segment gap is used as a go-live gate. Axes are sampled independently; real travelers are correlated.",
+  "persona_profile": "fjord_cruise",
+  "persona_weights": {
+    "source_market": {
+      "Australia": 0.26,
+      "United States": 0.16,
+      "United Kingdom": 0.12,
+      "China": 0.12,
+      "New Zealand": 0.12,
+      "Germany": 0.08,
+      "Japan": 0.08,
+      "India": 0.06
+    },
+    "age_band": {
+      "18-24": 0.12,
+      "25-34": 0.26,
+      "35-44": 0.22,
+      "45-54": 0.18,
+      "55-64": 0.14,
+      "65+": 0.08
+    },
+    "trip_type": {
+      "solo": 0.16,
+      "couple": 0.36,
+      "family_with_kids": 0.26,
+      "friends": 0.22
+    },
+    "budget_tier": {
+      "budget": 0.28,
+      "mid": 0.42,
+      "premium": 0.22,
+      "luxury": 0.08
+    },
+    "planning_horizon": {
+      "last_minute": 0.18,
+      "weeks_1_4": 0.34,
+      "months_1_3": 0.32,
+      "months_3_plus": 0.16
+    },
+    "experience": {
+      "first_timer": 0.82,
+      "repeat": 0.18
+    },
+    "accessibility": {
+      "none": 0.9,
+      "mobility": 0.08,
+      "sensory": 0.02
+    },
+    "device_channel": {
+      "mobile_web": 0.7,
+      "desktop": 0.22,
+      "app": 0.08
+    }
+  },
+  "cost": {
+    "model": "claude-sonnet-5-5",
+    "calls": 300,
+    "input_tokens": 238080,
+    "output_tokens": 79095,
+    "input_usd_per_mtok": 2.0,
+    "output_usd_per_mtok": 10.0,
+    "usd": 1.2671100000000002,
+    "price_known": true,
+    "actual_usage": true,
+    "note": "Live Anthropic usage."
+  },
+  "issues": [
+    {
+      "gate": "deterministic",
+      "code": "price_consistency",
+      "severity": "pass",
+      "message": "From Te Anau: Milford Sound Day Trip with Cruise and Return Transfers: from prices in NZD differ by 1.1% across sections (collection_card=207.2, product_page=205).",
+      "evidence": {
+        "product_id": "e-18103",
+        "kind": "from",
+        "currency": "NZD",
+        "relative_gap": 0.0107,
+        "pass_at": 0.03,
+        "warn_at": 0.1
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "price_consistency",
+      "severity": "warn",
+      "message": "Milford Sound Cruise with Optional Lunch: from prices in NZD differ by 8.2% across sections (collection_card=143.2, product_page=155).",
+      "evidence": {
+        "product_id": "e-29695",
+        "kind": "from",
+        "currency": "NZD",
+        "relative_gap": 0.0824,
+        "pass_at": 0.03,
+        "warn_at": 0.1
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_duration",
+      "severity": "pass",
+      "message": "Every product states duration.",
+      "evidence": {
+        "missing_ids": [],
+        "rate": 0.0,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_cancellation",
+      "severity": "warn",
+      "message": "1 of 9 products is missing cancellation.",
+      "evidence": {
+        "missing_ids": [
+          "milford-fly-cruise"
+        ],
+        "rate": 0.1111111111111111,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_pickup",
+      "severity": "warn",
+      "message": "1 of 9 products is missing pickup.",
+      "evidence": {
+        "missing_ids": [
+          "e-18125"
+        ],
+        "rate": 0.1111111111111111,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "currency_consistency",
+      "severity": "pass",
+      "message": "Prices that were captured use a single currency.",
+      "evidence": {
+        "currencies": [
+          "NZD"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "choice_overload",
+      "severity": "pass",
+      "message": "The assortment has 9 products (warn at 12, fail at 20).",
+      "evidence": {
+        "count": 9,
+        "warn_at": 12,
+        "fail_at": 20
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "budget (NZD 0\u2013180) has 3 product(s).",
+      "evidence": {
+        "tier": "budget",
+        "product_ids": [
+          "e-29695",
+          "e-18125",
+          "e-37309"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "mid (NZD 180\u2013350) has 2 product(s).",
+      "evidence": {
+        "tier": "mid",
+        "product_ids": [
+          "e-23887",
+          "e-18103"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "premium (NZD 350\u2013700) has 1 product(s).",
+      "evidence": {
+        "tier": "premium",
+        "product_ids": [
+          "e-30130"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "luxury (NZD 700\u2013100000) has 1 product(s).",
+      "evidence": {
+        "tier": "luxury",
+        "product_ids": [
+          "milford-fly-cruise"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation",
+      "severity": "warn",
+      "message": "Milford Sound Boutique Small-Boat Cruise and Milford Sound Cruise by RealNZ share a shelf and their prices differ by only 0.0%.",
+      "evidence": {
+        "product_ids": [
+          "e-18125",
+          "e-37309"
+        ],
+        "relative_gap": 0.0,
+        "threshold": 0.15
+      }
+    },
+    {
+      "gate": "A",
+      "code": "gap:overnight-cruise",
+      "severity": "warn",
+      "message": "The collection long-form describes an overnight Milford cruise (about 18\u201324 hours) and RealNZ sells an overnight cruise from NZ$799, but no bookable overnight product with a price was in the captured cards.\n No matching product was confirmed in this assortment. The long-form is educational copy, not a product card.",
+      "evidence": {
+        "source_url": "https://www.realnz.com/en/blog/milford-sound-cruise-comparison/"
+      }
+    },
+    {
+      "gate": "A",
+      "code": "gap:named-operator-on-lead-card",
+      "severity": "warn",
+      "message": "The first collection card (optional lunch) and the boutique small-boat card do not name the boat operator, while RealNZ, Pure Milford, and Southern Discoveries are named elsewhere.\n No matching product was confirmed in this assortment. Treated as a merchandising gap, not a missing tour.",
+      "evidence": {
+        "source_url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/"
+      }
+    },
+    {
+      "gate": "B",
+      "code": "faq_topics",
+      "severity": "pass",
+      "message": "primary FAQs cover cancellation, getting there, and access.",
+      "evidence": {
+        "surface": "primary",
+        "missing_topics": []
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'milford-fly-cruise' mean purchase intent is 3.21 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "milford-fly-cruise",
+        "mean": 3.207,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'milford-pure-queenstown' mean purchase intent is 3.27 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "milford-pure-queenstown",
+        "mean": 3.267,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation_intent",
+      "severity": "warn",
+      "message": "Milford Sound Boutique Small-Boat Cruise and Milford Sound Cruise by RealNZ draw almost the same purchase intent (means 3.46 vs 3.43) on the same shelf.",
+      "evidence": {
+        "product_ids": [
+          "e-18125",
+          "e-37309"
+        ],
+        "mean_delta": 0.031,
+        "threshold": 0.25
+      }
+    },
+    {
+      "gate": "B",
+      "code": "page_intent",
+      "severity": "warn",
+      "message": "page 'primary' mean purchase intent is 3.32 (pass \u2265 3.6, warn \u2265 3.2).",
+      "evidence": {
+        "key": "primary",
+        "mean": 3.317,
+        "pass_at": 3.6,
+        "warn_at": 3.2
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'couple' mean purchase intent is 3.33 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "couple",
+        "mean": 3.332,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'family_with_kids' mean purchase intent is 3.31 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "family_with_kids",
+        "mean": 3.305,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'friends' mean purchase intent is 3.31 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "friends",
+        "mean": 3.31,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'solo' mean purchase intent is 3.31 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "solo",
+        "mean": 3.309,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'budget' mean purchase intent is 3.37 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "budget",
+        "mean": 3.366,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'luxury' mean purchase intent is 3.19 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "luxury",
+        "mean": 3.185,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'mid' mean purchase intent is 3.32 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "mid",
+        "mean": 3.325,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'premium' mean purchase intent is 3.36 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "premium",
+        "mean": 3.358,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    }
+  ],
+  "products": {
+    "e-29695": {
+      "title": "Milford Sound Cruise with Optional Lunch",
+      "type": "cruise",
+      "positioning": "budget",
+      "price": 155.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.12298980982669906,
+          "2": 0.12803814417732737,
+          "3": 0.23859971281919587,
+          "4": 0.22611348961334662,
+          "5": 0.28425884356343106
+        },
+        "mean": 3.4206134129094834
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12228809559213738,
+              "2": 0.13355827548120147,
+              "3": 0.23350014646504444,
+              "4": 0.22158667251301176,
+              "5": 0.28906680994860495
+            },
+            "mean": 3.4215858257447453
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.12243169634562717,
+              "2": 0.1155804951905694,
+              "3": 0.2454399626924585,
+              "4": 0.22811263339982843,
+              "5": 0.28843521237151654
+            },
+            "mean": 3.4445391702610375
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.12541689696969474,
+              "2": 0.1374462419109052,
+              "3": 0.23645008087423433,
+              "4": 0.2313850602932704,
+              "5": 0.2693017199518954
+            },
+            "mean": 3.3817084643467665
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12188313044306413,
+              "2": 0.1343809219933355,
+              "3": 0.2336667250081543,
+              "4": 0.22082504397855388,
+              "5": 0.28924417857689216
+            },
+            "mean": 3.4211662182528744
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.13060020506592437,
+              "2": 0.13069081280431266,
+              "3": 0.2434780064485422,
+              "4": 0.20824436718054692,
+              "5": 0.28698660850067387
+            },
+            "mean": 3.3903263612457333
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.13153876326862476,
+              "2": 0.1327330344330725,
+              "3": 0.2492392792955316,
+              "4": 0.21423414957543507,
+              "5": 0.2722547734273361
+            },
+            "mean": 3.3629331354597856
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1083077014906438,
+              "2": 0.13317111770629989,
+              "3": 0.22771529884397612,
+              "4": 0.23173290089165866,
+              "5": 0.2990729810674216
+            },
+            "mean": 3.4800923423389145
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1367504374463851,
+              "2": 0.1051460703458641,
+              "3": 0.24166845179884183,
+              "4": 0.24830501255987847,
+              "5": 0.2681300278490305
+            },
+            "mean": 3.405918123019305
+          }
+        }
+      }
+    },
+    "e-18125": {
+      "title": "Milford Sound Boutique Small-Boat Cruise",
+      "type": "cruise",
+      "positioning": "mid",
+      "price": 179.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.12078178279914928,
+          "2": 0.12509634418588622,
+          "3": 0.20464376693658864,
+          "4": 0.2759300272764588,
+          "5": 0.27354807880191706
+        },
+        "mean": 3.4563662750961086
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12179897169661007,
+              "2": 0.12429581489242932,
+              "3": 0.20130319676610012,
+              "4": 0.2681600922767399,
+              "5": 0.28444192436812055
+            },
+            "mean": 3.4691501827273314
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.10794356133504307,
+              "2": 0.12068768952477002,
+              "3": 0.2156114344517558,
+              "4": 0.28055222366654314,
+              "5": 0.275205091021888
+            },
+            "mean": 3.494387593515463
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.11142799431814276,
+              "2": 0.11225639877184881,
+              "3": 0.2031572683990003,
+              "4": 0.2878739316562596,
+              "5": 0.28528440685474854
+            },
+            "mean": 3.5233303579576223
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15421408648039078,
+              "2": 0.14895934334109998,
+              "3": 0.18961119495645715,
+              "4": 0.2612913804512554,
+              "5": 0.24592399477079674
+            },
+            "mean": 3.2957518536909673
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12745390544121174,
+              "2": 0.13278557413067038,
+              "3": 0.20042894575843212,
+              "4": 0.25507590363650684,
+              "5": 0.28425567103317895
+            },
+            "mean": 3.435893860689771
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.11195731076445041,
+              "2": 0.11732757839221358,
+              "3": 0.20275303571208994,
+              "4": 0.28658043614759376,
+              "5": 0.28138163898365226
+            },
+            "mean": 3.5081015141937835
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.12215548438841821,
+              "2": 0.13040117268877308,
+              "3": 0.20049475270322545,
+              "4": 0.28275120671206466,
+              "5": 0.2641973835075187
+            },
+            "mean": 3.4364338322614927
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.12803125053371187,
+              "2": 0.12019715025174141,
+              "3": 0.22137657424328316,
+              "4": 0.2570717595749234,
+              "5": 0.27332326539634016
+            },
+            "mean": 3.4274586390484387
+          }
+        }
+      }
+    },
+    "e-37309": {
+      "title": "Milford Sound Cruise by RealNZ",
+      "type": "cruise",
+      "positioning": "mid",
+      "price": 179.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.11090375525912728,
+          "2": 0.15902860644576763,
+          "3": 0.20439949430349297,
+          "4": 0.24511014496779152,
+          "5": 0.28055799902382056
+        },
+        "mean": 3.4253900260514105
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.10526608346592331,
+              "2": 0.18277114134981223,
+              "3": 0.1859498363482702,
+              "4": 0.24411466363246004,
+              "5": 0.2818982752035342
+            },
+            "mean": 3.4146079057578698
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.1091335140624884,
+              "2": 0.15755651219365507,
+              "3": 0.1912425904835704,
+              "4": 0.25412902321002634,
+              "5": 0.28793836005025986
+            },
+            "mean": 3.4541822029919143
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.12278506391015764,
+              "2": 0.14865856884912038,
+              "3": 0.23617268592511512,
+              "4": 0.23121943192538458,
+              "5": 0.2611642493902223
+            },
+            "mean": 3.3593192340363935
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.10592534248663392,
+              "2": 0.1500832882000178,
+              "3": 0.20990141903668147,
+              "4": 0.2457768480751672,
+              "5": 0.2883131022014997
+            },
+            "mean": 3.460469079304881
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12179006433337274,
+              "2": 0.1738748186809998,
+              "3": 0.20668508914132175,
+              "4": 0.2217479791343855,
+              "5": 0.2759020487099202
+            },
+            "mean": 3.3560971292064803
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.10463274935967179,
+              "2": 0.15852028041469068,
+              "3": 0.20400940211403354,
+              "4": 0.2461331726376009,
+              "5": 0.2867043954740031
+            },
+            "mean": 3.4517561844515727
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.10934483354756343,
+              "2": 0.15846484714638448,
+              "3": 0.19808561317525622,
+              "4": 0.24648682484955095,
+              "5": 0.28761788128124494
+            },
+            "mean": 3.4445680731705295
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.11722393072650417,
+              "2": 0.14941964583203984,
+              "3": 0.21842649908202505,
+              "4": 0.25865439611263696,
+              "5": 0.256275528246794
+            },
+            "mean": 3.3873379453211765
+          }
+        }
+      }
+    },
+    "e-40298": {
+      "title": "Milford Sound Nature Cruise",
+      "type": "cruise",
+      "positioning": "unknown",
+      "price": null,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.11797957060238014,
+          "2": 0.13984998365604737,
+          "3": 0.2342470160315746,
+          "4": 0.23587561772344537,
+          "5": 0.2720478119865524
+        },
+        "mean": 3.4041621168357423
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12574753194435856,
+              "2": 0.14920553252250993,
+              "3": 0.227614699370289,
+              "4": 0.22557658411667345,
+              "5": 0.271855652046169
+            },
+            "mean": 3.3685872917977844
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.10527572943545369,
+              "2": 0.14233520179723594,
+              "3": 0.24382605146944958,
+              "4": 0.23375787031275064,
+              "5": 0.27480514698511016
+            },
+            "mean": 3.4304815036148275
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.1345940542173965,
+              "2": 0.1438959909699631,
+              "3": 0.23750805430523417,
+              "4": 0.2278892833412655,
+              "5": 0.25611261716614075
+            },
+            "mean": 3.327030418268791
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.11411842051558112,
+              "2": 0.12121785966450416,
+              "3": 0.21951322307082,
+              "4": 0.25937457836236755,
+              "5": 0.28577591838672717
+            },
+            "mean": 3.481471714440155
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12748509703837732,
+              "2": 0.13940632872583214,
+              "3": 0.22357038649586422,
+              "4": 0.22073990570441512,
+              "5": 0.2887982820355112
+            },
+            "mean": 3.4039599469728508
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.1150800875842484,
+              "2": 0.14470770243498765,
+              "3": 0.2501466594212211,
+              "4": 0.23526897273612749,
+              "5": 0.25479657782341536
+            },
+            "mean": 3.369994250779474
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1172747392615303,
+              "2": 0.12868115104065078,
+              "3": 0.2280664016725925,
+              "4": 0.2386319968071953,
+              "5": 0.2873457112180311
+            },
+            "mean": 3.4500927896795464
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.11728581410425912,
+              "2": 0.158266212075079,
+              "3": 0.22900243602033635,
+              "4": 0.24246083851484204,
+              "5": 0.25298469928548356
+            },
+            "mean": 3.355592396802212
+          }
+        }
+      }
+    },
+    "e-23887": {
+      "title": "From Queenstown: Milford Sound Day Trip with Cruise and Return Transfers",
+      "type": "day_trip",
+      "positioning": "mid",
+      "price": 309.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.13707791442860753,
+          "2": 0.10389974211569916,
+          "3": 0.2511880083374694,
+          "4": 0.24131258461798916,
+          "5": 0.26652175050023486
+        },
+        "mean": 3.396300514645545
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.14697498178025356,
+              "2": 0.135072613004831,
+              "3": 0.24221744372896667,
+              "4": 0.21092371731733847,
+              "5": 0.26481124416861035
+            },
+            "mean": 3.311523629089221
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.13635182461173245,
+              "2": 0.09784858213229895,
+              "3": 0.23884901639889458,
+              "4": 0.2503386541254408,
+              "5": 0.2766119227316332
+            },
+            "mean": 3.4330102682329433
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.13433494992889244,
+              "2": 0.08797701773083784,
+              "3": 0.2590726529327866,
+              "4": 0.23992240636706783,
+              "5": 0.27869297304041524
+            },
+            "mean": 3.4406614348592752
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.13171213699089995,
+              "2": 0.1023971763118059,
+              "3": 0.27358130613882253,
+              "4": 0.2567755324477199,
+              "5": 0.23553384811075173
+            },
+            "mean": 3.362021778375617
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1397536765969869,
+              "2": 0.12551834452465147,
+              "3": 0.2539042179961648,
+              "4": 0.2073179139112589,
+              "5": 0.27350584697093794
+            },
+            "mean": 3.3493039101345095
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.14838970588723108,
+              "2": 0.09096674011426222,
+              "3": 0.2504390175336356,
+              "4": 0.2557003337701875,
+              "5": 0.2545042026946835
+            },
+            "mean": 3.37696258727083
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.12044706355789107,
+              "2": 0.10302258898596399,
+              "3": 0.2509345484438191,
+              "4": 0.24256502417464806,
+              "5": 0.28303077483767775
+            },
+            "mean": 3.464709857748258
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.15449012215810104,
+              "2": 0.11198943130248822,
+              "3": 0.2509715278021746,
+              "4": 0.23960451777343478,
+              "5": 0.24294440096380146
+            },
+            "mean": 3.304523644082348
+          }
+        }
+      }
+    },
+    "e-18103": {
+      "title": "From Te Anau: Milford Sound Day Trip with Cruise and Return Transfers",
+      "type": "day_trip",
+      "positioning": "mid",
+      "price": 205.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.13818916299175052,
+          "2": 0.11661599876708001,
+          "3": 0.2582285615332554,
+          "4": 0.21356191440218378,
+          "5": 0.2734043623057303
+        },
+        "mean": 3.3673763142630637
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1394272928217123,
+              "2": 0.1350689774913333,
+              "3": 0.24009378192125277,
+              "4": 0.21151091461841828,
+              "5": 0.27389903314728337
+            },
+            "mean": 3.345385417778227
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.14488785290161824,
+              "2": 0.11890602006491614,
+              "3": 0.24696024419280427,
+              "4": 0.21647114830531902,
+              "5": 0.27277473453534234
+            },
+            "mean": 3.353338891507851
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.1376161595261862,
+              "2": 0.1054296361522064,
+              "3": 0.27471444187827876,
+              "4": 0.21473497546901807,
+              "5": 0.2675047869743106
+            },
+            "mean": 3.3690825942130607
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12533860570352304,
+              "2": 0.10701540404747978,
+              "3": 0.277788395866891,
+              "4": 0.20891074745222812,
+              "5": 0.2809468469298781
+            },
+            "mean": 3.4131118258574586
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12663734695010168,
+              "2": 0.16436614386512224,
+              "3": 0.2191466570820275,
+              "4": 0.20923792210875972,
+              "5": 0.2806119299939888
+            },
+            "mean": 3.3528209443314116
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.1353875620440028,
+              "2": 0.11940595149804348,
+              "3": 0.25258072922989844,
+              "4": 0.2199706736559751,
+              "5": 0.27265508357208024
+            },
+            "mean": 3.3750997652140864
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1436342727289731,
+              "2": 0.10659940203640934,
+              "3": 0.2763007329664178,
+              "4": 0.198084024834607,
+              "5": 0.2753815674335927
+            },
+            "mean": 3.3549792122074367
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.13940523416168138,
+              "2": 0.0974337999265216,
+              "3": 0.25628697180069043,
+              "4": 0.24263227654228295,
+              "5": 0.2642417175688237
+            },
+            "mean": 3.394871443430046
+          }
+        }
+      }
+    },
+    "milford-fly-cruise": {
+      "title": "From Queenstown: Milford Sound Scenic Flyover and Cruise",
+      "type": "fly_cruise",
+      "positioning": "luxury",
+      "price": 835.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.17679595113328192,
+          "2": 0.15352568331015176,
+          "3": 0.20901854312434487,
+          "4": 0.2075206458381805,
+          "5": 0.25313917659404095
+        },
+        "mean": 3.206681413449547
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.19207912228860188,
+              "2": 0.16817829025340672,
+              "3": 0.20425716786400347,
+              "4": 0.19749192521103845,
+              "5": 0.23799349438294945
+            },
+            "mean": 3.1211423791463266
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.1662724466082804,
+              "2": 0.14001478936389444,
+              "3": 0.20128749213357142,
+              "4": 0.22891949793912875,
+              "5": 0.263505773955125
+            },
+            "mean": 3.283371363268923
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.17755390053639256,
+              "2": 0.15862777800549618,
+              "3": 0.22197121168430173,
+              "4": 0.19124753373864473,
+              "5": 0.25059957603516475
+            },
+            "mean": 3.178711106730693
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17992159730350243,
+              "2": 0.15769060479046648,
+              "3": 0.2128420652144878,
+              "4": 0.1973034350630429,
+              "5": 0.2522422976285003
+            },
+            "mean": 3.184254230922572
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1872211913809133,
+              "2": 0.15478524368169227,
+              "3": 0.21342119071386592,
+              "4": 0.20162311280086026,
+              "5": 0.24294926142266818
+            },
+            "mean": 3.1582940092026774
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.1572985058651149,
+              "2": 0.13755974045411803,
+              "3": 0.22305624921660316,
+              "4": 0.21884804704508853,
+              "5": 0.26323745741907534
+            },
+            "mean": 3.2931662096988914
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.17759155431002405,
+              "2": 0.15984019603768582,
+              "3": 0.19871218126179338,
+              "4": 0.2059828531172964,
+              "5": 0.2578732152732004
+            },
+            "mean": 3.2067059790059638
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20164171279369653,
+              "2": 0.16610190160769817,
+              "3": 0.20496382255678652,
+              "4": 0.19554005262572444,
+              "5": 0.23175251041609438
+            },
+            "mean": 3.0896597462628224
+          }
+        }
+      }
+    },
+    "milford-pure-queenstown": {
+      "title": "From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford",
+      "type": "day_trip",
+      "positioning": "mid",
+      "price": null,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.15698285635017623,
+          "2": 0.1677499252473819,
+          "3": 0.1958806098749853,
+          "4": 0.20957362306524524,
+          "5": 0.2698129854622114
+        },
+        "mean": 3.267483956041934
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15494121006637876,
+              "2": 0.14497296041064223,
+              "3": 0.20529242735205985,
+              "4": 0.21320046157002903,
+              "5": 0.2815929406008902
+            },
+            "mean": 3.32153096222841
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.15799884801501693,
+              "2": 0.16739333178979926,
+              "3": 0.19028005454068506,
+              "4": 0.21634588649844488,
+              "5": 0.2679818791560538
+            },
+            "mean": 3.268918616990719
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.13875331715368758,
+              "2": 0.18007204460856402,
+              "3": 0.191685313123227,
+              "4": 0.2208133462314326,
+              "5": 0.2686759788830888
+            },
+            "mean": 3.300586625081671
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17842964697766925,
+              "2": 0.1768048388349772,
+              "3": 0.2016309900545125,
+              "4": 0.18041795790571,
+              "5": 0.2627165662271311
+            },
+            "mean": 3.1721869575696564
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1540429611325131,
+              "2": 0.1438368798601429,
+              "3": 0.20807323684582915,
+              "4": 0.20624240966919535,
+              "5": 0.28780451249231953
+            },
+            "mean": 3.3299286325286657
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.16046950850521513,
+              "2": 0.18254639165035458,
+              "3": 0.18274360571219533,
+              "4": 0.2128706823724863,
+              "5": 0.2613698117597487
+            },
+            "mean": 3.2321248972311993
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.15265653012790456,
+              "2": 0.17643189239755053,
+              "3": 0.20199236808584067,
+              "4": 0.19342586659695005,
+              "5": 0.2754933427917543
+            },
+            "mean": 3.2626675995270995
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1634419815786889,
+              "2": 0.13941000087141756,
+              "3": 0.19510489608527928,
+              "4": 0.24505850255295947,
+              "5": 0.2569846189116548
+            },
+            "mean": 3.2927337763474736
+          }
+        }
+      }
+    },
+    "e-30130": {
+      "title": "Milford Sound Ultra Premium Cruise with Gourmet Meal, Reserved Seating, and Sparkling Wine",
+      "type": "cruise",
+      "positioning": "premium",
+      "price": 389.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.14183019842234854,
+          "2": 0.14859489785282218,
+          "3": 0.23270005922550505,
+          "4": 0.22087063478940525,
+          "5": 0.256004209709919
+        },
+        "mean": 3.300623759511724
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.13441531668838672,
+              "2": 0.15961293381353575,
+              "3": 0.23691117486219201,
+              "4": 0.25943929420164646,
+              "5": 0.2096212804342391
+            },
+            "mean": 3.2502382878798155
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.14165969187249094,
+              "2": 0.14683294885950812,
+              "3": 0.23531308452487104,
+              "4": 0.21375192195966528,
+              "5": 0.26244235278346467
+            },
+            "mean": 3.3084842949221045
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.14941876728786277,
+              "2": 0.14431016616655504,
+              "3": 0.23792659190082893,
+              "4": 0.21495779954109986,
+              "5": 0.2533866751036534
+            },
+            "mean": 3.2785834490061263
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.14070434515461597,
+              "2": 0.14580595534716287,
+              "3": 0.2176007757521027,
+              "4": 0.20225125668804347,
+              "5": 0.293637667058075
+            },
+            "mean": 3.3623119451477987
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1620891537189333,
+              "2": 0.15720031012207983,
+              "3": 0.22649949202652758,
+              "4": 0.21756177685754677,
+              "5": 0.23664926727491256
+            },
+            "mean": 3.2094816938474255
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.12855722066796071,
+              "2": 0.1540231508700538,
+              "3": 0.21482300155839704,
+              "4": 0.24129724574074085,
+              "5": 0.26129938116284757
+            },
+            "mean": 3.352758415860461
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.15835359240046107,
+              "2": 0.1510605714856664,
+              "3": 0.23725567843331677,
+              "4": 0.20025172110201836,
+              "5": 0.25307843657853746
+            },
+            "mean": 3.238640837972505
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.10985824859550872,
+              "2": 0.12602209588757313,
+              "3": 0.25890573068673356,
+              "4": 0.23623521427221633,
+              "5": 0.2689787105579683
+            },
+            "mean": 3.4284540423095624
+          }
+        }
+      }
+    }
+  },
+  "pages": {
+    "primary": {
+      "title": "Experience the best cruises in Milford Sound",
+      "page_type": "headout.com",
+      "url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.15937117033034737,
+          "2": 0.1359670754753041,
+          "3": 0.21949861995116304,
+          "4": 0.19848854819328304,
+          "5": 0.28667458604990237
+        },
+        "mean": 3.3171283041570887
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15133485142140338,
+              "2": 0.14694918545767252,
+              "3": 0.22027929873327282,
+              "4": 0.20781122835041355,
+              "5": 0.2736254360372377
+            },
+            "mean": 3.3054432121244095
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.15973562272380903,
+              "2": 0.12970653839663523,
+              "3": 0.22083149613664785,
+              "4": 0.19791405576481222,
+              "5": 0.29181228697809575
+            },
+            "mean": 3.332360845876751
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.16281066117082396,
+              "2": 0.13821739518902876,
+              "3": 0.210783376566213,
+              "4": 0.20275691420022604,
+              "5": 0.2854316528737083
+            },
+            "mean": 3.3097815024169663
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.16272658720405567,
+              "2": 0.13383724380448322,
+              "3": 0.2264421187781063,
+              "4": 0.18523934381358242,
+              "5": 0.2917547063997724
+            },
+            "mean": 3.3094583384005327
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.13277527113946677,
+              "2": 0.15136507004364227,
+              "3": 0.21100061942465964,
+              "4": 0.22691060742177135,
+              "5": 0.27794843197046
+            },
+            "mean": 3.3658918590401155
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.15382246588557805,
+              "2": 0.12963689114224497,
+              "3": 0.21245692357851367,
+              "4": 0.21259023322109213,
+              "5": 0.2914934861725712
+            },
+            "mean": 3.3582953826528334
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1550394794553902,
+              "2": 0.14142264981279215,
+              "3": 0.22139352538388454,
+              "4": 0.18782564987187925,
+              "5": 0.2943186954760538
+            },
+            "mean": 3.324961432100414
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20103161578353382,
+              "2": 0.12194963321016876,
+              "3": 0.23442430080460305,
+              "4": 0.1759588237318054,
+              "5": 0.266635626469889
+            },
+            "mean": 3.185217211894347
+          }
+        }
+      }
+    }
+  },
+  "rankings": {
+    "overall": [
+      "e-18125",
+      "e-37309",
+      "e-29695",
+      "e-40298",
+      "e-23887",
+      "e-18103",
+      "e-30130",
+      "milford-pure-queenstown",
+      "milford-fly-cruise"
+    ],
+    "by_segment": {
+      "trip_type": {
+        "family_with_kids": [
+          "e-18125",
+          "e-29695",
+          "e-37309",
+          "e-40298",
+          "e-18103",
+          "milford-pure-queenstown",
+          "e-23887",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "couple": [
+          "e-18125",
+          "e-37309",
+          "e-29695",
+          "e-23887",
+          "e-40298",
+          "e-18103",
+          "e-30130",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ],
+        "friends": [
+          "e-18125",
+          "e-23887",
+          "e-29695",
+          "e-18103",
+          "e-37309",
+          "e-40298",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "solo": [
+          "e-40298",
+          "e-37309",
+          "e-29695",
+          "e-18103",
+          "e-30130",
+          "e-23887",
+          "e-18125",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ]
+      },
+      "budget_tier": {
+        "budget": [
+          "e-18125",
+          "e-40298",
+          "e-29695",
+          "e-37309",
+          "e-18103",
+          "e-23887",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "premium": [
+          "e-18125",
+          "e-37309",
+          "e-23887",
+          "e-18103",
+          "e-40298",
+          "e-29695",
+          "e-30130",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ],
+        "mid": [
+          "e-29695",
+          "e-23887",
+          "e-40298",
+          "e-37309",
+          "e-18125",
+          "e-18103",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "luxury": [
+          "e-30130",
+          "e-18125",
+          "e-29695",
+          "e-18103",
+          "e-37309",
+          "e-40298",
+          "e-23887",
+          "milford-pure-queenstown",
+          "milford-fly-cruise"
+        ]
+      }
+    }
+  },
+  "quotes": [
+    {
+      "persona_id": "p0016",
+      "persona_label": "25-34 solo from Germany, luxury budget, first timer, planning months 1 3, via app; interests: scenery, hiking",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "Fairly likely, and I'd probably go for the fly-and-cruise or the Ultra Premium cruise with the gourmet meal and reserved seating. Since I'm a first-timer and travelling solo on a luxury budget, I like that the page spells out the boarding point and has a compare block for the cruise types, and the 4.8 from over 6,000 travellers plus the free cancellation and guarantees make me comfortable booking in the app. What holds me back is that it's a marketplace with no clear statement of who actually runs the cruise. Several listings also don't show a price, and the weather cancellation policy is vague. I'd want to check that the product page spells out the refund terms and the exact departure time before I pay, because I don't want to lose a flight-based day to fog or cloud.",
+      "mean_pi": 3.0053013300506866,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0026",
+      "persona_label": "35-44 family with kids from United Kingdom, budget budget, first timer, planning weeks 1 4, via mobile_web; interests: short_on_time, scenery",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "As a budget family of four doing this for the first time, I like the 4.8 rating from over 6,000 people and the free cancellation. The cruise-only options at 155\u2013179 NZD look doable, and it's reassuring that cruises usually run in the rain and strollers are allowed. What would stop me is the cost per person adding up, and I can't tell whether kids get a discount. The Queenstown day trip at 309 NZD each is a 12-13 hour day with little ones, and I'm not sure if we'd drive ourselves. I'd probably go further down the page to check child pricing and the transport, so I'm leaning towards booking but won't do it straight away on my phone.",
+      "mean_pi": 3.0213064392643445,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0020",
+      "persona_label": "25-34 couple from Australia, budget budget, repeat, planning months 1 3, via desktop; interests: wildlife, short_on_time",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "I'd probably book from here, since I've done Milford before and I'm mostly after the Nature Cruise for the seals and the odd penguin or dolphin. The 4.8 from over 6,000 reviews, the 24-hour free cancellation and the clear boarding point all help, and the 155 NZD cruise-only option works for a budget couple. What holds me back is that the Nature Cruise has no price showing, and I can't tell from this page who actually runs it, since it's a Headout marketplace listing and not the operator's own site. I'd open the operator's own site in another tab to compare prices, and then book here only if it's about the same. We're short on time, so I'd also want to know the drive from Queenstown fits the schedule before I commit.",
+      "mean_pi": 3.558086494217653,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0021",
+      "persona_label": "45-54 friends from Australia, premium budget, first timer, planning months 1 3, via desktop; interests: short_on_time, photography",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "I'm fairly likely to book, probably within a few weeks. The fly-and-cruise from Queenstown at 835 NZD suits me best: I'm short on time and want photos from the air as well as from the water, and my friends and I are on a premium budget. The Ultra Premium cruise with reserved seating is my backup, since a good deck spot matters for photography. What would slow me down is that the page doesn't say whether Headout is an authorised reseller, and some prices aren't shown. I'd also want the weather cancellation and flyover refund terms spelled out before I pay, since a cloudy day would waste a lot of money.",
+      "mean_pi": 3.5742946086135325,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0005",
+      "persona_label": "25-34 friends from United Kingdom, mid budget, first timer, planning weeks 1 4, via mobile_web; interests: weather_comfort, hiking",
+      "stimulus_id": "milford-fly-cruise",
+      "stimulus_title": "From Queenstown: Milford Sound Scenic Flyover and Cruise",
+      "text": "Honestly, I'm leaning towards not booking it as it stands. The flyover plus a small boat sounds like a brilliant first-time way to see Milford Sound, and hotel pickup and window seats are a big plus, especially if the weather turns grumpy and I want the best view. But 835 NZD is roughly \u00a3400 each, which is a stretch on a mid budget with friends. The listing doesn't name the operator or give a cancellation policy, and I've no idea what happens if the weather grounds the flight. The duration range of 4.5 to 13 hours is also vague. I'd want those answers, pl",
+      "mean_pi": 2.7725827036221187,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0028",
+      "persona_label": "35-44 family with kids from New Zealand, premium budget, first timer, planning months 3 plus, via mobile_web; interests: wildlife, hiking",
+      "stimulus_id": "e-18125",
+      "stimulus_title": "Milford Sound Boutique Small-Boat Cruise",
+      "text": "I'm fairly interested, but I wouldn't book it yet. A small boat with a 75-passenger cap, close-up waterfalls, wildlife and a skipper who does commentary suits my kids and me, and the optional guided Milford Track walk is a nice bonus for a hiking family. Free cancellation up to 24 hours helps since I'm planning months out.\n\nWhat holds me back is that the operator isn't named, so I can't tell which boat I'd actually be on. Pickup is also blank, and with kids I need to know how we get there from Te Anau or Queenstown, since that's a long day. A perfect 5.0 across 2,000+ reviews and a review count that doesn't match between pages make me want to check things on the operator's own site before paying 179 NZD each.",
+      "mean_pi": 3.6924360629200588,
+      "generator": "anthropic"
+    }
+  ],
+  "unknowns": [
+    "api-ho.headout.com collection and product-card endpoints returned HTTP 403, so catalog totals, persona tags, and a single currency from the API were not available.",
+    "No Milford Sound microbrand (separate attraction domain operated by Headout) was identified. Gate B reseller-disclaimer checks do not apply to a second surface.",
+    "Product URL, cancellation cutoff, and full inclusions for the fly-cruise card and the Pure Milford Queenstown card were not captured.",
+    "Nature cruise price, rating, and confirmed operator were not on the fetched pages.",
+    "Whether e-30130 is on collection 3945 or only in the same URL folder was not confirmed; the first collection extract did not list it.",
+    "Collection-card review counts and product-page review counts drifted by a few reviews in the same fetch. The spec keeps the product-page count when both existed.",
+    "Viator prices are USD and are context only.",
+    "Accessibility is discussed in the collection FAQ, but individual product cards that were opened did not repeat wheelchair access, so accessibility_noted is false at product level."
+  ],
+  "sources": [
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/",
+      "fetched_on": "2026-11-26",
+      "what": "Headout collection page, hero, cards, long-form, FAQs"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-e-29695/",
+      "fetched_on": "2026-11-26",
+      "what": "Optional-lunch cruise product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/small-group-guided-tour-milford-sound-cruise-e-18125/",
+      "fetched_on": "2026-11-26",
+      "what": "Boutique small-boat product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-by-realnz-e-37309/",
+      "fetched_on": "2026-11-26",
+      "what": "RealNZ cruise product page"
+    },
+    {
+      "url": "https://www.headout.com/realnz-c-7688/",
+      "fetched_on": "2026-11-26",
+      "what": "RealNZ collection card showing from NZ$155"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-nature-cruise-with-cascade-lounge-e-40298/",
+      "fetched_on": "2026-11-26",
+      "what": "Nature cruise product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/full-day-tour-of-milford-sound-with-cruise-lunch-return-transfers-e-23887/",
+      "fetched_on": "2026-11-26",
+      "what": "Queenstown day trip product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/day-tour-from-te-anau-to-milford-sound-including-a-cruise-e-18103/",
+      "fetched_on": "2026-11-26",
+      "what": "Te Anau day trip product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/premium-milford-sound-cruise-with-gourmet-canapes-champagne-e-30130/",
+      "fetched_on": "2026-11-26",
+      "what": "Ultra-premium cruise product page"
+    },
+    {
+      "url": "https://www.realnz.com/en/blog/milford-sound-cruise-comparison/",
+      "fetched_on": "2026-11-26",
+      "what": "Operator price comparison dated 10 November 2026"
+    },
+    {
+      "url": "https://milfordsoundtravel.com/things-to-do-in-milford-sound/best-milford-sound-cruises/",
+      "fetched_on": "2026-11-26",
+      "what": "Third-party operator price roundup, prices marked October 2026"
+    },
+    {
+      "url": "https://www.viator.com/Fiordland-and-Milford-Sound-tours/Cruises-Sailing-and-Water-Tours/d756-g3",
+      "fetched_on": "2026-11-26",
+      "what": "Viator cruise category, USD from-prices"
+    }
+  ],
+  "thresholds": {
+    "page_mean_pass": 3.6,
+    "page_mean_warn": 3.2,
+    "segment_mean_pass": 3.4,
+    "segment_mean_warn": 2.8,
+    "product_mean_pass": 3.3,
+    "product_mean_warn": 2.6,
+    "cannibal_pi_delta": 0.25,
+    "note": "Uncalibrated assumptions. See anchors.CALIBRATION_PLAN."
+  }
+}

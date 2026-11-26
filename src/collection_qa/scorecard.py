@@ -34,6 +34,9 @@ def render_markdown(payload: dict) -> str:
     lines.append(f"- Provenance: **{payload['provenance']}**. {payload['provenance_note']}")
     lines.append(f"- Source pages fetched: {payload['fetched_on']}")
     lines.append(f"- Scorecard generated: {payload['generated_at']}")
+    seed = payload.get("seed", payload.get("method", {}).get("seed"))
+    if seed is not None:
+        lines.append(f"- Persona seed: **{seed}**")
     lines.append("")
     method = payload["method"]
     lines.append("## Method")
@@ -93,17 +96,36 @@ def render_markdown(payload: dict) -> str:
     if payload.get("products"):
         lines.append("## Product purchase intent (Gate A)")
         lines.append("")
-        lines.append("| Product | Mean PI | n | pmf 1–5 |")
-        lines.append("| --- | ---: | ---: | --- |")
         ranked = payload["rankings"]["overall"]
+        has_z = any("z_vs_collection" in payload["products"][product_id] for product_id in ranked)
+        if has_z:
+            lines.append("| Product | Mean PI | z vs collection | n | pmf 1–5 |")
+            lines.append("| --- | ---: | ---: | ---: | --- |")
+        else:
+            lines.append("| Product | Mean PI | n | pmf 1–5 |")
+            lines.append("| --- | ---: | ---: | --- |")
         for product_id in ranked:
             block = payload["products"][product_id]
             overall = block["overall"]
             pmf = " ".join(f"{point}:{overall['pmf'][point]:.2f}" for point in ("1", "2", "3", "4", "5"))
-            lines.append(
-                f"| {block['title']} | {overall['mean']:.2f} | {overall['n']} | {pmf} |"
-            )
+            if has_z:
+                lines.append(
+                    f"| {block['title']} | {overall['mean']:.2f} | {block['z_vs_collection']:+.2f} | "
+                    f"{overall['n']} | {pmf} |"
+                )
+            else:
+                lines.append(
+                    f"| {block['title']} | {overall['mean']:.2f} | {overall['n']} | {pmf} |"
+                )
         lines.append("")
+        if has_z:
+            lines.append(
+                "z is this product's mean minus the mean of product means in this run, "
+                "divided by their standard deviation. Absolute pass lines are not calibrated "
+                "to conversion. A negative z is a product this panel liked less than the rest "
+                "of the collection, even when every mean sits in a narrow band."
+            )
+            lines.append("")
         lines.append("## Top and bottom products by segment")
         lines.append("")
         for axis, segments in payload["rankings"]["by_segment"].items():

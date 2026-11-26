@@ -23,6 +23,15 @@ def test_mock_run_writes_labeled_scorecard(tmp_path: Path):
         ),
     )
     assert payload["mock"] is True
+    assert payload["seed"] == 4
+    assert payload["method"]["seed"] == 4
+    assert payload["method"]["max_tokens"] >= 640
+    assert "z_vs_collection" in payload["products"]["cheap-cruise"]
+    assert (
+        payload["products"]["cheap-cruise"]["z_vs_collection"]
+        > payload["products"]["luxury-fly"]["z_vs_collection"]
+    )
+    assert any(issue["code"] == "relative_rank" for issue in payload["issues"])
     assert payload["banner"] and "MOCK" in payload["banner"]
     assert payload["method"]["llm_calls_made"] > 0
     assert payload["cost"]["usd"] > 0
@@ -67,8 +76,11 @@ def test_mock_run_writes_labeled_scorecard(tmp_path: Path):
     written = json.loads((out / "tiny-fjord.json").read_text())
     markdown = (out / "tiny-fjord.md").read_text()
     assert written["mock"] is True
+    assert written["seed"] == 4
     assert "MOCK OUTPUT" in markdown
+    assert "Persona seed: **4**" in markdown
     assert "Gate results" in markdown
+    assert "z vs collection" in markdown
 
 
 def test_second_run_uses_the_cache(tmp_path: Path):

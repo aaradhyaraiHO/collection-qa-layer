@@ -12,19 +12,24 @@ import numpy as np
 from collection_qa.anchors import ANCHOR_SETS, DEFAULT_EPSILON, DEFAULT_TEMPERATURE
 from collection_qa.checks import (
     CANNIBAL_PI_DELTA,
+    COMPRESSION_RANGE,
     PAGE_MEAN_PASS,
     PAGE_MEAN_WARN,
     PRODUCT_MEAN_PASS,
     PRODUCT_MEAN_WARN,
+    RELATIVE_Z_FAIL,
+    RELATIVE_Z_WARN,
     SEGMENT_MEAN_PASS,
     SEGMENT_MEAN_WARN,
     cannibalisation_from_intent,
     intent_issues,
+    relative_ranking_issues,
     run_deterministic_checks,
+    z_scores,
 )
 from collection_qa.cost import estimate_cost, planned_calls
 from collection_qa.embeddings import DEFAULT_ST_MODEL, build_embedder
-from collection_qa.llm import LLMClient, LLMResult
+from collection_qa.llm import DEFAULT_MAX_RETRIES, DEFAULT_MAX_TOKENS, DEFAULT_TIMEOUT_SECONDS, LLMClient, LLMResult
 from collection_qa.models import CollectionSpec, DistributionSummary, Quote
 from collection_qa.personas import ASSUMPTION_NOTE, Persona, sample_personas
 from collection_qa.ssr import mean_rating, pmf_as_dict, ssr_pmf
@@ -46,7 +51,9 @@ class RunConfig:
     epsilon: float = DEFAULT_EPSILON
     temperature: float = DEFAULT_TEMPERATURE
     gates: set[str] = field(default_factory=lambda: {"A", "B"})
-    max_tokens: int = 320
+    max_tokens: int = DEFAULT_MAX_TOKENS
+    timeout: float = DEFAULT_TIMEOUT_SECONDS
+    max_retries: int = DEFAULT_MAX_RETRIES
 
 
 @dataclass
@@ -118,6 +125,8 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
         model=config.model,
         mock=config.mock,
         max_tokens=config.max_tokens,
+        timeout=config.timeout,
+        max_retries=config.max_retries,
         cache_path=config.cache_path,
     )
     surface_by_role = dict(surfaces)
@@ -223,8 +232,15 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
             }
 
     rankings = _rankings(product_block)
+    product_z = z_scores(product_means)
+    for product_id, score in product_z.items():
+        product_block[product_id]["z_vs_collection"] = round(score, 4)
     issues = [issue.model_dump() for issue in run_deterministic_checks(spec)]
     if "A" in config.gates and product_means:
+        titles = {product_id: block["title"] for product_id, block in product_block.items()}
+        issues.extend(
+            issue.model_dump() for issue in relative_ranking_issues(product_means, titles)
+        )
         issues.extend(
             issue.model_dump()
             for issue in intent_issues(
@@ -322,6 +338,7 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
         "provenance_note": spec.provenance_note,
         "fetched_on": spec.fetched_on,
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "seed": config.seed,
         "method": {
             "paper": "arXiv 2510.08338",
             "epsilon": config.epsilon,
@@ -332,6 +349,10 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
             "completions": config.completions,
             "n_personas": config.n_personas,
             "seed": config.seed,
+            "max_tokens": config.max_tokens,
+            "request_timeout_s": config.timeout,
+            "max_retries": config.max_retries,
+            "concurrency": config.concurrency,
             "gates": sorted(config.gates),
             "llm_calls_made": client.calls,
             "cache_hits": client.cache_hits,
@@ -355,7 +376,17 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
             "product_mean_pass": PRODUCT_MEAN_PASS,
             "product_mean_warn": PRODUCT_MEAN_WARN,
             "cannibal_pi_delta": CANNIBAL_PI_DELTA,
-            "note": "Uncalibrated assumptions. See anchors.CALIBRATION_PLAN.",
+            "relative_z_warn": RELATIVE_Z_WARN,
+            "relative_z_fail": RELATIVE_Z_FAIL,
+            "compression_range": COMPRESSION_RANGE,
+            "absolute_thresholds_calibrated": False,
+            "note": (
+                "Absolute cuts are not calibrated to Headout CVR. A live Sonnet 5.5 "
+                "pilot (seed 7, 30 personas) compressed product means into about "
+                "3.17–3.46, so these pass lines mostly warn. Use z_vs_collection "
+                "and relative_rank until a backtest replaces the cuts. "
+                "See anchors.CALIBRATION_PLAN."
+            ),
         },
     }
 

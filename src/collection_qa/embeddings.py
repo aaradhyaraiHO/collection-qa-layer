@@ -13,7 +13,10 @@ from typing import Protocol
 
 import numpy as np
 
-DEFAULT_ST_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+# Multilingual MiniLM. The live pilot's English-only all-MiniLM-L6-v2 could not
+# score the German and French replies Claude wrote for non-English personas.
+# Replies are also forced to English. This model is the backstop when one slips through.
+DEFAULT_ST_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
 
 class Embedder(Protocol):

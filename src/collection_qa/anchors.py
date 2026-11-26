@@ -96,14 +96,21 @@ dependence. It does not remove it.
    a few days; wait longer than that before judging SSR). Thresholds in
    collection_qa.checks are labeled assumptions until this shadow set exists.
 
+   A live Sonnet 5.5 pilot on Masai Mara and Milford Sound (30 personas, seed 7,
+   780 calls, about US$3.15, 2026-11-26) put product means in a band of about
+   3.17–3.46. The uncalibrated pass lines (page 3.6, segment 3.4, product 3.3)
+   therefore mostly warn and do not rank the assortment. Until step 2 exists,
+   read relative_rank and z_vs_collection, not the absolute cut.
+
 5. Segment trust. Do not treat source-market or age slices as a go-live gate
    until they track Headout booking mix. The paper replicated age and income
    better than gender or region. Persona weights in this package are priors,
    not measured demand.
 
 6. Embedding sensitivity. Re-run the same frozen reactions through a second
-   local model (for example all-MiniLM-L6-v2 vs all-mpnet-base-v2). The paper
-   saw little change between two OpenAI embedding models; confirm that here
-   before locking a model. Cosine similarity and minimum-subtraction stay fixed
-   so the only change is the embedder.
+   local model. The live pilot used English-only all-MiniLM-L6-v2 and lost
+   25 replies that came back in German or French. The default is now
+   paraphrase-multilingual-MiniLM-L12-v2, and the prompt requires English.
+   Confirm a second model before locking one. Cosine similarity and
+   minimum-subtraction stay fixed so the only change is the embedder.
 """.strip()

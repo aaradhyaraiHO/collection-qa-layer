@@ -1,0 +1,2783 @@
+{
+  "banner": "MOCK OUTPUT. Reactions are deterministic templates, not Claude. Embeddings are lexical-bow, not a judgment of real travelers. Do not use these scores as market research or as a go-live decision.",
+  "mock": true,
+  "collection_id": "masai-mara",
+  "collection_name": "Masai Mara safaris",
+  "destination": "Masai Mara National Reserve, Kenya",
+  "ce_id": "7324",
+  "provenance": "live_headout",
+  "provenance_note": "Live Headout collection plus the Headout-operated microbrand masai-mara-safaris.com. This is not a competitor-built proposal. Numeric \"from\" prices were not rendered for these safaris in the captures below (the public product-card API returned HTTP 403, and the HTML render did not include a currency amount for the Mara cards). Prices are left null on purpose.\n",
+  "fetched_on": "2026-11-26",
+  "generated_at": "2026-11-26T21:59:27.034235+00:00",
+  "seed": 7,
+  "method": {
+    "paper": "arXiv 2510.08338",
+    "epsilon": 0.0,
+    "temperature": 1.0,
+    "anchor_sets": 6,
+    "embedder": "lexical-bow",
+    "model": "claude-sonnet-5-5",
+    "completions": 1,
+    "n_personas": 30,
+    "seed": 7,
+    "max_tokens": 640,
+    "request_timeout_s": 90.0,
+    "max_retries": 5,
+    "concurrency": 8,
+    "gates": [
+      "A",
+      "B"
+    ],
+    "llm_calls_made": 480,
+    "cache_hits": 0
+  },
+  "persona_assumption": "Assumption, not measured Headout demand. Replace with booking-mix weights before a segment gap is used as a go-live gate. Axes are sampled independently; real travelers are correlated.",
+  "persona_profile": "safari",
+  "persona_weights": {
+    "source_market": {
+      "United States": 0.22,
+      "United Kingdom": 0.2,
+      "Germany": 0.12,
+      "India": 0.14,
+      "United Arab Emirates": 0.1,
+      "France": 0.08,
+      "Australia": 0.08,
+      "China": 0.06
+    },
+    "age_band": {
+      "18-24": 0.06,
+      "25-34": 0.24,
+      "35-44": 0.28,
+      "45-54": 0.22,
+      "55-64": 0.14,
+      "65+": 0.06
+    },
+    "trip_type": {
+      "solo": 0.18,
+      "couple": 0.42,
+      "family_with_kids": 0.22,
+      "friends": 0.18
+    },
+    "budget_tier": {
+      "budget": 0.15,
+      "mid": 0.35,
+      "premium": 0.3,
+      "luxury": 0.2
+    },
+    "planning_horizon": {
+      "last_minute": 0.08,
+      "weeks_1_4": 0.2,
+      "months_1_3": 0.42,
+      "months_3_plus": 0.3
+    },
+    "experience": {
+      "first_timer": 0.75,
+      "repeat": 0.25
+    },
+    "accessibility": {
+      "none": 0.93,
+      "mobility": 0.05,
+      "sensory": 0.02
+    },
+    "device_channel": {
+      "mobile_web": 0.6,
+      "desktop": 0.32,
+      "app": 0.08
+    }
+  },
+  "cost": {
+    "model": "claude-sonnet-5-5",
+    "calls": 480,
+    "input_tokens": 257239,
+    "output_tokens": 35867,
+    "input_usd_per_mtok": 2.0,
+    "output_usd_per_mtok": 10.0,
+    "usd": 0.873148,
+    "price_known": true,
+    "actual_usage": false,
+    "note": "MOCK run. Token counts are length estimates of template prompts. USD applies the published rate to those estimates so you can see what a live run of this size would cost. No API call was made."
+  },
+  "issues": [
+    {
+      "gate": "deterministic",
+      "code": "price_consistency",
+      "severity": "pass",
+      "message": "No comparable price claims were captured, so nothing conflicted.",
+      "evidence": {
+        "compared": 0
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "duration_consistency",
+      "severity": "warn",
+      "message": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees: duration statements differ by 3.5 hours (collection_card=17 hrs, product_itinerary=13\u201314 hours).",
+      "evidence": {
+        "product_id": "e-57711",
+        "hours_gap": 3.5,
+        "pass_at": 1.0,
+        "warn_at": 4.0
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_duration",
+      "severity": "pass",
+      "message": "Every product states duration.",
+      "evidence": {
+        "missing_ids": [],
+        "rate": 0.0,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_cancellation",
+      "severity": "fail",
+      "message": "8 of 14 products are missing cancellation.",
+      "evidence": {
+        "missing_ids": [
+          "e-57723",
+          "mara-4d-nakuru",
+          "e-57724",
+          "mara-fly-5",
+          "mara-fly-5-amboseli",
+          "mara-5d-lakes",
+          "mara-6d-nakuru",
+          "mara-6d-naivasha"
+        ],
+        "rate": 0.5714285714285714,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_pickup",
+      "severity": "fail",
+      "message": "6 of 14 products are missing pickup.",
+      "evidence": {
+        "missing_ids": [
+          "mara-4d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli",
+          "mara-5d-lakes",
+          "mara-6d-nakuru",
+          "mara-6d-naivasha"
+        ],
+        "rate": 0.42857142857142855,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "currency_consistency",
+      "severity": "pass",
+      "message": "No numeric prices were captured to compare.",
+      "evidence": {
+        "currencies": []
+      }
+    },
+    {
+      "gate": "A",
+      "code": "choice_overload",
+      "severity": "warn",
+      "message": "The assortment has 14 products (warn at 12, fail at 20).",
+      "evidence": {
+        "count": 14,
+        "warn_at": 12,
+        "fail_at": 20
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "warn",
+      "message": "Fewer than half the products have a numeric price, so the ladder cannot be judged.",
+      "evidence": {
+        "priced": 0,
+        "products": 14
+      }
+    },
+    {
+      "gate": "B",
+      "code": "assertion:nakuru-on-4-day-plus",
+      "severity": "fail",
+      "message": "The microbrand says Lake Nakuru National Park is included with 4+ day safaris. Mara-only itineraries of 4 and 5 days are on the same page.\n \u2014 6 of 10 in-scope products do not mention nakuru.",
+      "evidence": {
+        "missed_ids": [
+          "e-57697",
+          "mara-4d-naivasha",
+          "e-57724",
+          "mara-fly-5",
+          "mara-fly-5-amboseli",
+          "mara-6d-naivasha"
+        ],
+        "source_url": "https://www.masai-mara-safaris.com/"
+      }
+    },
+    {
+      "gate": "A",
+      "code": "gap:conservancy-night-drive",
+      "severity": "warn",
+      "message": "Microbrand copy describes private conservancies with fewer vehicles and, on some, night drives, bush walks, or off-road driving. No product title in the captured card list is a conservancy stay.\n No matching product was confirmed in this assortment. The format table is about the National Reserve and add-on parks, not conservancies.",
+      "evidence": {
+        "source_url": "https://www.masai-mara-safaris.com/"
+      }
+    },
+    {
+      "gate": "A",
+      "code": "gap:balloon-as-product",
+      "severity": "warn",
+      "message": "A sunrise balloon is only an optional extra (about USD 450 on the Headout 2-day exclusions, about USD 420\u2013540 on Viator and GetYourGuide). It is not its own bookable card in the captured list.\n No matching product was confirmed in this assortment. Competitors also sell the balloon as an add-on. This is a packaging note, not a unique Headout miss.",
+      "evidence": {
+        "source_url": "https://www.headout.com/masai-mara/from-nairobi-2-day-masai-mara-safari-e-57793/"
+      }
+    },
+    {
+      "gate": "B",
+      "code": "faq_capture_unknown",
+      "severity": "warn",
+      "message": "primary surface (headout.com) did not include an FAQ block in the capture. Absence is not confirmed.",
+      "evidence": {
+        "surface": "primary",
+        "url": "https://www.headout.com/masai-mara-c-7324/"
+      }
+    },
+    {
+      "gate": "B",
+      "code": "faq_topics",
+      "severity": "warn",
+      "message": "microbrand FAQs do not mention: cancellation, access.",
+      "evidence": {
+        "surface": "microbrand",
+        "missing_topics": [
+          "cancellation",
+          "access"
+        ]
+      }
+    },
+    {
+      "gate": "B",
+      "code": "microbrand_disclaimer",
+      "severity": "warn",
+      "message": "The microbrand at https://www.masai-mara-safaris.com/ does not show a 'not the official venue or operator site' line. First-time visitors can read an attraction-branded domain as the operator.",
+      "evidence": {
+        "surface": "microbrand",
+        "url": "https://www.masai-mara-safaris.com/",
+        "discloses_headout": true
+      }
+    },
+    {
+      "gate": "A",
+      "code": "relative_rank",
+      "severity": "fail",
+      "message": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees is -1.53 standard deviations below this collection's mean purchase intent (2.82). This flag is relative. Absolute thresholds still need a CVR calibration.",
+      "evidence": {
+        "key": "mara-fly-5",
+        "z": -1.527,
+        "mean": 2.8239,
+        "warn_at": -1.0,
+        "fail_at": -1.5
+      }
+    },
+    {
+      "gate": "A",
+      "code": "relative_rank",
+      "severity": "fail",
+      "message": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees is -1.53 standard deviations below this collection's mean purchase intent (2.82). This flag is relative. Absolute thresholds still need a CVR calibration.",
+      "evidence": {
+        "key": "mara-fly-5-amboseli",
+        "z": -1.527,
+        "mean": 2.8239,
+        "warn_at": -1.0,
+        "fail_at": -1.5
+      }
+    },
+    {
+      "gate": "A",
+      "code": "relative_rank",
+      "severity": "warn",
+      "message": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees is -1.13 standard deviations below this collection's mean purchase intent (2.93). This flag is relative. Absolute thresholds still need a CVR calibration.",
+      "evidence": {
+        "key": "mara-6d-nakuru",
+        "z": -1.1329,
+        "mean": 2.9297,
+        "warn_at": -1.0,
+        "fail_at": -1.5
+      }
+    },
+    {
+      "gate": "A",
+      "code": "relative_rank",
+      "severity": "warn",
+      "message": "From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees is -1.13 standard deviations below this collection's mean purchase intent (2.93). This flag is relative. Absolute thresholds still need a CVR calibration.",
+      "evidence": {
+        "key": "mara-6d-naivasha",
+        "z": -1.1329,
+        "mean": 2.9297,
+        "warn_at": -1.0,
+        "fail_at": -1.5
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'e-57723' mean purchase intent is 3.11 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "e-57723",
+        "mean": 3.111,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'e-57724' mean purchase intent is 3.11 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "e-57724",
+        "mean": 3.111,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'mara-4d-nakuru' mean purchase intent is 3.23 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "mara-4d-nakuru",
+        "mean": 3.233,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'mara-5d-lakes' mean purchase intent is 3.29 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "mara-5d-lakes",
+        "mean": 3.286,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'mara-6d-naivasha' mean purchase intent is 2.93 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "mara-6d-naivasha",
+        "mean": 2.93,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'mara-6d-nakuru' mean purchase intent is 2.93 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "mara-6d-nakuru",
+        "mean": 2.93,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'mara-fly-5' mean purchase intent is 2.82 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "mara-fly-5",
+        "mean": 2.824,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'mara-fly-5-amboseli' mean purchase intent is 2.82 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "mara-fly-5-amboseli",
+        "mean": 2.824,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation_intent",
+      "severity": "warn",
+      "message": "From Nairobi: 4-Day Masai Mara Safari with Stays and Entry Fees and From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays and Entry Fees draw almost the same purchase intent (means 3.56 vs 3.51) on the same shelf.",
+      "evidence": {
+        "product_ids": [
+          "e-57697",
+          "mara-4d-naivasha"
+        ],
+        "mean_delta": 0.052,
+        "threshold": 0.25
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation_intent",
+      "severity": "warn",
+      "message": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees and From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees draw almost the same purchase intent (means 2.82 vs 2.82) on the same shelf.",
+      "evidence": {
+        "product_ids": [
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ],
+        "mean_delta": 0.0,
+        "threshold": 0.25
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation_intent",
+      "severity": "warn",
+      "message": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees and From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees draw almost the same purchase intent (means 2.93 vs 2.93) on the same shelf.",
+      "evidence": {
+        "product_ids": [
+          "mara-6d-nakuru",
+          "mara-6d-naivasha"
+        ],
+        "mean_delta": 0.0,
+        "threshold": 0.25
+      }
+    },
+    {
+      "gate": "B",
+      "code": "page_intent",
+      "severity": "warn",
+      "message": "page 'microbrand' mean purchase intent is 3.29 (pass \u2265 3.6, warn \u2265 3.2).",
+      "evidence": {
+        "key": "microbrand",
+        "mean": 3.288,
+        "pass_at": 3.6,
+        "warn_at": 3.2
+      }
+    },
+    {
+      "gate": "B",
+      "code": "page_intent",
+      "severity": "fail",
+      "message": "page 'primary' mean purchase intent is 2.71 (pass \u2265 3.6, warn \u2265 3.2).",
+      "evidence": {
+        "key": "primary",
+        "mean": 2.709,
+        "pass_at": 3.6,
+        "warn_at": 3.2
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by trip_type 'couple' mean purchase intent is 2.69 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "couple",
+        "mean": 2.691,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by trip_type 'family_with_kids' mean purchase intent is 2.74 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "family_with_kids",
+        "mean": 2.74,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by trip_type 'friends' mean purchase intent is 2.64 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "friends",
+        "mean": 2.636,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by trip_type 'solo' mean purchase intent is 2.79 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "solo",
+        "mean": 2.788,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by budget_tier 'budget' mean purchase intent is 2.51 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "budget",
+        "mean": 2.511,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by budget_tier 'luxury' mean purchase intent is 2.74 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "luxury",
+        "mean": 2.738,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by budget_tier 'mid' mean purchase intent is 2.77 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "mid",
+        "mean": 2.772,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "fail",
+      "message": "page:primary by budget_tier 'premium' mean purchase intent is 2.70 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "premium",
+        "mean": 2.703,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by trip_type 'couple' mean purchase intent is 3.34 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "couple",
+        "mean": 3.338,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by trip_type 'family_with_kids' mean purchase intent is 3.26 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "family_with_kids",
+        "mean": 3.256,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by trip_type 'friends' mean purchase intent is 3.11 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "friends",
+        "mean": 3.114,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by trip_type 'solo' mean purchase intent is 3.34 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "solo",
+        "mean": 3.342,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by budget_tier 'budget' mean purchase intent is 3.05 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "budget",
+        "mean": 3.045,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by budget_tier 'luxury' mean purchase intent is 3.18 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "luxury",
+        "mean": 3.179,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:microbrand by budget_tier 'premium' mean purchase intent is 3.27 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "premium",
+        "mean": 3.267,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    }
+  ],
+  "products": {
+    "e-57711": {
+      "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+      "type": "day_safari",
+      "positioning": "mid",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.17702740219845228,
+          "2": 0.10418364454878888,
+          "3": 0.13957000218642132,
+          "4": 0.2629635798195798,
+          "5": 0.3162553712467578
+        },
+        "mean": 3.4372358733674018
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.21366099811513672,
+              "2": 0.17759884376804452,
+              "3": 0.2468711422308004,
+              "4": 0.15037271775372235,
+              "5": 0.21149629813229603
+            },
+            "mean": 2.9684444740199964
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.16918734095966345,
+              "2": 0.09856571056578169,
+              "3": 0.13167853008594244,
+              "4": 0.2888875866940201,
+              "5": 0.3116808316945922
+            },
+            "mean": 3.4753088575980957
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16948115412481518,
+              "2": 0.10951588585332554,
+              "3": 0.08145310810994731,
+              "4": 0.31536849532122013,
+              "5": 0.3241813565906918
+            },
+            "mean": 3.515253014399648
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17108142188642006,
+              "2": 0.05166929007264529,
+              "3": 0.11699656544761772,
+              "4": 0.2526291859160666,
+              "5": 0.4076235366772503
+            },
+            "mean": 3.674044125425082
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.18395853560155007,
+              "2": 0.18507173989644918,
+              "3": 0.2440952413595127,
+              "4": 0.20889639849861016,
+              "5": 0.17797808464387788
+            },
+            "mean": 3.0118637566868163
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.20236269764903375,
+              "2": 0.12245170394601312,
+              "3": 0.08812368565416327,
+              "4": 0.25810498872524723,
+              "5": 0.32895692402554255
+            },
+            "mean": 3.3888417375322515
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1668425093169669,
+              "2": 0.10066686169707205,
+              "3": 0.07880069266789354,
+              "4": 0.3155811517888008,
+              "5": 0.3381087845292667
+            },
+            "mean": 3.557446840516328
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.15766040243243443,
+              "2": 0.06743417337561407,
+              "3": 0.19097939354228244,
+              "4": 0.25342558191875325,
+              "5": 0.3305004487309158
+            },
+            "mean": 3.5316715011401016
+          }
+        }
+      },
+      "z_vs_collection": 0.7576
+    },
+    "e-57793": {
+      "title": "From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "budget",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.17614312469491428,
+          "2": 0.09710070433636028,
+          "3": 0.0989846902737065,
+          "4": 0.2967541635526028,
+          "5": 0.3310173171424162
+        },
+        "mean": 3.5094018441112467
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16881034647145848,
+              "2": 0.0732495176866388,
+              "3": 0.0710783396927098,
+              "4": 0.3482545509748037,
+              "5": 0.33860724517438917
+            },
+            "mean": 3.614598830694026
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.1836313093874983,
+              "2": 0.11115728378557635,
+              "3": 0.11258375956759112,
+              "4": 0.27844945452234077,
+              "5": 0.3141781927369934
+            },
+            "mean": 3.4283859374357544
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16948115412481518,
+              "2": 0.10951588585332554,
+              "3": 0.08145310810994731,
+              "4": 0.31536849532122013,
+              "5": 0.3241813565906918
+            },
+            "mean": 3.515253014399648
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17033298440684722,
+              "2": 0.07383202323215293,
+              "3": 0.10511847254193896,
+              "4": 0.2810362186308657,
+              "5": 0.3696803011881952
+            },
+            "mean": 3.6058988289614087
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.17247116368644574,
+              "2": 0.1058509850535811,
+              "3": 0.06525837507107872,
+              "4": 0.287066247072632,
+              "5": 0.3693532291162624
+            },
+            "mean": 3.574979392878684
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.18074394226952714,
+              "2": 0.08138487845463636,
+              "3": 0.09196796040283549,
+              "4": 0.2973841079710075,
+              "5": 0.3485191109019934
+            },
+            "mean": 3.5515495667813033
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1668425093169669,
+              "2": 0.10066686169707205,
+              "3": 0.07880069266789354,
+              "4": 0.3155811517888008,
+              "5": 0.3381087845292667
+            },
+            "mean": 3.557446840516328
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.17803507010827427,
+              "2": 0.10705620183647903,
+              "3": 0.12557107481474933,
+              "4": 0.28855437953793706,
+              "5": 0.30078327370256025
+            },
+            "mean": 3.4269945848900294
+          }
+        }
+      },
+      "z_vs_collection": 1.0264
+    },
+    "e-57795": {
+      "title": "From Nairobi: 3-Day Masai Mara Safari With Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "mixed",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.1646796340261572,
+          "2": 0.08781793730791193,
+          "3": 0.0981281153496571,
+          "4": 0.31543111183767425,
+          "5": 0.33394320147859957
+        },
+        "mean": 3.5661403094346475
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16881034647145848,
+              "2": 0.0732495176866388,
+              "3": 0.0710783396927098,
+              "4": 0.3482545509748037,
+              "5": 0.33860724517438917
+            },
+            "mean": 3.614598830694026
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.1601961676701574,
+              "2": 0.09145968126358459,
+              "3": 0.10881689781246517,
+              "4": 0.309525130881668,
+              "5": 0.3300021223721248
+            },
+            "mean": 3.557677359022018
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16948115412481518,
+              "2": 0.10951588585332554,
+              "3": 0.08145310810994731,
+              "4": 0.31536849532122013,
+              "5": 0.3241813565906918
+            },
+            "mean": 3.515253014399648
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1676975284035239,
+              "2": 0.07337926064122524,
+              "3": 0.10962494201698574,
+              "4": 0.30191104855112605,
+              "5": 0.3473872203871391
+            },
+            "mean": 3.5879111718771313
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.17097428872730006,
+              "2": 0.15017645137259636,
+              "3": 0.041502189259721184,
+              "4": 0.3438803125022303,
+              "5": 0.2934667581381521
+            },
+            "mean": 3.438688799951338
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.16395715189645416,
+              "2": 0.05951507954942644,
+              "3": 0.11846517706670567,
+              "4": 0.3036876040024121,
+              "5": 0.35437498748500157
+            },
+            "mean": 3.6250081956300804
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1642070533136436,
+              "2": 0.10021409910614436,
+              "3": 0.08330716214294032,
+              "4": 0.3364559817090611,
+              "5": 0.3158157037282105
+            },
+            "mean": 3.53945918343205
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.16387748325058293,
+              "2": 0.08977939772622161,
+              "3": 0.10316746810780457,
+              "4": 0.3068800443040952,
+              "5": 0.3362956066112956
+            },
+            "mean": 3.5619368932992987
+          }
+        }
+      },
+      "z_vs_collection": 1.2377
+    },
+    "e-57723": {
+      "title": "From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+      "type": "fly_in_safari",
+      "positioning": "luxury",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.2073261666502315,
+          "2": 0.12786353954795798,
+          "3": 0.24059666359073079,
+          "4": 0.19513993248183148,
+          "5": 0.22907369772924827
+        },
+        "mean": 3.110771455091907
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.17042348735612342,
+              "2": 0.095465192785291,
+              "3": 0.25455969172814485,
+              "4": 0.22893095624524298,
+              "5": 0.2506206718851977
+            },
+            "mean": 3.2938601325181
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.22937124901185266,
+              "2": 0.15921308460685477,
+              "3": 0.21756199028910703,
+              "4": 0.18602598634313158,
+              "5": 0.20782768974905405
+            },
+            "mean": 2.9837257832106796
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.18275555380490016,
+              "2": 0.10808273962639928,
+              "3": 0.3043426748388252,
+              "4": 0.20034229075105014,
+              "5": 0.20447674097882523
+            },
+            "mean": 3.135701925472501
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.20711538458931508,
+              "2": 0.09819722331405349,
+              "3": 0.22958670180659593,
+              "4": 0.18391132177827277,
+              "5": 0.2811893685117628
+            },
+            "mean": 3.233862066309115
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.22119447746858853,
+              "2": 0.2953737591679443,
+              "3": 0.19100509781506822,
+              "4": 0.15587913425492136,
+              "5": 0.1365475312934776
+            },
+            "mean": 2.691211482736755
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.18074394226952714,
+              "2": 0.08138487845463636,
+              "3": 0.09196796040283549,
+              "4": 0.2973841079710075,
+              "5": 0.3485191109019934
+            },
+            "mean": 3.5515495667813033
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2889201027982116,
+              "2": 0.2023337039374042,
+              "3": 0.15398124219571674,
+              "4": 0.1597708412388508,
+              "5": 0.19499410982981666
+            },
+            "mean": 2.769585151364657
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.18320377523787623,
+              "2": 0.08381217279673792,
+              "3": 0.4364834142794603,
+              "4": 0.13219040404972723,
+              "5": 0.16431023363619832
+            },
+            "mean": 3.0105911480496337
+          }
+        }
+      },
+      "z_vs_collection": -0.4585
+    },
+    "e-57697": {
+      "title": "From Nairobi: 4-Day Masai Mara Safari with Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "mid",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.16993856931818627,
+          "2": 0.08234787030330361,
+          "3": 0.11272281377594952,
+          "4": 0.28458150275440114,
+          "5": 0.35040924384815947
+        },
+        "mean": 3.563174981511044
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.17250552322203952,
+              "2": 0.0732495176866388,
+              "3": 0.07150573271794827,
+              "4": 0.32097168929530034,
+              "5": 0.361767537078073
+            },
+            "mean": 3.6262461993207284
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.16869536867805676,
+              "2": 0.08904238221167245,
+              "3": 0.13677934403237862,
+              "4": 0.274283503146645,
+              "5": 0.3311994019312471
+            },
+            "mean": 3.510249187441353
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16948115412481518,
+              "2": 0.10951588585332554,
+              "3": 0.08145310810994731,
+              "4": 0.31536849532122013,
+              "5": 0.3241813565906918
+            },
+            "mean": 3.515253014399648
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17108142188642006,
+              "2": 0.05166929007264529,
+              "3": 0.11699656544761772,
+              "4": 0.2526291859160666,
+              "5": 0.4076235366772503
+            },
+            "mean": 3.674044125425082
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.15697712950141826,
+              "2": 0.11043859176548315,
+              "3": 0.23651386208218236,
+              "4": 0.2685834263978889,
+              "5": 0.2274869902530273
+            },
+            "mean": 3.299164556135624
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.18074394226952714,
+              "2": 0.08138487845463636,
+              "3": 0.09196796040283549,
+              "4": 0.2973841079710075,
+              "5": 0.3485191109019934
+            },
+            "mean": 3.5515495667813033
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.16759094679653974,
+              "2": 0.0785041285375644,
+              "3": 0.0906787855735723,
+              "4": 0.28717411907400164,
+              "5": 0.3760520200183217
+            },
+            "mean": 3.625592136980001
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.1649309625060749,
+              "2": 0.07765879800280984,
+              "3": 0.10985368268746813,
+              "4": 0.2758917281167527,
+              "5": 0.37166482868689443
+            },
+            "mean": 3.611700662475582
+          }
+        }
+      },
+      "z_vs_collection": 1.2267
+    },
+    "mara-4d-naivasha": {
+      "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "mid",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.1745516132821209,
+          "2": 0.08940796140906238,
+          "3": 0.11723217333387682,
+          "4": 0.2883686412500312,
+          "5": 0.33043961072490874
+        },
+        "mean": 3.5107366747265445
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1988062646171484,
+              "2": 0.0889447449296855,
+              "3": 0.11284416911553356,
+              "4": 0.3028030863364307,
+              "5": 0.2966017350012017
+            },
+            "mean": 3.409449282174851
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.16918734095966345,
+              "2": 0.09856571056578169,
+              "3": 0.13167853008594244,
+              "4": 0.2888875866940201,
+              "5": 0.3116808316945922
+            },
+            "mean": 3.4753088575980957
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16948115412481518,
+              "2": 0.10951588585332554,
+              "3": 0.08145310810994731,
+              "4": 0.31536849532122013,
+              "5": 0.3241813565906918
+            },
+            "mean": 3.515253014399648
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17108142188642006,
+              "2": 0.05166929007264529,
+              "3": 0.11699656544761772,
+              "4": 0.2526291859160666,
+              "5": 0.4076235366772503
+            },
+            "mean": 3.674044125425082
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.2069703264109014,
+              "2": 0.13659730383722768,
+              "3": 0.30612357778688865,
+              "4": 0.19283098533393397,
+              "5": 0.15747780663104824
+            },
+            "mean": 2.957248641937
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.18074394226952714,
+              "2": 0.08138487845463636,
+              "3": 0.09196796040283549,
+              "4": 0.2973841079710075,
+              "5": 0.3485191109019934
+            },
+            "mean": 3.5515495667813033
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1668425093169669,
+              "2": 0.10066686169707205,
+              "3": 0.07880069266789354,
+              "4": 0.3155811517888008,
+              "5": 0.3381087845292667
+            },
+            "mean": 3.557446840516328
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.16428572187580448,
+              "2": 0.07769063418467198,
+              "3": 0.10964642787453843,
+              "4": 0.29138529918693207,
+              "5": 0.35699191687805293
+            },
+            "mean": 3.5991070550067565
+          }
+        }
+      },
+      "z_vs_collection": 1.0314
+    },
+    "mara-4d-nakuru": {
+      "title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "mid",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.18456589463022458,
+          "2": 0.09285290624051751,
+          "3": 0.2672144254141862,
+          "4": 0.21561347487822943,
+          "5": 0.2397532988368423
+        },
+        "mean": 3.2331353770509477
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.18215167075652094,
+              "2": 0.0898816558316175,
+              "3": 0.21552674615509143,
+              "4": 0.24082910182225734,
+              "5": 0.27161082543451276
+            },
+            "mean": 3.3298657553466233
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.1827793084586379,
+              "2": 0.0894828577027353,
+              "3": 0.3227486260119005,
+              "4": 0.19475824950835938,
+              "5": 0.2102309583183668
+            },
+            "mean": 3.160178691525082
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.18899988564976272,
+              "2": 0.12486952201396376,
+              "3": 0.1639759937967688,
+              "4": 0.24627629249606242,
+              "5": 0.2758783060434423
+            },
+            "mean": 3.295163611269458
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.18705145640906473,
+              "2": 0.07651188169155415,
+              "3": 0.26673971641661276,
+              "4": 0.21771029693970867,
+              "5": 0.2519866485430597
+            },
+            "mean": 3.2710687995161445
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.19297316718501958,
+              "2": 0.09685944423011446,
+              "3": 0.5011352506093498,
+              "4": 0.11753409922959264,
+              "5": 0.09149803874592342
+            },
+            "mean": 2.817724398121286
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.21098366638780613,
+              "2": 0.07400746290166545,
+              "3": 0.36070774891647683,
+              "4": 0.13713851581709904,
+              "5": 0.21716260597695242
+            },
+            "mean": 3.0754889320937258
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1483058170470999,
+              "2": 0.09621933421787639,
+              "3": 0.2541112830784209,
+              "4": 0.26171976926163426,
+              "5": 0.23964379639496855
+            },
+            "mean": 3.348176393739495
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.17803507010827427,
+              "2": 0.10705620183647903,
+              "3": 0.12557107481474933,
+              "4": 0.28855437953793706,
+              "5": 0.30078327370256025
+            },
+            "mean": 3.4269945848900294
+          }
+        }
+      },
+      "z_vs_collection": -0.0027
+    },
+    "e-57724": {
+      "title": "From Nairobi: Fly-In 4-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+      "type": "fly_in_safari",
+      "positioning": "luxury",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.2073261666502315,
+          "2": 0.12786353954795798,
+          "3": 0.24059666359073079,
+          "4": 0.19513993248183148,
+          "5": 0.22907369772924827
+        },
+        "mean": 3.110771455091907
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.17042348735612342,
+              "2": 0.095465192785291,
+              "3": 0.25455969172814485,
+              "4": 0.22893095624524298,
+              "5": 0.2506206718851977
+            },
+            "mean": 3.2938601325181
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.22937124901185266,
+              "2": 0.15921308460685477,
+              "3": 0.21756199028910703,
+              "4": 0.18602598634313158,
+              "5": 0.20782768974905405
+            },
+            "mean": 2.9837257832106796
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.18275555380490016,
+              "2": 0.10808273962639928,
+              "3": 0.3043426748388252,
+              "4": 0.20034229075105014,
+              "5": 0.20447674097882523
+            },
+            "mean": 3.135701925472501
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.20711538458931508,
+              "2": 0.09819722331405349,
+              "3": 0.22958670180659593,
+              "4": 0.18391132177827277,
+              "5": 0.2811893685117628
+            },
+            "mean": 3.233862066309115
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.22119447746858853,
+              "2": 0.2953737591679443,
+              "3": 0.19100509781506822,
+              "4": 0.15587913425492136,
+              "5": 0.1365475312934776
+            },
+            "mean": 2.691211482736755
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.18074394226952714,
+              "2": 0.08138487845463636,
+              "3": 0.09196796040283549,
+              "4": 0.2973841079710075,
+              "5": 0.3485191109019934
+            },
+            "mean": 3.5515495667813033
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2889201027982116,
+              "2": 0.2023337039374042,
+              "3": 0.15398124219571674,
+              "4": 0.1597708412388508,
+              "5": 0.19499410982981666
+            },
+            "mean": 2.769585151364657
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.18320377523787623,
+              "2": 0.08381217279673792,
+              "3": 0.4364834142794603,
+              "4": 0.13219040404972723,
+              "5": 0.16431023363619832
+            },
+            "mean": 3.0105911480496337
+          }
+        }
+      },
+      "z_vs_collection": -0.4585
+    },
+    "mara-fly-5": {
+      "title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+      "type": "fly_in_safari",
+      "positioning": "luxury",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.26434306889417286,
+          "2": 0.17708806464984034,
+          "3": 0.22490292700869444,
+          "4": 0.137611023305553,
+          "5": 0.19605491614173945
+        },
+        "mean": 2.823946653150846
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1984316965647186,
+              "2": 0.13409132074262758,
+              "3": 0.22117969372450735,
+              "4": 0.18534706632389125,
+              "5": 0.2609502226442552
+            },
+            "mean": 3.176292797740337
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.2842853640602511,
+              "2": 0.193744303348321,
+              "3": 0.2169040902034591,
+              "4": 0.12748054207223317,
+              "5": 0.17758570031573573
+            },
+            "mean": 2.7203369112348814
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.25195062964845266,
+              "2": 0.20354117996188048,
+              "3": 0.2412515914188284,
+              "4": 0.12906522941797932,
+              "5": 0.17419136955285913
+            },
+            "mean": 2.7700055292649117
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2830642231526353,
+              "2": 0.15200986484936266,
+              "3": 0.23304568694928815,
+              "4": 0.128590271907662,
+              "5": 0.2032899531410519
+            },
+            "mean": 2.8170318670351326
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.3585014525779806,
+              "2": 0.17419407689355074,
+              "3": 0.17933570112647546,
+              "4": 0.11895196159797165,
+              "5": 0.16901680780402165
+            },
+            "mean": 2.565788595156503
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.2045871792100921,
+              "2": 0.08733598035550819,
+              "3": 0.35822597296395164,
+              "4": 0.13601576518400268,
+              "5": 0.21383510228644537
+            },
+            "mean": 3.067175630981201
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.36575577825922134,
+              "2": 0.15684624110928586,
+              "3": 0.1558289512089305,
+              "4": 0.13010894767456652,
+              "5": 0.19146008174799586
+            },
+            "mean": 2.6246713135428297
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.2376710224940903,
+              "2": 0.2705111326003418,
+              "3": 0.15380429727166448,
+              "4": 0.14824213422593166,
+              "5": 0.18977141340797177
+            },
+            "mean": 2.781931783453353
+          }
+        }
+      },
+      "z_vs_collection": -1.527
+    },
+    "mara-fly-5-amboseli": {
+      "title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+      "type": "fly_in_safari",
+      "positioning": "luxury",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.26434306889417286,
+          "2": 0.17708806464984034,
+          "3": 0.22490292700869444,
+          "4": 0.137611023305553,
+          "5": 0.19605491614173945
+        },
+        "mean": 2.823946653150846
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1984316965647186,
+              "2": 0.13409132074262758,
+              "3": 0.22117969372450735,
+              "4": 0.18534706632389125,
+              "5": 0.2609502226442552
+            },
+            "mean": 3.176292797740337
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.2842853640602511,
+              "2": 0.193744303348321,
+              "3": 0.2169040902034591,
+              "4": 0.12748054207223317,
+              "5": 0.17758570031573573
+            },
+            "mean": 2.7203369112348814
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.25195062964845266,
+              "2": 0.20354117996188048,
+              "3": 0.2412515914188284,
+              "4": 0.12906522941797932,
+              "5": 0.17419136955285913
+            },
+            "mean": 2.7700055292649117
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2830642231526353,
+              "2": 0.15200986484936266,
+              "3": 0.23304568694928815,
+              "4": 0.128590271907662,
+              "5": 0.2032899531410519
+            },
+            "mean": 2.8170318670351326
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.3585014525779806,
+              "2": 0.17419407689355074,
+              "3": 0.17933570112647546,
+              "4": 0.11895196159797165,
+              "5": 0.16901680780402165
+            },
+            "mean": 2.565788595156503
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.2045871792100921,
+              "2": 0.08733598035550819,
+              "3": 0.35822597296395164,
+              "4": 0.13601576518400268,
+              "5": 0.21383510228644537
+            },
+            "mean": 3.067175630981201
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.36575577825922134,
+              "2": 0.15684624110928586,
+              "3": 0.1558289512089305,
+              "4": 0.13010894767456652,
+              "5": 0.19146008174799586
+            },
+            "mean": 2.6246713135428297
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.2376710224940903,
+              "2": 0.2705111326003418,
+              "3": 0.15380429727166448,
+              "4": 0.14824213422593166,
+              "5": 0.18977141340797177
+            },
+            "mean": 2.781931783453353
+          }
+        }
+      },
+      "z_vs_collection": -1.527
+    },
+    "mara-5d-lakes": {
+      "title": "From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "premium",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.1963616417569703,
+          "2": 0.11799157926775314,
+          "3": 0.16302442953282686,
+          "4": 0.2480463542562855,
+          "5": 0.2745759951861642
+        },
+        "mean": 3.28648348184692
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.18797353899938932,
+              "2": 0.0732495176866388,
+              "3": 0.0713718303351463,
+              "4": 0.32812580418440046,
+              "5": 0.3392793087944251
+            },
+            "mean": 3.557487826087833
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.22079017459144654,
+              "2": 0.150920579246078,
+              "3": 0.18980672171700438,
+              "4": 0.21200712352216317,
+              "5": 0.2264754009233079
+            },
+            "mean": 3.072456996939808
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16108285858928612,
+              "2": 0.08567317008905762,
+              "3": 0.198460111803424,
+              "4": 0.2701903636586153,
+              "5": 0.2845934958596169
+            },
+            "mean": 3.4315384681102192
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17575080341424668,
+              "2": 0.1053743049515033,
+              "3": 0.14737984520898234,
+              "4": 0.24695167652719982,
+              "5": 0.32454336989806787
+            },
+            "mean": 3.439162504543339
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.3585014525779806,
+              "2": 0.17419407689355074,
+              "3": 0.17933570112647546,
+              "4": 0.11895196159797165,
+              "5": 0.16901680780402165
+            },
+            "mean": 2.565788595156503
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.18074394226952714,
+              "2": 0.08138487845463636,
+              "3": 0.09196796040283549,
+              "4": 0.2973841079710075,
+              "5": 0.3485191109019934
+            },
+            "mean": 3.5515495667813033
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17491995018147974,
+              "2": 0.17094969043405153,
+              "3": 0.3419607259357971,
+              "4": 0.15609924804454392,
+              "5": 0.15607038540412765
+            },
+            "mean": 2.947450428055788
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.17803507010827427,
+              "2": 0.10705620183647903,
+              "3": 0.12557107481474933,
+              "4": 0.28855437953793706,
+              "5": 0.30078327370256025
+            },
+            "mean": 3.4269945848900294
+          }
+        }
+      },
+      "z_vs_collection": 0.196
+    },
+    "mara-6d-nakuru": {
+      "title": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "premium",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.21692348618499566,
+          "2": 0.13374639010973613,
+          "3": 0.33213570433227907,
+          "4": 0.13705024582387054,
+          "5": 0.1801441735491186
+        },
+        "mean": 2.92974523044238
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.15674324236334775,
+              "2": 0.051622214808643395,
+              "3": 0.35298693184374097,
+              "4": 0.18264044168023358,
+              "5": 0.25600716930403433
+            },
+            "mean": 3.3295460807529635
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.2455436449583121,
+              "2": 0.17104808924326237,
+              "3": 0.30168717294277897,
+              "4": 0.12721516107963166,
+              "5": 0.1545059317760149
+            },
+            "mean": 2.774091645471775
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20227428532984768,
+              "2": 0.12343637578703748,
+              "3": 0.3868655605256467,
+              "4": 0.1312500879258924,
+              "5": 0.15617369043157572
+            },
+            "mean": 2.915612522342311
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2125009862779205,
+              "2": 0.12373758348466794,
+              "3": 0.34019804115375424,
+              "4": 0.12684041192844064,
+              "5": 0.19672297715521658
+            },
+            "mean": 2.9715468101983644
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.3585014525779806,
+              "2": 0.17419407689355074,
+              "3": 0.17933570112647546,
+              "4": 0.11895196159797165,
+              "5": 0.16901680780402165
+            },
+            "mean": 2.565788595156503
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.2045871792100921,
+              "2": 0.08733598035550819,
+              "3": 0.35822597296395164,
+              "4": 0.13601576518400268,
+              "5": 0.21383510228644537
+            },
+            "mean": 3.067175630981201
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2285144846830615,
+              "2": 0.28241929471537225,
+              "3": 0.17374778997922735,
+              "4": 0.15673323225586258,
+              "5": 0.1585851983664764
+            },
+            "mean": 2.73445536490732
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.18320377523787623,
+              "2": 0.08381217279673792,
+              "3": 0.4364834142794603,
+              "4": 0.13219040404972723,
+              "5": 0.16431023363619832
+            },
+            "mean": 3.0105911480496337
+          }
+        }
+      },
+      "z_vs_collection": -1.1329
+    },
+    "mara-6d-naivasha": {
+      "title": "From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "premium",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.21692348618499566,
+          "2": 0.13374639010973613,
+          "3": 0.33213570433227907,
+          "4": 0.13705024582387054,
+          "5": 0.1801441735491186
+        },
+        "mean": 2.92974523044238
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.15674324236334775,
+              "2": 0.051622214808643395,
+              "3": 0.35298693184374097,
+              "4": 0.18264044168023358,
+              "5": 0.25600716930403433
+            },
+            "mean": 3.3295460807529635
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.2455436449583121,
+              "2": 0.17104808924326237,
+              "3": 0.30168717294277897,
+              "4": 0.12721516107963166,
+              "5": 0.1545059317760149
+            },
+            "mean": 2.774091645471775
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20227428532984768,
+              "2": 0.12343637578703748,
+              "3": 0.3868655605256467,
+              "4": 0.1312500879258924,
+              "5": 0.15617369043157572
+            },
+            "mean": 2.915612522342311
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2125009862779205,
+              "2": 0.12373758348466794,
+              "3": 0.34019804115375424,
+              "4": 0.12684041192844064,
+              "5": 0.19672297715521658
+            },
+            "mean": 2.9715468101983644
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.3585014525779806,
+              "2": 0.17419407689355074,
+              "3": 0.17933570112647546,
+              "4": 0.11895196159797165,
+              "5": 0.16901680780402165
+            },
+            "mean": 2.565788595156503
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.2045871792100921,
+              "2": 0.08733598035550819,
+              "3": 0.35822597296395164,
+              "4": 0.13601576518400268,
+              "5": 0.21383510228644537
+            },
+            "mean": 3.067175630981201
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2285144846830615,
+              "2": 0.28241929471537225,
+              "3": 0.17374778997922735,
+              "4": 0.15673323225586258,
+              "5": 0.1585851983664764
+            },
+            "mean": 2.73445536490732
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.18320377523787623,
+              "2": 0.08381217279673792,
+              "3": 0.4364834142794603,
+              "4": 0.13219040404972723,
+              "5": 0.16431023363619832
+            },
+            "mean": 3.0105911480496337
+          }
+        }
+      },
+      "z_vs_collection": -1.1329
+    },
+    "mara-7d": {
+      "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha and Amboseli with Stays and Entry Fees",
+      "type": "road_safari",
+      "positioning": "premium",
+      "price": null,
+      "currency": null,
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.16387166129771552,
+          "2": 0.08915859655646896,
+          "3": 0.18861718353791587,
+          "4": 0.26094296775962994,
+          "5": 0.2974095908482698
+        },
+        "mean": 3.43886023030427
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1849991901315376,
+              "2": 0.1180294065652184,
+              "3": 0.075627167259108,
+              "4": 0.31244233423523643,
+              "5": 0.30890190180889954
+            },
+            "mean": 3.442218351024742
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.15756791687344227,
+              "2": 0.09589666704361999,
+              "3": 0.23210237838650208,
+              "4": 0.24755483428132993,
+              "5": 0.2668782034151057
+            },
+            "mean": 3.370278740321037
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16108285858928612,
+              "2": 0.08567317008905762,
+              "3": 0.198460111803424,
+              "4": 0.2701903636586153,
+              "5": 0.2845934958596169
+            },
+            "mean": 3.4315384681102192
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.16329812651652584,
+              "2": 0.05228194580200137,
+              "3": 0.1731076355689646,
+              "4": 0.24155964389683637,
+              "5": 0.36975264821567183
+            },
+            "mean": 3.602186741493127
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.22119447746858853,
+              "2": 0.2953737591679443,
+              "3": 0.19100509781506822,
+              "4": 0.15587913425492136,
+              "5": 0.1365475312934776
+            },
+            "mean": 2.691211482736755
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.16395715189645416,
+              "2": 0.05951507954942644,
+              "3": 0.11846517706670567,
+              "4": 0.3036876040024121,
+              "5": 0.35437498748500157
+            },
+            "mean": 3.6250081956300804
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.13430865782121812,
+              "2": 0.05648147461076317,
+              "3": 0.449122955900882,
+              "4": 0.1864228831572929,
+              "5": 0.17366402850984372
+            },
+            "mean": 3.208652149923781
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.16428572187580448,
+              "2": 0.07769063418467198,
+              "3": 0.10964642787453843,
+              "4": 0.29138529918693207,
+              "5": 0.35699191687805293
+            },
+            "mean": 3.5991070550067565
+          }
+        }
+      },
+      "z_vs_collection": 0.7636
+    }
+  },
+  "pages": {
+    "primary": {
+      "title": "Experience the best of the Masai Mara from Nairobi",
+      "page_type": "headout.com",
+      "url": "https://www.headout.com/masai-mara-c-7324/",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.3179707329359804,
+          "2": 0.08812338476772866,
+          "3": 0.305619572305536,
+          "4": 0.1433268660310957,
+          "5": 0.14495944395965937
+        },
+        "mean": 2.7091809033107257
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.31689425722507647,
+              "2": 0.08178612146510951,
+              "3": 0.2995337294024678,
+              "4": 0.14822640373812623,
+              "5": 0.15355948816921994
+            },
+            "mean": 2.7397707441613033
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.3212834432125056,
+              "2": 0.09226534931306797,
+              "3": 0.3014052424911124,
+              "4": 0.14457352659571357,
+              "5": 0.14047243838760046
+            },
+            "mean": 2.690686167632835
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.3313643358789149,
+              "2": 0.09878432798546478,
+              "3": 0.30587396902515573,
+              "4": 0.13087578872536593,
+              "5": 0.13310157838509865
+            },
+            "mean": 2.6355659457522687
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.29997680293072887,
+              "2": 0.07485573423267274,
+              "3": 0.3203125470253982,
+              "4": 0.1467109410459032,
+              "5": 0.15814397476529699
+            },
+            "mean": 2.7881895504823664
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.3497030455947912,
+              "2": 0.12200081340767001,
+              "3": 0.30274339092614044,
+              "4": 0.11910637651905787,
+              "5": 0.10644637355234043
+            },
+            "mean": 2.510592219026486
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.32431745911015464,
+              "2": 0.07556205927123812,
+              "3": 0.2977335575445548,
+              "4": 0.14261543161304463,
+              "5": 0.1597714924610078
+            },
+            "mean": 2.737961439043513
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.2961811119304434,
+              "2": 0.09335144930933988,
+              "3": 0.29973162673401194,
+              "4": 0.16395460884681884,
+              "5": 0.14678120317938587
+            },
+            "mean": 2.771803342035364
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.31543196260098444,
+              "2": 0.08745180129458444,
+              "3": 0.316784696412549,
+              "4": 0.13932771656039428,
+              "5": 0.14100382313148785
+            },
+            "mean": 2.7030196363268164
+          }
+        }
+      }
+    },
+    "microbrand": {
+      "title": "Book Masai Mara Safaris",
+      "page_type": "microbrand",
+      "url": "https://www.masai-mara-safaris.com/",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.17516714159224986,
+          "2": 0.05153845909721763,
+          "3": 0.3249341862007145,
+          "4": 0.20696639130860608,
+          "5": 0.24139382180121183
+        },
+        "mean": 3.2878812926293124
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 5,
+            "pmf": {
+              "1": 0.16771756854707762,
+              "2": 0.05361535001230346,
+              "3": 0.36262486810494765,
+              "4": 0.18678379098929895,
+              "5": 0.22925842234637228
+            },
+            "mean": 3.256250148575585
+          },
+          "couple": {
+            "n": 14,
+            "pmf": {
+              "1": 0.17546355722964213,
+              "2": 0.054070436659751545,
+              "3": 0.2853797903922254,
+              "4": 0.22724425014417277,
+              "5": 0.25784196557420824
+            },
+            "mean": 3.337930630173554
+          },
+          "friends": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20177121551036725,
+              "2": 0.04857449780735184,
+              "3": 0.38679842781101864,
+              "4": 0.1596714358233897,
+              "5": 0.20318442304787254
+            },
+            "mean": 3.1139233530910486
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15851342104421343,
+              "2": 0.04636973676362183,
+              "3": 0.33426534015840853,
+              "4": 0.21588268386271994,
+              "5": 0.24496881817103625
+            },
+            "mean": 3.3424237413527433
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 3,
+            "pmf": {
+              "1": 0.2201164997054209,
+              "2": 0.04303336997439283,
+              "3": 0.38862946094773837,
+              "4": 0.168100523369622,
+              "5": 0.1801201460028258
+            },
+            "mean": 3.0450744459900387
+          },
+          "luxury": {
+            "n": 10,
+            "pmf": {
+              "1": 0.19848211316862346,
+              "2": 0.06123166120913907,
+              "3": 0.32942072099670205,
+              "4": 0.18456763978660476,
+              "5": 0.22629786483893075
+            },
+            "mean": 3.1789674819180807
+          },
+          "mid": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12381481632211584,
+              "2": 0.04326562727718488,
+              "3": 0.21535021069634572,
+              "4": 0.3145035928756204,
+              "5": 0.3030657528287331
+            },
+            "mean": 3.6297398386116697
+          },
+          "premium": {
+            "n": 11,
+            "pmf": {
+              "1": 0.16972315627566392,
+              "2": 0.04955848065807733,
+              "3": 0.36325715718482976,
+              "4": 0.17927201945723145,
+              "5": 0.2381891864241976
+            },
+            "mean": 3.266645599096222
+          }
+        }
+      }
+    }
+  },
+  "rankings": {
+    "overall": [
+      "e-57795",
+      "e-57697",
+      "mara-4d-naivasha",
+      "e-57793",
+      "mara-7d",
+      "e-57711",
+      "mara-5d-lakes",
+      "mara-4d-nakuru",
+      "e-57723",
+      "e-57724",
+      "mara-6d-naivasha",
+      "mara-6d-nakuru",
+      "mara-fly-5",
+      "mara-fly-5-amboseli"
+    ],
+    "by_segment": {
+      "trip_type": {
+        "family_with_kids": [
+          "e-57697",
+          "e-57793",
+          "e-57795",
+          "mara-5d-lakes",
+          "mara-7d",
+          "mara-4d-naivasha",
+          "mara-4d-nakuru",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "e-57723",
+          "e-57724",
+          "mara-fly-5",
+          "mara-fly-5-amboseli",
+          "e-57711"
+        ],
+        "couple": [
+          "e-57795",
+          "e-57697",
+          "e-57711",
+          "mara-4d-naivasha",
+          "e-57793",
+          "mara-7d",
+          "mara-4d-nakuru",
+          "mara-5d-lakes",
+          "e-57723",
+          "e-57724",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ],
+        "friends": [
+          "e-57697",
+          "e-57711",
+          "e-57793",
+          "e-57795",
+          "mara-4d-naivasha",
+          "mara-5d-lakes",
+          "mara-7d",
+          "mara-4d-nakuru",
+          "e-57723",
+          "e-57724",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ],
+        "solo": [
+          "e-57697",
+          "e-57711",
+          "mara-4d-naivasha",
+          "e-57793",
+          "mara-7d",
+          "e-57795",
+          "mara-5d-lakes",
+          "mara-4d-nakuru",
+          "e-57723",
+          "e-57724",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ]
+      },
+      "budget_tier": {
+        "budget": [
+          "e-57793",
+          "e-57795",
+          "e-57697",
+          "e-57711",
+          "mara-4d-naivasha",
+          "mara-4d-nakuru",
+          "e-57723",
+          "e-57724",
+          "mara-7d",
+          "mara-5d-lakes",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ],
+        "luxury": [
+          "e-57795",
+          "mara-7d",
+          "e-57697",
+          "e-57723",
+          "e-57724",
+          "e-57793",
+          "mara-4d-naivasha",
+          "mara-5d-lakes",
+          "e-57711",
+          "mara-4d-nakuru",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ],
+        "mid": [
+          "e-57697",
+          "e-57711",
+          "e-57793",
+          "mara-4d-naivasha",
+          "e-57795",
+          "mara-4d-nakuru",
+          "mara-7d",
+          "mara-5d-lakes",
+          "e-57723",
+          "e-57724",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ],
+        "premium": [
+          "e-57697",
+          "mara-4d-naivasha",
+          "mara-7d",
+          "e-57795",
+          "e-57711",
+          "e-57793",
+          "mara-4d-nakuru",
+          "mara-5d-lakes",
+          "e-57723",
+          "e-57724",
+          "mara-6d-naivasha",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "mara-fly-5-amboseli"
+        ]
+      }
+    }
+  },
+  "quotes": [
+    {
+      "persona_id": "p0001",
+      "persona_label": "25-34 family with kids from United Kingdom, budget budget, first timer, planning months 1 3, via mobile_web; interests: photography, big_five",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best of the Masai Mara from Nairobi",
+      "text": "I might book this later, but I am not sure. I might book this or an alternative; I cannot tell yet. Looking at Experience the best of the Masai Mara from Nairobi, I still have practical questions the page does not answer. I am a 25-34 traveler from United Kingdom on a family with kids trip, budget budget, first timer.",
+      "mean_pi": 2.3886545262648426,
+      "generator": "mock-template"
+    },
+    {
+      "persona_id": "p0002",
+      "persona_label": "25-34 couple from United States, luxury budget, first timer, planning weeks 1 4, via mobile_web; interests: balloon, photography",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best of the Masai Mara from Nairobi",
+      "text": "I might book this later, but I am not sure. I might book this or an alternative; I cannot tell yet. Looking at Experience the best of the Masai Mara from Nairobi, I still have practical questions the page does not answer. I am a 25-34 traveler from United States on a couple trip, luxury budget, first timer.",
+      "mean_pi": 2.3886545262648426,
+      "generator": "mock-template"
+    },
+    {
+      "persona_id": "p0029",
+      "persona_label": "35-44 couple from Germany, luxury budget, repeat, planning months 1 3, via app, accessibility: mobility; interests: great_migration, maasai_culture",
+      "stimulus_id": "page:microbrand",
+      "stimulus_title": "Book Masai Mara Safaris",
+      "text": "I would likely book this. This fits my trip well. Looking at Book Masai Mara Safaris, the page answers practical questions. I am a 35-44 traveler from Germany on a couple trip, luxury budget, repeat.",
+      "mean_pi": 3.839133528486763,
+      "generator": "mock-template"
+    },
+    {
+      "persona_id": "p0014",
+      "persona_label": "25-34 solo from United States, mid budget, repeat, planning last minute, via mobile_web; interests: big_five, photography",
+      "stimulus_id": "page:microbrand",
+      "stimulus_title": "Book Masai Mara Safaris",
+      "text": "I would choose this over the alternatives I have seen. I would likely book this. Looking at Book Masai Mara Safaris, the page answers practical questions. I am a 25-34 traveler from United States on a solo trip, mid budget, repeat.",
+      "mean_pi": 3.8459649186618687,
+      "generator": "mock-template"
+    },
+    {
+      "persona_id": "p0003",
+      "persona_label": "18-24 friends from China, mid budget, first timer, planning weeks 1 4, via mobile_web; interests: birding, big_five",
+      "stimulus_id": "mara-fly-5",
+      "stimulus_title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+      "text": "This does not fit my trip at all. This is not worth booking at this price. Looking at From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees, I cannot see a clear price, so I hesitate. I am a 18-24 traveler from China on a friends trip, mid budget, first timer.",
+      "mean_pi": 2.125765538451587,
+      "generator": "mock-template"
+    },
+    {
+      "persona_id": "p0015",
+      "persona_label": "25-34 friends from United Kingdom, luxury budget, first timer, planning months 1 3, via mobile_web; interests: big_five, photography",
+      "stimulus_id": "e-57795",
+      "stimulus_title": "From Nairobi: 3-Day Masai Mara Safari With Stays and Entry Fees",
+      "text": "I would book this for my upcoming trip. I would choose this over the alternatives I have seen. Looking at From Nairobi: 3-Day Masai Mara Safari With Stays and Entry Fees, I cannot see a clear price, so I hesitate. I am a 25-34 traveler from United Kingdom on a friends trip, luxury budget, first timer.",
+      "mean_pi": 3.731389731597301,
+      "generator": "mock-template"
+    }
+  ],
+  "unknowns": [
+    "No numeric Headout from-price was captured for these Mara products. Do not treat competitor USD prices as Headout prices.",
+    "api-ho.headout.com returned HTTP 403, so collection size, currency, and persona tags from the API are unknown.",
+    "Several microbrand cards (4-day Nakuru, 5-day fly-in, both 6-day trips, 5-day lakes) were not opened as product pages. Their URLs, cancellation, and real inclusions are unknown. Title words were not upgraded into a full fact sheet except where noted.",
+    "Whether every card on the microbrand is also on collection 7324 is unknown. The collection fetch was truncated. The 7-day trip has its own collection id 7723.",
+    "A related Headout listing, e-56385, shows KSh 73,000 and excludes park fees (USD 100/day Jan\u2013Jun, USD 200/day Jul\u2013Dec). Its URL is under /day-trips/, and it was not confirmed on collection 7324 or the microbrand card list, so it is not in this assortment.",
+    "Homepage footer legal block (address on the homepage itself, not only /legal/) was not confirmed in the extract.",
+    "KSh amounts on the fly-in page were attached to other Nairobi cards in that render and are not used.",
+    "Cancellation cutoffs are unknown except the 2-day product, which says 3 days."
+  ],
+  "sources": [
+    {
+      "url": "https://www.headout.com/masai-mara-c-7324/",
+      "fetched_on": "2026-11-26",
+      "what": "Headout collection hero and first cards"
+    },
+    {
+      "url": "https://www.masai-mara-safaris.com/",
+      "fetched_on": "2026-11-26",
+      "what": "Headout microbrand homepage, format table, FAQs, card titles and ratings"
+    },
+    {
+      "url": "https://www.masai-mara-safaris.com/fly-in-tours/",
+      "fetched_on": "2026-11-26",
+      "what": "Fly-in explainer. Crafted by Headout line. KSh prices on that page were for other Nairobi cards, not copied onto Mara products."
+    },
+    {
+      "url": "https://www.masai-mara-safaris.com/legal/",
+      "fetched_on": "2026-11-26",
+      "what": "Headout Inc. legal entity"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara/from-nairobi-private-day-trip-masai-mara-reserve-e-57711/",
+      "fetched_on": "2026-11-26",
+      "what": "Private day trip product page"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara/from-nairobi-2-day-masai-mara-safari-e-57793/",
+      "fetched_on": "2026-11-26",
+      "what": "2-day safari product page"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara/from-nairobi-3-day-masai-mara-safari-with-stays-and-entry-fees-e-57795/",
+      "fetched_on": "2026-11-26",
+      "what": "3-day road safari product page"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara/from-nairobi-fly-in-3-day-masai-mara-private-safari-e-57723/",
+      "fetched_on": "2026-11-26",
+      "what": "3-day fly-in product page"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara/from-nairobi-4-day-masai-mara-safari-masai-village-visit-e-57697/",
+      "fetched_on": "2026-11-26",
+      "what": "4-day Mara safari product page"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara/from-nairobi-fly-in-4-day-masai-mara-private-safari-e-57724/",
+      "fetched_on": "2026-11-26",
+      "what": "4-day fly-in product page"
+    },
+    {
+      "url": "https://www.headout.com/masai-mara-7-day-trip-c-7723/",
+      "fetched_on": "2026-11-26",
+      "what": "7-day Kenya safari collection"
+    },
+    {
+      "url": "https://www.viator.com/tours/Nairobi/3-DAYS-2-NIGHTS-BUDGET-GROUP-SAFARI-TO-MAASAI-MARA-NATIONAL-RESERVE/d5280-60115P2",
+      "fetched_on": "2026-11-26",
+      "what": "Viator budget 3-day, park fees excluded"
+    },
+    {
+      "url": "https://www.viator.com/tours/Nairobi/2-nights-Safari-Tour-Maasai-Mara/d5280-15254P2",
+      "fetched_on": "2026-11-26",
+      "what": "Viator 3-day, seasonal park-fee add-on"
+    },
+    {
+      "url": "https://www.getyourguide.com/nairobi-l267/3days-gamedrive-safari-in-masai-mara-on-4x4-landcruiser-jeep-t679185/",
+      "fetched_on": "2026-11-26",
+      "what": "GetYourGuide 3-day from USD 295"
+    },
+    {
+      "url": "https://www.getyourguide.com/nairobi-l267/from-nairobi-3-days-masai-mara-national-reserve-safari-t396317/",
+      "fetched_on": "2026-11-26",
+      "what": "GetYourGuide 3-day from USD 390 with entry fees"
+    }
+  ],
+  "thresholds": {
+    "page_mean_pass": 3.6,
+    "page_mean_warn": 3.2,
+    "segment_mean_pass": 3.4,
+    "segment_mean_warn": 2.8,
+    "product_mean_pass": 3.3,
+    "product_mean_warn": 2.6,
+    "cannibal_pi_delta": 0.25,
+    "relative_z_warn": -1.0,
+    "relative_z_fail": -1.5,
+    "compression_range": 0.4,
+    "absolute_thresholds_calibrated": false,
+    "note": "Absolute cuts are not calibrated to Headout CVR. A live Sonnet 5.5 pilot (seed 7, 30 personas) compressed product means into about 3.17\u20133.46, so these pass lines mostly warn. Use z_vs_collection and relative_rank until a backtest replaces the cuts. See anchors.CALIBRATION_PLAN."
+  }
+}

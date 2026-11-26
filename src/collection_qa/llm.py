@@ -21,6 +21,12 @@ from collection_qa.prompts import SYSTEM_PROMPT, page_prompt, product_prompt
 
 TIER_RANK = {"budget": 0, "mid": 1, "premium": 2, "luxury": 3}
 
+# Sonnet 5.5 rejects a temperature argument. The field stays on the client so
+# cache keys do not change shape, and it is not sent to the API.
+DEFAULT_MAX_TOKENS = 640
+DEFAULT_TIMEOUT_SECONDS = 90.0
+DEFAULT_MAX_RETRIES = 5
+
 
 @dataclass
 class LLMResult:
@@ -36,7 +42,9 @@ class LLMClient:
     model: str
     mock: bool
     temperature: float = 0.5
-    max_tokens: int = 320
+    max_tokens: int = DEFAULT_MAX_TOKENS
+    timeout: float = DEFAULT_TIMEOUT_SECONDS
+    max_retries: int = DEFAULT_MAX_RETRIES
     cache_path: str | None = None
     api_key: str | None = None
 
@@ -155,11 +163,16 @@ class LLMClient:
             raise RuntimeError(
                 "ANTHROPIC_API_KEY is not set. Re-run with --mock to use template reactions."
             )
-        client = anthropic.Anthropic(api_key=key)
+        # The SDK's default read timeout is 10 minutes. A stalled connection
+        # then blocks every worker. Five retries cover transient 429/529s.
+        client = anthropic.Anthropic(
+            api_key=key,
+            timeout=self.timeout,
+            max_retries=self.max_retries,
+        )
         message = client.messages.create(
             model=self.model,
             max_tokens=self.max_tokens,
-            temperature=self.temperature,
             system=SYSTEM_PROMPT,
             messages=[{"role": "user", "content": user}],
         )

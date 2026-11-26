@@ -1,10 +1,15 @@
 """Deterministic collection checks and the numeric thresholds for SSR means.
 
-Thresholds are assumptions. They are not fitted to Headout CVR. The calibration
-plan in collection_qa.anchors says how to replace them.
+Absolute thresholds are assumptions. They are not fitted to Headout CVR. A live
+Claude Sonnet 5.5 pilot (30 personas, seed 7, 2026-11-26) compressed product
+means into about 3.17–3.46, so the 3.6 / 3.4 / 3.3 pass lines mostly warn.
+Relative z-scores against the collection mean are the ranking signal until a
+CVR backtest replaces the absolute cuts. See collection_qa.anchors.
 """
 
 from __future__ import annotations
+
+import statistics
 
 from collection_qa.models import Assertion, CollectionSpec, Issue, Product, Surface
 
@@ -36,11 +41,94 @@ CHOICE_OVERLOAD_FAIL = 20
 CANNIBAL_PRICE_REL = 0.15
 CANNIBAL_PI_DELTA = 0.25
 
+# Relative rank versus the other products in the same run. Population z-score.
+RELATIVE_Z_WARN = -1.0
+RELATIVE_Z_FAIL = -1.5
+# When product means span less than this, absolute Likert cuts are not discriminative.
+COMPRESSION_RANGE = 0.40
+
 FAQ_TOPICS = {
     "cancellation": ("cancel", "refund"),
     "getting_there": ("pickup", "getting there", "drive", "coach", "transfer", "parking"),
     "access": ("wheelchair", "access", "mobility", "stroller"),
 }
+
+
+def z_scores(means: dict[str, float]) -> dict[str, float]:
+    """Population z-score of each mean against the others in this run.
+
+    One or two identical values have no spread, so every z-score is 0.
+    """
+    if len(means) < 2:
+        return {key: 0.0 for key in means}
+    values = list(means.values())
+    center = statistics.fmean(values)
+    sigma = statistics.pstdev(values)
+    if sigma < 1e-9:
+        return {key: 0.0 for key in means}
+    return {key: (value - center) / sigma for key, value in means.items()}
+
+
+def relative_ranking_issues(
+    means: dict[str, float],
+    titles: dict[str, str] | None = None,
+) -> list[Issue]:
+    """Flag products that sit below the collection, plus a compression warning.
+
+    Absolute pass lines stay in force elsewhere. This is the within-run ranking
+    the live pilot needed once every mean landed in a narrow band.
+    """
+    titles = titles or {}
+    issues: list[Issue] = []
+    if len(means) >= 2:
+        values = list(means.values())
+        spread = max(values) - min(values)
+        if spread < COMPRESSION_RANGE:
+            issues.append(
+                _issue(
+                    "A",
+                    "score_compression",
+                    "warn",
+                    (
+                        f"Product means span only {spread:.2f} points "
+                        f"({min(values):.2f}–{max(values):.2f}). Absolute pass cuts "
+                        f"(page {PAGE_MEAN_PASS}, segment {SEGMENT_MEAN_PASS}, "
+                        f"product {PRODUCT_MEAN_PASS}) are not calibrated and mostly "
+                        "warn inside a band this tight. Rank with z-scores against "
+                        "this collection's mean."
+                    ),
+                    spread=round(spread, 4),
+                    low=round(min(values), 4),
+                    high=round(max(values), 4),
+                    compression_range=COMPRESSION_RANGE,
+                )
+            )
+    for key, score in z_scores(means).items():
+        if score <= RELATIVE_Z_FAIL:
+            severity = "fail"
+        elif score <= RELATIVE_Z_WARN:
+            severity = "warn"
+        else:
+            continue
+        name = titles.get(key, key)
+        issues.append(
+            _issue(
+                "A",
+                "relative_rank",
+                severity,
+                (
+                    f"{name} is {score:.2f} standard deviations below this collection's "
+                    f"mean purchase intent ({means[key]:.2f}). This flag is relative. "
+                    "Absolute thresholds still need a CVR calibration."
+                ),
+                key=key,
+                z=round(score, 4),
+                mean=round(means[key], 4),
+                warn_at=RELATIVE_Z_WARN,
+                fail_at=RELATIVE_Z_FAIL,
+            )
+        )
+    return issues
 
 
 def rate_higher_is_better(value: float, *, pass_at: float, warn_at: float) -> str:
