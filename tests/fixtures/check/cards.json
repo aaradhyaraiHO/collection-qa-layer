@@ -1,0 +1,30 @@
+{
+  "result": {
+    "productCards": {
+      "items": [
+        {
+          "id": "e1",
+          "title": "Day cruise",
+          "listingPrice": {"finalPrice": 155, "currency": "NZD"},
+          "duration": "2 hours",
+          "rating": 4.8,
+          "ratingCount": 20,
+          "inclusions": ["Tea and coffee"],
+          "cancellation": "Free cancellation up to 24 hours",
+          "pickup": "Not included. Meet at the terminal."
+        },
+        {
+          "id": "e2",
+          "title": "Coach and cruise",
+          "listingPrice": {"finalPrice": 220, "currency": "NZD"},
+          "duration": "12 hours",
+          "rating": 4.7,
+          "ratingCount": 11,
+          "inclusions": ["Coach", "Cruise"],
+          "cancellation": "Free cancellation up to 24 hours",
+          "pickup": "Hotel pickup in Queenstown"
+        }
+      ]
+    }
+  }
+}

@@ -11,3 +11,5 @@ dist/
 build/
 *.sqlite
 .collection_qa_cache/
+.collection-qa/
+eos-profile/

@@ -13,6 +13,7 @@ dependencies = [
 
 [project.optional-dependencies]
 embeddings = ["sentence-transformers>=3.0"]
+eos = ["playwright>=1.40"]
 dev = ["pytest>=8.0"]
 
 [project.scripts]

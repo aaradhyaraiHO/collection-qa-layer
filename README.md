@@ -62,6 +62,28 @@ collection-qa run specs/masai-mara.yaml specs/milford-sound.yaml \
 
 `--dry-run` is the same switch as `--mock`.
 
+## Check a CE
+
+```bash
+pip install -e '.[embeddings,dev]'
+# optional browser sign-in for drafts that are not on headout.com yet:
+pip install 'collection-qa[eos]' && playwright install chromium
+export ANTHROPIC_API_KEY=...    # omit it and the check falls back to mock reactions
+export SLACK_TOKEN=...          # optional user token with search. Leave unset to skip Slack
+
+collection-qa eos-login
+collection-qa check "3945" --mock --personas 8 --no-prompt
+collection-qa check "Milford Sound" --eos-export draft.json --mock --out reports/checks
+```
+
+`check` looks up the CE on the public collection API and product-card API. If those cards are bookable, status is **LIVE** and the existing panel runs on that page. Slack, when `SLACK_TOKEN` is set, searches for MMP threads (SRC, BOQA, BizQA, BOB, content lock, assortment, campaign ticket) and names the furthest stage it sees. No token is an empty stage, not an error.
+
+If the page has no bookable cards, status is **IN_PIPELINE** when Slack or the collection record exists, otherwise **NOT_FOUND**. The command then asks for EOS links (`eos.headout.com`). Sign-in uses a headed Chromium profile at `~/.collection-qa/eos-profile` from `eos-login`. That folder is yours, it is gitignored, and the tool never asks for a shared password. `--eos-export` reads a saved HTML, JSON, or CSV instead of the browser.
+
+Gate A runs when there is an assortment. Gate B is added when the page is live or the draft says content is locked. The report is `reports/checks/<id>.check.html` plus markdown and JSON: verdict (Go / Fix first / Hold), quotes, a product chart, a fix table (priority, issue, link, change, owner, quote), traveller-type breakdown, microbrand versus Headout, competitors, automated checks, whether the mix can be trusted, and an appendix.
+
+EOS selectors are not confirmed. They are listed in `collection_qa.eos.UNCONFIRMED_SELECTORS`. A parse of a real signed-in page may miss cards until that adapter is checked in the browser. The public product-card JSON shapes are also defensive: the API returned HTTP 403 when the pilot specs were seeded.
+
 Useful flags:
 
 | Flag | Default | Role |

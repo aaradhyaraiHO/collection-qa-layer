@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from collection_qa.anchors import CALIBRATION_PLAN
+from collection_qa.eos import DEFAULT_EOS_URL, eos_login
 from collection_qa.cost import DEFAULT_MODEL, estimate_cost, planned_calls
 from collection_qa.embeddings import DEFAULT_ST_MODEL
 from collection_qa.llm import DEFAULT_MAX_RETRIES, DEFAULT_MAX_TOKENS, DEFAULT_TIMEOUT_SECONDS
@@ -89,6 +90,20 @@ def main(argv: list[str] | None = None) -> int:
     estimate_parser.add_argument("--completions", type=int, default=1)
     estimate_parser.add_argument("--gates", default="A,B")
 
+    check_parser = sub.add_parser("check", help="Resolve a CE and run pre-launch QA")
+    check_parser.add_argument("query", help="CE name or numeric id")
+    check_parser.add_argument("--out", default="reports/checks")
+    check_parser.add_argument("--mock", "--dry-run", action="store_true", dest="mock")
+    _add_common(check_parser)
+    check_parser.add_argument("--eos-export", help="Saved EOS HTML, JSON, or CSV. No browser.")
+    check_parser.add_argument("--eos-url", action="append", default=[], help="EOS page to open with the local sign-in profile. Repeatable.")
+    check_parser.add_argument("--eos-profile", default=None, help="Persistent browser profile. Default ~/.collection-qa/eos-profile")
+    check_parser.add_argument("--no-prompt", action="store_true", help="Do not ask for EOS links on stdin")
+
+    login_parser = sub.add_parser("eos-login", help="Open a headed browser so you can sign in to EOS once")
+    login_parser.add_argument("--profile", default=None)
+    login_parser.add_argument("--url", default=DEFAULT_EOS_URL)
+
     sub.add_parser("calibration", help="Print the CVR calibration plan")
 
     args = parser.parse_args(argv)
@@ -99,6 +114,12 @@ def main(argv: list[str] | None = None) -> int:
         return _estimate(args)
     if args.command == "sensitivity":
         return _sensitivity(args)
+    if args.command == "eos-login":
+        path = eos_login(profile_dir=Path(args.profile) if args.profile else None, start_url=args.url)
+        print(f"EOS session saved in {path}. It is local and must not be committed.")
+        return 0
+    if args.command == "check":
+        return _check(args)
     return _run(args)
 
 
@@ -149,6 +170,58 @@ def _sensitivity(args: argparse.Namespace) -> int:
         f"page_weight_sensitive={result['page_weight_sensitive']}"
     )
     return 0
+
+
+def _check(args: argparse.Namespace) -> int:
+    from collection_qa.check import run_check
+    from collection_qa.report import write_report
+    from collection_qa.slack_status import EnvSlackClient, SkippingSlack
+
+    mock = bool(args.mock) or not os.environ.get("ANTHROPIC_API_KEY")
+    if mock and not args.mock:
+        print("ANTHROPIC_API_KEY is not set. Scoring with mock reactions.")
+
+    def fetch(url: str) -> tuple[int, str]:
+        import urllib.request
+
+        request = urllib.request.Request(url, headers={"User-Agent": "collection-qa"})
+        try:
+            with urllib.request.urlopen(request, timeout=20) as response:
+                return response.status, response.read().decode("utf-8", errors="replace")
+        except Exception as exc:
+            status = getattr(exc, "code", 0)
+            return int(status or 0), str(exc)
+
+    token = os.environ.get("SLACK_TOKEN", "")
+    slack = EnvSlackClient(token) if token else SkippingSlack()
+    report = run_check(
+        args.query,
+        fetch=fetch,
+        slack=slack,
+        out=args.out,
+        mock=mock,
+        personas=args.personas,
+        seed=args.seed,
+        eos_export=args.eos_export,
+        eos_urls=args.eos_url,
+        eos_profile=args.eos_profile,
+        prompt_fn=None if args.no_prompt else input,
+    )
+    stem = report["ce"]["ce_id"] or "ce"
+    json_path, md_path, html_path = write_report(report, args.out, f"{stem}-{_slug(report['ce']['name'])}")
+    print(f"{report['verdict']}: {report['verdict_reason']}")
+    print(f"  status={report['status']} stage={report['stage']} gates={','.join(report['gates']) or 'none'}")
+    print(f"  wrote {json_path}")
+    print(f"  wrote {md_path}")
+    print(f"  wrote {html_path}")
+    return 0
+
+
+def _slug(name: str) -> str:
+    base = "".join(char.lower() if char.isalnum() else "-" for char in name).strip("-")
+    while "--" in base:
+        base = base.replace("--", "-")
+    return base or "ce"
 
 
 def _estimate(args: argparse.Namespace) -> int:

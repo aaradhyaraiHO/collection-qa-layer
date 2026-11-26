@@ -136,7 +136,7 @@ class CollectionSpec(BaseModel):
     provenance: Provenance
     provenance_note: str
     fetched_on: str
-    audience_profile: Literal["safari", "fjord_cruise", "custom"] = "custom"
+    audience_profile: Literal["safari", "fjord_cruise", "generic", "custom"] = "custom"
     primary_surface: Surface
     microbrand: Surface | None = None
     products: list[Product]

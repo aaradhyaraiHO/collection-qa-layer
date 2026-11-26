@@ -116,9 +116,50 @@ FJORD_INTERESTS: dict[str, float] = {
     "food_onboard": 0.08,
 }
 
+GENERIC_WEIGHTS: dict[str, dict[str, float]] = {
+    "source_market": {
+        "United States": 0.2,
+        "United Kingdom": 0.16,
+        "Germany": 0.12,
+        "India": 0.12,
+        "Australia": 0.12,
+        "France": 0.1,
+        "China": 0.1,
+        "United Arab Emirates": 0.08,
+    },
+    "age_band": {
+        "18-24": 0.1,
+        "25-34": 0.24,
+        "35-44": 0.24,
+        "45-54": 0.2,
+        "55-64": 0.14,
+        "65+": 0.08,
+    },
+    "trip_type": {"solo": 0.2, "couple": 0.4, "family_with_kids": 0.22, "friends": 0.18},
+    "budget_tier": {"budget": 0.25, "mid": 0.4, "premium": 0.25, "luxury": 0.1},
+    "planning_horizon": {
+        "last_minute": 0.12,
+        "weeks_1_4": 0.28,
+        "months_1_3": 0.4,
+        "months_3_plus": 0.2,
+    },
+    "experience": {"first_timer": 0.75, "repeat": 0.25},
+    "accessibility": {"none": 0.92, "mobility": 0.06, "sensory": 0.02},
+    "device_channel": {"mobile_web": 0.65, "desktop": 0.27, "app": 0.08},
+}
+
+GENERIC_INTERESTS: dict[str, float] = {
+    "sightseeing": 0.3,
+    "value": 0.25,
+    "comfort": 0.2,
+    "photography": 0.15,
+    "food": 0.1,
+}
+
 PROFILES = {
     "safari": (SAFARI_WEIGHTS, SAFARI_INTERESTS),
     "fjord_cruise": (FJORD_CRUISE_WEIGHTS, FJORD_INTERESTS),
+    "generic": (GENERIC_WEIGHTS, GENERIC_INTERESTS),
 }
 
 REQUIRED_AXES = (
