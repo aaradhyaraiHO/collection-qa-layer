@@ -1,0 +1,2069 @@
+{
+  "banner": "MOCK OUTPUT. Free-text reactions come from a rule-based stand-in, not Claude. Embeddings: sentence-transformers/all-MiniLM-L6-v2. Read purchase-intent numbers as a worked example of the scorecard. Read deterministic checks as findings about the fetched pages. Catalog seeded from live Headout pages and APIs.",
+  "meta": {
+    "mode": "MOCK",
+    "name": "Milford Sound cruises",
+    "collection_spec_id": "milford-sound",
+    "collection_id": "3945",
+    "ce_id": null,
+    "page_type": "headout_collection",
+    "catalog_status": "live_headout",
+    "destination": "Milford Sound, Fiordland, New Zealand, with day trips from Queenstown and Te Anau",
+    "fetched_at": "2026-11-26",
+    "generated_at": "2026-11-26T21:40:48.302863+00:00",
+    "n_personas": 30,
+    "seed": 20261126,
+    "ablate_personas": false,
+    "llm": "mock-rule-based",
+    "llm_temperature": 0.5,
+    "completions": 1,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "epsilon": 0.0,
+    "ssr_temperature": 1.0,
+    "anchor_sets": [
+      "booking_plain",
+      "booking_now",
+      "fit_for_me",
+      "value",
+      "choose_over_others",
+      "commitment"
+    ],
+    "persona_assumption": "assumption: default traveler mix for this collection, not a Headout panel or booking extract. Profile 'milford-sound' is the built-in mix for this pilot, not measured demand.",
+    "persona_counts": {
+      "budget_tier": {
+        "budget": 11,
+        "mid": 17,
+        "premium": 2
+      },
+      "trip_type": {
+        "solo": 8,
+        "couple": 10,
+        "family_with_kids": 3,
+        "friends": 9
+      },
+      "experience": {
+        "first_timer": 20,
+        "repeat": 10
+      },
+      "base": {
+        "te_anau": 7,
+        "self_drive": 4,
+        "queenstown": 19
+      }
+    },
+    "unknowns": [
+      "No Headout microbrand for Milford Sound was found in this pass.",
+      "The public collection id is 3945. The EOS Combined Entity id is not on the public page.",
+      "The collection SSR payload's long-form body was empty. A client-rendered guide may exist and was not confirmed. A rendered-markdown fetch produced a long FAQ and prices such as NZ$143.20 and NZ$179; those strings were not in the raw HTML fetched from this environment and are not used.",
+      "The headout.com HTML fetched here embedded USD from-prices (for example 84.98 USD on product 29695). The catalog below is the NZD API response. The two are not compared.",
+      "Inclusions are marked unknown where the product page was not opened.",
+      "Secondary cities on the collection record are QUEENSTOWN and TE_ANAU."
+    ],
+    "sources": [
+      {
+        "url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/",
+        "role": "headout.com collection. H1, meta description, and nine SSR cards confirmed in the HTML. Long-form payload empty.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://api-ho.headout.com/api/v2/collections/3945/product-cards/?currency=NZD&language=EN&sort-type=POPULARITY",
+        "role": "Collection product-card API, currency=NZD, sort=POPULARITY. 24 products.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-by-realnz-e-37309/",
+        "role": "RealNZ product page, including the wheelchair limitation.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.viator.com/en-NZ/Fiordland-and-Milford-Sound-tours/Cruises-Sailing-and-Water-Tours/d756-g3",
+        "role": "Competitor context. Cruise from-prices were shown in US dollars.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.getyourguide.com/queenstown-l498/from-queenstown-milford-sound-discover-more-longest-cruise-t1068280/",
+        "role": "Competitor context. Queenstown coach-and-cruise from $188. Currency label was not confirmed.",
+        "fetched_at": "2026-11-26"
+      }
+    ],
+    "cost": {
+      "model": "claude-sonnet-5-5",
+      "calls": 750,
+      "estimated_input_tokens": 280890,
+      "estimated_output_tokens": 135000,
+      "estimated_usd": 1.9118,
+      "prices_per_mtok": {
+        "input": 2.0,
+        "output": 10.0
+      },
+      "prices_as_of": "2026-11-26",
+      "prices_source": "https://platform.claude.com/docs/en/about-claude/models",
+      "priced": true,
+      "note": "Rough estimate at 4 characters per token and 180 output tokens per call. Excludes Claude thinking tokens.",
+      "actual_input_tokens": 0,
+      "actual_output_tokens": 0,
+      "actual_usd": 0.0
+    }
+  },
+  "checks": [
+    {
+      "id": "price_consistency",
+      "severity": "pass",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Same-currency price observations sit within 1.5% of the catalog from-price. Wider gaps fail. Cross-currency figures are not converted.",
+      "product_ids": [],
+      "evidence": {
+        "compared": [
+          {
+            "product_id": "29695",
+            "catalog": 155.0,
+            "observed": 155.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "18125",
+            "catalog": 179.0,
+            "observed": 179.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "18103",
+            "catalog": 230.0,
+            "observed": 230.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "37309",
+            "catalog": 155.0,
+            "observed": 155.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "26901",
+            "catalog": 359.0,
+            "observed": 359.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "23887",
+            "catalog": 275.0,
+            "observed": 275.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "15588",
+            "catalog": 835.0,
+            "observed": 835.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "26586",
+            "catalog": 199.0,
+            "observed": 199.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "29756",
+            "catalog": 839.0,
+            "observed": 839.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "40298",
+            "catalog": 179.0,
+            "observed": 179.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "36204",
+            "catalog": 1490.0,
+            "observed": 1490.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "56753",
+            "catalog": 449.0,
+            "observed": 449.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "58555",
+            "catalog": 272.64,
+            "observed": 272.64,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "56773",
+            "catalog": 449.0,
+            "observed": 449.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "55222",
+            "catalog": 275.0,
+            "observed": 275.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "29729",
+            "catalog": 369.0,
+            "observed": 369.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "30130",
+            "catalog": 389.0,
+            "observed": 389.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "56772",
+            "catalog": 529.0,
+            "observed": 529.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "37156",
+            "catalog": 699.0,
+            "observed": 699.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "55218",
+            "catalog": 449.0,
+            "observed": 449.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "55219",
+            "catalog": 529.0,
+            "observed": 529.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "55226",
+            "catalog": 359.0,
+            "observed": 359.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "55220",
+            "catalog": 449.0,
+            "observed": 449.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "55221",
+            "catalog": 369.0,
+            "observed": 369.0,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed_price_units",
+      "severity": "pass",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "From-prices share one unit (per_person).",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "duration_present",
+      "severity": "pass",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Every product has a duration.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "cancellation_present",
+      "severity": "pass",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Every product has a cancellation statement.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "pickup_stated",
+      "severity": "fail",
+      "gate": "both",
+      "blocks_go_live": true,
+      "message": "Some products do not state a meeting point or say that pickup is not included.",
+      "product_ids": [
+        "18125",
+        "26901"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "pickup_stated",
+      "severity": "warn",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Pickup or transfers are marked as depending on the option selected. The collection card does not name the meeting point.",
+      "product_ids": [
+        "29695",
+        "18103",
+        "23887",
+        "15588",
+        "26586",
+        "29756",
+        "40298",
+        "36204",
+        "56753",
+        "58555",
+        "56773",
+        "55222",
+        "29729",
+        "30130",
+        "56772",
+        "37156",
+        "55218",
+        "55219",
+        "55226",
+        "55220",
+        "55221"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "duration_span",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "These cards publish a duration range at least 3× wide and at least 3 hours across. The from-price is then hard to read as one experience.",
+      "product_ids": [
+        "29695",
+        "18125",
+        "26586",
+        "30130"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "duration_claim",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "The page says “Experience a 2-hour Milford Sound Cruise with a view of the iconic Mitre Peak.” (2 hours). The lead card Milford Sound Cruise with Optional Lunch is 1 hr 40 mins - 6 hrs. The claimed length sits inside that range, so the line is not false, but it hides the range.",
+      "product_ids": [
+        "29695"
+      ],
+      "evidence": {
+        "claim_hours": 2.0,
+        "inside_range": true
+      }
+    },
+    {
+      "id": "zero_reviews",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "11 of 24 products have 0 reviews on the collection card.",
+      "product_ids": [
+        "40298",
+        "36204",
+        "56753",
+        "56773",
+        "56772",
+        "37156",
+        "55218",
+        "55219",
+        "55226",
+        "55220",
+        "55221"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "assortment_scope",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "These product titles do not contain the collection scope keywords (milford). Confirm they belong on this collection.",
+      "product_ids": [
+        "26901"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "reseller_disclosure",
+      "severity": "pass",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "This spec is a headout.com collection, so the official-versus-reseller line is the marketplace frame.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "faq_coverage",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "No FAQ question and answer was confirmed in the fetched page. The collection SSR payload's long-form body was empty, which matches other Headout collection pages, so a client-rendered guide may still exist.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "accessibility_disclosure",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "A fetched product page says the cruise is not fully wheelchair accessible. The confirmed collection copy does not say so.",
+      "product_ids": [
+        "37309"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "competitor_gap",
+      "severity": "info",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Viator lists “Cruise Milford NZ small boutique cruise, and other fiord cruises” from 88 USD. Comparability is 'currency_unknown'. The listing page showed from-prices in US dollars, from about US$88 for a RealNZ cruise and US$103 for a small-boat cruise. Not compared with the NZD catalog.",
+      "product_ids": [],
+      "evidence": {
+        "benchmark_id": "viator_small_cruise",
+        "url": "https://www.viator.com/en-NZ/Fiordland-and-Milford-Sound-tours/Cruises-Sailing-and-Water-Tours/d756-g3"
+      }
+    },
+    {
+      "id": "competitor_gap",
+      "severity": "info",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "GetYourGuide lists “From Queenstown: Milford Sound Discover More Longest Cruise” from 188 None. Comparability is 'currency_unknown'. Southern Discoveries coach-and-cruise, about 13.5 hours, from $188 per person. The fetched page did not confirm the currency.",
+      "product_ids": [],
+      "evidence": {
+        "benchmark_id": "gyg_queenstown_day",
+        "url": "https://www.getyourguide.com/queenstown-l498/from-queenstown-milford-sound-discover-more-longest-cruise-t1068280/"
+      }
+    },
+    {
+      "id": "cannibalisation",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "1 product pair(s) share a duration, a from-price within 12%, and a title overlap of at least 62%. Review whether both need to sit on the collection. First pairs: 56773 vs 55218 (J=0.75)",
+      "product_ids": [
+        "55218",
+        "56773"
+      ],
+      "evidence": {
+        "pairs": [
+          {
+            "a": "56773",
+            "b": "55218",
+            "a_title": "From Te Anau: Milford Sound Small-Group Tour with Captain's VIP Lounge Cruise",
+            "b_title": "From Te Anau: Small-Group Milford Sound Tour with Captain's VIP Cruise & Picnic Lunch",
+            "jaccard": 0.75,
+            "price_a": 449.0,
+            "price_b": 449.0,
+            "currency": "NZD",
+            "duration": "7 hrs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "choice_overload",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "24 products on one collection. The review trigger is 15, which is an assumption for this QA layer, not a Headout policy. Synthetic mean PI standard deviation across products is 0.12.",
+      "product_ids": [],
+      "evidence": {
+        "n": 24,
+        "pi_std": 0.12417245448903916
+      }
+    },
+    {
+      "id": "price_ladder_fit",
+      "severity": "pass",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "budget personas, per_person: mean PI 3.10 on the cheaper third and 2.83 on the dearer third (gap -0.26). Budget intent should not rise with price; luxury intent should not fall. This uses synthetic scores and does not block go-live.",
+      "product_ids": [
+        "29695",
+        "37309",
+        "18125",
+        "40298",
+        "26586",
+        "18103",
+        "58555",
+        "23887",
+        "55218",
+        "55220",
+        "56772",
+        "55219",
+        "37156",
+        "15588",
+        "29756",
+        "36204"
+      ],
+      "evidence": {
+        "tier": "budget",
+        "unit": "per_person",
+        "cheap_mean": 3.097,
+        "expensive_mean": 2.834
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Milford Sound Scenic Flyover & Cruise is 2.85. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "15588"
+      ],
+      "evidence": {
+        "mean_pi": 2.846
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Te Anau: Milford Sound Day Trip with Cruise & Return Transfers is 3.15. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "18103"
+      ],
+      "evidence": {
+        "mean_pi": 3.155
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Milford Sound Boutique Small-Boat Cruise is 3.12. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "18125"
+      ],
+      "evidence": {
+        "mean_pi": 3.123
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Milford Sound Day Trip with Cruise, & Return Transfers is 3.06. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "23887"
+      ],
+      "evidence": {
+        "mean_pi": 3.063
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers is 3.18. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "26586"
+      ],
+      "evidence": {
+        "mean_pi": 3.182
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Manapouri: Doubtful Sound Wilderness Cruise is 3.11. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "26901"
+      ],
+      "evidence": {
+        "mean_pi": 3.114
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Milford Sound Cruise with Optional Lunch is 3.08. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "29695"
+      ],
+      "evidence": {
+        "mean_pi": 3.084
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Milford Sound Premium Small Group Tour with Cruise & Lunch is 3.09. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "29729"
+      ],
+      "evidence": {
+        "mean_pi": 3.086
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Overnight Milford Sound Cruise with Dinner & Activities is 2.68. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "29756"
+      ],
+      "evidence": {
+        "mean_pi": 2.678
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Milford Sound Ultra Premium Cruise with Gourmet Meal, Reserved Seating, and Sparkling Wine is 2.91. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "30130"
+      ],
+      "evidence": {
+        "mean_pi": 2.911
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: 1.5 to 2-Hour Milford Sound Helicopter Tour is 3.03. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "36204"
+      ],
+      "evidence": {
+        "mean_pi": 3.03
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch is 2.83. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "37156"
+      ],
+      "evidence": {
+        "mean_pi": 2.829
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Milford Sound Cruise by RealNZ is 3.15. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "37309"
+      ],
+      "evidence": {
+        "mean_pi": 3.149
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Milford Sound Nature Cruise is 3.18. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "40298"
+      ],
+      "evidence": {
+        "mean_pi": 3.179
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Te Anau: Small-Group Milford Sound Tour with Captain's VIP Cruise & Picnic Lunch is 3.01. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "55218"
+      ],
+      "evidence": {
+        "mean_pi": 3.006
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Small-Group Milford Sound Tour and Captain’s VIP All-Inclusive Food & Beverages is 2.96. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "55219"
+      ],
+      "evidence": {
+        "mean_pi": 2.962
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Small-Group Tour with Longest Milford Sound Cruise and Picnic Lunch is 2.98. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "55220"
+      ],
+      "evidence": {
+        "mean_pi": 2.976
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Te Anau: Small-Group Day Trip with Extended Milford Sound Cruise & Picnic Lunch is 3.04. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "55221"
+      ],
+      "evidence": {
+        "mean_pi": 3.036
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford is 3.14. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "55222"
+      ],
+      "evidence": {
+        "mean_pi": 3.135
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Te Anau: Milford Sound Premium Small-Group Tour with Cruise (Max 13 Guests) is 3.04. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "55226"
+      ],
+      "evidence": {
+        "mean_pi": 3.04
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Milford Sound Discover More Cruise Day Trip with Small-Group Transfers and Lunch is 3.03. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "56753"
+      ],
+      "evidence": {
+        "mean_pi": 3.033
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Queenstown: Milford Sound Small-Group Tour with Captain's VIP Cruise is 2.97. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "56772"
+      ],
+      "evidence": {
+        "mean_pi": 2.968
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Te Anau: Milford Sound Small-Group Tour with Captain's VIP Lounge Cruise is 2.99. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "56773"
+      ],
+      "evidence": {
+        "mean_pi": 2.985
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for Te Anau Glowworm Caves and Milford Sound Cruise Experience is 3.22. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "58555"
+      ],
+      "evidence": {
+        "mean_pi": 3.217
+      }
+    },
+    {
+      "id": "synthetic_page_pi",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for the page is 3.32. Pass ≥ 3.6, warn ≥ 3.0. Uncalibrated; does not block go-live.",
+      "product_ids": [],
+      "evidence": {
+        "mean_pi": 3.317
+      }
+    }
+  ],
+  "gate_a": {
+    "status": "fail",
+    "research_status": "fail",
+    "products": [
+      {
+        "product_id": "29695",
+        "title": "Milford Sound Cruise with Optional Lunch",
+        "price": 155.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "1 hr 40 mins - 6 hrs",
+        "rating": 4.8,
+        "review_count": 2097,
+        "mean_pi": 3.084,
+        "distribution": {
+          "1": 0.1727,
+          "2": 0.1303,
+          "3": 0.2878,
+          "4": 0.2591,
+          "5": 0.1501
+        },
+        "tags": [
+          "multi_variant",
+          "milford_sound",
+          "terminal_cruise",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "18125",
+        "title": "Milford Sound Boutique Small-Boat Cruise",
+        "price": 179.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "2 hrs - 7 hrs",
+        "rating": 5.0,
+        "review_count": 2052,
+        "mean_pi": 3.123,
+        "distribution": {
+          "1": 0.1444,
+          "2": 0.1571,
+          "3": 0.284,
+          "4": 0.2603,
+          "5": 0.1542
+        },
+        "tags": [
+          "small_group",
+          "multi_variant",
+          "milford_sound",
+          "terminal_cruise",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "18103",
+        "title": "From Te Anau: Milford Sound Day Trip with Cruise & Return Transfers",
+        "price": 230.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "8 hrs - 9 hrs",
+        "rating": 4.8,
+        "review_count": 782,
+        "mean_pi": 3.155,
+        "distribution": {
+          "1": 0.1597,
+          "2": 0.1387,
+          "3": 0.2626,
+          "4": 0.2654,
+          "5": 0.1736
+        },
+        "tags": [
+          "day_trip",
+          "from_te_anau",
+          "multi_variant",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "37309",
+        "title": "Milford Sound Cruise by RealNZ",
+        "price": 155.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "2 hrs",
+        "rating": 4.7,
+        "review_count": 377,
+        "mean_pi": 3.149,
+        "distribution": {
+          "1": 0.1396,
+          "2": 0.1641,
+          "3": 0.2717,
+          "4": 0.2566,
+          "5": 0.1681
+        },
+        "tags": [
+          "multi_variant",
+          "milford_sound",
+          "terminal_cruise",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "26901",
+        "title": "From Manapouri: Doubtful Sound Wilderness Cruise",
+        "price": 359.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "7 hrs",
+        "rating": 4.7,
+        "review_count": 251,
+        "mean_pi": 3.114,
+        "distribution": {
+          "1": 0.1721,
+          "2": 0.1661,
+          "3": 0.2145,
+          "4": 0.2703,
+          "5": 0.177
+        },
+        "tags": [
+          "doubtful_sound",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "23887",
+        "title": "From Queenstown: Milford Sound Day Trip with Cruise, & Return Transfers",
+        "price": 275.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "12 hrs - 13 hrs",
+        "rating": 4.7,
+        "review_count": 637,
+        "mean_pi": 3.063,
+        "distribution": {
+          "1": 0.1819,
+          "2": 0.1497,
+          "3": 0.257,
+          "4": 0.246,
+          "5": 0.1653
+        },
+        "tags": [
+          "day_trip",
+          "from_queenstown",
+          "multi_variant",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "15588",
+        "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+        "price": 835.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "4 hrs 30 mins - 13 hrs",
+        "rating": 4.7,
+        "review_count": 338,
+        "mean_pi": 2.846,
+        "distribution": {
+          "1": 0.2398,
+          "2": 0.1784,
+          "3": 0.2319,
+          "4": 0.1964,
+          "5": 0.1535
+        },
+        "tags": [
+          "from_queenstown",
+          "multi_variant",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "26586",
+        "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+        "price": 199.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "2 hrs 15 mins - 13 hrs 30 mins",
+        "rating": 4.7,
+        "review_count": 27,
+        "mean_pi": 3.182,
+        "distribution": {
+          "1": 0.1486,
+          "2": 0.1057,
+          "3": 0.3201,
+          "4": 0.266,
+          "5": 0.1595
+        },
+        "tags": [
+          "multi_variant",
+          "milford_sound",
+          "terminal_cruise",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "29756",
+        "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+        "price": 839.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "17 hrs - 1 day 7 hrs",
+        "rating": 4.7,
+        "review_count": 18,
+        "mean_pi": 2.678,
+        "distribution": {
+          "1": 0.2579,
+          "2": 0.2246,
+          "3": 0.2094,
+          "4": 0.1973,
+          "5": 0.1108
+        },
+        "tags": [
+          "overnight",
+          "multi_variant",
+          "milford_sound",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "40298",
+        "title": "Milford Sound Nature Cruise",
+        "price": 179.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "1 hr 45 mins",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.179,
+        "distribution": {
+          "1": 0.1287,
+          "2": 0.1271,
+          "3": 0.3353,
+          "4": 0.2544,
+          "5": 0.1545
+        },
+        "tags": [
+          "multi_variant",
+          "milford_sound",
+          "terminal_cruise",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "36204",
+        "title": "From Queenstown: 1.5 to 2-Hour Milford Sound Helicopter Tour",
+        "price": 1490.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "2 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.03,
+        "distribution": {
+          "1": 0.198,
+          "2": 0.1881,
+          "3": 0.1807,
+          "4": 0.253,
+          "5": 0.1803
+        },
+        "tags": [
+          "helicopter",
+          "from_queenstown",
+          "milford_sound",
+          "category:aerial_sightseeing"
+        ]
+      },
+      {
+        "product_id": "56753",
+        "title": "From Queenstown: Milford Sound Discover More Cruise Day Trip with Small-Group Transfers and Lunch",
+        "price": 449.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "13 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.033,
+        "distribution": {
+          "1": 0.1719,
+          "2": 0.1679,
+          "3": 0.2696,
+          "4": 0.2362,
+          "5": 0.1544
+        },
+        "tags": [
+          "day_trip",
+          "from_queenstown",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "58555",
+        "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+        "price": 272.64,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "1 hr 40 mins - 2 hrs 15 mins",
+        "rating": 4.9,
+        "review_count": 1791,
+        "mean_pi": 3.217,
+        "distribution": {
+          "1": 0.1329,
+          "2": 0.1755,
+          "3": 0.233,
+          "4": 0.259,
+          "5": 0.1995
+        },
+        "tags": [
+          "combo",
+          "from_te_anau",
+          "glowworm",
+          "milford_sound",
+          "terminal_cruise",
+          "category:specials"
+        ]
+      },
+      {
+        "product_id": "56773",
+        "title": "From Te Anau: Milford Sound Small-Group Tour with Captain's VIP Lounge Cruise",
+        "price": 449.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "7 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.985,
+        "distribution": {
+          "1": 0.183,
+          "2": 0.1753,
+          "3": 0.2549,
+          "4": 0.2467,
+          "5": 0.14
+        },
+        "tags": [
+          "from_te_anau",
+          "luxury",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "55222",
+        "title": "From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford",
+        "price": 275.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "12 hrs 30 mins",
+        "rating": 4.5,
+        "review_count": 95,
+        "mean_pi": 3.135,
+        "distribution": {
+          "1": 0.1573,
+          "2": 0.1657,
+          "3": 0.245,
+          "4": 0.2489,
+          "5": 0.1832
+        },
+        "tags": [
+          "day_trip",
+          "from_queenstown",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "29729",
+        "title": "From Queenstown: Milford Sound Premium Small Group Tour with Cruise & Lunch",
+        "price": 369.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "13 hrs",
+        "rating": 4.7,
+        "review_count": 76,
+        "mean_pi": 3.086,
+        "distribution": {
+          "1": 0.1555,
+          "2": 0.1776,
+          "3": 0.2574,
+          "4": 0.2444,
+          "5": 0.1651
+        },
+        "tags": [
+          "from_queenstown",
+          "small_group",
+          "milford_sound",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "30130",
+        "title": "Milford Sound Ultra Premium Cruise with Gourmet Meal, Reserved Seating, and Sparkling Wine",
+        "price": 389.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "2 hrs - 13 hrs 10 mins",
+        "rating": 4.9,
+        "review_count": 20,
+        "mean_pi": 2.911,
+        "distribution": {
+          "1": 0.21,
+          "2": 0.1607,
+          "3": 0.2714,
+          "4": 0.2244,
+          "5": 0.1335
+        },
+        "tags": [
+          "luxury",
+          "multi_variant",
+          "milford_sound",
+          "terminal_cruise",
+          "category:cruises"
+        ]
+      },
+      {
+        "product_id": "56772",
+        "title": "From Queenstown: Milford Sound Small-Group Tour with Captain's VIP Cruise",
+        "price": 529.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "12 hrs 30 mins",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.968,
+        "distribution": {
+          "1": 0.2084,
+          "2": 0.1835,
+          "3": 0.211,
+          "4": 0.226,
+          "5": 0.1712
+        },
+        "tags": [
+          "from_queenstown",
+          "luxury",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "37156",
+        "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+        "price": 699.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "9 hrs 10 mins - 13 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.829,
+        "distribution": {
+          "1": 0.2437,
+          "2": 0.1862,
+          "3": 0.212,
+          "4": 0.2137,
+          "5": 0.1444
+        },
+        "tags": [
+          "from_queenstown",
+          "luxury",
+          "multi_variant",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "55218",
+        "title": "From Te Anau: Small-Group Milford Sound Tour with Captain's VIP Cruise & Picnic Lunch",
+        "price": 449.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "7 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.006,
+        "distribution": {
+          "1": 0.1874,
+          "2": 0.1736,
+          "3": 0.2411,
+          "4": 0.2416,
+          "5": 0.1563
+        },
+        "tags": [
+          "from_te_anau",
+          "luxury",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "55219",
+        "title": "From Queenstown: Small-Group Milford Sound Tour and Captain’s VIP All-Inclusive Food & Beverages",
+        "price": 529.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "12 hrs 30 mins",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.962,
+        "distribution": {
+          "1": 0.2061,
+          "2": 0.1971,
+          "3": 0.1898,
+          "4": 0.2432,
+          "5": 0.1638
+        },
+        "tags": [
+          "from_queenstown",
+          "luxury",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "55226",
+        "title": "From Te Anau: Milford Sound Premium Small-Group Tour with Cruise (Max 13 Guests)",
+        "price": 359.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "8 hrs 30 mins",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.04,
+        "distribution": {
+          "1": 0.1784,
+          "2": 0.1789,
+          "3": 0.2291,
+          "4": 0.2519,
+          "5": 0.1617
+        },
+        "tags": [
+          "from_te_anau",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "55220",
+        "title": "From Queenstown: Small-Group Tour with Longest Milford Sound Cruise and Picnic Lunch",
+        "price": 449.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "13 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.976,
+        "distribution": {
+          "1": 0.1854,
+          "2": 0.1833,
+          "3": 0.2577,
+          "4": 0.2172,
+          "5": 0.1563
+        },
+        "tags": [
+          "from_queenstown",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      },
+      {
+        "product_id": "55221",
+        "title": "From Te Anau: Small-Group Day Trip with Extended Milford Sound Cruise & Picnic Lunch",
+        "price": 369.0,
+        "currency": "NZD",
+        "price_unit": "per_person",
+        "duration": "8 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.036,
+        "distribution": {
+          "1": 0.1898,
+          "2": 0.1791,
+          "3": 0.2109,
+          "4": 0.2458,
+          "5": 0.1744
+        },
+        "tags": [
+          "day_trip",
+          "from_te_anau",
+          "small_group",
+          "milford_sound",
+          "category:tours"
+        ]
+      }
+    ],
+    "segments": {
+      "budget_tier": {
+        "budget": {
+          "n": 11,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "40298",
+              "title": "Milford Sound Nature Cruise",
+              "mean_pi": 3.188,
+              "price": 179.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.17,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37309",
+              "title": "Milford Sound Cruise by RealNZ",
+              "mean_pi": 3.142,
+              "price": 155.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "30130",
+              "title": "Milford Sound Ultra Premium Cruise with Gourmet Meal, Reserved Seating, and Sparkling Wine",
+              "mean_pi": 2.642,
+              "price": 389.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.651,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "56773",
+              "title": "From Te Anau: Milford Sound Small-Group Tour with Captain's VIP Lounge Cruise",
+              "mean_pi": 2.762,
+              "price": 449.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "mid": {
+          "n": 17,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.294,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "55222",
+              "title": "From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford",
+              "mean_pi": 3.203,
+              "price": 275.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.19,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.65,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37156",
+              "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+              "mean_pi": 2.809,
+              "price": 699.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "15588",
+              "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+              "mean_pi": 2.819,
+              "price": 835.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "premium": {
+          "n": 2,
+          "thin": true,
+          "top": [
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.33,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "55219",
+              "title": "From Queenstown: Small-Group Milford Sound Tour and Captain’s VIP All-Inclusive Food & Beverages",
+              "mean_pi": 3.279,
+              "price": 529.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "55218",
+              "title": "From Te Anau: Small-Group Milford Sound Tour with Captain's VIP Cruise & Picnic Lunch",
+              "mean_pi": 3.24,
+              "price": 449.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "36204",
+              "title": "From Queenstown: 1.5 to 2-Hour Milford Sound Helicopter Tour",
+              "mean_pi": 3.012,
+              "price": 1490.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 3.065,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "29695",
+              "title": "Milford Sound Cruise with Optional Lunch",
+              "mean_pi": 3.083,
+              "price": 155.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        }
+      },
+      "trip_type": {
+        "solo": {
+          "n": 8,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.2,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.156,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "18103",
+              "title": "From Te Anau: Milford Sound Day Trip with Cruise & Return Transfers",
+              "mean_pi": 3.151,
+              "price": 230.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.691,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37156",
+              "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+              "mean_pi": 2.818,
+              "price": 699.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "15588",
+              "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+              "mean_pi": 2.828,
+              "price": 835.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "couple": {
+          "n": 10,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.312,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "40298",
+              "title": "Milford Sound Nature Cruise",
+              "mean_pi": 3.206,
+              "price": 179.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.204,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.699,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37156",
+              "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+              "mean_pi": 2.827,
+              "price": 699.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "15588",
+              "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+              "mean_pi": 2.856,
+              "price": 835.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "family_with_kids": {
+          "n": 3,
+          "thin": true,
+          "top": [
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.178,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.171,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "40298",
+              "title": "Milford Sound Nature Cruise",
+              "mean_pi": 3.162,
+              "price": 179.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.644,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "55220",
+              "title": "From Queenstown: Small-Group Tour with Longest Milford Sound Cruise and Picnic Lunch",
+              "mean_pi": 2.778,
+              "price": 449.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "55219",
+              "title": "From Queenstown: Small-Group Milford Sound Tour and Captain’s VIP All-Inclusive Food & Beverages",
+              "mean_pi": 2.788,
+              "price": 529.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "friends": {
+          "n": 9,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "37309",
+              "title": "Milford Sound Cruise by RealNZ",
+              "mean_pi": 3.191,
+              "price": 155.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "40298",
+              "title": "Milford Sound Nature Cruise",
+              "mean_pi": 3.189,
+              "price": 179.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.184,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.655,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37156",
+              "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+              "mean_pi": 2.852,
+              "price": 699.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "15588",
+              "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+              "mean_pi": 2.855,
+              "price": 835.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        }
+      },
+      "experience": {
+        "first_timer": {
+          "n": 20,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.229,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "40298",
+              "title": "Milford Sound Nature Cruise",
+              "mean_pi": 3.193,
+              "price": 179.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.179,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.67,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37156",
+              "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+              "mean_pi": 2.813,
+              "price": 699.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "15588",
+              "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+              "mean_pi": 2.835,
+              "price": 835.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "repeat": {
+          "n": 10,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "58555",
+              "title": "Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+              "mean_pi": 3.193,
+              "price": 272.64,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "26586",
+              "title": "Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+              "mean_pi": 3.188,
+              "price": 199.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "40298",
+              "title": "Milford Sound Nature Cruise",
+              "mean_pi": 3.15,
+              "price": 179.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "29756",
+              "title": "Overnight Milford Sound Cruise with Dinner & Activities",
+              "mean_pi": 2.695,
+              "price": 839.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "37156",
+              "title": "From Queenstown: Business Class Milford Sound Tour with Premium Cruise & Gourmet Lunch",
+              "mean_pi": 2.859,
+              "price": 699.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "15588",
+              "title": "From Queenstown: Milford Sound Scenic Flyover & Cruise",
+              "mean_pi": 2.866,
+              "price": 835.0,
+              "currency": "NZD",
+              "price_unit": "per_person"
+            }
+          ]
+        }
+      }
+    },
+    "cannibalisation_pairs": [
+      {
+        "a": "56773",
+        "b": "55218",
+        "a_title": "From Te Anau: Milford Sound Small-Group Tour with Captain's VIP Lounge Cruise",
+        "b_title": "From Te Anau: Small-Group Milford Sound Tour with Captain's VIP Cruise & Picnic Lunch",
+        "jaccard": 0.75,
+        "price_a": 449.0,
+        "price_b": 449.0,
+        "currency": "NZD",
+        "duration": "7 hrs"
+      }
+    ]
+  },
+  "gate_b": {
+    "status": "fail",
+    "research_status": "warn",
+    "page": {
+      "mean_pi": 3.317,
+      "distribution": {
+        "1": 0.0937,
+        "2": 0.1646,
+        "3": 0.2645,
+        "4": 0.2854,
+        "5": 0.1918
+      }
+    }
+  },
+  "quotes": [
+    {
+      "scope": "page",
+      "persona_id": "milford-sound-012",
+      "label": "18-24 traveler from NZ, traveling as friends, budget budget, planning horizon weeks, first timer, accessibility none, interest wildlife, starting point queenstown, on mobile via direct.",
+      "mean_pi": 3.141,
+      "text": "I am unsure about booking from this page. Milford Sound cruises is why our group of friends on a budget budget is looking, but I am not convinced which card is the one to reserve."
+    },
+    {
+      "scope": "page",
+      "persona_id": "milford-sound-023",
+      "label": "25-34 traveler from DE, traveling as couple, premium budget, planning horizon weeks, repeat, accessibility none, interest scenery, starting point te_anau, on desktop via organic.",
+      "mean_pi": 3.489,
+      "text": "I would book from this page. Milford Sound cruises has the experience the two of us on a premium budget wants, and I am ready to book it."
+    },
+    {
+      "scope": "product:Overnight Milford Sound Cruise with Dinner & Activities",
+      "persona_id": "milford-sound-001",
+      "label": "solo · mean PI 2.69 · 35-44 traveler from AU, traveling as solo, budget budget, planning horizon weeks, first timer, accessibility none, interest photography, starting point te_anau, on mobile via organic.",
+      "mean_pi": 2.692,
+      "text": "I would not book this. 839 NZD per person for 17 hrs - 1 day 7 hrs is the wrong trip for me traveling alone on a budget budget, and Overnight Milford Sound Cruise with Dinner & Activities does not solve the way we actually travel."
+    },
+    {
+      "scope": "product:Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+      "persona_id": "milford-sound-001",
+      "label": "solo · mean PI 3.20 · 35-44 traveler from AU, traveling as solo, budget budget, planning horizon weeks, first timer, accessibility none, interest photography, starting point te_anau, on mobile via organic.",
+      "mean_pi": 3.158,
+      "text": "I probably would not book this. Te Anau Glowworm Caves and Milford Sound Cruise Experience is 1 hr 40 mins - 2 hrs 15 mins at 272.64 NZD per person, which is a stretch for me traveling alone on a budget budget, so I would keep looking rather than book it."
+    },
+    {
+      "scope": "product:Overnight Milford Sound Cruise with Dinner & Activities",
+      "persona_id": "milford-sound-002",
+      "label": "couple · mean PI 2.70 · 55-64 traveler from other, traveling as couple, mid budget, planning horizon weeks, first timer, accessibility none, interest photography, starting point te_anau, on desktop via paid.",
+      "mean_pi": 2.61,
+      "text": "I would not book this. 839 NZD per person for 17 hrs - 1 day 7 hrs is the wrong trip for the two of us on a mid budget, and Overnight Milford Sound Cruise with Dinner & Activities does not solve the way we actually travel."
+    },
+    {
+      "scope": "product:Te Anau Glowworm Caves and Milford Sound Cruise Experience",
+      "persona_id": "milford-sound-002",
+      "label": "couple · mean PI 3.31 · 55-64 traveler from other, traveling as couple, mid budget, planning horizon weeks, first timer, accessibility none, interest photography, starting point te_anau, on desktop via paid.",
+      "mean_pi": 3.41,
+      "text": "I would book this. Te Anau Glowworm Caves and Milford Sound Cruise Experience at 272.64 NZD per person for 1 hr 40 mins - 2 hrs 15 mins is exactly the experience the two of us on a mid budget came for, and I am ready to book it."
+    },
+    {
+      "scope": "product:Overnight Milford Sound Cruise with Dinner & Activities",
+      "persona_id": "milford-sound-004",
+      "label": "family_with_kids · mean PI 2.64 · 45-54 traveler from IN, traveling as family_with_kids, mid budget, planning horizon weeks, repeat, accessibility none, interest scenery, starting point te_anau, on mobile via direct.",
+      "mean_pi": 2.645,
+      "text": "I would not book this. 839 NZD per person for 17 hrs - 1 day 7 hrs is the wrong trip for our family with kids on a mid budget, and Overnight Milford Sound Cruise with Dinner & Activities does not solve the way we actually travel."
+    },
+    {
+      "scope": "product:Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers",
+      "persona_id": "milford-sound-004",
+      "label": "family_with_kids · mean PI 3.18 · 45-54 traveler from IN, traveling as family_with_kids, mid budget, planning horizon weeks, repeat, accessibility none, interest scenery, starting point te_anau, on mobile via direct.",
+      "mean_pi": 3.173,
+      "text": "I would probably book this. Milford Sound Extended Scenic Cruise by Southern Discoveries with Optional Transfers at 199 NZD per person for 2 hrs 15 mins - 13 hrs 30 mins fits this trip for our family with kids on a mid budget, as long as the inclusions on the card are the ones in the booking."
+    },
+    {
+      "scope": "product:Overnight Milford Sound Cruise with Dinner & Activities",
+      "persona_id": "milford-sound-007",
+      "label": "friends · mean PI 2.66 · 25-34 traveler from CN, traveling as friends, budget budget, planning horizon weeks, repeat, accessibility none, interest photography, starting point queenstown, on mobile via organic.",
+      "mean_pi": 2.659,
+      "text": "I would not book this. 839 NZD per person for 17 hrs - 1 day 7 hrs is the wrong trip for our group of friends on a budget budget, and Overnight Milford Sound Cruise with Dinner & Activities does not solve the way we actually travel."
+    },
+    {
+      "scope": "product:Milford Sound Cruise by RealNZ",
+      "persona_id": "milford-sound-007",
+      "label": "friends · mean PI 3.19 · 25-34 traveler from CN, traveling as friends, budget budget, planning horizon weeks, repeat, accessibility none, interest photography, starting point queenstown, on mobile via organic.",
+      "mean_pi": 3.121,
+      "text": "I would probably book this. Milford Sound Cruise by RealNZ at 155 NZD per person for 2 hrs fits this trip for our group of friends on a budget budget, as long as the inclusions on the card are the ones in the booking."
+    }
+  ]
+}
