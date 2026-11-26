@@ -1,0 +1,1920 @@
+{
+  "banner": "MOCK OUTPUT. Free-text reactions come from a rule-based stand-in, not Claude. Embeddings: sentence-transformers/all-MiniLM-L6-v2. Read purchase-intent numbers as a worked example of the scorecard. Read deterministic checks as findings about the fetched pages. Catalog seeded from live Headout pages and APIs.",
+  "meta": {
+    "mode": "MOCK",
+    "name": "Masai Mara",
+    "collection_spec_id": "masai-mara",
+    "collection_id": "7324",
+    "ce_id": null,
+    "page_type": "microbrand",
+    "catalog_status": "live_headout",
+    "destination": "Masai Mara National Reserve, Kenya, departing Nairobi",
+    "fetched_at": "2026-11-26",
+    "generated_at": "2026-11-26T21:40:43.157757+00:00",
+    "n_personas": 30,
+    "seed": 20261126,
+    "ablate_personas": false,
+    "llm": "mock-rule-based",
+    "llm_temperature": 0.5,
+    "completions": 1,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "epsilon": 0.0,
+    "ssr_temperature": 1.0,
+    "anchor_sets": [
+      "booking_plain",
+      "booking_now",
+      "fit_for_me",
+      "value",
+      "choose_over_others",
+      "commitment"
+    ],
+    "persona_assumption": "assumption: default traveler mix for this collection, not a Headout panel or booking extract. Profile 'masai-mara' is the built-in mix for this pilot, not measured demand.",
+    "persona_counts": {
+      "budget_tier": {
+        "mid": 14,
+        "premium": 11,
+        "budget": 5
+      },
+      "trip_type": {
+        "solo": 4,
+        "couple": 14,
+        "family_with_kids": 5,
+        "friends": 7
+      },
+      "experience": {
+        "first_timer": 19,
+        "repeat": 11
+      },
+      "base": {
+        "already_in_kenya": 4,
+        "international_arrival": 3,
+        "nairobi": 23
+      }
+    },
+    "unknowns": [
+      "The public collection id is 7324. The EOS Combined Entity id is not on the public page. Vatican and Colosseum used the same number for both; that pattern was not verified here.",
+      "multiVariant and otherPricesExist are true on several cards. The from-price is not labeled with a stay tier (budget, comfort, luxury) or shared versus private.",
+      "Price of Headout product 56686, the 3-day budget camping safari, was not in the fetched product page.",
+      "A rendered fetch of the homepage did not include the sentence 'Crafted by Headout'. That sentence was on the about and fly-in URLs in search snippets. The homepage payload does contain 'Headout Inc'.",
+      "Competitor park-fee treatment is not fully comparable. The Viator extract lists a $20 destination payment and an ambiguous park-fee line. The GetYourGuide extract tells the traveler to pay park fees of $200 or $400."
+    ],
+    "sources": [
+      {
+        "url": "https://www.masai-mara-safaris.com/",
+        "role": "Headout microbrand homepage. CMS payload and schema.org FAQ.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.masai-mara-safaris.com/legal/",
+        "role": "Legal entity Headout Inc, 82 Nassau Street, New York.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.headout.com/masai-mara-c-7324/",
+        "role": "headout.com collection. SSR product cards and empty long-form payload.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://api-ho.headout.com/api/v2/collections/7324/product-cards/?currency=USD&language=EN&sort-type=POPULARITY",
+        "role": "Collection product-card API, currency=USD, sort=POPULARITY. 17 products.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.viator.com/tours/Nairobi/3-DAYS-2-NIGHTS-BUDGET-GROUP-SAFARI-TO-MAASAI-MARA-NATIONAL-RESERVE/d5280-60115P2",
+        "role": "Competitor context. From $195.56 per person plus $20 paid in destination.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.getyourguide.com/nairobi-l267/from-nairobi-maasai-mara-3-day-budget-safari-holiday-t453629/",
+        "role": "Competitor context. Page showed $345 per person and told travelers to pay park fees separately.",
+        "fetched_at": "2026-11-26"
+      },
+      {
+        "url": "https://www.headout.com/safari/from-nairobi-3-day-masai-mara-budget-camping-safari-e-56686/",
+        "role": "Headout budget camping safari that is not in collection 7324. Price was not on the fetched page.",
+        "fetched_at": "2026-11-26"
+      }
+    ],
+    "cost": {
+      "model": "claude-sonnet-5-5",
+      "calls": 540,
+      "estimated_input_tokens": 227340,
+      "estimated_output_tokens": 97200,
+      "estimated_usd": 1.4267,
+      "prices_per_mtok": {
+        "input": 2.0,
+        "output": 10.0
+      },
+      "prices_as_of": "2026-11-26",
+      "prices_source": "https://platform.claude.com/docs/en/about-claude/models",
+      "priced": true,
+      "note": "Rough estimate at 4 characters per token and 180 output tokens per call. Excludes Claude thinking tokens.",
+      "actual_input_tokens": 0,
+      "actual_output_tokens": 0,
+      "actual_usd": 0.0
+    }
+  },
+  "checks": [
+    {
+      "id": "price_consistency",
+      "severity": "pass",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Same-currency price observations sit within 1.5% of the catalog from-price. Wider gaps fail. Cross-currency figures are not converted.",
+      "product_ids": [],
+      "evidence": {
+        "compared": [
+          {
+            "product_id": "57698",
+            "catalog": 638.15,
+            "observed": 638.15,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57713",
+            "catalog": 1080.37,
+            "observed": 1080.37,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57722",
+            "catalog": 2903.97,
+            "observed": 2903.97,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57712",
+            "catalog": 923.84,
+            "observed": 923.84,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57793",
+            "catalog": 430.15,
+            "observed": 430.15,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57690",
+            "catalog": 561.53,
+            "observed": 561.53,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57697",
+            "catalog": 618.45,
+            "observed": 618.45,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57795",
+            "catalog": 414.85,
+            "observed": 414.85,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57711",
+            "catalog": 320.72,
+            "observed": 320.72,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57711",
+            "catalog": 320.72,
+            "observed": 321.19,
+            "relative": 0.0015,
+            "source": "headout.com collection SSR embed"
+          },
+          {
+            "product_id": "57723",
+            "catalog": 1593.74,
+            "observed": 1593.74,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57724",
+            "catalog": 2064.41,
+            "observed": 2064.41,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57638",
+            "catalog": 2631.41,
+            "observed": 2631.41,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57699",
+            "catalog": 785.92,
+            "observed": 785.92,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "57728",
+            "catalog": 869.11,
+            "observed": 869.11,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "61529",
+            "catalog": 3669.42,
+            "observed": 3669.42,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "61528",
+            "catalog": 3568.74,
+            "observed": 3568.74,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          },
+          {
+            "product_id": "61532",
+            "catalog": 4219.68,
+            "observed": 4219.68,
+            "relative": 0.0,
+            "source": "collection product-card API"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed_price_units",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "From-prices on this collection use more than one unit (per_group, per_person). A single list will not read as a price ladder unless every card shows the unit. Per-group ids are listed.",
+      "product_ids": [
+        "57722",
+        "57711",
+        "57723",
+        "57724",
+        "57638",
+        "61529",
+        "61528",
+        "61532"
+      ],
+      "evidence": {
+        "units": [
+          "per_group",
+          "per_person"
+        ]
+      }
+    },
+    {
+      "id": "duration_present",
+      "severity": "pass",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Every product has a duration.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "cancellation_present",
+      "severity": "pass",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Every product has a cancellation statement.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "pickup_stated",
+      "severity": "warn",
+      "gate": "both",
+      "blocks_go_live": false,
+      "message": "Pickup or transfers are marked as depending on the option selected. The collection card does not name the meeting point.",
+      "product_ids": [
+        "57698",
+        "57713",
+        "57722",
+        "57712",
+        "57793",
+        "57690",
+        "57697",
+        "57711",
+        "57724",
+        "57638",
+        "57728",
+        "61529",
+        "61528",
+        "61532"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "duration_span",
+      "severity": "pass",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "No product card stretches a short experience and a much longer variant into one duration.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "zero_reviews",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "7 of 17 products have 0 reviews on the collection card.",
+      "product_ids": [
+        "57698",
+        "57713",
+        "57711",
+        "57638",
+        "61529",
+        "61528",
+        "61532"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "assortment_scope",
+      "severity": "pass",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Every product title contains one of: masai mara, maasai mara.",
+      "product_ids": [],
+      "evidence": {}
+    },
+    {
+      "id": "inclusion_claim",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "The page says “Lake Nakuru National Park (included with 4+ days safaris)”. 6 product(s) meet the duration condition and do not carry the tag 'lake_nakuru'. The same page also says: Masai Mara, or Masai Mara with Lake Naivasha or Lake Nakuru.",
+      "product_ids": [
+        "57722",
+        "57690",
+        "57697",
+        "57724",
+        "57638",
+        "57728"
+      ],
+      "evidence": {
+        "claim_id": "nakuru_on_4_day",
+        "source_url": "https://www.masai-mara-safaris.com/"
+      }
+    },
+    {
+      "id": "inclusion_claim",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "The page says “Lake Naivasha & Hell's Gate (included with 4+ days safaris)”. 7 product(s) meet the duration condition and do not carry the tag 'lake_naivasha'. The same page also says: Masai Mara, or Masai Mara with Lake Naivasha or Lake Nakuru.",
+      "product_ids": [
+        "57698",
+        "57722",
+        "57712",
+        "57697",
+        "57724",
+        "57638",
+        "61528"
+      ],
+      "evidence": {
+        "claim_id": "naivasha_on_4_day",
+        "source_url": "https://www.masai-mara-safaris.com/"
+      }
+    },
+    {
+      "id": "inclusion_claim",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "The page says “Amboseli National Park (included with 5–7-day safaris)”. 3 product(s) meet the duration condition and do not carry the tag 'amboseli'. The same page also says: The comparison table describes 5-day routes as Masai Mara, Lake Nakuru and Lake Naivasha, or Masai Mara and Amboseli.",
+      "product_ids": [
+        "57638",
+        "57699",
+        "61532"
+      ],
+      "evidence": {
+        "claim_id": "amboseli_on_5_day",
+        "source_url": "https://www.masai-mara-safaris.com/"
+      }
+    },
+    {
+      "id": "reseller_disclosure",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "The microbrand text names Headout, and the fetched copy does not contain a sentence that this is not the venue's website. Travelers can still read the domain as the operator.",
+      "product_ids": [],
+      "evidence": {
+        "url": "https://www.masai-mara-safaris.com/"
+      }
+    },
+    {
+      "id": "faq_coverage",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "Confirmed FAQs are missing these topics: cancellation.",
+      "product_ids": [],
+      "evidence": {
+        "missing": [
+          "cancellation"
+        ]
+      }
+    },
+    {
+      "id": "outside_collection",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Headout publishes related products that are not in this collection. Titles: From Nairobi: 3-Day Masai Mara Budget Camping Safari.",
+      "product_ids": [
+        "56686"
+      ],
+      "evidence": {}
+    },
+    {
+      "id": "competitor_gap",
+      "severity": "info",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Viator lists “3 days 2 nights budget group safari to Maasai Mara National Reserve” from 195.56 USD. Comparability is 'fees_unclear'. From $195.56 per person plus $20 paid in destination. Park-fee inclusion was ambiguous in the fetched extract, so this is not a like-for-like gap.",
+      "product_ids": [],
+      "evidence": {
+        "benchmark_id": "viator_budget_3day",
+        "url": "https://www.viator.com/tours/Nairobi/3-DAYS-2-NIGHTS-BUDGET-GROUP-SAFARI-TO-MAASAI-MARA-NATIONAL-RESERVE/d5280-60115P2"
+      }
+    },
+    {
+      "id": "competitor_gap",
+      "severity": "info",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "GetYourGuide lists “From Nairobi: Maasai Mara 3-Day Budget Safari Holiday by Jeep” from 345 USD. Comparability is 'fees_unclear'. The fetched page showed $345 per person and told travelers to pay park entrance fees of $200 (Jan–Jun) or $400 (Jul–Dec). Currency was the symbol shown, not a confirmed ISO label. Not like-for-like with Headout cards that say entry fees are included.",
+      "product_ids": [],
+      "evidence": {
+        "benchmark_id": "gyg_budget_3day",
+        "url": "https://www.getyourguide.com/nairobi-l267/from-nairobi-maasai-mara-3-day-budget-safari-holiday-t453629/"
+      }
+    },
+    {
+      "id": "cannibalisation",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "5 product pair(s) share a duration, a from-price within 12%, and a title overlap of at least 62%. Review whether both need to sit on the collection. First pairs: 57722 vs 57638 (J=0.917); 61529 vs 61528 (J=0.857); 57712 vs 57728 (J=0.833); 57698 vs 57697 (J=0.8); 57690 vs 57697 (J=0.8)",
+      "product_ids": [
+        "57638",
+        "57690",
+        "57697",
+        "57698",
+        "57712",
+        "57722",
+        "57728",
+        "61528",
+        "61529"
+      ],
+      "evidence": {
+        "pairs": [
+          {
+            "a": "57722",
+            "b": "57638",
+            "a_title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+            "b_title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+            "jaccard": 0.917,
+            "price_a": 2903.97,
+            "price_b": 2631.41,
+            "currency": "USD",
+            "duration": "5 days"
+          },
+          {
+            "a": "61529",
+            "b": "61528",
+            "a_title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+            "b_title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara and Lake Nakuru Safari with Luxury Stays and Entry Fees",
+            "jaccard": 0.857,
+            "price_a": 3669.42,
+            "price_b": 3568.74,
+            "currency": "USD",
+            "duration": "4 days"
+          },
+          {
+            "a": "57712",
+            "b": "57728",
+            "a_title": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees",
+            "b_title": "From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees",
+            "jaccard": 0.833,
+            "price_a": 923.84,
+            "price_b": 869.11,
+            "currency": "USD",
+            "duration": "6 days"
+          },
+          {
+            "a": "57698",
+            "b": "57697",
+            "a_title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+            "b_title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+            "jaccard": 0.8,
+            "price_a": 638.15,
+            "price_b": 618.45,
+            "currency": "USD",
+            "duration": "4 days"
+          },
+          {
+            "a": "57690",
+            "b": "57697",
+            "a_title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+            "b_title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+            "jaccard": 0.8,
+            "price_a": 561.53,
+            "price_b": 618.45,
+            "currency": "USD",
+            "duration": "4 days"
+          }
+        ]
+      }
+    },
+    {
+      "id": "choice_overload",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "17 products on one collection. The review trigger is 15, which is an assumption for this QA layer, not a Headout policy. Synthetic mean PI standard deviation across products is 0.07.",
+      "product_ids": [],
+      "evidence": {
+        "n": 17,
+        "pi_std": 0.06864154374013194
+      }
+    },
+    {
+      "id": "price_ladder_fit",
+      "severity": "pass",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "budget personas, per_person: mean PI 2.93 on the cheaper third and 2.63 on the dearer third (gap -0.31). Budget intent should not rise with price; luxury intent should not fall. This uses synthetic scores and does not block go-live.",
+      "product_ids": [
+        "57795",
+        "57793",
+        "57690",
+        "57728",
+        "57712",
+        "57713"
+      ],
+      "evidence": {
+        "tier": "budget",
+        "unit": "per_person",
+        "cheap_mean": 2.934,
+        "expensive_mean": 2.626
+      }
+    },
+    {
+      "id": "price_ladder_fit",
+      "severity": "pass",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "budget personas, per_group: mean PI 2.91 on the cheaper third and 2.73 on the dearer third (gap -0.18). Budget intent should not rise with price; luxury intent should not fall. This uses synthetic scores and does not block go-live.",
+      "product_ids": [
+        "57711",
+        "57723",
+        "61529",
+        "61532"
+      ],
+      "evidence": {
+        "tier": "budget",
+        "unit": "per_group",
+        "cheap_mean": 2.907,
+        "expensive_mean": 2.729
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees is 2.88. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57638"
+      ],
+      "evidence": {
+        "mean_pi": 2.876
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees is 3.03. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57690"
+      ],
+      "evidence": {
+        "mean_pi": 3.031
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees is 2.96. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57697"
+      ],
+      "evidence": {
+        "mean_pi": 2.963
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees is 3.00. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57698"
+      ],
+      "evidence": {
+        "mean_pi": 3.005
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays, and Entry Fees is 2.94. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57699"
+      ],
+      "evidence": {
+        "mean_pi": 2.936
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees is 3.03. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57711"
+      ],
+      "evidence": {
+        "mean_pi": 3.032
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees is 2.93. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57712"
+      ],
+      "evidence": {
+        "mean_pi": 2.933
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees is 2.84. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57713"
+      ],
+      "evidence": {
+        "mean_pi": 2.839
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees is 2.83. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57722"
+      ],
+      "evidence": {
+        "mean_pi": 2.83
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees is 2.99. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57723"
+      ],
+      "evidence": {
+        "mean_pi": 2.986
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In 4-Day Masai Mara Private Safari with Luxury Stays and Entry Fees is 2.95. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57724"
+      ],
+      "evidence": {
+        "mean_pi": 2.947
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees is 2.96. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57728"
+      ],
+      "evidence": {
+        "mean_pi": 2.963
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "warn",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees is 3.01. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57793"
+      ],
+      "evidence": {
+        "mean_pi": 3.006
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: 3-Day Masai Mara Safari With Stays, and Entry Fees is 3.00. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "57795"
+      ],
+      "evidence": {
+        "mean_pi": 2.999
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In and Drive 4-Day Masai Mara and Lake Nakuru Safari with Luxury Stays and Entry Fees is 2.94. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "61528"
+      ],
+      "evidence": {
+        "mean_pi": 2.938
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees is 2.82. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "61529"
+      ],
+      "evidence": {
+        "mean_pi": 2.818
+      }
+    },
+    {
+      "id": "synthetic_product_pi",
+      "severity": "fail",
+      "gate": "A",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for From Nairobi: Fly-In and Drive 5-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees is 2.86. Pass ≥ 3.6, warn ≥ 3.0, below that is a research fail. These bands are uncalibrated and do not block go-live.",
+      "product_ids": [
+        "61532"
+      ],
+      "evidence": {
+        "mean_pi": 2.857
+      }
+    },
+    {
+      "id": "synthetic_page_pi",
+      "severity": "warn",
+      "gate": "B",
+      "blocks_go_live": false,
+      "message": "Synthetic mean booking intent for the page is 3.31. Pass ≥ 3.6, warn ≥ 3.0. Uncalibrated; does not block go-live.",
+      "product_ids": [],
+      "evidence": {
+        "mean_pi": 3.312
+      }
+    }
+  ],
+  "gate_a": {
+    "status": "warn",
+    "research_status": "fail",
+    "products": [
+      {
+        "product_id": "57698",
+        "title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+        "price": 638.15,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "4 days",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.005,
+        "distribution": {
+          "1": 0.1899,
+          "2": 0.1725,
+          "3": 0.2378,
+          "4": 0.2424,
+          "5": 0.1574
+        },
+        "tags": [
+          "lake_nakuru",
+          "multi_variant",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57713",
+        "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+        "price": 1080.37,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "7 days",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.839,
+        "distribution": {
+          "1": 0.2026,
+          "2": 0.2225,
+          "3": 0.2327,
+          "4": 0.2178,
+          "5": 0.1245
+        },
+        "tags": [
+          "lake_nakuru",
+          "lake_naivasha",
+          "amboseli",
+          "multi_variant",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57722",
+        "title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+        "price": 2903.97,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "5 days",
+        "rating": 4.8,
+        "review_count": 449,
+        "mean_pi": 2.83,
+        "distribution": {
+          "1": 0.2106,
+          "2": 0.2005,
+          "3": 0.2542,
+          "4": 0.2179,
+          "5": 0.1169
+        },
+        "tags": [
+          "fly_in",
+          "amboseli",
+          "luxury",
+          "private",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57712",
+        "title": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees",
+        "price": 923.84,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "6 days",
+        "rating": 4.7,
+        "review_count": 100,
+        "mean_pi": 2.933,
+        "distribution": {
+          "1": 0.1916,
+          "2": 0.2045,
+          "3": 0.2294,
+          "4": 0.2277,
+          "5": 0.1468
+        },
+        "tags": [
+          "lake_nakuru",
+          "amboseli",
+          "multi_variant",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57793",
+        "title": "From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees",
+        "price": 430.15,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "2 days",
+        "rating": 4.8,
+        "review_count": 178,
+        "mean_pi": 3.006,
+        "distribution": {
+          "1": 0.1807,
+          "2": 0.1821,
+          "3": 0.2406,
+          "4": 0.2441,
+          "5": 0.1525
+        },
+        "tags": [
+          "multi_variant",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57690",
+        "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+        "price": 561.53,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "4 days",
+        "rating": 4.7,
+        "review_count": 180,
+        "mean_pi": 3.031,
+        "distribution": {
+          "1": 0.1827,
+          "2": 0.1771,
+          "3": 0.2285,
+          "4": 0.2496,
+          "5": 0.162
+        },
+        "tags": [
+          "lake_naivasha",
+          "multi_variant",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57697",
+        "title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+        "price": 618.45,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "4 days",
+        "rating": 4.8,
+        "review_count": 460,
+        "mean_pi": 2.963,
+        "distribution": {
+          "1": 0.1936,
+          "2": 0.18,
+          "3": 0.2427,
+          "4": 0.2375,
+          "5": 0.1462
+        },
+        "tags": [
+          "multi_variant",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57795",
+        "title": "From Nairobi: 3-Day Masai Mara Safari With Stays, and Entry Fees",
+        "price": 414.85,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "3 days",
+        "rating": 4.7,
+        "review_count": 150,
+        "mean_pi": 2.999,
+        "distribution": {
+          "1": 0.1841,
+          "2": 0.1824,
+          "3": 0.2381,
+          "4": 0.2406,
+          "5": 0.1548
+        },
+        "tags": [
+          "multi_variant",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57711",
+        "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+        "price": 320.72,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "17 hrs",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 3.032,
+        "distribution": {
+          "1": 0.1897,
+          "2": 0.141,
+          "3": 0.2672,
+          "4": 0.2524,
+          "5": 0.1497
+        },
+        "tags": [
+          "day_trip",
+          "private",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57723",
+        "title": "From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+        "price": 1593.74,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "3 days",
+        "rating": 4.9,
+        "review_count": 83,
+        "mean_pi": 2.986,
+        "distribution": {
+          "1": 0.1784,
+          "2": 0.1914,
+          "3": 0.2474,
+          "4": 0.231,
+          "5": 0.1517
+        },
+        "tags": [
+          "fly_in",
+          "luxury",
+          "private",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57724",
+        "title": "From Nairobi: Fly-In 4-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+        "price": 2064.41,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "4 days",
+        "rating": 4.9,
+        "review_count": 70,
+        "mean_pi": 2.947,
+        "distribution": {
+          "1": 0.1912,
+          "2": 0.1948,
+          "3": 0.236,
+          "4": 0.2316,
+          "5": 0.1464
+        },
+        "tags": [
+          "fly_in",
+          "luxury",
+          "private",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57638",
+        "title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+        "price": 2631.41,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "5 days",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.876,
+        "distribution": {
+          "1": 0.2102,
+          "2": 0.1981,
+          "3": 0.2325,
+          "4": 0.2241,
+          "5": 0.1351
+        },
+        "tags": [
+          "fly_in",
+          "luxury",
+          "private",
+          "masai_mara",
+          "mara_only",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57699",
+        "title": "From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays, and Entry Fees",
+        "price": 785.92,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "5 days",
+        "rating": 4.9,
+        "review_count": 356,
+        "mean_pi": 2.936,
+        "distribution": {
+          "1": 0.18,
+          "2": 0.1775,
+          "3": 0.2918,
+          "4": 0.2277,
+          "5": 0.1231
+        },
+        "tags": [
+          "lake_nakuru",
+          "lake_naivasha",
+          "multi_variant",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "57728",
+        "title": "From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees",
+        "price": 869.11,
+        "currency": "USD",
+        "price_unit": "per_person",
+        "duration": "6 days",
+        "rating": 4.8,
+        "review_count": 170,
+        "mean_pi": 2.963,
+        "distribution": {
+          "1": 0.1804,
+          "2": 0.1892,
+          "3": 0.2602,
+          "4": 0.2274,
+          "5": 0.1428
+        },
+        "tags": [
+          "lake_naivasha",
+          "amboseli",
+          "multi_variant",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "61529",
+        "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+        "price": 3669.42,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "4 days",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.818,
+        "distribution": {
+          "1": 0.239,
+          "2": 0.1969,
+          "3": 0.2161,
+          "4": 0.2024,
+          "5": 0.1455
+        },
+        "tags": [
+          "fly_in",
+          "lake_nakuru",
+          "lake_naivasha",
+          "luxury",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "61528",
+        "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara and Lake Nakuru Safari with Luxury Stays and Entry Fees",
+        "price": 3568.74,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "4 days",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.938,
+        "distribution": {
+          "1": 0.1987,
+          "2": 0.1862,
+          "3": 0.2446,
+          "4": 0.2192,
+          "5": 0.1513
+        },
+        "tags": [
+          "fly_in",
+          "lake_nakuru",
+          "luxury",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      },
+      {
+        "product_id": "61532",
+        "title": "From Nairobi: Fly-In and Drive 5-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+        "price": 4219.68,
+        "currency": "USD",
+        "price_unit": "per_group",
+        "duration": "5 days",
+        "rating": null,
+        "review_count": 0,
+        "mean_pi": 2.857,
+        "distribution": {
+          "1": 0.2215,
+          "2": 0.1965,
+          "3": 0.2299,
+          "4": 0.2083,
+          "5": 0.1438
+        },
+        "tags": [
+          "fly_in",
+          "lake_nakuru",
+          "lake_naivasha",
+          "luxury",
+          "masai_mara",
+          "category:nature_wildlife"
+        ]
+      }
+    ],
+    "segments": {
+      "budget_tier": {
+        "mid": {
+          "n": 14,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57698",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+              "mean_pi": 3.075,
+              "price": 638.15,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 3.049,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57697",
+              "title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+              "mean_pi": 3.036,
+              "price": 618.45,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.702,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57722",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.725,
+              "price": 2903.97,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57713",
+              "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+              "mean_pi": 2.747,
+              "price": 1080.37,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ]
+        },
+        "premium": {
+          "n": 11,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57712",
+              "title": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees",
+              "mean_pi": 3.114,
+              "price": 923.84,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57723",
+              "title": "From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 3.098,
+              "price": 1593.74,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "61528",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara and Lake Nakuru Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 3.095,
+              "price": 3568.74,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57795",
+              "title": "From Nairobi: 3-Day Masai Mara Safari With Stays, and Entry Fees",
+              "mean_pi": 3.01,
+              "price": 414.85,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57793",
+              "title": "From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees",
+              "mean_pi": 3.014,
+              "price": 430.15,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 3.017,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ]
+        },
+        "budget": {
+          "n": 5,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.052,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 2.941,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57793",
+              "title": "From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees",
+              "mean_pi": 2.938,
+              "price": 430.15,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57699",
+              "title": "From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays, and Entry Fees",
+              "mean_pi": 2.551,
+              "price": 785.92,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57713",
+              "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+              "mean_pi": 2.571,
+              "price": 1080.37,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57697",
+              "title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+              "mean_pi": 2.609,
+              "price": 618.45,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ]
+        }
+      },
+      "trip_type": {
+        "solo": {
+          "n": 4,
+          "thin": true,
+          "top": [
+            {
+              "product_id": "57698",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+              "mean_pi": 3.071,
+              "price": 638.15,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 3.042,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.037,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57722",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.671,
+              "price": 2903.97,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57638",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.708,
+              "price": 2631.41,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.72,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ]
+        },
+        "couple": {
+          "n": 14,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57723",
+              "title": "From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 3.059,
+              "price": 1593.74,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 3.045,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.036,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57722",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.815,
+              "price": 2903.97,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.841,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57638",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.855,
+              "price": 2631.41,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ]
+        },
+        "family_with_kids": {
+          "n": 5,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57723",
+              "title": "From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 3.027,
+              "price": 1593.74,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "61528",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara and Lake Nakuru Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 3.004,
+              "price": 3568.74,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.003,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57713",
+              "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+              "mean_pi": 2.701,
+              "price": 1080.37,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.71,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "61532",
+              "title": "From Nairobi: Fly-In and Drive 5-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.744,
+              "price": 4219.68,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ]
+        },
+        "friends": {
+          "n": 7,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.04,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 3.019,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57712",
+              "title": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees",
+              "mean_pi": 2.996,
+              "price": 923.84,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57699",
+              "title": "From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays, and Entry Fees",
+              "mean_pi": 2.899,
+              "price": 785.92,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.908,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57713",
+              "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+              "mean_pi": 2.91,
+              "price": 1080.37,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ]
+        }
+      },
+      "experience": {
+        "first_timer": {
+          "n": 19,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57698",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+              "mean_pi": 3.056,
+              "price": 638.15,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 3.047,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.031,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "57722",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.832,
+              "price": 2903.97,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.847,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57638",
+              "title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.869,
+              "price": 2631.41,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ]
+        },
+        "repeat": {
+          "n": 11,
+          "thin": false,
+          "top": [
+            {
+              "product_id": "57711",
+              "title": "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+              "mean_pi": 3.032,
+              "price": 320.72,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57690",
+              "title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+              "mean_pi": 3.003,
+              "price": 561.53,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "57793",
+              "title": "From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees",
+              "mean_pi": 2.98,
+              "price": 430.15,
+              "currency": "USD",
+              "price_unit": "per_person"
+            }
+          ],
+          "bottom": [
+            {
+              "product_id": "61529",
+              "title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.77,
+              "price": 3669.42,
+              "currency": "USD",
+              "price_unit": "per_group"
+            },
+            {
+              "product_id": "57713",
+              "title": "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+              "mean_pi": 2.787,
+              "price": 1080.37,
+              "currency": "USD",
+              "price_unit": "per_person"
+            },
+            {
+              "product_id": "61532",
+              "title": "From Nairobi: Fly-In and Drive 5-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+              "mean_pi": 2.808,
+              "price": 4219.68,
+              "currency": "USD",
+              "price_unit": "per_group"
+            }
+          ]
+        }
+      }
+    },
+    "cannibalisation_pairs": [
+      {
+        "a": "57722",
+        "b": "57638",
+        "a_title": "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+        "b_title": "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+        "jaccard": 0.917,
+        "price_a": 2903.97,
+        "price_b": 2631.41,
+        "currency": "USD",
+        "duration": "5 days"
+      },
+      {
+        "a": "61529",
+        "b": "61528",
+        "a_title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara, Nakuru, and Naivasha Safari with Luxury Stays and Entry Fees",
+        "b_title": "From Nairobi: Fly-In and Drive 4-Day Masai Mara and Lake Nakuru Safari with Luxury Stays and Entry Fees",
+        "jaccard": 0.857,
+        "price_a": 3669.42,
+        "price_b": 3568.74,
+        "currency": "USD",
+        "duration": "4 days"
+      },
+      {
+        "a": "57712",
+        "b": "57728",
+        "a_title": "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees",
+        "b_title": "From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees",
+        "jaccard": 0.833,
+        "price_a": 923.84,
+        "price_b": 869.11,
+        "currency": "USD",
+        "duration": "6 days"
+      },
+      {
+        "a": "57698",
+        "b": "57697",
+        "a_title": "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+        "b_title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+        "jaccard": 0.8,
+        "price_a": 638.15,
+        "price_b": 618.45,
+        "currency": "USD",
+        "duration": "4 days"
+      },
+      {
+        "a": "57690",
+        "b": "57697",
+        "a_title": "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays, and Entry Fees",
+        "b_title": "From Nairobi: 4-Day Masai Mara Safari with Stays, and Entry Fees",
+        "jaccard": 0.8,
+        "price_a": 561.53,
+        "price_b": 618.45,
+        "currency": "USD",
+        "duration": "4 days"
+      }
+    ]
+  },
+  "gate_b": {
+    "status": "warn",
+    "research_status": "warn",
+    "page": {
+      "mean_pi": 3.312,
+      "distribution": {
+        "1": 0.1014,
+        "2": 0.2046,
+        "3": 0.1908,
+        "4": 0.2874,
+        "5": 0.2158
+      }
+    }
+  },
+  "quotes": [
+    {
+      "scope": "page",
+      "persona_id": "masai-mara-030",
+      "label": "25-34 traveler from US, traveling as family_with_kids, budget budget, planning horizon weeks, repeat, accessibility none, interest comfort, starting point nairobi, on desktop via organic.",
+      "mean_pi": 3.104,
+      "text": "I probably would not book from this Masai Mara page. A few titles are close for our family with kids on a budget budget, but I am unlikely to book until the prices and the plan are easier to compare."
+    },
+    {
+      "scope": "page",
+      "persona_id": "masai-mara-027",
+      "label": "35-44 traveler from DE, traveling as couple, mid budget, planning horizon weeks, first timer, accessibility other, interest photography, starting point nairobi, on mobile via direct.",
+      "mean_pi": 3.4,
+      "text": "I would probably book from this page. There is an option that fits this trip for the two of us on a mid budget, and the microbrand gives me enough to choose."
+    },
+    {
+      "scope": "product:From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+      "persona_id": "masai-mara-001",
+      "label": "solo · mean PI 2.67 · 45-54 traveler from US, traveling as solo, mid budget, planning horizon months, first timer, accessibility none, interest migration, starting point already_in_kenya, on mobile via organic.",
+      "mean_pi": 2.671,
+      "text": "I would not book this. 2903.97 USD per group for 5 days is the wrong trip for me traveling alone on a mid budget, and From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees does not solve the way we actually travel."
+    },
+    {
+      "scope": "product:From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees",
+      "persona_id": "masai-mara-001",
+      "label": "solo · mean PI 3.07 · 45-54 traveler from US, traveling as solo, mid budget, planning horizon months, first timer, accessibility none, interest migration, starting point already_in_kenya, on mobile via organic.",
+      "mean_pi": 3.071,
+      "text": "I would probably book this. From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays, and Entry Fees at 638.15 USD per person for 4 days fits this trip for me traveling alone on a mid budget, as long as the inclusions on the card are the ones in the booking."
+    },
+    {
+      "scope": "product:From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees",
+      "persona_id": "masai-mara-002",
+      "label": "couple · mean PI 2.81 · 55-64 traveler from other, traveling as couple, mid budget, planning horizon weeks, first timer, accessibility none, interest migration, starting point already_in_kenya, on desktop via paid.",
+      "mean_pi": 2.638,
+      "text": "I would not book this. 2903.97 USD per group for 5 days is the wrong trip for the two of us on a mid budget, and From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees does not solve the way we actually travel."
+    },
+    {
+      "scope": "product:From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+      "persona_id": "masai-mara-002",
+      "label": "couple · mean PI 3.06 · 55-64 traveler from other, traveling as couple, mid budget, planning horizon weeks, first timer, accessibility none, interest migration, starting point already_in_kenya, on desktop via paid.",
+      "mean_pi": 3.105,
+      "text": "I am unsure about From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees. 1593.74 USD per group and 3 days could work for the two of us on a mid budget, but I am not convinced the card tells me what I would actually get."
+    },
+    {
+      "scope": "product:From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees",
+      "persona_id": "masai-mara-004",
+      "label": "family_with_kids · mean PI 2.70 · 45-54 traveler from AE, traveling as family_with_kids, mid budget, planning horizon months, repeat, accessibility none, interest migration, starting point nairobi, on mobile via direct.",
+      "mean_pi": 2.814,
+      "text": "I probably would not book this. From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha & Amboseli with Stays and Entry Fees is 7 days at 1080.37 USD per person, which is a stretch for our family with kids on a mid budget, so I would keep looking rather than book it."
+    },
+    {
+      "scope": "product:From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees",
+      "persona_id": "masai-mara-004",
+      "label": "family_with_kids · mean PI 3.03 · 45-54 traveler from AE, traveling as family_with_kids, mid budget, planning horizon months, repeat, accessibility none, interest migration, starting point nairobi, on mobile via direct.",
+      "mean_pi": 3.033,
+      "text": "I would probably book this. From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees at 1593.74 USD per group for 3 days fits this trip for our family with kids on a mid budget, as long as the inclusions on the card are the ones in the booking."
+    },
+    {
+      "scope": "product:From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays, and Entry Fees",
+      "persona_id": "masai-mara-007",
+      "label": "friends · mean PI 2.90 · 25-34 traveler from IN, traveling as friends, mid budget, planning horizon months, repeat, accessibility none, interest photography, starting point nairobi, on mobile via organic.",
+      "mean_pi": 3.041,
+      "text": "I would probably book this. From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays, and Entry Fees at 785.92 USD per person for 5 days fits this trip for our group of friends on a mid budget, as long as the inclusions on the card are the ones in the booking."
+    },
+    {
+      "scope": "product:From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees",
+      "persona_id": "masai-mara-007",
+      "label": "friends · mean PI 3.04 · 25-34 traveler from IN, traveling as friends, mid budget, planning horizon months, repeat, accessibility none, interest photography, starting point nairobi, on mobile via organic.",
+      "mean_pi": 3.04,
+      "text": "I would probably book this. From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees at 320.72 USD per group for 17 hrs fits this trip for our group of friends on a mid budget, as long as the inclusions on the card are the ones in the booking."
+    }
+  ]
+}

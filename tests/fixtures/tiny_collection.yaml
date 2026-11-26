@@ -1,0 +1,81 @@
+id: tiny-safari
+name: Tiny Safari
+destination: Nowhere
+page_type: headout_collection
+catalog_status: live_headout
+collection_id: "1"
+fetched_at: "2026-11-26"
+currency: USD
+scope_keywords: ["safari"]
+lead_product_id: cheap
+sources: []
+unknowns: []
+page:
+  url: https://example.test/tiny
+  hero: Book a tiny safari
+  meta_description: A short test page.
+  usps: []
+  trust_signals: []
+  faqs:
+    - q: How long is it?
+      a: Two days, and you can cancel.
+    - q: What is included?
+      a: Park fees and a guide. Families are welcome.
+  sections: []
+  claims:
+    - id: fees
+      text: Park fees included on every safari
+      source_url: https://example.test/tiny
+      expects_tag: park_fees
+      severity: fail
+  duration_claim_hours: 2
+  duration_claim_text: A 2-hour safari
+  longform_in_ssr: true
+products:
+  - id: cheap
+    title: Budget shared safari
+    url: https://example.test/cheap
+    product_type: safari
+    price: 200
+    original_price: 200
+    currency: USD
+    price_unit: per_person
+    duration: 2 days
+    duration_hours_min: 48
+    duration_hours_max: 48
+    tags: [budget_camping, park_fees]
+    features: []
+    rating: 4.6
+    review_count: 20
+    inclusions_status: stated
+    inclusions: [park fees]
+    pickup_status: stated
+    pickup: Hotel
+    cancellation: Free cancellation up to 24 hours
+    price_observations:
+      - amount: 260
+        currency: USD
+        source: page hero
+        source_url: https://example.test/tiny
+        note: planted mismatch
+  - id: dear
+    title: Luxury private safari
+    url: https://example.test/dear
+    product_type: safari
+    price: 4000
+    original_price: 4000
+    currency: USD
+    price_unit: per_person
+    duration: 2 days
+    duration_hours_min: 48
+    duration_hours_max: 96
+    tags: [luxury]
+    features: []
+    rating: 4.9
+    review_count: 5
+    inclusions_status: unknown
+    pickup_status: not_stated
+    cancellation: Free cancellation up to 24 hours
+persona_weights:
+  budget_tier: {budget: 1, mid: 0, premium: 0, luxury: 0}
+  trip_type: {solo: 0, couple: 1, family_with_kids: 0, friends: 0}
