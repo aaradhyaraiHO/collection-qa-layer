@@ -84,6 +84,36 @@ Gate A runs when there is an assortment. Gate B is added when the page is live o
 
 EOS selectors are not confirmed. They are listed in `collection_qa.eos.UNCONFIRMED_SELECTORS`. A parse of a real signed-in page may miss cards until that adapter is checked in the browser. The public product-card JSON shapes are also defensive: the API returned HTTP 403 when the pilot specs were seeded.
 
+### If you are filling this in by hand
+
+You do not need EOS, Slack, or a screenshot to get a first report.
+
+```bash
+collection-qa init "Milford Sound"
+```
+
+That creates `inputs/milford-sound/`. Open `inputs.yaml`. Each line says what to paste. Leave a line blank if you do not have it. The report's first box is **Inputs used / missing**, and a blank line shows as not provided.
+
+- `eos_mmp_link`, `eos_assortment_link`, `eos_content_link` are the EOS pages from your browser bar.
+- `eos_exports` is a file you saved (HTML, JSON, or CSV) under `exports/`.
+- `screenshots` is a PNG or JPG of those pages under `screenshots/`. A reading from a picture is marked please verify.
+- `assortment.csv` is the product list if you would rather type it: title, price, duration, what is included.
+- `content.md` is the headline and the FAQs.
+
+Then:
+
+```bash
+collection-qa check "Milford Sound" --mock --no-prompt
+```
+
+If the same fact is in more than one place, the tool keeps the signed-in EOS page, then a saved export, then a screenshot, then what you typed. A live headout.com card still wins, because that is the page a traveller books. The appendix names the source of each part.
+
+`inputs/milford-sound/` is a filled example from the public collection on 2026-11-26. The EOS links in that file are blank.
+
+`collection-qa ui` opens a form at http://127.0.0.1:8765 . It only uses the Python standard library. Paste the CE name and any links, then Run. Drop files into the input folder if you have them. The form does not upload pictures itself.
+
+Screenshot reading calls Claude only when you are not in `--mock` and `ANTHROPIC_API_KEY` is set. Tests use a stand-in and do not spend.
+
 Useful flags:
 
 | Flag | Default | Role |

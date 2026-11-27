@@ -95,10 +95,18 @@ def main(argv: list[str] | None = None) -> int:
     check_parser.add_argument("--out", default="reports/checks")
     check_parser.add_argument("--mock", "--dry-run", action="store_true", dest="mock")
     _add_common(check_parser)
+    check_parser.add_argument("--inputs", default=None, help="Path to inputs.yaml or its folder. Default: inputs/<slug>/ if it exists")
     check_parser.add_argument("--eos-export", help="Saved EOS HTML, JSON, or CSV. No browser.")
     check_parser.add_argument("--eos-url", action="append", default=[], help="EOS page to open with the local sign-in profile. Repeatable.")
     check_parser.add_argument("--eos-profile", default=None, help="Persistent browser profile. Default ~/.collection-qa/eos-profile")
     check_parser.add_argument("--no-prompt", action="store_true", help="Do not ask for EOS links on stdin")
+
+    init_parser = sub.add_parser("init", help="Create inputs/<ce>/inputs.yaml and the blank templates")
+    init_parser.add_argument("query", help="CE name or id")
+    init_parser.add_argument("--root", default="inputs")
+
+    ui_parser = sub.add_parser("ui", help="Local form to paste links and run a check")
+    ui_parser.add_argument("--port", type=int, default=8765)
 
     login_parser = sub.add_parser("eos-login", help="Open a headed browser so you can sign in to EOS once")
     login_parser.add_argument("--profile", default=None)
@@ -114,6 +122,19 @@ def main(argv: list[str] | None = None) -> int:
         return _estimate(args)
     if args.command == "sensitivity":
         return _sensitivity(args)
+    if args.command == "init":
+        from collection_qa.inputs import scaffold
+
+        folder = scaffold(args.query, root=Path(args.root))
+        print(f"Wrote {folder / 'inputs.yaml'}")
+        print(f"Fill {folder / 'assortment.csv'} and {folder / 'content.md'} if you do not have EOS.")
+        print("Leave any link blank. The report will say not provided.")
+        return 0
+    if args.command == "ui":
+        from collection_qa.ui import serve
+
+        serve(args.port)
+        return 0
     if args.command == "eos-login":
         path = eos_login(profile_dir=Path(args.profile) if args.profile else None, start_url=args.url)
         print(f"EOS session saved in {path}. It is local and must not be committed.")
@@ -204,6 +225,7 @@ def _check(args: argparse.Namespace) -> int:
         seed=args.seed,
         eos_export=args.eos_export,
         eos_urls=args.eos_url,
+        inputs_path=args.inputs,
         eos_profile=args.eos_profile,
         prompt_fn=None if args.no_prompt else input,
     )

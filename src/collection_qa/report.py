@@ -150,6 +150,8 @@ def render_markdown(report: dict) -> str:
     lines = [
         f"# {report['ce']['name']}",
         "",
+        _inputs_markdown(report.get("inputs") or []),
+        "",
         f"**{report['verdict']}.** {report['verdict_reason']}",
         "",
         f"Status: {report['status']}" + (f" ({report['stage']})" if report.get("stage") else ""),
@@ -230,6 +232,33 @@ def render_markdown(report: dict) -> str:
     return "\n".join(lines)
 
 
+def _inputs_markdown(rows: list[dict]) -> str:
+    if not rows:
+        return ""
+    lines = ["## Inputs used / missing", "", "| Field | Status | Source | Detail |", "| --- | --- | --- | --- |"]
+    for row in rows:
+        lines.append(
+            f"| {row['field']} | {row['status']} | {row.get('source') or ''} | {row.get('detail') or ''} |"
+        )
+    return "\n".join(lines)
+
+
+def _inputs_html(rows: list[dict]) -> str:
+    if not rows:
+        return ""
+    body = "".join(
+        "<tr>"
+        + "".join(f"<td>{html.escape(str(row.get(key) or ''))}</td>" for key in ("field", "status", "source", "detail"))
+        + "</tr>"
+        for row in rows
+    )
+    return (
+        "<section class='inputs'><h2>Inputs used / missing</h2>"
+        "<table><thead><tr><th>Field</th><th>Status</th><th>Source</th><th>Detail</th></tr></thead>"
+        f"<tbody>{body}</tbody></table></section>"
+    )
+
+
 def render_html(report: dict) -> str:
     products = report.get("products") or []
     chart = _bar_chart([row["title"] for row in products], [row["mean"] for row in products])
@@ -281,6 +310,7 @@ footer {{ color: #555; font-size: 0.85rem; }}
 </head>
 <body>
 <h1>{html.escape(report['ce']['name'])}</h1>
+{_inputs_html(report.get('inputs') or [])}
 <p>Status {html.escape(report['status'])} {html.escape(report.get('stage') or '')}. Gates {html.escape(', '.join(report.get('gates') or []))}. CE {html.escape(str(report['ce'].get('ce_id') or ''))}.</p>
 <section class="verdict"><strong>{verdict}</strong><p>{html.escape(report['verdict_reason'])}</p></section>
 <h2>Traveller quotes</h2>

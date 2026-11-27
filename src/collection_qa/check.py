@@ -17,6 +17,18 @@ from collection_qa.eos import (
     fetch_eos_page,
     read_eos_export,
 )
+from collection_qa.inputs import (
+    SOURCE_RANK,
+    ClaudeVision,
+    InputManifest,
+    SidecarVision,
+    VisionExtractor,
+    collect_layers,
+    find_manifest,
+    ledger_rows,
+    load_manifest,
+    merge_layers,
+)
 from collection_qa.headout_lookup import HeadoutLookup, ResolvedCE, ResolvedProduct
 from collection_qa.models import FAQ, CollectionSpec, Product, Source, Surface
 from collection_qa.personas import ASSUMPTION_NOTE
@@ -197,6 +209,8 @@ def run_check(
     eos_profile: str | None = None,
     prompt_fn=None,
     fetched_on: str = "2026-11-26",
+    inputs_path: str | None = None,
+    vision: VisionExtractor | None = None,
 ) -> dict:
     lookup = HeadoutLookup(fetch)
     resolved = lookup.resolve(query)
@@ -216,17 +230,49 @@ def run_check(
         eos_profile=eos_profile,
         prompt_fn=prompt_fn,
     )
-    content_locked = bool(eos_doc and (eos_doc.content_locked or _stage_is_locked(eos_doc.stage)))
-    has_content = bool(eos_doc and (eos_doc.hero_copy or eos_doc.faqs or content_locked))
+    manifest_path = find_manifest(query, inputs_path)
+    manifest = load_manifest(manifest_path) if manifest_path and manifest_path.exists() else None
+    if manifest and manifest.microbrand_url and not resolved.microbrand_url:
+        resolved.microbrand_url = manifest.microbrand_url
+    layers = collect_layers(manifest, parser=parser, vision=vision or (SidecarVision() if mock else ClaudeVision()), eos_live=None) if manifest else []
+    if eos_export:
+        layers.append(("eos_export", read_eos_export(eos_export, parser)))
+    elif eos_doc is not None:
+        layers.append(("eos_live", eos_doc))
+    layers = sorted(layers, key=lambda item: SOURCE_RANK[item[0]])
+    merged, field_sources, verify = merge_layers(layers)
+    if resolved.page_live:
+        field_sources["products"] = "headout"
+        if resolved.hero_title:
+            field_sources["hero_title"] = "headout"
+        if resolved.hero_copy:
+            field_sources["hero_copy"] = "headout"
+    content_locked = bool(
+        (eos_doc and (eos_doc.content_locked or _stage_is_locked(eos_doc.stage)))
+        or (merged and (merged.content_locked or _stage_is_locked(merged.stage)))
+    )
+    has_content = bool(
+        (merged and (merged.hero_copy or merged.faqs))
+        or (eos_doc and (eos_doc.hero_copy or eos_doc.faqs))
+        or content_locked
+        or resolved.hero_copy
+    )
+    draft = merged if merged and merged.products else eos_doc
     if status == "LIVE":
         spec = spec_from_resolved(resolved, fetched_on=fetched_on)
-    elif eos_doc and eos_doc.products:
-        spec = spec_from_eos(resolved, eos_doc, fetched_on=fetched_on)
+        if manifest and manifest.microbrand_url:
+            spec.microbrand = spec.microbrand or _micro_surface(manifest.microbrand_url, spec.primary_surface.hero_title, spec.primary_surface.hero_copy)
+    elif draft and draft.products:
+        spec = spec_from_eos(resolved, draft, fetched_on=fetched_on)
         if not resolved.page_live:
             status = "IN_PIPELINE"
-            stage = stage or eos_doc.stage
+            stage = stage or (draft.stage if draft else None) or "manual_inputs"
+        for product in spec.products:
+            if any(product.title.lower() in item.lower() for item in verify):
+                product.notes.append("please verify — this row was read from a screenshot")
     else:
         spec = None
+    input_rows = ledger_rows(manifest, field_sources if layers or resolved.page_live else {})
     gates = gates_for(status=status, content_locked=content_locked, has_content=has_content) if spec else set()
     scorecard = None
     if spec and spec.products and gates:
@@ -265,20 +311,22 @@ def run_check(
         "fixes": build_fixes(issues, quotes, page_url),
         "by_traveller": _by_traveller(scorecard),
         "microbrand_vs_headout": micro_note,
-        "competitors": [],
         "checks": [
             {"severity": issue["severity"], "code": issue["code"], "message": issue["message"]}
             for issue in issues
         ],
         "trust": trust_bullets(scorecard, mock=mock),
+        "inputs": input_rows,
+        "competitors": list(manifest.competitor_urls) if manifest else [],
         "appendix": {
             "pages": [url for url in (resolved.collection_url, resolved.microbrand_url) if url]
             + ([eos_doc.source] if eos_doc else []),
             "method": METHOD,
             "slack": slack_summary.summary,
-            "eos_notes": list(eos_doc.notes) if eos_doc else (
+            "eos_notes": (list(merged.notes) if merged else []) + (list(eos_doc.notes) if eos_doc else (
                 ["No EOS page was parsed."] if status != "LIVE" else []
-            ),
+            )),
+            "field_sources": field_sources,
             "unconfirmed_selectors": UNCONFIRMED_SELECTORS if eos_doc else "",
         },
     }
@@ -349,6 +397,17 @@ def _by_traveller(scorecard: dict | None) -> dict:
         page_mean = segments.get(name, {}).get("mean")
         found[name] = {"page_mean": page_mean, "top_product": top}
     return found
+
+
+def _micro_surface(url: str, title: str, copy: str) -> Surface:
+    return Surface(
+        page_type="microbrand",
+        url=url,
+        hero_title=title,
+        hero_copy=copy,
+        faq_capture="unknown",
+        notes=["Microbrand URL came from inputs.yaml. The page itself was not fetched."],
+    )
 
 
 def _micro_note(resolved: ResolvedCE, scorecard: dict | None) -> str:

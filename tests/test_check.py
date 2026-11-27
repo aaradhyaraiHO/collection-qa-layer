@@ -66,6 +66,7 @@ def test_live_collection_writes_html_without_eos(tmp_path):
         personas=4,
         seed=7,
         prompt_fn=lambda _prompt: "",
+        inputs_path="",
     )
     assert report["status"] == "LIVE"
     assert report["gates"] == ["A", "B"]
@@ -93,6 +94,7 @@ def test_pipeline_uses_eos_export_and_slack(tmp_path):
         seed=3,
         eos_export=str(FIXTURES / "eos_export.json"),
         prompt_fn=lambda _prompt: "",
+        inputs_path="",
     )
     assert report["status"] == "IN_PIPELINE"
     assert "B" in report["gates"]
@@ -114,6 +116,7 @@ def test_missing_ce_holds_without_asking_the_model(tmp_path):
         mock=True,
         personas=2,
         prompt_fn=lambda _prompt: "",
+        inputs_path="",
     )
     assert report["status"] == "NOT_FOUND"
     assert report["verdict"] == "Hold"
