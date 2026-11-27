@@ -1,0 +1,5721 @@
+{
+  "banner": null,
+  "mock": false,
+  "collection_id": "milford-sound-cruises",
+  "collection_name": "Milford Sound cruises",
+  "destination": "Milford Sound, Fiordland, New Zealand",
+  "ce_id": "3945",
+  "provenance": "live_headout",
+  "provenance_note": "Live headout.com collection, not a competitor-built proposal. Prices are the \"from\" figures rendered on the public pages listed below. The product-card API returned HTTP 403 from this environment, so nothing here came from api-ho.headout.com.\n",
+  "fetched_on": "2026-11-26",
+  "generated_at": "2026-11-26T22:21:43.168726+00:00",
+  "seed": 7,
+  "method": {
+    "paper": "arXiv 2510.08338",
+    "epsilon": 0.0,
+    "temperature": 1.0,
+    "anchor_sets": 6,
+    "embedder": "sentence-transformers:sentence-transformers/all-MiniLM-L6-v2",
+    "model": "claude-sonnet-5-5",
+    "completions": 1,
+    "n_personas": 30,
+    "seed": 7,
+    "max_tokens": 320,
+    "request_timeout_s": 90.0,
+    "max_retries": 5,
+    "concurrency": 8,
+    "gates": [
+      "A",
+      "B"
+    ],
+    "llm_calls_made": 0,
+    "cache_hits": 300
+  },
+  "persona_assumption": "Assumption, not measured Headout demand. Replace with booking-mix weights before a segment gap is used as a go-live gate. Axes are sampled independently; real travelers are correlated.",
+  "persona_profile": "fjord_cruise",
+  "persona_weights": {
+    "source_market": {
+      "Australia": 0.26,
+      "United States": 0.16,
+      "United Kingdom": 0.12,
+      "China": 0.12,
+      "New Zealand": 0.12,
+      "Germany": 0.08,
+      "Japan": 0.08,
+      "India": 0.06
+    },
+    "age_band": {
+      "18-24": 0.12,
+      "25-34": 0.26,
+      "35-44": 0.22,
+      "45-54": 0.18,
+      "55-64": 0.14,
+      "65+": 0.08
+    },
+    "trip_type": {
+      "solo": 0.16,
+      "couple": 0.36,
+      "family_with_kids": 0.26,
+      "friends": 0.22
+    },
+    "budget_tier": {
+      "budget": 0.28,
+      "mid": 0.42,
+      "premium": 0.22,
+      "luxury": 0.08
+    },
+    "planning_horizon": {
+      "last_minute": 0.18,
+      "weeks_1_4": 0.34,
+      "months_1_3": 0.32,
+      "months_3_plus": 0.16
+    },
+    "experience": {
+      "first_timer": 0.82,
+      "repeat": 0.18
+    },
+    "accessibility": {
+      "none": 0.9,
+      "mobility": 0.08,
+      "sensory": 0.02
+    },
+    "device_channel": {
+      "mobile_web": 0.7,
+      "desktop": 0.22,
+      "app": 0.08
+    }
+  },
+  "cost": {
+    "model": "claude-sonnet-5-5",
+    "calls": 300,
+    "input_tokens": 238080,
+    "output_tokens": 79095,
+    "input_usd_per_mtok": 2.0,
+    "output_usd_per_mtok": 10.0,
+    "usd": 1.2671100000000002,
+    "price_known": true,
+    "actual_usage": true,
+    "note": "Served entirely from cache."
+  },
+  "issues": [
+    {
+      "gate": "deterministic",
+      "code": "price_consistency",
+      "severity": "pass",
+      "message": "From Te Anau: Milford Sound Day Trip with Cruise and Return Transfers: from prices in NZD differ by 1.1% across sections (collection_card=207.2, product_page=205).",
+      "evidence": {
+        "product_id": "e-18103",
+        "kind": "from",
+        "currency": "NZD",
+        "relative_gap": 0.0107,
+        "pass_at": 0.03,
+        "warn_at": 0.1
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "price_consistency",
+      "severity": "warn",
+      "message": "Milford Sound Cruise with Optional Lunch: from prices in NZD differ by 8.2% across sections (collection_card=143.2, product_page=155).",
+      "evidence": {
+        "product_id": "e-29695",
+        "kind": "from",
+        "currency": "NZD",
+        "relative_gap": 0.0824,
+        "pass_at": 0.03,
+        "warn_at": 0.1
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_duration",
+      "severity": "pass",
+      "message": "Every product states duration.",
+      "evidence": {
+        "missing_ids": [],
+        "rate": 0.0,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_cancellation",
+      "severity": "warn",
+      "message": "1 of 9 products is missing cancellation.",
+      "evidence": {
+        "missing_ids": [
+          "milford-fly-cruise"
+        ],
+        "rate": 0.1111111111111111,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "missing_pickup",
+      "severity": "warn",
+      "message": "1 of 9 products is missing pickup.",
+      "evidence": {
+        "missing_ids": [
+          "e-18125"
+        ],
+        "rate": 0.1111111111111111,
+        "warn_above": 0.0,
+        "fail_above": 0.25
+      }
+    },
+    {
+      "gate": "deterministic",
+      "code": "currency_consistency",
+      "severity": "pass",
+      "message": "Prices that were captured use a single currency.",
+      "evidence": {
+        "currencies": [
+          "NZD"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "choice_overload",
+      "severity": "pass",
+      "message": "The assortment has 9 products (warn at 12, fail at 20).",
+      "evidence": {
+        "count": 9,
+        "warn_at": 12,
+        "fail_at": 20
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "budget (NZD 0\u2013180) has 3 product(s).",
+      "evidence": {
+        "tier": "budget",
+        "product_ids": [
+          "e-29695",
+          "e-18125",
+          "e-37309"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "mid (NZD 180\u2013350) has 2 product(s).",
+      "evidence": {
+        "tier": "mid",
+        "product_ids": [
+          "e-23887",
+          "e-18103"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "premium (NZD 350\u2013700) has 1 product(s).",
+      "evidence": {
+        "tier": "premium",
+        "product_ids": [
+          "e-30130"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "price_ladder",
+      "severity": "pass",
+      "message": "luxury (NZD 700\u2013100000) has 1 product(s).",
+      "evidence": {
+        "tier": "luxury",
+        "product_ids": [
+          "milford-fly-cruise"
+        ]
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation",
+      "severity": "warn",
+      "message": "Milford Sound Boutique Small-Boat Cruise and Milford Sound Cruise by RealNZ share a shelf and their prices differ by only 0.0%.",
+      "evidence": {
+        "product_ids": [
+          "e-18125",
+          "e-37309"
+        ],
+        "relative_gap": 0.0,
+        "threshold": 0.15
+      }
+    },
+    {
+      "gate": "A",
+      "code": "gap:overnight-cruise",
+      "severity": "warn",
+      "message": "The collection long-form describes an overnight Milford cruise (about 18\u201324 hours) and RealNZ sells an overnight cruise from NZ$799, but no bookable overnight product with a price was in the captured cards.\n No matching product was confirmed in this assortment. The long-form is educational copy, not a product card.",
+      "evidence": {
+        "source_url": "https://www.realnz.com/en/blog/milford-sound-cruise-comparison/"
+      }
+    },
+    {
+      "gate": "A",
+      "code": "gap:named-operator-on-lead-card",
+      "severity": "warn",
+      "message": "The first collection card (optional lunch) and the boutique small-boat card do not name the boat operator, while RealNZ, Pure Milford, and Southern Discoveries are named elsewhere.\n No matching product was confirmed in this assortment. Treated as a merchandising gap, not a missing tour.",
+      "evidence": {
+        "source_url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/"
+      }
+    },
+    {
+      "gate": "B",
+      "code": "faq_topics",
+      "severity": "pass",
+      "message": "primary FAQs cover cancellation, getting there, and access.",
+      "evidence": {
+        "surface": "primary",
+        "missing_topics": []
+      }
+    },
+    {
+      "gate": "A",
+      "code": "score_compression",
+      "severity": "warn",
+      "message": "Product means span only 0.25 points (3.21\u20133.46). Absolute pass cuts (page 3.6, segment 3.4, product 3.3) are not calibrated and mostly warn inside a band this tight. Rank with z-scores against this collection's mean.",
+      "evidence": {
+        "spread": 0.2497,
+        "low": 3.2067,
+        "high": 3.4564,
+        "compression_range": 0.4
+      }
+    },
+    {
+      "gate": "A",
+      "code": "relative_rank",
+      "severity": "fail",
+      "message": "From Queenstown: Milford Sound Scenic Flyover and Cruise is -1.95 standard deviations below this collection's mean purchase intent (3.21). This flag is relative. Absolute thresholds still need a CVR calibration.",
+      "evidence": {
+        "key": "milford-fly-cruise",
+        "z": -1.9481,
+        "mean": 3.2067,
+        "warn_at": -1.0,
+        "fail_at": -1.5
+      }
+    },
+    {
+      "gate": "A",
+      "code": "relative_rank",
+      "severity": "warn",
+      "message": "From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford is -1.18 standard deviations below this collection's mean purchase intent (3.27). This flag is relative. Absolute thresholds still need a CVR calibration.",
+      "evidence": {
+        "key": "milford-pure-queenstown",
+        "z": -1.1783,
+        "mean": 3.2675,
+        "warn_at": -1.0,
+        "fail_at": -1.5
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'milford-fly-cruise' mean purchase intent is 3.21 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "milford-fly-cruise",
+        "mean": 3.207,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "product_intent",
+      "severity": "warn",
+      "message": "product 'milford-pure-queenstown' mean purchase intent is 3.27 (pass \u2265 3.3, warn \u2265 2.6).",
+      "evidence": {
+        "key": "milford-pure-queenstown",
+        "mean": 3.267,
+        "pass_at": 3.3,
+        "warn_at": 2.6
+      }
+    },
+    {
+      "gate": "A",
+      "code": "cannibalisation_intent",
+      "severity": "warn",
+      "message": "Milford Sound Boutique Small-Boat Cruise and Milford Sound Cruise by RealNZ draw almost the same purchase intent (means 3.46 vs 3.43) on the same shelf.",
+      "evidence": {
+        "product_ids": [
+          "e-18125",
+          "e-37309"
+        ],
+        "mean_delta": 0.031,
+        "threshold": 0.25
+      }
+    },
+    {
+      "gate": "B",
+      "code": "page_intent",
+      "severity": "warn",
+      "message": "page 'primary' mean purchase intent is 3.32 (pass \u2265 3.6, warn \u2265 3.2).",
+      "evidence": {
+        "key": "primary",
+        "mean": 3.317,
+        "pass_at": 3.6,
+        "warn_at": 3.2
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'couple' mean purchase intent is 3.33 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "couple",
+        "mean": 3.332,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'family_with_kids' mean purchase intent is 3.31 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "family_with_kids",
+        "mean": 3.305,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'friends' mean purchase intent is 3.31 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "friends",
+        "mean": 3.31,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by trip_type 'solo' mean purchase intent is 3.31 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "solo",
+        "mean": 3.309,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'budget' mean purchase intent is 3.37 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "budget",
+        "mean": 3.366,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'luxury' mean purchase intent is 3.19 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "luxury",
+        "mean": 3.185,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'mid' mean purchase intent is 3.32 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "mid",
+        "mean": 3.325,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    },
+    {
+      "gate": "B",
+      "code": "segment_page_intent",
+      "severity": "warn",
+      "message": "page:primary by budget_tier 'premium' mean purchase intent is 3.36 (pass \u2265 3.4, warn \u2265 2.8).",
+      "evidence": {
+        "key": "premium",
+        "mean": 3.358,
+        "pass_at": 3.4,
+        "warn_at": 2.8
+      }
+    }
+  ],
+  "products": {
+    "e-29695": {
+      "title": "Milford Sound Cruise with Optional Lunch",
+      "type": "cruise",
+      "positioning": "budget",
+      "price": 155.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.12298980982669906,
+          "2": 0.12803814417732737,
+          "3": 0.23859971281919587,
+          "4": 0.22611348961334662,
+          "5": 0.28425884356343106
+        },
+        "mean": 3.4206134129094834
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12228809559213738,
+              "2": 0.13355827548120147,
+              "3": 0.23350014646504444,
+              "4": 0.22158667251301176,
+              "5": 0.28906680994860495
+            },
+            "mean": 3.4215858257447453
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.12243169634562717,
+              "2": 0.1155804951905694,
+              "3": 0.2454399626924585,
+              "4": 0.22811263339982843,
+              "5": 0.28843521237151654
+            },
+            "mean": 3.4445391702610375
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.12541689696969474,
+              "2": 0.1374462419109052,
+              "3": 0.23645008087423433,
+              "4": 0.2313850602932704,
+              "5": 0.2693017199518954
+            },
+            "mean": 3.3817084643467665
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12188313044306413,
+              "2": 0.1343809219933355,
+              "3": 0.2336667250081543,
+              "4": 0.22082504397855388,
+              "5": 0.28924417857689216
+            },
+            "mean": 3.4211662182528744
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.13060020506592437,
+              "2": 0.13069081280431266,
+              "3": 0.2434780064485422,
+              "4": 0.20824436718054692,
+              "5": 0.28698660850067387
+            },
+            "mean": 3.3903263612457333
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.13153876326862476,
+              "2": 0.1327330344330725,
+              "3": 0.2492392792955316,
+              "4": 0.21423414957543507,
+              "5": 0.2722547734273361
+            },
+            "mean": 3.3629331354597856
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1083077014906438,
+              "2": 0.13317111770629989,
+              "3": 0.22771529884397612,
+              "4": 0.23173290089165866,
+              "5": 0.2990729810674216
+            },
+            "mean": 3.4800923423389145
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1367504374463851,
+              "2": 0.1051460703458641,
+              "3": 0.24166845179884183,
+              "4": 0.24830501255987847,
+              "5": 0.2681300278490305
+            },
+            "mean": 3.405918123019305
+          }
+        }
+      },
+      "z_vs_collection": 0.7604
+    },
+    "e-18125": {
+      "title": "Milford Sound Boutique Small-Boat Cruise",
+      "type": "cruise",
+      "positioning": "mid",
+      "price": 179.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.12078178279914928,
+          "2": 0.12509634418588622,
+          "3": 0.20464376693658864,
+          "4": 0.2759300272764588,
+          "5": 0.27354807880191706
+        },
+        "mean": 3.4563662750961086
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12179897169661007,
+              "2": 0.12429581489242932,
+              "3": 0.20130319676610012,
+              "4": 0.2681600922767399,
+              "5": 0.28444192436812055
+            },
+            "mean": 3.4691501827273314
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.10794356133504307,
+              "2": 0.12068768952477002,
+              "3": 0.2156114344517558,
+              "4": 0.28055222366654314,
+              "5": 0.275205091021888
+            },
+            "mean": 3.494387593515463
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.11142799431814276,
+              "2": 0.11225639877184881,
+              "3": 0.2031572683990003,
+              "4": 0.2878739316562596,
+              "5": 0.28528440685474854
+            },
+            "mean": 3.5233303579576223
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15421408648039078,
+              "2": 0.14895934334109998,
+              "3": 0.18961119495645715,
+              "4": 0.2612913804512554,
+              "5": 0.24592399477079674
+            },
+            "mean": 3.2957518536909673
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12745390544121174,
+              "2": 0.13278557413067038,
+              "3": 0.20042894575843212,
+              "4": 0.25507590363650684,
+              "5": 0.28425567103317895
+            },
+            "mean": 3.435893860689771
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.11195731076445041,
+              "2": 0.11732757839221358,
+              "3": 0.20275303571208994,
+              "4": 0.28658043614759376,
+              "5": 0.28138163898365226
+            },
+            "mean": 3.5081015141937835
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.12215548438841821,
+              "2": 0.13040117268877308,
+              "3": 0.20049475270322545,
+              "4": 0.28275120671206466,
+              "5": 0.2641973835075187
+            },
+            "mean": 3.4364338322614927
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.12803125053371187,
+              "2": 0.12019715025174141,
+              "3": 0.22137657424328316,
+              "4": 0.2570717595749234,
+              "5": 0.27332326539634016
+            },
+            "mean": 3.4274586390484387
+          }
+        }
+      },
+      "z_vs_collection": 1.213
+    },
+    "e-37309": {
+      "title": "Milford Sound Cruise by RealNZ",
+      "type": "cruise",
+      "positioning": "mid",
+      "price": 179.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.11090375525912728,
+          "2": 0.15902860644576763,
+          "3": 0.20439949430349297,
+          "4": 0.24511014496779152,
+          "5": 0.28055799902382056
+        },
+        "mean": 3.4253900260514105
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.10526608346592331,
+              "2": 0.18277114134981223,
+              "3": 0.1859498363482702,
+              "4": 0.24411466363246004,
+              "5": 0.2818982752035342
+            },
+            "mean": 3.4146079057578698
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.1091335140624884,
+              "2": 0.15755651219365507,
+              "3": 0.1912425904835704,
+              "4": 0.25412902321002634,
+              "5": 0.28793836005025986
+            },
+            "mean": 3.4541822029919143
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.12278506391015764,
+              "2": 0.14865856884912038,
+              "3": 0.23617268592511512,
+              "4": 0.23121943192538458,
+              "5": 0.2611642493902223
+            },
+            "mean": 3.3593192340363935
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.10592534248663392,
+              "2": 0.1500832882000178,
+              "3": 0.20990141903668147,
+              "4": 0.2457768480751672,
+              "5": 0.2883131022014997
+            },
+            "mean": 3.460469079304881
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12179006433337274,
+              "2": 0.1738748186809998,
+              "3": 0.20668508914132175,
+              "4": 0.2217479791343855,
+              "5": 0.2759020487099202
+            },
+            "mean": 3.3560971292064803
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.10463274935967179,
+              "2": 0.15852028041469068,
+              "3": 0.20400940211403354,
+              "4": 0.2461331726376009,
+              "5": 0.2867043954740031
+            },
+            "mean": 3.4517561844515727
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.10934483354756343,
+              "2": 0.15846484714638448,
+              "3": 0.19808561317525622,
+              "4": 0.24648682484955095,
+              "5": 0.28761788128124494
+            },
+            "mean": 3.4445680731705295
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.11722393072650417,
+              "2": 0.14941964583203984,
+              "3": 0.21842649908202505,
+              "4": 0.25865439611263696,
+              "5": 0.256275528246794
+            },
+            "mean": 3.3873379453211765
+          }
+        }
+      },
+      "z_vs_collection": 0.8209
+    },
+    "e-40298": {
+      "title": "Milford Sound Nature Cruise",
+      "type": "cruise",
+      "positioning": "unknown",
+      "price": null,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.11797957060238014,
+          "2": 0.13984998365604737,
+          "3": 0.2342470160315746,
+          "4": 0.23587561772344537,
+          "5": 0.2720478119865524
+        },
+        "mean": 3.4041621168357423
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12574753194435856,
+              "2": 0.14920553252250993,
+              "3": 0.227614699370289,
+              "4": 0.22557658411667345,
+              "5": 0.271855652046169
+            },
+            "mean": 3.3685872917977844
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.10527572943545369,
+              "2": 0.14233520179723594,
+              "3": 0.24382605146944958,
+              "4": 0.23375787031275064,
+              "5": 0.27480514698511016
+            },
+            "mean": 3.4304815036148275
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.1345940542173965,
+              "2": 0.1438959909699631,
+              "3": 0.23750805430523417,
+              "4": 0.2278892833412655,
+              "5": 0.25611261716614075
+            },
+            "mean": 3.327030418268791
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.11411842051558112,
+              "2": 0.12121785966450416,
+              "3": 0.21951322307082,
+              "4": 0.25937457836236755,
+              "5": 0.28577591838672717
+            },
+            "mean": 3.481471714440155
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12748509703837732,
+              "2": 0.13940632872583214,
+              "3": 0.22357038649586422,
+              "4": 0.22073990570441512,
+              "5": 0.2887982820355112
+            },
+            "mean": 3.4039599469728508
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.1150800875842484,
+              "2": 0.14470770243498765,
+              "3": 0.2501466594212211,
+              "4": 0.23526897273612749,
+              "5": 0.25479657782341536
+            },
+            "mean": 3.369994250779474
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1172747392615303,
+              "2": 0.12868115104065078,
+              "3": 0.2280664016725925,
+              "4": 0.2386319968071953,
+              "5": 0.2873457112180311
+            },
+            "mean": 3.4500927896795464
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.11728581410425912,
+              "2": 0.158266212075079,
+              "3": 0.22900243602033635,
+              "4": 0.24246083851484204,
+              "5": 0.25298469928548356
+            },
+            "mean": 3.355592396802212
+          }
+        }
+      },
+      "z_vs_collection": 0.5521
+    },
+    "e-23887": {
+      "title": "From Queenstown: Milford Sound Day Trip with Cruise and Return Transfers",
+      "type": "day_trip",
+      "positioning": "mid",
+      "price": 309.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.13707791442860753,
+          "2": 0.10389974211569916,
+          "3": 0.2511880083374694,
+          "4": 0.24131258461798916,
+          "5": 0.26652175050023486
+        },
+        "mean": 3.396300514645545
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.14697498178025356,
+              "2": 0.135072613004831,
+              "3": 0.24221744372896667,
+              "4": 0.21092371731733847,
+              "5": 0.26481124416861035
+            },
+            "mean": 3.311523629089221
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.13635182461173245,
+              "2": 0.09784858213229895,
+              "3": 0.23884901639889458,
+              "4": 0.2503386541254408,
+              "5": 0.2766119227316332
+            },
+            "mean": 3.4330102682329433
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.13433494992889244,
+              "2": 0.08797701773083784,
+              "3": 0.2590726529327866,
+              "4": 0.23992240636706783,
+              "5": 0.27869297304041524
+            },
+            "mean": 3.4406614348592752
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.13171213699089995,
+              "2": 0.1023971763118059,
+              "3": 0.27358130613882253,
+              "4": 0.2567755324477199,
+              "5": 0.23553384811075173
+            },
+            "mean": 3.362021778375617
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1397536765969869,
+              "2": 0.12551834452465147,
+              "3": 0.2539042179961648,
+              "4": 0.2073179139112589,
+              "5": 0.27350584697093794
+            },
+            "mean": 3.3493039101345095
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.14838970588723108,
+              "2": 0.09096674011426222,
+              "3": 0.2504390175336356,
+              "4": 0.2557003337701875,
+              "5": 0.2545042026946835
+            },
+            "mean": 3.37696258727083
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.12044706355789107,
+              "2": 0.10302258898596399,
+              "3": 0.2509345484438191,
+              "4": 0.24256502417464806,
+              "5": 0.28303077483767775
+            },
+            "mean": 3.464709857748258
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.15449012215810104,
+              "2": 0.11198943130248822,
+              "3": 0.2509715278021746,
+              "4": 0.23960451777343478,
+              "5": 0.24294440096380146
+            },
+            "mean": 3.304523644082348
+          }
+        }
+      },
+      "z_vs_collection": 0.4526
+    },
+    "e-18103": {
+      "title": "From Te Anau: Milford Sound Day Trip with Cruise and Return Transfers",
+      "type": "day_trip",
+      "positioning": "mid",
+      "price": 205.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.13818916299175052,
+          "2": 0.11661599876708001,
+          "3": 0.2582285615332554,
+          "4": 0.21356191440218378,
+          "5": 0.2734043623057303
+        },
+        "mean": 3.3673763142630637
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.1394272928217123,
+              "2": 0.1350689774913333,
+              "3": 0.24009378192125277,
+              "4": 0.21151091461841828,
+              "5": 0.27389903314728337
+            },
+            "mean": 3.345385417778227
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.14488785290161824,
+              "2": 0.11890602006491614,
+              "3": 0.24696024419280427,
+              "4": 0.21647114830531902,
+              "5": 0.27277473453534234
+            },
+            "mean": 3.353338891507851
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.1376161595261862,
+              "2": 0.1054296361522064,
+              "3": 0.27471444187827876,
+              "4": 0.21473497546901807,
+              "5": 0.2675047869743106
+            },
+            "mean": 3.3690825942130607
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.12533860570352304,
+              "2": 0.10701540404747978,
+              "3": 0.277788395866891,
+              "4": 0.20891074745222812,
+              "5": 0.2809468469298781
+            },
+            "mean": 3.4131118258574586
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.12663734695010168,
+              "2": 0.16436614386512224,
+              "3": 0.2191466570820275,
+              "4": 0.20923792210875972,
+              "5": 0.2806119299939888
+            },
+            "mean": 3.3528209443314116
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.1353875620440028,
+              "2": 0.11940595149804348,
+              "3": 0.25258072922989844,
+              "4": 0.2199706736559751,
+              "5": 0.27265508357208024
+            },
+            "mean": 3.3750997652140864
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1436342727289731,
+              "2": 0.10659940203640934,
+              "3": 0.2763007329664178,
+              "4": 0.198084024834607,
+              "5": 0.2753815674335927
+            },
+            "mean": 3.3549792122074367
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.13940523416168138,
+              "2": 0.0974337999265216,
+              "3": 0.25628697180069043,
+              "4": 0.24263227654228295,
+              "5": 0.2642417175688237
+            },
+            "mean": 3.394871443430046
+          }
+        }
+      },
+      "z_vs_collection": 0.0864
+    },
+    "milford-fly-cruise": {
+      "title": "From Queenstown: Milford Sound Scenic Flyover and Cruise",
+      "type": "fly_cruise",
+      "positioning": "luxury",
+      "price": 835.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.17679595113328192,
+          "2": 0.15352568331015176,
+          "3": 0.20901854312434487,
+          "4": 0.2075206458381805,
+          "5": 0.25313917659404095
+        },
+        "mean": 3.206681413449547
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.19207912228860188,
+              "2": 0.16817829025340672,
+              "3": 0.20425716786400347,
+              "4": 0.19749192521103845,
+              "5": 0.23799349438294945
+            },
+            "mean": 3.1211423791463266
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.1662724466082804,
+              "2": 0.14001478936389444,
+              "3": 0.20128749213357142,
+              "4": 0.22891949793912875,
+              "5": 0.263505773955125
+            },
+            "mean": 3.283371363268923
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.17755390053639256,
+              "2": 0.15862777800549618,
+              "3": 0.22197121168430173,
+              "4": 0.19124753373864473,
+              "5": 0.25059957603516475
+            },
+            "mean": 3.178711106730693
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17992159730350243,
+              "2": 0.15769060479046648,
+              "3": 0.2128420652144878,
+              "4": 0.1973034350630429,
+              "5": 0.2522422976285003
+            },
+            "mean": 3.184254230922572
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1872211913809133,
+              "2": 0.15478524368169227,
+              "3": 0.21342119071386592,
+              "4": 0.20162311280086026,
+              "5": 0.24294926142266818
+            },
+            "mean": 3.1582940092026774
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.1572985058651149,
+              "2": 0.13755974045411803,
+              "3": 0.22305624921660316,
+              "4": 0.21884804704508853,
+              "5": 0.26323745741907534
+            },
+            "mean": 3.2931662096988914
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.17759155431002405,
+              "2": 0.15984019603768582,
+              "3": 0.19871218126179338,
+              "4": 0.2059828531172964,
+              "5": 0.2578732152732004
+            },
+            "mean": 3.2067059790059638
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20164171279369653,
+              "2": 0.16610190160769817,
+              "3": 0.20496382255678652,
+              "4": 0.19554005262572444,
+              "5": 0.23175251041609438
+            },
+            "mean": 3.0896597462628224
+          }
+        }
+      },
+      "z_vs_collection": -1.9481
+    },
+    "milford-pure-queenstown": {
+      "title": "From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford",
+      "type": "day_trip",
+      "positioning": "mid",
+      "price": null,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.15698285635017623,
+          "2": 0.1677499252473819,
+          "3": 0.1958806098749853,
+          "4": 0.20957362306524524,
+          "5": 0.2698129854622114
+        },
+        "mean": 3.267483956041934
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15494121006637876,
+              "2": 0.14497296041064223,
+              "3": 0.20529242735205985,
+              "4": 0.21320046157002903,
+              "5": 0.2815929406008902
+            },
+            "mean": 3.32153096222841
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.15799884801501693,
+              "2": 0.16739333178979926,
+              "3": 0.19028005454068506,
+              "4": 0.21634588649844488,
+              "5": 0.2679818791560538
+            },
+            "mean": 3.268918616990719
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.13875331715368758,
+              "2": 0.18007204460856402,
+              "3": 0.191685313123227,
+              "4": 0.2208133462314326,
+              "5": 0.2686759788830888
+            },
+            "mean": 3.300586625081671
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.17842964697766925,
+              "2": 0.1768048388349772,
+              "3": 0.2016309900545125,
+              "4": 0.18041795790571,
+              "5": 0.2627165662271311
+            },
+            "mean": 3.1721869575696564
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1540429611325131,
+              "2": 0.1438368798601429,
+              "3": 0.20807323684582915,
+              "4": 0.20624240966919535,
+              "5": 0.28780451249231953
+            },
+            "mean": 3.3299286325286657
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.16046950850521513,
+              "2": 0.18254639165035458,
+              "3": 0.18274360571219533,
+              "4": 0.2128706823724863,
+              "5": 0.2613698117597487
+            },
+            "mean": 3.2321248972311993
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.15265653012790456,
+              "2": 0.17643189239755053,
+              "3": 0.20199236808584067,
+              "4": 0.19342586659695005,
+              "5": 0.2754933427917543
+            },
+            "mean": 3.2626675995270995
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.1634419815786889,
+              "2": 0.13941000087141756,
+              "3": 0.19510489608527928,
+              "4": 0.24505850255295947,
+              "5": 0.2569846189116548
+            },
+            "mean": 3.2927337763474736
+          }
+        }
+      },
+      "z_vs_collection": -1.1783
+    },
+    "e-30130": {
+      "title": "Milford Sound Ultra Premium Cruise with Gourmet Meal, Reserved Seating, and Sparkling Wine",
+      "type": "cruise",
+      "positioning": "premium",
+      "price": 389.0,
+      "currency": "NZD",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.14183019842234854,
+          "2": 0.14859489785282218,
+          "3": 0.23270005922550505,
+          "4": 0.22087063478940525,
+          "5": 0.256004209709919
+        },
+        "mean": 3.300623759511724
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.13441531668838672,
+              "2": 0.15961293381353575,
+              "3": 0.23691117486219201,
+              "4": 0.25943929420164646,
+              "5": 0.2096212804342391
+            },
+            "mean": 3.2502382878798155
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.14165969187249094,
+              "2": 0.14683294885950812,
+              "3": 0.23531308452487104,
+              "4": 0.21375192195966528,
+              "5": 0.26244235278346467
+            },
+            "mean": 3.3084842949221045
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.14941876728786277,
+              "2": 0.14431016616655504,
+              "3": 0.23792659190082893,
+              "4": 0.21495779954109986,
+              "5": 0.2533866751036534
+            },
+            "mean": 3.2785834490061263
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.14070434515461597,
+              "2": 0.14580595534716287,
+              "3": 0.2176007757521027,
+              "4": 0.20225125668804347,
+              "5": 0.293637667058075
+            },
+            "mean": 3.3623119451477987
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.1620891537189333,
+              "2": 0.15720031012207983,
+              "3": 0.22649949202652758,
+              "4": 0.21756177685754677,
+              "5": 0.23664926727491256
+            },
+            "mean": 3.2094816938474255
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.12855722066796071,
+              "2": 0.1540231508700538,
+              "3": 0.21482300155839704,
+              "4": 0.24129724574074085,
+              "5": 0.26129938116284757
+            },
+            "mean": 3.352758415860461
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.15835359240046107,
+              "2": 0.1510605714856664,
+              "3": 0.23725567843331677,
+              "4": 0.20025172110201836,
+              "5": 0.25307843657853746
+            },
+            "mean": 3.238640837972505
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.10985824859550872,
+              "2": 0.12602209588757313,
+              "3": 0.25890573068673356,
+              "4": 0.23623521427221633,
+              "5": 0.2689787105579683
+            },
+            "mean": 3.4284540423095624
+          }
+        }
+      },
+      "z_vs_collection": -0.7588
+    }
+  },
+  "pages": {
+    "primary": {
+      "title": "Experience the best cruises in Milford Sound",
+      "page_type": "headout.com",
+      "url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/",
+      "overall": {
+        "n": 30,
+        "pmf": {
+          "1": 0.15937117033034737,
+          "2": 0.1359670754753041,
+          "3": 0.21949861995116304,
+          "4": 0.19848854819328304,
+          "5": 0.28667458604990237
+        },
+        "mean": 3.3171283041570887
+      },
+      "by_segment": {
+        "trip_type": {
+          "family_with_kids": {
+            "n": 6,
+            "pmf": {
+              "1": 0.15133485142140338,
+              "2": 0.14694918545767252,
+              "3": 0.22027929873327282,
+              "4": 0.20781122835041355,
+              "5": 0.2736254360372377
+            },
+            "mean": 3.3054432121244095
+          },
+          "couple": {
+            "n": 11,
+            "pmf": {
+              "1": 0.15973562272380903,
+              "2": 0.12970653839663523,
+              "3": 0.22083149613664785,
+              "4": 0.19791405576481222,
+              "5": 0.29181228697809575
+            },
+            "mean": 3.332360845876751
+          },
+          "friends": {
+            "n": 7,
+            "pmf": {
+              "1": 0.16281066117082396,
+              "2": 0.13821739518902876,
+              "3": 0.210783376566213,
+              "4": 0.20275691420022604,
+              "5": 0.2854316528737083
+            },
+            "mean": 3.3097815024169663
+          },
+          "solo": {
+            "n": 6,
+            "pmf": {
+              "1": 0.16272658720405567,
+              "2": 0.13383724380448322,
+              "3": 0.2264421187781063,
+              "4": 0.18523934381358242,
+              "5": 0.2917547063997724
+            },
+            "mean": 3.3094583384005327
+          }
+        },
+        "budget_tier": {
+          "budget": {
+            "n": 4,
+            "pmf": {
+              "1": 0.13277527113946677,
+              "2": 0.15136507004364227,
+              "3": 0.21100061942465964,
+              "4": 0.22691060742177135,
+              "5": 0.27794843197046
+            },
+            "mean": 3.3658918590401155
+          },
+          "premium": {
+            "n": 9,
+            "pmf": {
+              "1": 0.15382246588557805,
+              "2": 0.12963689114224497,
+              "3": 0.21245692357851367,
+              "4": 0.21259023322109213,
+              "5": 0.2914934861725712
+            },
+            "mean": 3.3582953826528334
+          },
+          "mid": {
+            "n": 12,
+            "pmf": {
+              "1": 0.1550394794553902,
+              "2": 0.14142264981279215,
+              "3": 0.22139352538388454,
+              "4": 0.18782564987187925,
+              "5": 0.2943186954760538
+            },
+            "mean": 3.324961432100414
+          },
+          "luxury": {
+            "n": 5,
+            "pmf": {
+              "1": 0.20103161578353382,
+              "2": 0.12194963321016876,
+              "3": 0.23442430080460305,
+              "4": 0.1759588237318054,
+              "5": 0.266635626469889
+            },
+            "mean": 3.185217211894347
+          }
+        }
+      }
+    }
+  },
+  "rankings": {
+    "overall": [
+      "e-18125",
+      "e-37309",
+      "e-29695",
+      "e-40298",
+      "e-23887",
+      "e-18103",
+      "e-30130",
+      "milford-pure-queenstown",
+      "milford-fly-cruise"
+    ],
+    "by_segment": {
+      "trip_type": {
+        "family_with_kids": [
+          "e-18125",
+          "e-29695",
+          "e-37309",
+          "e-40298",
+          "e-18103",
+          "milford-pure-queenstown",
+          "e-23887",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "couple": [
+          "e-18125",
+          "e-37309",
+          "e-29695",
+          "e-23887",
+          "e-40298",
+          "e-18103",
+          "e-30130",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ],
+        "friends": [
+          "e-18125",
+          "e-23887",
+          "e-29695",
+          "e-18103",
+          "e-37309",
+          "e-40298",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "solo": [
+          "e-40298",
+          "e-37309",
+          "e-29695",
+          "e-18103",
+          "e-30130",
+          "e-23887",
+          "e-18125",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ]
+      },
+      "budget_tier": {
+        "budget": [
+          "e-18125",
+          "e-40298",
+          "e-29695",
+          "e-37309",
+          "e-18103",
+          "e-23887",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "premium": [
+          "e-18125",
+          "e-37309",
+          "e-23887",
+          "e-18103",
+          "e-40298",
+          "e-29695",
+          "e-30130",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ],
+        "mid": [
+          "e-29695",
+          "e-23887",
+          "e-40298",
+          "e-37309",
+          "e-18125",
+          "e-18103",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "luxury": [
+          "e-30130",
+          "e-18125",
+          "e-29695",
+          "e-18103",
+          "e-37309",
+          "e-40298",
+          "e-23887",
+          "milford-pure-queenstown",
+          "milford-fly-cruise"
+        ]
+      }
+    }
+  },
+  "quotes": [
+    {
+      "persona_id": "p0016",
+      "persona_label": "25-34 solo from Germany, luxury budget, first timer, planning months 1 3, via app; interests: scenery, hiking",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "Fairly likely, and I'd probably go for the fly-and-cruise or the Ultra Premium cruise with the gourmet meal and reserved seating. Since I'm a first-timer and travelling solo on a luxury budget, I like that the page spells out the boarding point and has a compare block for the cruise types, and the 4.8 from over 6,000 travellers plus the free cancellation and guarantees make me comfortable booking in the app. What holds me back is that it's a marketplace with no clear statement of who actually runs the cruise. Several listings also don't show a price, and the weather cancellation policy is vague. I'd want to check that the product page spells out the refund terms and the exact departure time before I pay, because I don't want to lose a flight-based day to fog or cloud.",
+      "mean_pi": 3.0053013300506866,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0026",
+      "persona_label": "35-44 family with kids from United Kingdom, budget budget, first timer, planning weeks 1 4, via mobile_web; interests: short_on_time, scenery",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "As a budget family of four doing this for the first time, I like the 4.8 rating from over 6,000 people and the free cancellation. The cruise-only options at 155\u2013179 NZD look doable, and it's reassuring that cruises usually run in the rain and strollers are allowed. What would stop me is the cost per person adding up, and I can't tell whether kids get a discount. The Queenstown day trip at 309 NZD each is a 12-13 hour day with little ones, and I'm not sure if we'd drive ourselves. I'd probably go further down the page to check child pricing and the transport, so I'm leaning towards booking but won't do it straight away on my phone.",
+      "mean_pi": 3.0213064392643445,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0020",
+      "persona_label": "25-34 couple from Australia, budget budget, repeat, planning months 1 3, via desktop; interests: wildlife, short_on_time",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "I'd probably book from here, since I've done Milford before and I'm mostly after the Nature Cruise for the seals and the odd penguin or dolphin. The 4.8 from over 6,000 reviews, the 24-hour free cancellation and the clear boarding point all help, and the 155 NZD cruise-only option works for a budget couple. What holds me back is that the Nature Cruise has no price showing, and I can't tell from this page who actually runs it, since it's a Headout marketplace listing and not the operator's own site. I'd open the operator's own site in another tab to compare prices, and then book here only if it's about the same. We're short on time, so I'd also want to know the drive from Queenstown fits the schedule before I commit.",
+      "mean_pi": 3.558086494217653,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0021",
+      "persona_label": "45-54 friends from Australia, premium budget, first timer, planning months 1 3, via desktop; interests: short_on_time, photography",
+      "stimulus_id": "page:primary",
+      "stimulus_title": "Experience the best cruises in Milford Sound",
+      "text": "I'm fairly likely to book, probably within a few weeks. The fly-and-cruise from Queenstown at 835 NZD suits me best: I'm short on time and want photos from the air as well as from the water, and my friends and I are on a premium budget. The Ultra Premium cruise with reserved seating is my backup, since a good deck spot matters for photography. What would slow me down is that the page doesn't say whether Headout is an authorised reseller, and some prices aren't shown. I'd also want the weather cancellation and flyover refund terms spelled out before I pay, since a cloudy day would waste a lot of money.",
+      "mean_pi": 3.5742946086135325,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0005",
+      "persona_label": "25-34 friends from United Kingdom, mid budget, first timer, planning weeks 1 4, via mobile_web; interests: weather_comfort, hiking",
+      "stimulus_id": "milford-fly-cruise",
+      "stimulus_title": "From Queenstown: Milford Sound Scenic Flyover and Cruise",
+      "text": "Honestly, I'm leaning towards not booking it as it stands. The flyover plus a small boat sounds like a brilliant first-time way to see Milford Sound, and hotel pickup and window seats are a big plus, especially if the weather turns grumpy and I want the best view. But 835 NZD is roughly \u00a3400 each, which is a stretch on a mid budget with friends. The listing doesn't name the operator or give a cancellation policy, and I've no idea what happens if the weather grounds the flight. The duration range of 4.5 to 13 hours is also vague. I'd want those answers, pl",
+      "mean_pi": 2.7725827036221187,
+      "generator": "anthropic"
+    },
+    {
+      "persona_id": "p0028",
+      "persona_label": "35-44 family with kids from New Zealand, premium budget, first timer, planning months 3 plus, via mobile_web; interests: wildlife, hiking",
+      "stimulus_id": "e-18125",
+      "stimulus_title": "Milford Sound Boutique Small-Boat Cruise",
+      "text": "I'm fairly interested, but I wouldn't book it yet. A small boat with a 75-passenger cap, close-up waterfalls, wildlife and a skipper who does commentary suits my kids and me, and the optional guided Milford Track walk is a nice bonus for a hiking family. Free cancellation up to 24 hours helps since I'm planning months out.\n\nWhat holds me back is that the operator isn't named, so I can't tell which boat I'd actually be on. Pickup is also blank, and with kids I need to know how we get there from Te Anau or Queenstown, since that's a long day. A perfect 5.0 across 2,000+ reviews and a review count that doesn't match between pages make me want to check things on the operator's own site before paying 179 NZD each.",
+      "mean_pi": 3.6924360629200588,
+      "generator": "anthropic"
+    }
+  ],
+  "panel_scores": [
+    {
+      "persona_id": "p0001",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "family_with_kids",
+        "budget_tier": "budget",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.446093,
+          "pmf": {
+            "1": 0.08446970668458198,
+            "2": 0.16568461954215077,
+            "3": 0.2328846924881747,
+            "4": 0.25320449633211456,
+            "5": 0.26375648495297804
+          }
+        },
+        "e-18125": {
+          "mean": 3.546641,
+          "pmf": {
+            "1": 0.10658743153347659,
+            "2": 0.11651917915839216,
+            "3": 0.20202814225661078,
+            "4": 0.2733949770547491,
+            "5": 0.30147026999677135
+          }
+        },
+        "e-37309": {
+          "mean": 3.392159,
+          "pmf": {
+            "1": 0.13316563601990944,
+            "2": 0.16904175503079658,
+            "3": 0.18175061049905414,
+            "4": 0.2045524285157191,
+            "5": 0.31148956993452076
+          }
+        },
+        "e-40298": {
+          "mean": 3.299862,
+          "pmf": {
+            "1": 0.13648938566720828,
+            "2": 0.17438630816289044,
+            "3": 0.22036329080029926,
+            "4": 0.19029468442870792,
+            "5": 0.278466330940894
+          }
+        },
+        "e-23887": {
+          "mean": 3.21618,
+          "pmf": {
+            "1": 0.16496862388026928,
+            "2": 0.13950634338971324,
+            "3": 0.26511241118744283,
+            "4": 0.1752020607041442,
+            "5": 0.25521056083843036
+          }
+        },
+        "e-18103": {
+          "mean": 3.310077,
+          "pmf": {
+            "1": 0.09400663615269961,
+            "2": 0.2086513524240535,
+            "3": 0.2323758601431546,
+            "4": 0.2231910641175906,
+            "5": 0.24177508716250165
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.072158,
+          "pmf": {
+            "1": 0.19745275690306507,
+            "2": 0.15980691910950653,
+            "3": 0.22992583383414597,
+            "4": 0.19875853329503512,
+            "5": 0.2140559568582473
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.213145,
+          "pmf": {
+            "1": 0.17982814075636197,
+            "2": 0.11883189902816534,
+            "3": 0.2482024536840126,
+            "4": 0.2146422257989573,
+            "5": 0.2384952807325028
+          }
+        },
+        "e-30130": {
+          "mean": 2.970785,
+          "pmf": {
+            "1": 0.19138150564365577,
+            "2": 0.1579955610882888,
+            "3": 0.2812646570785332,
+            "4": 0.22717256342958939,
+            "5": 0.1421857127599329
+          }
+        },
+        "page:primary": {
+          "mean": 3.44678,
+          "pmf": {
+            "1": 0.12674259556830428,
+            "2": 0.11996957842976243,
+            "3": 0.22238305672804556,
+            "4": 0.24157499374182975,
+            "5": 0.289329775532058
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0002",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "18-24",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.22592,
+          "pmf": {
+            "1": 0.1534637986853992,
+            "2": 0.1510539456922065,
+            "3": 0.26957850637643505,
+            "4": 0.16790569833572114,
+            "5": 0.25799805091023814
+          }
+        },
+        "e-18125": {
+          "mean": 3.621727,
+          "pmf": {
+            "1": 0.06609281010410066,
+            "2": 0.13916117486071497,
+            "3": 0.19187318128435582,
+            "4": 0.3126717865491952,
+            "5": 0.29020104720163337
+          }
+        },
+        "e-37309": {
+          "mean": 3.4096,
+          "pmf": {
+            "1": 0.0881417993929297,
+            "2": 0.18812204984350403,
+            "3": 0.20713811802760776,
+            "4": 0.2591904376616588,
+            "5": 0.2574075950742997
+          }
+        },
+        "e-40298": {
+          "mean": 3.494367,
+          "pmf": {
+            "1": 0.07031044454880901,
+            "2": 0.14557231912285926,
+            "3": 0.2699626372991449,
+            "4": 0.24774859891774645,
+            "5": 0.2664060001114404
+          }
+        },
+        "e-23887": {
+          "mean": 3.381409,
+          "pmf": {
+            "1": 0.13712899803928605,
+            "2": 0.11038882901274587,
+            "3": 0.24728002116114114,
+            "4": 0.24434807215159504,
+            "5": 0.26085407963523183
+          }
+        },
+        "e-18103": {
+          "mean": 3.556643,
+          "pmf": {
+            "1": 0.11133582159894771,
+            "2": 0.1166410708093424,
+            "3": 0.1919241810165421,
+            "4": 0.264242135420528,
+            "5": 0.31585679115463977
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.468216,
+          "pmf": {
+            "1": 0.11615868280710263,
+            "2": 0.12258767350592521,
+            "3": 0.22018159398088102,
+            "4": 0.25902317080917553,
+            "5": 0.28204887889691554
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.223395,
+          "pmf": {
+            "1": 0.16931316202289004,
+            "2": 0.2063599038188836,
+            "3": 0.14618189932523143,
+            "4": 0.18790841533424726,
+            "5": 0.2902366194987476
+          }
+        },
+        "e-30130": {
+          "mean": 3.354601,
+          "pmf": {
+            "1": 0.08605800500688109,
+            "2": 0.2055813279301051,
+            "3": 0.20910756731977606,
+            "4": 0.2662081479778716,
+            "5": 0.2330449517653661
+          }
+        },
+        "page:primary": {
+          "mean": 3.406201,
+          "pmf": {
+            "1": 0.14715427479702933,
+            "2": 0.11107229084118779,
+            "3": 0.2319961273831419,
+            "4": 0.20797309973162048,
+            "5": 0.3018042072470205
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0003",
+      "attributes": {
+        "source_market": "India",
+        "age_band": "18-24",
+        "trip_type": "friends",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.417677,
+          "pmf": {
+            "1": 0.13702443571626735,
+            "2": 0.14015738210650253,
+            "3": 0.19997961605626435,
+            "4": 0.2137940121656808,
+            "5": 0.309044553955285
+          }
+        },
+        "e-18125": {
+          "mean": 3.515435,
+          "pmf": {
+            "1": 0.11260574035089195,
+            "2": 0.11015030415976562,
+            "3": 0.23796192828410745,
+            "4": 0.22776773075947312,
+            "5": 0.31151429644576184
+          }
+        },
+        "e-37309": {
+          "mean": 3.449234,
+          "pmf": {
+            "1": 0.12669286731956983,
+            "2": 0.15201076485540674,
+            "3": 0.18758333483691927,
+            "4": 0.2127957940604961,
+            "5": 0.320917238927608
+          }
+        },
+        "e-40298": {
+          "mean": 3.508741,
+          "pmf": {
+            "1": 0.1334481409249352,
+            "2": 0.08883692687099369,
+            "3": 0.20687949860510182,
+            "4": 0.27719678696905015,
+            "5": 0.2936386466299192
+          }
+        },
+        "e-23887": {
+          "mean": 3.325602,
+          "pmf": {
+            "1": 0.13424055346074845,
+            "2": 0.11626161229331772,
+            "3": 0.29895492469095714,
+            "4": 0.1907406286067377,
+            "5": 0.25980228094823893
+          }
+        },
+        "e-18103": {
+          "mean": 3.025726,
+          "pmf": {
+            "1": 0.22116677401098536,
+            "2": 0.1304714578897558,
+            "3": 0.271068056287735,
+            "4": 0.1560562360517822,
+            "5": 0.22123747575974165
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.436424,
+          "pmf": {
+            "1": 0.13871495322384775,
+            "2": 0.152585148604387,
+            "3": 0.18007445526037238,
+            "4": 0.19081226646379731,
+            "5": 0.33781317644759556
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.331031,
+          "pmf": {
+            "1": 0.1503866739928256,
+            "2": 0.19211821079719563,
+            "3": 0.13969617477915763,
+            "4": 0.2116754224052294,
+            "5": 0.30612351802559173
+          }
+        },
+        "e-30130": {
+          "mean": 3.019339,
+          "pmf": {
+            "1": 0.20753836352471,
+            "2": 0.21591360015094405,
+            "3": 0.1540053106669067,
+            "4": 0.19475658306797905,
+            "5": 0.2277861425894602
+          }
+        },
+        "page:primary": {
+          "mean": 3.331509,
+          "pmf": {
+            "1": 0.14715346945066662,
+            "2": 0.15340836517438947,
+            "3": 0.2267523616627719,
+            "4": 0.16614737848568273,
+            "5": 0.3065384252264893
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0004",
+      "attributes": {
+        "source_market": "China",
+        "age_band": "25-34",
+        "trip_type": "family_with_kids",
+        "budget_tier": "budget",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.460689,
+          "pmf": {
+            "1": 0.1196297687070789,
+            "2": 0.08489161636488794,
+            "3": 0.30581447699676095,
+            "4": 0.19448811487169834,
+            "5": 0.2951760230595739
+          }
+        },
+        "e-18125": {
+          "mean": 3.348548,
+          "pmf": {
+            "1": 0.13532346467975634,
+            "2": 0.1598835344050291,
+            "3": 0.18088983638169032,
+            "4": 0.2687279669334101,
+            "5": 0.25517519760011415
+          }
+        },
+        "e-37309": {
+          "mean": 3.133466,
+          "pmf": {
+            "1": 0.1299054207382053,
+            "2": 0.21229909603641936,
+            "3": 0.25862911210027034,
+            "4": 0.19275667131042798,
+            "5": 0.20640969981467702
+          }
+        },
+        "e-40298": {
+          "mean": 3.343829,
+          "pmf": {
+            "1": 0.11847712314988039,
+            "2": 0.17321202781021938,
+            "3": 0.20580802656196773,
+            "4": 0.2510100458842826,
+            "5": 0.25149277659364994
+          }
+        },
+        "e-23887": {
+          "mean": 3.48666,
+          "pmf": {
+            "1": 0.09289625105449872,
+            "2": 0.16029763414605455,
+            "3": 0.2320645058029993,
+            "4": 0.19673332819143707,
+            "5": 0.31800828080501037
+          }
+        },
+        "e-18103": {
+          "mean": 3.504905,
+          "pmf": {
+            "1": 0.09993330001010396,
+            "2": 0.14931322756479928,
+            "3": 0.2058213680189467,
+            "4": 0.23577904198974264,
+            "5": 0.3091530624164074
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.032221,
+          "pmf": {
+            "1": 0.20171611407869885,
+            "2": 0.1705453372024589,
+            "3": 0.21977566319237216,
+            "4": 0.20972733708969882,
+            "5": 0.1982355484367713
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.166038,
+          "pmf": {
+            "1": 0.16893746391948952,
+            "2": 0.2108213250675219,
+            "3": 0.17263409919674588,
+            "4": 0.18048029331484206,
+            "5": 0.2671268185014007
+          }
+        },
+        "e-30130": {
+          "mean": 3.256101,
+          "pmf": {
+            "1": 0.15983782931397023,
+            "2": 0.1753527207445901,
+            "3": 0.1900795362134556,
+            "4": 0.1983307038614706,
+            "5": 0.2763992098665135
+          }
+        },
+        "page:primary": {
+          "mean": 3.437395,
+          "pmf": {
+            "1": 0.1112521753088791,
+            "2": 0.1415868084338645,
+            "3": 0.23012809695202716,
+            "4": 0.23257995211994587,
+            "5": 0.2844529671852834
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0005",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "25-34",
+        "trip_type": "friends",
+        "budget_tier": "mid",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.47076,
+          "pmf": {
+            "1": 0.10594239421198569,
+            "2": 0.150981164905693,
+            "3": 0.20373463519748358,
+            "4": 0.24505731438870004,
+            "5": 0.2942844912961377
+          }
+        },
+        "e-18125": {
+          "mean": 3.551271,
+          "pmf": {
+            "1": 0.09993175268584724,
+            "2": 0.09898484301339504,
+            "3": 0.221650146870312,
+            "4": 0.3087469336564545,
+            "5": 0.27068632377399127
+          }
+        },
+        "e-37309": {
+          "mean": 3.481174,
+          "pmf": {
+            "1": 0.10385701212903398,
+            "2": 0.1476438858869481,
+            "3": 0.19689855900249284,
+            "4": 0.26666960051694666,
+            "5": 0.2849309424645785
+          }
+        },
+        "e-40298": {
+          "mean": 3.499041,
+          "pmf": {
+            "1": 0.08720368887775881,
+            "2": 0.14936940051267708,
+            "3": 0.23003659766473525,
+            "4": 0.24396321676803404,
+            "5": 0.2894270961767948
+          }
+        },
+        "e-23887": {
+          "mean": 3.588066,
+          "pmf": {
+            "1": 0.1067369717207099,
+            "2": 0.07356274210235637,
+            "3": 0.2819128710694186,
+            "4": 0.2004717035211815,
+            "5": 0.33731571158633367
+          }
+        },
+        "e-18103": {
+          "mean": 3.431556,
+          "pmf": {
+            "1": 0.1296030919720698,
+            "2": 0.09809398291152915,
+            "3": 0.24518403387947305,
+            "4": 0.2653814324832639,
+            "5": 0.2617374587536641
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 2.772583,
+          "pmf": {
+            "1": 0.24084055088693743,
+            "2": 0.2628075863313674,
+            "3": 0.14856974132889933,
+            "4": 0.17849285117823097,
+            "5": 0.16928927027456486
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.436556,
+          "pmf": {
+            "1": 0.12646197854029825,
+            "2": 0.13633226616703156,
+            "3": 0.24237968085358252,
+            "4": 0.16384036511672598,
+            "5": 0.3309857093223617
+          }
+        },
+        "e-30130": {
+          "mean": 3.159474,
+          "pmf": {
+            "1": 0.15673987385960594,
+            "2": 0.14530219519333545,
+            "3": 0.2985454774371427,
+            "4": 0.18056917662059255,
+            "5": 0.2188432768893234
+          }
+        },
+        "page:primary": {
+          "mean": 3.227901,
+          "pmf": {
+            "1": 0.17724267703471838,
+            "2": 0.1329494371459726,
+            "3": 0.25334643932881024,
+            "4": 0.15758739749381823,
+            "5": 0.2788740489966806
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0006",
+      "attributes": {
+        "source_market": "India",
+        "age_band": "18-24",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.18383,
+          "pmf": {
+            "1": 0.19590785785114853,
+            "2": 0.13086569543433876,
+            "3": 0.24771786195116396,
+            "4": 0.1445055424481658,
+            "5": 0.28100304231518297
+          }
+        },
+        "e-18125": {
+          "mean": 3.461733,
+          "pmf": {
+            "1": 0.1068776809195634,
+            "2": 0.1225224030228972,
+            "3": 0.23146293624996095,
+            "4": 0.2802635352156017,
+            "5": 0.25887344459197675
+          }
+        },
+        "e-37309": {
+          "mean": 3.423796,
+          "pmf": {
+            "1": 0.11768214407833062,
+            "2": 0.14212782306241847,
+            "3": 0.22235698830137976,
+            "4": 0.23437790763086508,
+            "5": 0.283455136927006
+          }
+        },
+        "e-40298": {
+          "mean": 3.491684,
+          "pmf": {
+            "1": 0.10542892202059273,
+            "2": 0.15672350455245324,
+            "3": 0.1808060922224448,
+            "4": 0.2548174242546427,
+            "5": 0.30222405694986654
+          }
+        },
+        "e-23887": {
+          "mean": 3.085557,
+          "pmf": {
+            "1": 0.22586756282424478,
+            "2": 0.1315877854154782,
+            "3": 0.20827325327009105,
+            "4": 0.19966285520671714,
+            "5": 0.2346085432834688
+          }
+        },
+        "e-18103": {
+          "mean": 2.914548,
+          "pmf": {
+            "1": 0.2713034269331503,
+            "2": 0.16532652676729023,
+            "3": 0.18374157402793287,
+            "4": 0.13677547856782254,
+            "5": 0.2428529937038041
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.23721,
+          "pmf": {
+            "1": 0.16587399315044896,
+            "2": 0.1513518220100546,
+            "3": 0.21508389040243284,
+            "4": 0.21507111524836467,
+            "5": 0.2526191791886989
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.01619,
+          "pmf": {
+            "1": 0.13530844321006563,
+            "2": 0.26012042178781447,
+            "3": 0.2402357320202724,
+            "4": 0.18174307625747188,
+            "5": 0.18259232672437564
+          }
+        },
+        "e-30130": {
+          "mean": 3.335102,
+          "pmf": {
+            "1": 0.16207134703026102,
+            "2": 0.1431985680135656,
+            "3": 0.19749702403086436,
+            "4": 0.192022361652035,
+            "5": 0.305210699273274
+          }
+        },
+        "page:primary": {
+          "mean": 3.401626,
+          "pmf": {
+            "1": 0.15175693516361646,
+            "2": 0.11949572757262744,
+            "3": 0.22413699634375128,
+            "4": 0.18458496927275972,
+            "5": 0.32002537164724504
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0007",
+      "attributes": {
+        "source_market": "Japan",
+        "age_band": "25-34",
+        "trip_type": "family_with_kids",
+        "budget_tier": "mid",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.458656,
+          "pmf": {
+            "1": 0.10629786356288547,
+            "2": 0.1756713534094744,
+            "3": 0.18040817851024693,
+            "4": 0.22832248591082252,
+            "5": 0.30930011860657064
+          }
+        },
+        "e-18125": {
+          "mean": 3.469021,
+          "pmf": {
+            "1": 0.09324621869817695,
+            "2": 0.1428247451014199,
+            "3": 0.2048773159383571,
+            "4": 0.3197657157629956,
+            "5": 0.23928600449905046
+          }
+        },
+        "e-37309": {
+          "mean": 3.493094,
+          "pmf": {
+            "1": 0.09252718464052168,
+            "2": 0.18476423194380642,
+            "3": 0.16650223579346998,
+            "4": 0.2495002767889206,
+            "5": 0.3067060708332814
+          }
+        },
+        "e-40298": {
+          "mean": 3.327276,
+          "pmf": {
+            "1": 0.13768226220518318,
+            "2": 0.14434963808933576,
+            "3": 0.24625968894285513,
+            "4": 0.196426365438742,
+            "5": 0.2752820453238839
+          }
+        },
+        "e-23887": {
+          "mean": 3.109359,
+          "pmf": {
+            "1": 0.22335418527193804,
+            "2": 0.14732422516264093,
+            "3": 0.16654507144014524,
+            "4": 0.22216165562073778,
+            "5": 0.24061486250453798
+          }
+        },
+        "e-18103": {
+          "mean": 3.194342,
+          "pmf": {
+            "1": 0.19200600792140002,
+            "2": 0.14096902481503282,
+            "3": 0.2210852301572875,
+            "4": 0.17255659580029495,
+            "5": 0.2733831413059847
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.172422,
+          "pmf": {
+            "1": 0.17216272539195457,
+            "2": 0.17531632307704334,
+            "3": 0.19528772022634078,
+            "4": 0.22240248256021497,
+            "5": 0.23483074874444634
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.378784,
+          "pmf": {
+            "1": 0.13441964051375996,
+            "2": 0.14411531300764285,
+            "3": 0.22596778115398564,
+            "4": 0.19925615115772358,
+            "5": 0.296241114166888
+          }
+        },
+        "e-30130": {
+          "mean": 3.433351,
+          "pmf": {
+            "1": 0.09888693079214321,
+            "2": 0.14544433025311196,
+            "3": 0.22495453909874663,
+            "4": 0.28485962966237516,
+            "5": 0.24585457019362308
+          }
+        },
+        "page:primary": {
+          "mean": 3.279697,
+          "pmf": {
+            "1": 0.15839776010300585,
+            "2": 0.16999940251111045,
+            "3": 0.18702102400737083,
+            "4": 0.20267146962915486,
+            "5": 0.281910343749358
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0008",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "45-54",
+        "trip_type": "family_with_kids",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.404663,
+          "pmf": {
+            "1": 0.12370473113535686,
+            "2": 0.11389193104683426,
+            "3": 0.2696678939798856,
+            "4": 0.21950697890642756,
+            "5": 0.27322846493149566
+          }
+        },
+        "e-18125": {
+          "mean": 3.568896,
+          "pmf": {
+            "1": 0.12138054811310066,
+            "2": 0.07039695444787035,
+            "3": 0.2232176705311287,
+            "4": 0.2879555677995554,
+            "5": 0.29704925910834484
+          }
+        },
+        "e-37309": {
+          "mean": 3.512966,
+          "pmf": {
+            "1": 0.06307488742834909,
+            "2": 0.19625594878504535,
+            "3": 0.1740184138536689,
+            "4": 0.2979296425510833,
+            "5": 0.2687211073818534
+          }
+        },
+        "e-40298": {
+          "mean": 3.355023,
+          "pmf": {
+            "1": 0.13012793295335867,
+            "2": 0.14828870630779611,
+            "3": 0.2117632284171642,
+            "4": 0.2560731382759188,
+            "5": 0.2537469940457621
+          }
+        },
+        "e-23887": {
+          "mean": 3.313157,
+          "pmf": {
+            "1": 0.13863867357020637,
+            "2": 0.10457694746659063,
+            "3": 0.3105809957614835,
+            "4": 0.19739560531076247,
+            "5": 0.2488077778909571
+          }
+        },
+        "e-18103": {
+          "mean": 3.446632,
+          "pmf": {
+            "1": 0.13429476356893397,
+            "2": 0.06771542843841205,
+            "3": 0.27708144827400855,
+            "4": 0.25887953250151635,
+            "5": 0.26202882721712906
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 2.995922,
+          "pmf": {
+            "1": 0.2122556953372093,
+            "2": 0.19251909354406216,
+            "3": 0.20833223683896496,
+            "4": 0.16083331987476893,
+            "5": 0.22605965440499465
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.438404,
+          "pmf": {
+            "1": 0.1305635577448287,
+            "2": 0.12664706045379948,
+            "3": 0.18718223462514236,
+            "4": 0.28503575983606294,
+            "5": 0.2705713873401665
+          }
+        },
+        "e-30130": {
+          "mean": 3.184585,
+          "pmf": {
+            "1": 0.13309517704416302,
+            "2": 0.1530975099006302,
+            "3": 0.2860663111372162,
+            "4": 0.2516094002586384,
+            "5": 0.17613160165935215
+          }
+        },
+        "page:primary": {
+          "mean": 3.406919,
+          "pmf": {
+            "1": 0.14328960355764023,
+            "2": 0.09802597234488196,
+            "3": 0.2678428143065271,
+            "4": 0.19015879013995943,
+            "5": 0.3006828196509912
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0009",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "18-24",
+        "trip_type": "solo",
+        "budget_tier": "premium",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.416194,
+          "pmf": {
+            "1": 0.12858452324668104,
+            "2": 0.1333150234280006,
+            "3": 0.2386340740108056,
+            "4": 0.19225502093212757,
+            "5": 0.3072113583823852
+          }
+        },
+        "e-18125": {
+          "mean": 3.26303,
+          "pmf": {
+            "1": 0.17632049055988364,
+            "2": 0.153242685985864,
+            "3": 0.1777427824570549,
+            "4": 0.2164749008279532,
+            "5": 0.27621914016924426
+          }
+        },
+        "e-37309": {
+          "mean": 3.607863,
+          "pmf": {
+            "1": 0.07994019770850526,
+            "2": 0.1631948201828136,
+            "3": 0.16236331869287132,
+            "4": 0.2580647071293786,
+            "5": 0.3364369562864313
+          }
+        },
+        "e-40298": {
+          "mean": 3.534819,
+          "pmf": {
+            "1": 0.0967429590679803,
+            "2": 0.12056960601857519,
+            "3": 0.229143654292198,
+            "4": 0.25821291528247386,
+            "5": 0.2953308653387727
+          }
+        },
+        "e-23887": {
+          "mean": 3.245651,
+          "pmf": {
+            "1": 0.16116574853507412,
+            "2": 0.09605596579824482,
+            "3": 0.2861429414669819,
+            "4": 0.24923250965268995,
+            "5": 0.20740283454700922
+          }
+        },
+        "e-18103": {
+          "mean": 3.285866,
+          "pmf": {
+            "1": 0.12660723440973004,
+            "2": 0.18070528022960478,
+            "3": 0.23316894614167402,
+            "4": 0.19925105790999761,
+            "5": 0.2602674813089935
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.124879,
+          "pmf": {
+            "1": 0.19184167226160365,
+            "2": 0.17530441978550484,
+            "3": 0.19831221910741795,
+            "4": 0.1852165524514872,
+            "5": 0.24932513639398626
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.483672,
+          "pmf": {
+            "1": 0.15189234446092523,
+            "2": 0.11253059931154992,
+            "3": 0.1843205337936649,
+            "4": 0.2025258027102325,
+            "5": 0.3487307197236274
+          }
+        },
+        "e-30130": {
+          "mean": 3.090247,
+          "pmf": {
+            "1": 0.20111171077762244,
+            "2": 0.20826412134044534,
+            "3": 0.1569810145459072,
+            "4": 0.16655185725193802,
+            "5": 0.267091296084087
+          }
+        },
+        "page:primary": {
+          "mean": 3.289481,
+          "pmf": {
+            "1": 0.1754169416697201,
+            "2": 0.1238827491690453,
+            "3": 0.22981242041997052,
+            "4": 0.17757849984744212,
+            "5": 0.293309388893822
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0010",
+      "attributes": {
+        "source_market": "China",
+        "age_band": "55-64",
+        "trip_type": "friends",
+        "budget_tier": "premium",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 2.991942,
+          "pmf": {
+            "1": 0.1778281195243346,
+            "2": 0.16748862246742977,
+            "3": 0.3054656310270172,
+            "4": 0.18334815600418816,
+            "5": 0.1658694709770303
+          }
+        },
+        "e-18125": {
+          "mean": 3.450281,
+          "pmf": {
+            "1": 0.1404298662746815,
+            "2": 0.10329624647548154,
+            "3": 0.19571499257389927,
+            "4": 0.28668094877116557,
+            "5": 0.2738779459047721
+          }
+        },
+        "e-37309": {
+          "mean": 3.288056,
+          "pmf": {
+            "1": 0.1311814974364198,
+            "2": 0.13375980172988325,
+            "3": 0.2636330411872148,
+            "4": 0.25867282955613696,
+            "5": 0.21275283009034518
+          }
+        },
+        "e-40298": {
+          "mean": 2.849647,
+          "pmf": {
+            "1": 0.2559414801911826,
+            "2": 0.13535109609518747,
+            "3": 0.2696079256306298,
+            "4": 0.18131827879239196,
+            "5": 0.1577812192906082
+          }
+        },
+        "e-23887": {
+          "mean": 3.387923,
+          "pmf": {
+            "1": 0.1539807676488674,
+            "2": 0.0921368806954357,
+            "3": 0.2302962765184996,
+            "4": 0.25915035526351693,
+            "5": 0.26443571987368036
+          }
+        },
+        "e-18103": {
+          "mean": 3.160288,
+          "pmf": {
+            "1": 0.16652589322595335,
+            "2": 0.12125754393538048,
+            "3": 0.32787443183801457,
+            "4": 0.15408730467331647,
+            "5": 0.23025482632733515
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.43749,
+          "pmf": {
+            "1": 0.08827906051631156,
+            "2": 0.13027044635402243,
+            "3": 0.29407743684056903,
+            "4": 0.23042764428711246,
+            "5": 0.2569454120019845
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.481238,
+          "pmf": {
+            "1": 0.10627639554661165,
+            "2": 0.14670101478378608,
+            "3": 0.17852151847075812,
+            "4": 0.296510230607757,
+            "5": 0.27199084059108714
+          }
+        },
+        "e-30130": {
+          "mean": 3.317821,
+          "pmf": {
+            "1": 0.17020482670350878,
+            "2": 0.12928957554451348,
+            "3": 0.19816854808823167,
+            "4": 0.21715398683188883,
+            "5": 0.2851830628318572
+          }
+        },
+        "page:primary": {
+          "mean": 3.342223,
+          "pmf": {
+            "1": 0.148247093452785,
+            "2": 0.15628310388998953,
+            "3": 0.17974103641609981,
+            "4": 0.23645706274908582,
+            "5": 0.27927170349203995
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0011",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.594782,
+          "pmf": {
+            "1": 0.07317067184070448,
+            "2": 0.10434453326999478,
+            "3": 0.27626553971366846,
+            "4": 0.2469710766448414,
+            "5": 0.2992481785307909
+          }
+        },
+        "e-18125": {
+          "mean": 3.450149,
+          "pmf": {
+            "1": 0.1116906288990624,
+            "2": 0.1457089633443582,
+            "3": 0.21416855298249024,
+            "4": 0.23762445282553432,
+            "5": 0.29080740194855487
+          }
+        },
+        "e-37309": {
+          "mean": 3.472477,
+          "pmf": {
+            "1": 0.09373967096754622,
+            "2": 0.1692275101291917,
+            "3": 0.16923672249625524,
+            "4": 0.3064087774206693,
+            "5": 0.26138731898633755
+          }
+        },
+        "e-40298": {
+          "mean": 3.643803,
+          "pmf": {
+            "1": 0.08227466724272975,
+            "2": 0.07065327380383217,
+            "3": 0.28147654940365796,
+            "4": 0.25218585659158693,
+            "5": 0.3134096529581932
+          }
+        },
+        "e-23887": {
+          "mean": 3.715631,
+          "pmf": {
+            "1": 0.08400891126233119,
+            "2": 0.04800849563871553,
+            "3": 0.26288300585417407,
+            "4": 0.27854197646411055,
+            "5": 0.3265576107806687
+          }
+        },
+        "e-18103": {
+          "mean": 3.400637,
+          "pmf": {
+            "1": 0.11459956835981992,
+            "2": 0.15869563376027201,
+            "3": 0.2385250459958157,
+            "4": 0.1878281374227744,
+            "5": 0.30035161446131803
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.507053,
+          "pmf": {
+            "1": 0.1284685236974665,
+            "2": 0.11522308228075208,
+            "3": 0.17934529904912025,
+            "4": 0.2747134464454069,
+            "5": 0.3022496485272544
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.497168,
+          "pmf": {
+            "1": 0.11405503575391739,
+            "2": 0.14760175802645334,
+            "3": 0.18688373080585233,
+            "4": 0.23003915595943683,
+            "5": 0.3214203194543401
+          }
+        },
+        "e-30130": {
+          "mean": 3.222737,
+          "pmf": {
+            "1": 0.13630860431455336,
+            "2": 0.14479337270697062,
+            "3": 0.283428671172741,
+            "4": 0.23079126145748544,
+            "5": 0.2046780903482496
+          }
+        },
+        "page:primary": {
+          "mean": 3.349663,
+          "pmf": {
+            "1": 0.14084429423564335,
+            "2": 0.13169904652362935,
+            "3": 0.24104546059158719,
+            "4": 0.2097721862322033,
+            "5": 0.2766390124169367
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0012",
+      "attributes": {
+        "source_market": "India",
+        "age_band": "45-54",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.334848,
+          "pmf": {
+            "1": 0.15274681564281464,
+            "2": 0.10538298164691036,
+            "3": 0.2720358207310952,
+            "4": 0.19394375173051392,
+            "5": 0.27589063024866584
+          }
+        },
+        "e-18125": {
+          "mean": 3.45358,
+          "pmf": {
+            "1": 0.1193257734318604,
+            "2": 0.12034183628979252,
+            "3": 0.20979489462938314,
+            "4": 0.2885017290153231,
+            "5": 0.26203576663364075
+          }
+        },
+        "e-37309": {
+          "mean": 3.542806,
+          "pmf": {
+            "1": 0.11138551998939879,
+            "2": 0.1316320482726638,
+            "3": 0.17671385371222256,
+            "4": 0.2633284387284749,
+            "5": 0.31694013929724
+          }
+        },
+        "e-40298": {
+          "mean": 3.4291,
+          "pmf": {
+            "1": 0.137583168967663,
+            "2": 0.1326612629505958,
+            "3": 0.18400070940449997,
+            "4": 0.2545819859753398,
+            "5": 0.2911728727019014
+          }
+        },
+        "e-23887": {
+          "mean": 3.46939,
+          "pmf": {
+            "1": 0.11314827395124542,
+            "2": 0.10854368648565581,
+            "3": 0.2601439857869507,
+            "4": 0.23209799232465556,
+            "5": 0.2860660614514925
+          }
+        },
+        "e-18103": {
+          "mean": 3.377931,
+          "pmf": {
+            "1": 0.15121392217779975,
+            "2": 0.09725280022114857,
+            "3": 0.2662699556304475,
+            "4": 0.19291522623540205,
+            "5": 0.29234809573520215
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 2.92219,
+          "pmf": {
+            "1": 0.27070383460283753,
+            "2": 0.17277843773886392,
+            "3": 0.16264429799394334,
+            "4": 0.15137031600676842,
+            "5": 0.24250311365758673
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.219628,
+          "pmf": {
+            "1": 0.21413622580442973,
+            "2": 0.14805571768944056,
+            "3": 0.14135762749114475,
+            "4": 0.1969444619866715,
+            "5": 0.2995059670283134
+          }
+        },
+        "e-30130": {
+          "mean": 2.999139,
+          "pmf": {
+            "1": 0.24551777411076725,
+            "2": 0.18409833907778136,
+            "3": 0.15976270203328913,
+            "4": 0.146969117436023,
+            "5": 0.26365206734213925
+          }
+        },
+        "page:primary": {
+          "mean": 3.103807,
+          "pmf": {
+            "1": 0.22632943754079807,
+            "2": 0.14128745697090614,
+            "3": 0.21302495411993969,
+            "4": 0.1409634623385165,
+            "5": 0.2783946890298396
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0013",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "35-44",
+        "trip_type": "solo",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.505628,
+          "pmf": {
+            "1": 0.08426358083712149,
+            "2": 0.15962492823803265,
+            "3": 0.2201328175036843,
+            "4": 0.2381769184693904,
+            "5": 0.29780175495177125
+          }
+        },
+        "e-18125": {
+          "mean": 3.41837,
+          "pmf": {
+            "1": 0.12864085483191315,
+            "2": 0.1338549749001424,
+            "3": 0.2014354630523195,
+            "4": 0.26263046562803555,
+            "5": 0.27343824158758945
+          }
+        },
+        "e-37309": {
+          "mean": 3.483212,
+          "pmf": {
+            "1": 0.08658885168298651,
+            "2": 0.15959678856941922,
+            "3": 0.2263444857985549,
+            "4": 0.23895351757666947,
+            "5": 0.28851635637236994
+          }
+        },
+        "e-40298": {
+          "mean": 3.437593,
+          "pmf": {
+            "1": 0.12636754710539905,
+            "2": 0.14569481810606835,
+            "3": 0.18738136333265842,
+            "4": 0.24508972339993904,
+            "5": 0.29546654805593514
+          }
+        },
+        "e-23887": {
+          "mean": 3.522648,
+          "pmf": {
+            "1": 0.10469620036785443,
+            "2": 0.08177164220624696,
+            "3": 0.26440909090253467,
+            "4": 0.2844336147621999,
+            "5": 0.264689451761164
+          }
+        },
+        "e-18103": {
+          "mean": 3.403068,
+          "pmf": {
+            "1": 0.13809547992606622,
+            "2": 0.09053485920960765,
+            "3": 0.30483013781638507,
+            "4": 0.16328508500693492,
+            "5": 0.3032544380410061
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.185556,
+          "pmf": {
+            "1": 0.18559776681907844,
+            "2": 0.15972246229496997,
+            "3": 0.20130206031317965,
+            "4": 0.1902809403305771,
+            "5": 0.26309677024219486
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.182027,
+          "pmf": {
+            "1": 0.18038779042883454,
+            "2": 0.19617015133495996,
+            "3": 0.18461351843845586,
+            "4": 0.1386843342125834,
+            "5": 0.3001442055851663
+          }
+        },
+        "e-30130": {
+          "mean": 3.370117,
+          "pmf": {
+            "1": 0.15757954398375115,
+            "2": 0.120505557678307,
+            "3": 0.22703243688622024,
+            "4": 0.18398315088954834,
+            "5": 0.3108993105621733
+          }
+        },
+        "page:primary": {
+          "mean": 3.347406,
+          "pmf": {
+            "1": 0.11987566711725102,
+            "2": 0.18096860549536464,
+            "3": 0.2116907883111024,
+            "4": 0.20680423019575986,
+            "5": 0.28066070888052214
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0014",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "repeat",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.472766,
+          "pmf": {
+            "1": 0.12305779149708439,
+            "2": 0.12143217602561003,
+            "3": 0.22679667428591221,
+            "4": 0.21711303616270194,
+            "5": 0.31160032202869137
+          }
+        },
+        "e-18125": {
+          "mean": 3.357578,
+          "pmf": {
+            "1": 0.12639831384539088,
+            "2": 0.15950363673896187,
+            "3": 0.1861821871067524,
+            "4": 0.28595328401328446,
+            "5": 0.24196257829561033
+          }
+        },
+        "e-37309": {
+          "mean": 3.255495,
+          "pmf": {
+            "1": 0.1618437411847247,
+            "2": 0.1330092222457185,
+            "3": 0.25378018160899957,
+            "4": 0.1905420086546933,
+            "5": 0.26082484630586394
+          }
+        },
+        "e-40298": {
+          "mean": 3.436652,
+          "pmf": {
+            "1": 0.1292545065976285,
+            "2": 0.11272304058305106,
+            "3": 0.23449480320680582,
+            "4": 0.23917161261281095,
+            "5": 0.28435603699970363
+          }
+        },
+        "e-23887": {
+          "mean": 3.332582,
+          "pmf": {
+            "1": 0.1425307868549575,
+            "2": 0.08391127109868908,
+            "3": 0.3136514972739702,
+            "4": 0.2182578178889324,
+            "5": 0.24164862688345087
+          }
+        },
+        "e-18103": {
+          "mean": 3.327382,
+          "pmf": {
+            "1": 0.1494252528799669,
+            "2": 0.10296276446292041,
+            "3": 0.3054115116858341,
+            "4": 0.15520578248318775,
+            "5": 0.2869946884880908
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.2899,
+          "pmf": {
+            "1": 0.15390061533139435,
+            "2": 0.12936493541272837,
+            "3": 0.26319117068561976,
+            "4": 0.18002017122069777,
+            "5": 0.2735231073495597
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 2.959578,
+          "pmf": {
+            "1": 0.18931265378765438,
+            "2": 0.20880098846057807,
+            "3": 0.25679600283229437,
+            "4": 0.14317607662582768,
+            "5": 0.2019142782936455
+          }
+        },
+        "e-30130": {
+          "mean": 3.359048,
+          "pmf": {
+            "1": 0.1442708607883047,
+            "2": 0.14169550123207217,
+            "3": 0.22045669278721938,
+            "4": 0.19786864536672952,
+            "5": 0.2957082998256743
+          }
+        },
+        "page:primary": {
+          "mean": 3.409863,
+          "pmf": {
+            "1": 0.13296693692519945,
+            "2": 0.13626147149056997,
+            "3": 0.22080381315563868,
+            "4": 0.20787722939920006,
+            "5": 0.3020905490293918
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0015",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "friends",
+        "budget_tier": "luxury",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.383307,
+          "pmf": {
+            "1": 0.15204023636531724,
+            "2": 0.11100559311594539,
+            "3": 0.22124068926409834,
+            "4": 0.23303360247724222,
+            "5": 0.2826798787773969
+          }
+        },
+        "e-18125": {
+          "mean": 3.609703,
+          "pmf": {
+            "1": 0.0795228075930803,
+            "2": 0.11020724768111018,
+            "3": 0.23307299977816506,
+            "4": 0.27543795920431885,
+            "5": 0.3017589857433256
+          }
+        },
+        "e-37309": {
+          "mean": 3.308305,
+          "pmf": {
+            "1": 0.15818040321532847,
+            "2": 0.08387529196000228,
+            "3": 0.2976449032822092,
+            "4": 0.21205734824790703,
+            "5": 0.24824205329455307
+          }
+        },
+        "e-40298": {
+          "mean": 3.320278,
+          "pmf": {
+            "1": 0.13803916380419567,
+            "2": 0.1639007555055122,
+            "3": 0.18374082620610058,
+            "4": 0.26838162092384693,
+            "5": 0.24593763356034462
+          }
+        },
+        "e-23887": {
+          "mean": 3.241796,
+          "pmf": {
+            "1": 0.1991094651091669,
+            "2": 0.049196082384045214,
+            "3": 0.2875203255209194,
+            "4": 0.2391368742666231,
+            "5": 0.22503725271924535
+          }
+        },
+        "e-18103": {
+          "mean": 3.462036,
+          "pmf": {
+            "1": 0.11295930907995162,
+            "2": 0.09292598760488065,
+            "3": 0.287298367603478,
+            "4": 0.23275162319114992,
+            "5": 0.2740647125205399
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.198549,
+          "pmf": {
+            "1": 0.20403821145856496,
+            "2": 0.12520573752236955,
+            "3": 0.21090787715942846,
+            "4": 0.18786506830833194,
+            "5": 0.2719831055513051
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.361171,
+          "pmf": {
+            "1": 0.15148688383239797,
+            "2": 0.14549643995085595,
+            "3": 0.16662556473694293,
+            "4": 0.2631407682106969,
+            "5": 0.2732503432691063
+          }
+        },
+        "e-30130": {
+          "mean": 3.397844,
+          "pmf": {
+            "1": 0.11790963709408968,
+            "2": 0.11176020953369636,
+            "3": 0.2880607891796044,
+            "4": 0.21911477637159973,
+            "5": 0.2631545878210098
+          }
+        },
+        "page:primary": {
+          "mean": 3.039249,
+          "pmf": {
+            "1": 0.273288773517802,
+            "2": 0.12007833734802269,
+            "3": 0.17356243018157647,
+            "4": 0.1602356995077596,
+            "5": 0.27283475944483926
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0016",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "app"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.266743,
+          "pmf": {
+            "1": 0.16900181567406236,
+            "2": 0.0982742367663559,
+            "3": 0.2666613909252806,
+            "4": 0.22910382346151228,
+            "5": 0.23695873317278893
+          }
+        },
+        "e-18125": {
+          "mean": 2.925564,
+          "pmf": {
+            "1": 0.24013523758793132,
+            "2": 0.18201853738566798,
+            "3": 0.16331788752210843,
+            "4": 0.24120382679131958,
+            "5": 0.17332451071297272
+          }
+        },
+        "e-37309": {
+          "mean": 3.302384,
+          "pmf": {
+            "1": 0.10726088219104672,
+            "2": 0.17158423089843847,
+            "3": 0.24554316061645806,
+            "4": 0.26273375570559226,
+            "5": 0.2128779705884645
+          }
+        },
+        "e-40298": {
+          "mean": 3.460389,
+          "pmf": {
+            "1": 0.10426222491849368,
+            "2": 0.14024944057971203,
+            "3": 0.21141480910830832,
+            "4": 0.27898414680383704,
+            "5": 0.2650893785896489
+          }
+        },
+        "e-23887": {
+          "mean": 3.453613,
+          "pmf": {
+            "1": 0.1050155353406826,
+            "2": 0.14445824232860482,
+            "3": 0.19299401950577835,
+            "4": 0.306962421863989,
+            "5": 0.25056978096094523
+          }
+        },
+        "e-18103": {
+          "mean": 3.586455,
+          "pmf": {
+            "1": 0.11106614191260918,
+            "2": 0.06255070344171974,
+            "3": 0.258412138092129,
+            "4": 0.26480389787531516,
+            "5": 0.303167118678227
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 2.951444,
+          "pmf": {
+            "1": 0.21401603054385265,
+            "2": 0.2130912391540357,
+            "3": 0.18350851913508423,
+            "4": 0.18620074398194622,
+            "5": 0.20318346718508126
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.358762,
+          "pmf": {
+            "1": 0.16135105548999026,
+            "2": 0.10718431024976742,
+            "3": 0.2300724575446346,
+            "4": 0.2141357289111099,
+            "5": 0.2872564478044978
+          }
+        },
+        "e-30130": {
+          "mean": 3.514478,
+          "pmf": {
+            "1": 0.1018077096061285,
+            "2": 0.1155082721834706,
+            "3": 0.2656150826945735,
+            "4": 0.20053582539993872,
+            "5": 0.31653311011588864
+          }
+        },
+        "page:primary": {
+          "mean": 3.005301,
+          "pmf": {
+            "1": 0.23190727951645038,
+            "2": 0.11402540992651033,
+            "3": 0.2829801891229838,
+            "4": 0.15903294385801334,
+            "5": 0.21205417757604217
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0017",
+      "attributes": {
+        "source_market": "Japan",
+        "age_band": "45-54",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.492839,
+          "pmf": {
+            "1": 0.10693664760510428,
+            "2": 0.127077580425113,
+            "3": 0.24276922895643646,
+            "4": 0.2126427733924349,
+            "5": 0.3105737696209114
+          }
+        },
+        "e-18125": {
+          "mean": 3.18353,
+          "pmf": {
+            "1": 0.1667355893900843,
+            "2": 0.2109164737625572,
+            "3": 0.12212336474930265,
+            "4": 0.27253162866128805,
+            "5": 0.22769294343676771
+          }
+        },
+        "e-37309": {
+          "mean": 3.363247,
+          "pmf": {
+            "1": 0.10523180354678398,
+            "2": 0.20241600768447243,
+            "3": 0.19023484466328375,
+            "4": 0.22810841115112282,
+            "5": 0.2740089329543371
+          }
+        },
+        "e-40298": {
+          "mean": 3.333301,
+          "pmf": {
+            "1": 0.13465287633921955,
+            "2": 0.1788774403829347,
+            "3": 0.1855408886122997,
+            "4": 0.2203734390217387,
+            "5": 0.28055535564380735
+          }
+        },
+        "e-23887": {
+          "mean": 3.56088,
+          "pmf": {
+            "1": 0.12061253486185593,
+            "2": 0.13459085327784884,
+            "3": 0.1229750618633758,
+            "4": 0.3069470639891246,
+            "5": 0.31487448600779483
+          }
+        },
+        "e-18103": {
+          "mean": 3.592197,
+          "pmf": {
+            "1": 0.08280942146377035,
+            "2": 0.06633381071706627,
+            "3": 0.33328444168577026,
+            "4": 0.21099530090912597,
+            "5": 0.30657702522426716
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.339845,
+          "pmf": {
+            "1": 0.1565580422914954,
+            "2": 0.13845460447171068,
+            "3": 0.19510821327169478,
+            "4": 0.2283423755073094,
+            "5": 0.28153676445778975
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.075839,
+          "pmf": {
+            "1": 0.14410268414762797,
+            "2": 0.24133684371248285,
+            "3": 0.23057024374818016,
+            "4": 0.16259924974115436,
+            "5": 0.22139097865055465
+          }
+        },
+        "e-30130": {
+          "mean": 2.641786,
+          "pmf": {
+            "1": 0.27881190892704855,
+            "2": 0.15040939757204919,
+            "3": 0.35158446561499607,
+            "4": 0.08856923996727635,
+            "5": 0.13062498791862973
+          }
+        },
+        "page:primary": {
+          "mean": 3.445517,
+          "pmf": {
+            "1": 0.14983935966076262,
+            "2": 0.14315057047527227,
+            "3": 0.14549038361215136,
+            "4": 0.23469331104248137,
+            "5": 0.32682637520933244
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0018",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "65+",
+        "trip_type": "friends",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.370748,
+          "pmf": {
+            "1": 0.1313892120547652,
+            "2": 0.14420191822502812,
+            "3": 0.20476717564165206,
+            "4": 0.2615550202915021,
+            "5": 0.2580866737870525
+          }
+        },
+        "e-18125": {
+          "mean": 3.626173,
+          "pmf": {
+            "1": 0.0957277733296449,
+            "2": 0.10290119844525965,
+            "3": 0.19533603822008652,
+            "4": 0.2915398224718571,
+            "5": 0.3144951675331518
+          }
+        },
+        "e-37309": {
+          "mean": 3.307365,
+          "pmf": {
+            "1": 0.13827448891782934,
+            "2": 0.1708174639718789,
+            "3": 0.20953453525740207,
+            "4": 0.20801546331391305,
+            "5": 0.2733580485389766
+          }
+        },
+        "e-40298": {
+          "mean": 3.102717,
+          "pmf": {
+            "1": 0.11942100445529757,
+            "2": 0.18514780991274235,
+            "3": 0.34827944215235956,
+            "4": 0.1675968272421199,
+            "5": 0.17955491623748057
+          }
+        },
+        "e-23887": {
+          "mean": 3.510874,
+          "pmf": {
+            "1": 0.12662499032520125,
+            "2": 0.08814231797239165,
+            "3": 0.20528468533180966,
+            "4": 0.30763007017820804,
+            "5": 0.27231793619238936
+          }
+        },
+        "e-18103": {
+          "mean": 3.500802,
+          "pmf": {
+            "1": 0.1051453089468365,
+            "2": 0.12741094214450063,
+            "3": 0.2480540039618686,
+            "4": 0.20027591394693597,
+            "5": 0.3191138309998584
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.166757,
+          "pmf": {
+            "1": 0.18795589085840073,
+            "2": 0.15068335059251314,
+            "3": 0.22539701923639507,
+            "4": 0.1785753579780245,
+            "5": 0.2573883813346665
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 2.806142,
+          "pmf": {
+            "1": 0.16148093332840063,
+            "2": 0.3370496826065877,
+            "3": 0.18259205552479563,
+            "4": 0.17160082394458767,
+            "5": 0.14727650459562838
+          }
+        },
+        "e-30130": {
+          "mean": 3.322339,
+          "pmf": {
+            "1": 0.15104544213859045,
+            "2": 0.148438081992861,
+            "3": 0.1557350750049189,
+            "4": 0.316694379679131,
+            "5": 0.22808702118449867
+          }
+        },
+        "page:primary": {
+          "mean": 3.402453,
+          "pmf": {
+            "1": 0.13701956075384422,
+            "2": 0.12860543803530014,
+            "3": 0.20937992885904141,
+            "4": 0.2448926278074852,
+            "5": 0.28010244454432903
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0019",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "mobility",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.492558,
+          "pmf": {
+            "1": 0.10763806498171347,
+            "2": 0.10078136020126638,
+            "3": 0.240056732639363,
+            "4": 0.2944322753574269,
+            "5": 0.25709156682023027
+          }
+        },
+        "e-18125": {
+          "mean": 3.600709,
+          "pmf": {
+            "1": 0.09515222524494454,
+            "2": 0.08689800400333181,
+            "3": 0.20840763290368733,
+            "4": 0.34117233632125754,
+            "5": 0.2683698015267788
+          }
+        },
+        "e-37309": {
+          "mean": 3.500156,
+          "pmf": {
+            "1": 0.10704154888870553,
+            "2": 0.1475959892247816,
+            "3": 0.19659608679664187,
+            "4": 0.23569737362983287,
+            "5": 0.3130690014600381
+          }
+        },
+        "e-40298": {
+          "mean": 3.415512,
+          "pmf": {
+            "1": 0.11003598325665424,
+            "2": 0.14987833326007285,
+            "3": 0.21179538681991442,
+            "4": 0.27111818572047075,
+            "5": 0.25717211094288767
+          }
+        },
+        "e-23887": {
+          "mean": 3.5047,
+          "pmf": {
+            "1": 0.11372421985913017,
+            "2": 0.11862711128038454,
+            "3": 0.23380348286958538,
+            "4": 0.2169146835530389,
+            "5": 0.31693050243786103
+          }
+        },
+        "e-18103": {
+          "mean": 3.204154,
+          "pmf": {
+            "1": 0.16730035194708492,
+            "2": 0.08146590564194128,
+            "3": 0.34068013330922287,
+            "4": 0.2008867215963096,
+            "5": 0.2096668875054413
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.403026,
+          "pmf": {
+            "1": 0.1305102330304786,
+            "2": 0.13126604146059406,
+            "3": 0.19188079706084818,
+            "4": 0.2973738232026148,
+            "5": 0.24896910524546442
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.484688,
+          "pmf": {
+            "1": 0.14862185635403957,
+            "2": 0.08131946226956202,
+            "3": 0.20831261421916739,
+            "4": 0.260240680029503,
+            "5": 0.301505387127728
+          }
+        },
+        "e-30130": {
+          "mean": 3.520406,
+          "pmf": {
+            "1": 0.10687295042811167,
+            "2": 0.15421032181848868,
+            "3": 0.15953442326939257,
+            "4": 0.27040210925113356,
+            "5": 0.3089801952328735
+          }
+        },
+        "page:primary": {
+          "mean": 3.378138,
+          "pmf": {
+            "1": 0.14829609388329507,
+            "2": 0.10962534551634662,
+            "3": 0.2352458614277829,
+            "4": 0.22930997445174248,
+            "5": 0.27752272472083295
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0020",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "budget",
+        "planning_horizon": "months_1_3",
+        "experience": "repeat",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.501128,
+          "pmf": {
+            "1": 0.12502011588356554,
+            "2": 0.0964815936890933,
+            "3": 0.25033858802010595,
+            "4": 0.20866982081408156,
+            "5": 0.3194898815931537
+          }
+        },
+        "e-18125": {
+          "mean": 3.659027,
+          "pmf": {
+            "1": 0.08513849684773193,
+            "2": 0.08675062455515148,
+            "3": 0.21423859007865065,
+            "4": 0.31168997186566794,
+            "5": 0.302182316652798
+          }
+        },
+        "e-37309": {
+          "mean": 3.523112,
+          "pmf": {
+            "1": 0.10251979431199831,
+            "2": 0.14885439217261098,
+            "3": 0.18860971516246608,
+            "4": 0.24302610769493813,
+            "5": 0.3169899906579865
+          }
+        },
+        "e-40298": {
+          "mean": 3.514281,
+          "pmf": {
+            "1": 0.11073440374951384,
+            "2": 0.10822357884233667,
+            "3": 0.23394234649615195,
+            "4": 0.2502264359573585,
+            "5": 0.296873234954639
+          }
+        },
+        "e-23887": {
+          "mean": 3.381419,
+          "pmf": {
+            "1": 0.16946391735376434,
+            "2": 0.038940548333845325,
+            "3": 0.3008427004726788,
+            "4": 0.22221795837532,
+            "5": 0.2685348754643915
+          }
+        },
+        "e-18103": {
+          "mean": 3.439268,
+          "pmf": {
+            "1": 0.11762428549818367,
+            "2": 0.15097139761964268,
+            "3": 0.20708968881911768,
+            "4": 0.22314079386673422,
+            "5": 0.3011738341963217
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.346178,
+          "pmf": {
+            "1": 0.15760790084919418,
+            "2": 0.11871749251335297,
+            "3": 0.23031256404175338,
+            "4": 0.20661279137859231,
+            "5": 0.28674925121710715
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.521343,
+          "pmf": {
+            "1": 0.12954824423823663,
+            "2": 0.10925008734894819,
+            "3": 0.19366510582923865,
+            "4": 0.2453837706010882,
+            "5": 0.32215279198248825
+          }
+        },
+        "e-30130": {
+          "mean": 3.232274,
+          "pmf": {
+            "1": 0.14941234843377338,
+            "2": 0.15203680473047854,
+            "3": 0.25202817801939026,
+            "4": 0.2099101717063272,
+            "5": 0.23661249711003063
+          }
+        },
+        "page:primary": {
+          "mean": 3.558086,
+          "pmf": {
+            "1": 0.0944046439570871,
+            "2": 0.11963476524522666,
+            "3": 0.22710874381478321,
+            "4": 0.25117314658875217,
+            "5": 0.3076787003941508
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0021",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "45-54",
+        "trip_type": "friends",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.544579,
+          "pmf": {
+            "1": 0.0942049203403651,
+            "2": 0.11051002123811011,
+            "3": 0.24106225433247785,
+            "4": 0.26494661016069704,
+            "5": 0.2892761939283499
+          }
+        },
+        "e-18125": {
+          "mean": 3.496901,
+          "pmf": {
+            "1": 0.1092280549145755,
+            "2": 0.13457129570834445,
+            "3": 0.16759102948518134,
+            "4": 0.327291122248106,
+            "5": 0.2613184976437927
+          }
+        },
+        "e-37309": {
+          "mean": 3.408176,
+          "pmf": {
+            "1": 0.08528805587326098,
+            "2": 0.18420232714697796,
+            "3": 0.23696117483568654,
+            "4": 0.2241428754636785,
+            "5": 0.2694055666803961
+          }
+        },
+        "e-40298": {
+          "mean": 3.463929,
+          "pmf": {
+            "1": 0.10216195604963663,
+            "2": 0.1524864844505647,
+            "3": 0.2234277287565659,
+            "4": 0.22310865659632473,
+            "5": 0.298815174146908
+          }
+        },
+        "e-23887": {
+          "mean": 3.577928,
+          "pmf": {
+            "1": 0.10445726431187503,
+            "2": 0.10170727248953193,
+            "3": 0.23214166940051947,
+            "4": 0.23483782955292123,
+            "5": 0.32685596424515234
+          }
+        },
+        "e-18103": {
+          "mean": 3.64222,
+          "pmf": {
+            "1": 0.08637112776639853,
+            "2": 0.052191534405516465,
+            "3": 0.28544476077284486,
+            "4": 0.2848310884263107,
+            "5": 0.29116148862892943
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.282586,
+          "pmf": {
+            "1": 0.171500904273549,
+            "2": 0.12110145623797601,
+            "3": 0.23116758999941087,
+            "4": 0.2057710094317224,
+            "5": 0.2704590400573417
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.460698,
+          "pmf": {
+            "1": 0.12816531130861525,
+            "2": 0.1395297849232379,
+            "3": 0.1720794393337778,
+            "4": 0.26389216368022317,
+            "5": 0.29633330075414577
+          }
+        },
+        "e-30130": {
+          "mean": 3.367729,
+          "pmf": {
+            "1": 0.11067961310723436,
+            "2": 0.12717292661795718,
+            "3": 0.3071493599143438,
+            "4": 0.19373470227736264,
+            "5": 0.26126339808310206
+          }
+        },
+        "page:primary": {
+          "mean": 3.574295,
+          "pmf": {
+            "1": 0.09944950134265446,
+            "2": 0.1267692467131513,
+            "3": 0.19488122440181552,
+            "4": 0.25783719707276476,
+            "5": 0.321062830469614
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0022",
+      "attributes": {
+        "source_market": "India",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.541496,
+          "pmf": {
+            "1": 0.121536088180065,
+            "2": 0.07748878356111351,
+            "3": 0.22454917237283786,
+            "4": 0.29079496402863164,
+            "5": 0.28563099185735197
+          }
+        },
+        "e-18125": {
+          "mean": 3.393834,
+          "pmf": {
+            "1": 0.11943863943528593,
+            "2": 0.12429779865756845,
+            "3": 0.2600605803171457,
+            "4": 0.23539696203206809,
+            "5": 0.26080601955793187
+          }
+        },
+        "e-37309": {
+          "mean": 3.467816,
+          "pmf": {
+            "1": 0.11372044314301254,
+            "2": 0.1439339639292611,
+            "3": 0.17887111064144015,
+            "4": 0.2877586017041947,
+            "5": 0.27571588058209145
+          }
+        },
+        "e-40298": {
+          "mean": 3.274816,
+          "pmf": {
+            "1": 0.1208512200456137,
+            "2": 0.17496045302289218,
+            "3": 0.25090348234864585,
+            "4": 0.21509060980415995,
+            "5": 0.2381942347786883
+          }
+        },
+        "e-23887": {
+          "mean": 3.050135,
+          "pmf": {
+            "1": 0.19361293188768036,
+            "2": 0.15349968439637954,
+            "3": 0.2666222874835402,
+            "4": 0.1816695860851333,
+            "5": 0.2045955101472665
+          }
+        },
+        "e-18103": {
+          "mean": 3.391517,
+          "pmf": {
+            "1": 0.10813733835334953,
+            "2": 0.1487072054721668,
+            "3": 0.24778676405105762,
+            "4": 0.23423846148487884,
+            "5": 0.2611302306385471
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 2.944781,
+          "pmf": {
+            "1": 0.22703523408059625,
+            "2": 0.19103036257604197,
+            "3": 0.19686637103927465,
+            "4": 0.1802545914202706,
+            "5": 0.20481344088381648
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.168432,
+          "pmf": {
+            "1": 0.1756972769093705,
+            "2": 0.16155794302915344,
+            "3": 0.19824343772194916,
+            "4": 0.24761808011416972,
+            "5": 0.21688326222535717
+          }
+        },
+        "e-30130": {
+          "mean": 3.483782,
+          "pmf": {
+            "1": 0.09564306174152305,
+            "2": 0.11643644560411082,
+            "3": 0.26927634444099396,
+            "4": 0.2457839597529794,
+            "5": 0.27286018846039284
+          }
+        },
+        "page:primary": {
+          "mean": 3.142667,
+          "pmf": {
+            "1": 0.19528262175458175,
+            "2": 0.13973552048435442,
+            "3": 0.25763533589207105,
+            "4": 0.1417251466024378,
+            "5": 0.26562137526655505
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0023",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "55-64",
+        "trip_type": "friends",
+        "budget_tier": "mid",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.492945,
+          "pmf": {
+            "1": 0.07948896057482797,
+            "2": 0.13777899131762741,
+            "3": 0.278900564600647,
+            "4": 0.21796070656488245,
+            "5": 0.2858707769420152
+          }
+        },
+        "e-18125": {
+          "mean": 3.413549,
+          "pmf": {
+            "1": 0.14254996507827802,
+            "2": 0.12568365591958525,
+            "3": 0.1707737435812502,
+            "4": 0.29765300448244186,
+            "5": 0.2633396309384447
+          }
+        },
+        "e-37309": {
+          "mean": 3.272926,
+          "pmf": {
+            "1": 0.1160211224796611,
+            "2": 0.1683004463927454,
+            "3": 0.26095325307388095,
+            "4": 0.23618211231861386,
+            "5": 0.2185430657350987
+          }
+        },
+        "e-40298": {
+          "mean": 3.544862,
+          "pmf": {
+            "1": 0.10594294521876903,
+            "2": 0.1321794634420643,
+            "3": 0.2005843611211462,
+            "4": 0.23365959609709064,
+            "5": 0.32763363412092983
+          }
+        },
+        "e-23887": {
+          "mean": 3.45244,
+          "pmf": {
+            "1": 0.11519463692567822,
+            "2": 0.09483221617878633,
+            "3": 0.27739781799738267,
+            "4": 0.24748938318028643,
+            "5": 0.2650859457178664
+          }
+        },
+        "e-18103": {
+          "mean": 3.360949,
+          "pmf": {
+            "1": 0.1415416116811082,
+            "2": 0.11565600417388151,
+            "3": 0.2580774388045373,
+            "4": 0.20976122951036721,
+            "5": 0.2749637158301057
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 2.95659,
+          "pmf": {
+            "1": 0.2115477325371364,
+            "2": 0.16774072039583796,
+            "3": 0.26360436196503706,
+            "4": 0.16678853852329342,
+            "5": 0.1903186465786951
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.22727,
+          "pmf": {
+            "1": 0.14701504352666364,
+            "2": 0.16327691303125336,
+            "3": 0.25990275816357444,
+            "4": 0.17503364965480786,
+            "5": 0.2547716356237007
+          }
+        },
+        "e-30130": {
+          "mean": 3.365538,
+          "pmf": {
+            "1": 0.13181361458730004,
+            "2": 0.13229457413257753,
+            "3": 0.26382158301465447,
+            "4": 0.18268099193914553,
+            "5": 0.2893892363263224
+          }
+        },
+        "page:primary": {
+          "mean": 3.250841,
+          "pmf": {
+            "1": 0.15727355264329693,
+            "2": 0.1494278380163757,
+            "3": 0.2378202151133756,
+            "4": 0.19614103628498572,
+            "5": 0.259337357941966
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0024",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "65+",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.479117,
+          "pmf": {
+            "1": 0.10656748476840511,
+            "2": 0.12316069833111927,
+            "3": 0.25288430524556854,
+            "4": 0.2193628088021856,
+            "5": 0.2980247028527215
+          }
+        },
+        "e-18125": {
+          "mean": 3.543404,
+          "pmf": {
+            "1": 0.10435061329990736,
+            "2": 0.10061872396307155,
+            "3": 0.2223038364586709,
+            "4": 0.29272923111363186,
+            "5": 0.2799975951647182
+          }
+        },
+        "e-37309": {
+          "mean": 3.358888,
+          "pmf": {
+            "1": 0.13282924905776725,
+            "2": 0.14011611176506528,
+            "3": 0.23040618195930088,
+            "4": 0.22863454525258917,
+            "5": 0.2680139119652775
+          }
+        },
+        "e-40298": {
+          "mean": 3.40344,
+          "pmf": {
+            "1": 0.10542112915600882,
+            "2": 0.15753295656909366,
+            "3": 0.23017564020281644,
+            "4": 0.24192492596465176,
+            "5": 0.2649453481074293
+          }
+        },
+        "e-23887": {
+          "mean": 3.506881,
+          "pmf": {
+            "1": 0.11977417080918468,
+            "2": 0.06171955027604733,
+            "3": 0.27045920295580306,
+            "4": 0.2879448340027196,
+            "5": 0.2601022419562454
+          }
+        },
+        "e-18103": {
+          "mean": 3.348698,
+          "pmf": {
+            "1": 0.1257738759547352,
+            "2": 0.1553009386454551,
+            "3": 0.21808403324759948,
+            "4": 0.24613610494528104,
+            "5": 0.2547050472069292
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.365931,
+          "pmf": {
+            "1": 0.14145961634568244,
+            "2": 0.13141227183422008,
+            "3": 0.20485017374461512,
+            "4": 0.2642929172966952,
+            "5": 0.25798502077878727
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.097876,
+          "pmf": {
+            "1": 0.2056661502440813,
+            "2": 0.17617959171186393,
+            "3": 0.17333814883315815,
+            "4": 0.20424475122907806,
+            "5": 0.24057135798181853
+          }
+        },
+        "e-30130": {
+          "mean": 3.596212,
+          "pmf": {
+            "1": 0.09880707514964322,
+            "2": 0.09994860639546317,
+            "3": 0.2576057138819099,
+            "4": 0.1935021475017169,
+            "5": 0.3501364570712668
+          }
+        },
+        "page:primary": {
+          "mean": 3.296227,
+          "pmf": {
+            "1": 0.17450589653744453,
+            "2": 0.12706097920247147,
+            "3": 0.20927414673878,
+            "4": 0.20601787486295045,
+            "5": 0.2831411026583535
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0025",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "35-44",
+        "trip_type": "solo",
+        "budget_tier": "premium",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.448049,
+          "pmf": {
+            "1": 0.089557678472074,
+            "2": 0.14849667417867626,
+            "3": 0.25569233654859297,
+            "4": 0.23684556685161404,
+            "5": 0.2694077439490427
+          }
+        },
+        "e-18125": {
+          "mean": 3.417229,
+          "pmf": {
+            "1": 0.11709856902642886,
+            "2": 0.11147295923053328,
+            "3": 0.25050552350756256,
+            "4": 0.2789469507133038,
+            "5": 0.24197599752217158
+          }
+        },
+        "e-37309": {
+          "mean": 3.681751,
+          "pmf": {
+            "1": 0.07700334606682682,
+            "2": 0.13538034121104153,
+            "3": 0.16664353372517757,
+            "4": 0.27080753411803493,
+            "5": 0.35016524487891915
+          }
+        },
+        "e-40298": {
+          "mean": 3.561679,
+          "pmf": {
+            "1": 0.09282388066511395,
+            "2": 0.09579243051647719,
+            "3": 0.25259073486042055,
+            "4": 0.27446631344971817,
+            "5": 0.2843266405082701
+          }
+        },
+        "e-23887": {
+          "mean": 3.26561,
+          "pmf": {
+            "1": 0.1762016076861527,
+            "2": 0.04156038373349046,
+            "3": 0.31266868403768394,
+            "4": 0.2795651322205052,
+            "5": 0.19000419232216767
+          }
+        },
+        "e-18103": {
+          "mean": 3.50751,
+          "pmf": {
+            "1": 0.10408748642255661,
+            "2": 0.060583492691592696,
+            "3": 0.31203555847538084,
+            "4": 0.2703185141731901,
+            "5": 0.25297494823727973
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.283915,
+          "pmf": {
+            "1": 0.17583728424494663,
+            "2": 0.11451538108092722,
+            "3": 0.21988546833270164,
+            "4": 0.22941856689681694,
+            "5": 0.2603432994446075
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.206286,
+          "pmf": {
+            "1": 0.20808237457747822,
+            "2": 0.13146856899867967,
+            "3": 0.18744641732894637,
+            "4": 0.19208588723808473,
+            "5": 0.28091675185681103
+          }
+        },
+        "e-30130": {
+          "mean": 3.512932,
+          "pmf": {
+            "1": 0.1014714402458509,
+            "2": 0.14194382302594166,
+            "3": 0.19468630238915205,
+            "4": 0.2659778289297184,
+            "5": 0.295920605409337
+          }
+        },
+        "page:primary": {
+          "mean": 3.271591,
+          "pmf": {
+            "1": 0.1812266849861139,
+            "2": 0.14571826189573137,
+            "3": 0.18297221144213904,
+            "4": 0.20040294041068654,
+            "5": 0.28967990126532916
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0026",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "35-44",
+        "trip_type": "family_with_kids",
+        "budget_tier": "budget",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.153395,
+          "pmf": {
+            "1": 0.19328122898847108,
+            "2": 0.1757054216211186,
+            "3": 0.18487426828912726,
+            "4": 0.17661503670429324,
+            "5": 0.2695240443969898
+          }
+        },
+        "e-18125": {
+          "mean": 3.189359,
+          "pmf": {
+            "1": 0.18276622870388212,
+            "2": 0.1679889584041088,
+            "3": 0.20455921431677668,
+            "4": 0.16649069869220015,
+            "5": 0.2781948998830323
+          }
+        },
+        "e-37309": {
+          "mean": 3.375652,
+          "pmf": {
+            "1": 0.12156940626337792,
+            "2": 0.1653040314841723,
+            "3": 0.1977509188034965,
+            "4": 0.24665670901645673,
+            "5": 0.26871893443249656
+          }
+        },
+        "e-40298": {
+          "mean": 3.457868,
+          "pmf": {
+            "1": 0.14423947558690678,
+            "2": 0.10180340008788208,
+            "3": 0.23416788212503792,
+            "4": 0.19142845654731142,
+            "5": 0.3283607856528618
+          }
+        },
+        "e-23887": {
+          "mean": 3.312957,
+          "pmf": {
+            "1": 0.13168591409941524,
+            "2": 0.16332885222899277,
+            "3": 0.21759725452153822,
+            "4": 0.2351183083741343,
+            "5": 0.2522696707759195
+          }
+        },
+        "e-18103": {
+          "mean": 3.157033,
+          "pmf": {
+            "1": 0.19498516613941944,
+            "2": 0.14852859785199354,
+            "3": 0.231299711346891,
+            "4": 0.1548407884609714,
+            "5": 0.2703457362007246
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.182619,
+          "pmf": {
+            "1": 0.19210799369269516,
+            "2": 0.17007122590145077,
+            "3": 0.1736707017871922,
+            "4": 0.1913937894401148,
+            "5": 0.272756289178547
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.419189,
+          "pmf": {
+            "1": 0.13785799561596418,
+            "2": 0.13644420799593615,
+            "3": 0.21779128867331943,
+            "4": 0.1844633489618939,
+            "5": 0.3234431587528864
+          }
+        },
+        "e-30130": {
+          "mean": 3.378767,
+          "pmf": {
+            "1": 0.14772493148433374,
+            "2": 0.14341615392496188,
+            "3": 0.1826255967947312,
+            "4": 0.23483366843279999,
+            "5": 0.2913996493631732
+          }
+        },
+        "page:primary": {
+          "mean": 3.021306,
+          "pmf": {
+            "1": 0.1987016697235966,
+            "2": 0.22426912806571556,
+            "3": 0.16438258020378266,
+            "4": 0.18231433723655757,
+            "5": 0.23033228477034765
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0027",
+      "attributes": {
+        "source_market": "New Zealand",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.610031,
+          "pmf": {
+            "1": 0.08629179848585501,
+            "2": 0.129678467606036,
+            "3": 0.19742072115826226,
+            "4": 0.26092456191853086,
+            "5": 0.32568445083131586
+          }
+        },
+        "e-18125": {
+          "mean": 3.431274,
+          "pmf": {
+            "1": 0.13289769717377167,
+            "2": 0.07628336922653654,
+            "3": 0.2700784762477982,
+            "4": 0.2681283446850518,
+            "5": 0.25261211266684175
+          }
+        },
+        "e-37309": {
+          "mean": 3.588889,
+          "pmf": {
+            "1": 0.08429364365611537,
+            "2": 0.16764694445878445,
+            "3": 0.14744996654232675,
+            "4": 0.27609602208153666,
+            "5": 0.3245134232612368
+          }
+        },
+        "e-40298": {
+          "mean": 3.367536,
+          "pmf": {
+            "1": 0.08759167966355208,
+            "2": 0.12667239230304247,
+            "3": 0.3662929993329069,
+            "4": 0.16949443446611437,
+            "5": 0.24994849423438417
+          }
+        },
+        "e-23887": {
+          "mean": 3.643192,
+          "pmf": {
+            "1": 0.08645454499756537,
+            "2": 0.06221165940136673,
+            "3": 0.2569161679313488,
+            "4": 0.3105220718867681,
+            "5": 0.28389555578295095
+          }
+        },
+        "e-18103": {
+          "mean": 3.573419,
+          "pmf": {
+            "1": 0.11309975173739674,
+            "2": 0.052001256384323534,
+            "3": 0.27832072735456176,
+            "4": 0.26153640325109806,
+            "5": 0.2950418612726199
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.225053,
+          "pmf": {
+            "1": 0.18375745928752243,
+            "2": 0.1586778193693422,
+            "3": 0.19268510427354135,
+            "4": 0.1785133904719136,
+            "5": 0.28636622659768035
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.516646,
+          "pmf": {
+            "1": 0.10342711556367046,
+            "2": 0.1533806696196777,
+            "3": 0.1808912741556142,
+            "4": 0.24772093453731514,
+            "5": 0.31458000612372256
+          }
+        },
+        "e-30130": {
+          "mean": 3.445707,
+          "pmf": {
+            "1": 0.09791787796319841,
+            "2": 0.1311412113896183,
+            "3": 0.2631087140089486,
+            "4": 0.24298051527554407,
+            "5": 0.2648516813626907
+          }
+        },
+        "page:primary": {
+          "mean": 3.242089,
+          "pmf": {
+            "1": 0.16728849186044614,
+            "2": 0.14612729358389107,
+            "3": 0.25408771305928063,
+            "4": 0.14219990373861321,
+            "5": 0.29029659775776895
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0028",
+      "attributes": {
+        "source_market": "New Zealand",
+        "age_band": "35-44",
+        "trip_type": "family_with_kids",
+        "budget_tier": "premium",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.606019,
+          "pmf": {
+            "1": 0.10634527447444993,
+            "2": 0.08550471090274288,
+            "3": 0.22735136852607107,
+            "4": 0.25738292235271426,
+            "5": 0.32341572374402183
+          }
+        },
+        "e-18125": {
+          "mean": 3.692436,
+          "pmf": {
+            "1": 0.09148993845126775,
+            "2": 0.08816151783775561,
+            "3": 0.19224700117203722,
+            "4": 0.29262562741752934,
+            "5": 0.3354759151214101
+          }
+        },
+        "e-37309": {
+          "mean": 3.580311,
+          "pmf": {
+            "1": 0.09135396570517638,
+            "2": 0.16896178481863336,
+            "3": 0.1370477270396612,
+            "4": 0.27329225361215276,
+            "5": 0.3293442688243763
+          }
+        },
+        "e-40298": {
+          "mean": 3.427666,
+          "pmf": {
+            "1": 0.08746901210361412,
+            "2": 0.15319311467693572,
+            "3": 0.2473260793744099,
+            "4": 0.26822681412507793,
+            "5": 0.24378497971996227
+          }
+        },
+        "e-23887": {
+          "mean": 3.43083,
+          "pmf": {
+            "1": 0.13030624280519362,
+            "2": 0.09540167563499395,
+            "3": 0.26140442366019073,
+            "4": 0.23893134570281482,
+            "5": 0.27395631219680683
+          }
+        },
+        "e-18103": {
+          "mean": 3.459323,
+          "pmf": {
+            "1": 0.12133788313771676,
+            "2": 0.09523623385370845,
+            "3": 0.27289907358722837,
+            "4": 0.2238184648403936,
+            "5": 0.2867083445809528
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.271512,
+          "pmf": {
+            "1": 0.1767794483279884,
+            "2": 0.1408108426859187,
+            "3": 0.19855085130500474,
+            "4": 0.20183608900639805,
+            "5": 0.2820227686746901
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.313626,
+          "pmf": {
+            "1": 0.17804046184786806,
+            "2": 0.13297795691078768,
+            "3": 0.179976706779153,
+            "4": 0.21532499035069433,
+            "5": 0.293679884111497
+          }
+        },
+        "e-30130": {
+          "mean": 3.277841,
+          "pmf": {
+            "1": 0.07556552585205424,
+            "2": 0.18237132696963157,
+            "3": 0.2564764088504692,
+            "4": 0.3598297995650053,
+            "5": 0.12575693876283964
+          }
+        },
+        "page:primary": {
+          "mean": 3.240562,
+          "pmf": {
+            "1": 0.1696253042669942,
+            "2": 0.12784422296070033,
+            "3": 0.24991822020188367,
+            "4": 0.19756782723503394,
+            "5": 0.2550444253353878
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0029",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "repeat",
+        "accessibility": "mobility",
+        "device_channel": "app"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.433381,
+          "pmf": {
+            "1": 0.1174693158771239,
+            "2": 0.12506980723907143,
+            "3": 0.2262231124521069,
+            "4": 0.2690856939255786,
+            "5": 0.2621520705061192
+          }
+        },
+        "e-18125": {
+          "mean": 3.639296,
+          "pmf": {
+            "1": 0.0796790199391612,
+            "2": 0.11406521308649004,
+            "3": 0.22721373306786788,
+            "4": 0.2453644820473551,
+            "5": 0.33367755185912573
+          }
+        },
+        "e-37309": {
+          "mean": 3.345219,
+          "pmf": {
+            "1": 0.14388303765478394,
+            "2": 0.1514487935874519,
+            "3": 0.1960549070163491,
+            "4": 0.2327926323544074,
+            "5": 0.27582062938700774
+          }
+        },
+        "e-40298": {
+          "mean": 3.367456,
+          "pmf": {
+            "1": 0.0931485287996338,
+            "2": 0.16393170495948237,
+            "3": 0.28718983402146264,
+            "4": 0.19377467676644736,
+            "5": 0.2619552554529739
+          }
+        },
+        "e-23887": {
+          "mean": 3.463917,
+          "pmf": {
+            "1": 0.1360740048827689,
+            "2": 0.10821619993682081,
+            "3": 0.1971400107391512,
+            "4": 0.27285810134066607,
+            "5": 0.2857116831005931
+          }
+        },
+        "e-18103": {
+          "mean": 3.087716,
+          "pmf": {
+            "1": 0.23056861789356256,
+            "2": 0.11526967467542869,
+            "3": 0.21085614098277886,
+            "4": 0.22248786765855452,
+            "5": 0.22081769878967542
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.357602,
+          "pmf": {
+            "1": 0.1508633925482594,
+            "2": 0.10866307524198134,
+            "3": 0.22520410861118031,
+            "4": 0.2625465395433047,
+            "5": 0.25272288405527427
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 3.136899,
+          "pmf": {
+            "1": 0.19811113391685697,
+            "2": 0.1561642506735115,
+            "3": 0.19340078579772735,
+            "4": 0.21536217569275803,
+            "5": 0.23696165391914611
+          }
+        },
+        "e-30130": {
+          "mean": 3.561581,
+          "pmf": {
+            "1": 0.10083565749163938,
+            "2": 0.1333080422159577,
+            "3": 0.18551012598127936,
+            "4": 0.2641321095779253,
+            "5": 0.31621406473319813
+          }
+        },
+        "page:primary": {
+          "mean": 3.331949,
+          "pmf": {
+            "1": 0.16138980057119473,
+            "2": 0.1378829259470744,
+            "3": 0.1901007345198569,
+            "4": 0.22864153855085687,
+            "5": 0.28198500041101704
+          }
+        }
+      }
+    },
+    {
+      "persona_id": "p0030",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-29695": {
+          "mean": 3.417617,
+          "pmf": {
+            "1": 0.13683339293136154,
+            "2": 0.1451424933233376,
+            "3": 0.1940830567746501,
+            "4": 0.2114558979939772,
+            "5": 0.31248515897667356
+          }
+        },
+        "e-18125": {
+          "mean": 3.39274,
+          "pmf": {
+            "1": 0.1366910530307969,
+            "2": 0.1536632658054305,
+            "3": 0.158483326092945,
+            "4": 0.28253885473363555,
+            "5": 0.268623500337192
+          }
+        },
+        "e-37309": {
+          "mean": 3.43211,
+          "pmf": {
+            "1": 0.12291503608571337,
+            "2": 0.1377343260926753,
+            "3": 0.20473383377802723,
+            "4": 0.2535595652666348,
+            "5": 0.28105723877694927
+          }
+        },
+        "e-40298": {
+          "mean": 3.457698,
+          "pmf": {
+            "1": 0.1352594047388712,
+            "2": 0.11227782218314114,
+            "3": 0.20205397362452873,
+            "4": 0.2603227586254263,
+            "5": 0.2900860408280326
+          }
+        },
+        "e-23887": {
+          "mean": 3.352027,
+          "pmf": {
+            "1": 0.10066294316067832,
+            "2": 0.1666255527055592,
+            "3": 0.27162160364598625,
+            "4": 0.20220169829800286,
+            "5": 0.2588882021897733
+          }
+        },
+        "e-18103": {
+          "mean": 3.36839,
+          "pmf": {
+            "1": 0.12275003867020921,
+            "2": 0.14475532424943335,
+            "3": 0.25287208298994307,
+            "4": 0.20060014726474318,
+            "5": 0.2790224068256712
+          }
+        },
+        "milford-fly-cruise": {
+          "mean": 3.26983,
+          "pmf": {
+            "1": 0.15833621462013897,
+            "2": 0.15414519101463287,
+            "3": 0.21085295371292376,
+            "4": 0.21268363549673222,
+            "5": 0.2639820051555722
+          }
+        },
+        "milford-pure-queenstown": {
+          "mean": 2.842796,
+          "pmf": {
+            "1": 0.17955166312113272,
+            "2": 0.3046744146543281,
+            "3": 0.16653701038907878,
+            "4": 0.1918999177364218,
+            "5": 0.15733699409903856
+          }
+        },
+        "e-30130": {
+          "mean": 3.327049,
+          "pmf": {
+            "1": 0.1379848055260382,
+            "2": 0.1469184566227405,
+            "3": 0.24083312520954384,
+            "4": 0.19859023229038786,
+            "5": 0.2756733803512897
+          }
+        },
+        "page:primary": {
+          "mean": 3.533108,
+          "pmf": {
+            "1": 0.13496601300959912,
+            "2": 0.10216696484967781,
+            "3": 0.23039329021680324,
+            "4": 0.15974021917039258,
+            "5": 0.37273351275352723
+          }
+        }
+      }
+    }
+  ],
+  "sensitivity": {
+    "status": "ok",
+    "n_personas": 30,
+    "n_scenarios": 80,
+    "n_dirichlet": 40,
+    "shift": 0.2,
+    "concentration": 50.0,
+    "seed": 7,
+    "unreliable_scenarios": [],
+    "small_cells": [
+      {
+        "axis": "trip_type",
+        "level": "solo",
+        "n": 6,
+        "base_weight": 0.16,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 64,
+        "message": "trip_type=solo has 6 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "trip_type",
+        "level": "family_with_kids",
+        "n": 6,
+        "base_weight": 0.26,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 28,
+        "message": "trip_type=family_with_kids has 6 personas in a panel of 30 (design weight 26%). That is too few to reweight reliably. Sample about 28 more personas (panel size 58) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "trip_type",
+        "level": "friends",
+        "n": 7,
+        "base_weight": 0.22,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 39,
+        "message": "trip_type=friends has 7 personas in a panel of 30 (design weight 22%). That is too few to reweight reliably. Sample about 39 more personas (panel size 69) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "budget_tier",
+        "level": "budget",
+        "n": 4,
+        "base_weight": 0.28,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 24,
+        "message": "budget_tier=budget has 4 personas in a panel of 30 (design weight 28%). That is too few to reweight reliably. Sample about 24 more personas (panel size 54) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "budget_tier",
+        "level": "luxury",
+        "n": 5,
+        "base_weight": 0.08,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 158,
+        "message": "budget_tier=luxury has 5 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "United States",
+        "n": 3,
+        "base_weight": 0.16,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 64,
+        "message": "source_market=United States has 3 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "United Kingdom",
+        "n": 4,
+        "base_weight": 0.12,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 95,
+        "message": "source_market=United Kingdom has 4 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "China",
+        "n": 2,
+        "base_weight": 0.12,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 95,
+        "message": "source_market=China has 2 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "New Zealand",
+        "n": 2,
+        "base_weight": 0.12,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 95,
+        "message": "source_market=New Zealand has 2 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "Germany",
+        "n": 3,
+        "base_weight": 0.08,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 158,
+        "message": "source_market=Germany has 3 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "Japan",
+        "n": 2,
+        "base_weight": 0.08,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 158,
+        "message": "source_market=Japan has 2 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "source_market",
+        "level": "India",
+        "n": 4,
+        "base_weight": 0.06,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 220,
+        "message": "source_market=India has 4 personas in a panel of 30 (design weight 6%). That is too few to reweight reliably. Sample about 220 more personas (panel size 250) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "planning_horizon",
+        "level": "weeks_1_4",
+        "n": 6,
+        "base_weight": 0.34,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 15,
+        "message": "planning_horizon=weeks_1_4 has 6 personas in a panel of 30 (design weight 34%). That is too few to reweight reliably. Sample about 15 more personas (panel size 45) so this cell's expected count reaches 15."
+      },
+      {
+        "axis": "planning_horizon",
+        "level": "months_3_plus",
+        "n": 2,
+        "base_weight": 0.16,
+        "min_cell": 8,
+        "target_cell": 15,
+        "additional_personas": 64,
+        "message": "planning_horizon=months_3_plus has 2 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15."
+      }
+    ],
+    "base_page_means": {
+      "page:primary": 3.3171
+    },
+    "base_product_order": [
+      "e-18125",
+      "e-37309",
+      "e-29695",
+      "e-40298",
+      "e-23887",
+      "e-18103",
+      "e-30130",
+      "milford-pure-queenstown",
+      "milford-fly-cruise"
+    ],
+    "base_top3": [
+      "e-18125",
+      "e-37309",
+      "e-29695"
+    ],
+    "base_bottom3": [
+      "milford-fly-cruise",
+      "milford-pure-queenstown",
+      "e-30130"
+    ],
+    "rank_stability": {
+      "kendall_tau_mean": 0.9173,
+      "kendall_tau_min": 0.7222,
+      "spearman_mean": 0.9665,
+      "spearman_min": 0.85,
+      "top3_same_rate": 0.7375,
+      "bottom3_same_rate": 0.9875,
+      "mean_top3_overlap": 2.7375,
+      "mean_bottom3_overlap": 2.9875
+    },
+    "gate_flip_rate": 0.0554,
+    "dimension_influence": [
+      {
+        "axis": "budget_tier",
+        "mean_abs_page_delta": 0.0152,
+        "mean_tau_drop": 0.0625
+      },
+      {
+        "axis": "planning_horizon",
+        "mean_abs_page_delta": 0.0141,
+        "mean_tau_drop": 0.0556
+      },
+      {
+        "axis": "source_market",
+        "mean_abs_page_delta": 0.0114,
+        "mean_tau_drop": 0.0729
+      },
+      {
+        "axis": "trip_type",
+        "mean_abs_page_delta": 0.0028,
+        "mean_tau_drop": 0.0833
+      }
+    ],
+    "dirichlet_kendall_mean": 0.9042,
+    "findings": [
+      {
+        "kind": "gate",
+        "code": "cannibalisation_intent",
+        "key": [
+          "e-18125",
+          "e-37309"
+        ],
+        "base_severity": "warn",
+        "hold_rate": 1.0,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "gate",
+        "code": "page_intent",
+        "key": "page:primary",
+        "base_severity": "warn",
+        "hold_rate": 1.0,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "gate",
+        "code": "product_intent",
+        "key": "milford-fly-cruise",
+        "base_severity": "warn",
+        "hold_rate": 1.0,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "gate",
+        "code": "product_intent",
+        "key": "milford-pure-queenstown",
+        "base_severity": "warn",
+        "hold_rate": 0.925,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "gate",
+        "code": "relative_rank",
+        "key": "milford-fly-cruise",
+        "base_severity": "fail",
+        "hold_rate": 0.9875,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "gate",
+        "code": "relative_rank",
+        "key": "milford-pure-queenstown",
+        "base_severity": "warn",
+        "hold_rate": 0.7,
+        "verdict": "WEIGHT-SENSITIVE"
+      },
+      {
+        "kind": "gate",
+        "code": "score_compression",
+        "key": null,
+        "base_severity": "warn",
+        "hold_rate": 1.0,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "ranking",
+        "code": "top3",
+        "key": [
+          "e-18125",
+          "e-37309",
+          "e-29695"
+        ],
+        "base_severity": "set",
+        "hold_rate": 0.7375,
+        "verdict": "WEIGHT-SENSITIVE"
+      },
+      {
+        "kind": "ranking",
+        "code": "bottom3",
+        "key": [
+          "milford-fly-cruise",
+          "milford-pure-queenstown",
+          "e-30130"
+        ],
+        "base_severity": "set",
+        "hold_rate": 0.9875,
+        "verdict": "ROBUST"
+      },
+      {
+        "kind": "segment_rank",
+        "code": "trip_type",
+        "key": "unweighted cells",
+        "orders": {
+          "couple": [
+            "e-18125",
+            "e-37309",
+            "e-29695",
+            "e-23887",
+            "e-40298",
+            "e-18103",
+            "e-30130",
+            "milford-fly-cruise",
+            "milford-pure-queenstown"
+          ],
+          "family_with_kids": [
+            "e-18125",
+            "e-29695",
+            "e-37309",
+            "e-40298",
+            "e-18103",
+            "milford-pure-queenstown",
+            "e-23887",
+            "e-30130",
+            "milford-fly-cruise"
+          ],
+          "friends": [
+            "e-18125",
+            "e-23887",
+            "e-29695",
+            "e-18103",
+            "e-37309",
+            "e-40298",
+            "milford-pure-queenstown",
+            "e-30130",
+            "milford-fly-cruise"
+          ],
+          "solo": [
+            "e-40298",
+            "e-37309",
+            "e-29695",
+            "e-18103",
+            "e-30130",
+            "e-23887",
+            "e-18125",
+            "milford-fly-cruise",
+            "milford-pure-queenstown"
+          ]
+        },
+        "base_severity": "invariant",
+        "hold_rate": 1.0,
+        "verdict": "ROBUST",
+        "note": "Unweighted product order inside this segment. It does not use the mix weights."
+      },
+      {
+        "kind": "segment_rank",
+        "code": "budget_tier",
+        "key": "unweighted cells",
+        "orders": {
+          "budget": [
+            "e-18125",
+            "e-40298",
+            "e-29695",
+            "e-37309",
+            "e-18103",
+            "e-23887",
+            "milford-pure-queenstown",
+            "e-30130",
+            "milford-fly-cruise"
+          ],
+          "luxury": [
+            "e-30130",
+            "e-18125",
+            "e-29695",
+            "e-18103",
+            "e-37309",
+            "e-40298",
+            "e-23887",
+            "milford-pure-queenstown",
+            "milford-fly-cruise"
+          ],
+          "mid": [
+            "e-29695",
+            "e-23887",
+            "e-40298",
+            "e-37309",
+            "e-18125",
+            "e-18103",
+            "milford-pure-queenstown",
+            "e-30130",
+            "milford-fly-cruise"
+          ],
+          "premium": [
+            "e-18125",
+            "e-37309",
+            "e-23887",
+            "e-18103",
+            "e-40298",
+            "e-29695",
+            "e-30130",
+            "milford-fly-cruise",
+            "milford-pure-queenstown"
+          ]
+        },
+        "base_severity": "invariant",
+        "hold_rate": 1.0,
+        "verdict": "ROBUST",
+        "note": "Unweighted product order inside this segment. It does not use the mix weights."
+      }
+    ],
+    "page_level": {
+      "page:primary": {
+        "base_mean": 3.3171,
+        "scenario_min": 3.2554,
+        "scenario_max": 3.3583,
+        "share_moving_more_than": 0.0125,
+        "move_threshold": 0.05,
+        "verdict": "ROBUST"
+      }
+    },
+    "page_weight_sensitive": false,
+    "recommendation": null,
+    "segment_ranks_invariant": true,
+    "collection_id": "milford-sound-cruises",
+    "mock": false
+  },
+  "unknowns": [
+    "api-ho.headout.com collection and product-card endpoints returned HTTP 403, so catalog totals, persona tags, and a single currency from the API were not available.",
+    "No Milford Sound microbrand (separate attraction domain operated by Headout) was identified. Gate B reseller-disclaimer checks do not apply to a second surface.",
+    "Product URL, cancellation cutoff, and full inclusions for the fly-cruise card and the Pure Milford Queenstown card were not captured.",
+    "Nature cruise price, rating, and confirmed operator were not on the fetched pages.",
+    "Whether e-30130 is on collection 3945 or only in the same URL folder was not confirmed; the first collection extract did not list it.",
+    "Collection-card review counts and product-page review counts drifted by a few reviews in the same fetch. The spec keeps the product-page count when both existed.",
+    "Viator prices are USD and are context only.",
+    "Accessibility is discussed in the collection FAQ, but individual product cards that were opened did not repeat wheelchair access, so accessibility_noted is false at product level."
+  ],
+  "sources": [
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets-c-3945/",
+      "fetched_on": "2026-11-26",
+      "what": "Headout collection page, hero, cards, long-form, FAQs"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-e-29695/",
+      "fetched_on": "2026-11-26",
+      "what": "Optional-lunch cruise product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/small-group-guided-tour-milford-sound-cruise-e-18125/",
+      "fetched_on": "2026-11-26",
+      "what": "Boutique small-boat product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-by-realnz-e-37309/",
+      "fetched_on": "2026-11-26",
+      "what": "RealNZ cruise product page"
+    },
+    {
+      "url": "https://www.headout.com/realnz-c-7688/",
+      "fetched_on": "2026-11-26",
+      "what": "RealNZ collection card showing from NZ$155"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/milford-sound-nature-cruise-with-cascade-lounge-e-40298/",
+      "fetched_on": "2026-11-26",
+      "what": "Nature cruise product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/full-day-tour-of-milford-sound-with-cruise-lunch-return-transfers-e-23887/",
+      "fetched_on": "2026-11-26",
+      "what": "Queenstown day trip product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/day-tour-from-te-anau-to-milford-sound-including-a-cruise-e-18103/",
+      "fetched_on": "2026-11-26",
+      "what": "Te Anau day trip product page"
+    },
+    {
+      "url": "https://www.headout.com/milford-sound-cruise-tickets/premium-milford-sound-cruise-with-gourmet-canapes-champagne-e-30130/",
+      "fetched_on": "2026-11-26",
+      "what": "Ultra-premium cruise product page"
+    },
+    {
+      "url": "https://www.realnz.com/en/blog/milford-sound-cruise-comparison/",
+      "fetched_on": "2026-11-26",
+      "what": "Operator price comparison dated 10 November 2026"
+    },
+    {
+      "url": "https://milfordsoundtravel.com/things-to-do-in-milford-sound/best-milford-sound-cruises/",
+      "fetched_on": "2026-11-26",
+      "what": "Third-party operator price roundup, prices marked October 2026"
+    },
+    {
+      "url": "https://www.viator.com/Fiordland-and-Milford-Sound-tours/Cruises-Sailing-and-Water-Tours/d756-g3",
+      "fetched_on": "2026-11-26",
+      "what": "Viator cruise category, USD from-prices"
+    }
+  ],
+  "thresholds": {
+    "page_mean_pass": 3.6,
+    "page_mean_warn": 3.2,
+    "segment_mean_pass": 3.4,
+    "segment_mean_warn": 2.8,
+    "product_mean_pass": 3.3,
+    "product_mean_warn": 2.6,
+    "cannibal_pi_delta": 0.25,
+    "relative_z_warn": -1.0,
+    "relative_z_fail": -1.5,
+    "compression_range": 0.4,
+    "absolute_thresholds_calibrated": false,
+    "note": "Absolute cuts are not calibrated to Headout CVR. A live Sonnet 5.5 pilot (seed 7, 30 personas) compressed product means into about 3.17\u20133.46, so these pass lines mostly warn. Use z_vs_collection and relative_rank until a backtest replaces the cuts. See anchors.CALIBRATION_PLAN."
+  }
+}

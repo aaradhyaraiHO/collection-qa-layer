@@ -1,0 +1,552 @@
+{
+  "status": "ok",
+  "n_personas": 30,
+  "n_scenarios": 80,
+  "n_dirichlet": 40,
+  "shift": 0.2,
+  "concentration": 50.0,
+  "seed": 7,
+  "unreliable_scenarios": [],
+  "small_cells": [
+    {
+      "axis": "trip_type",
+      "level": "solo",
+      "n": 6,
+      "base_weight": 0.18,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 54,
+      "message": "trip_type=solo has 6 personas in a panel of 30 (design weight 18%). That is too few to reweight reliably. Sample about 54 more personas (panel size 84) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "trip_type",
+      "level": "family_with_kids",
+      "n": 5,
+      "base_weight": 0.22,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 39,
+      "message": "trip_type=family_with_kids has 5 personas in a panel of 30 (design weight 22%). That is too few to reweight reliably. Sample about 39 more personas (panel size 69) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "trip_type",
+      "level": "friends",
+      "n": 5,
+      "base_weight": 0.18,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 54,
+      "message": "trip_type=friends has 5 personas in a panel of 30 (design weight 18%). That is too few to reweight reliably. Sample about 54 more personas (panel size 84) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "budget_tier",
+      "level": "budget",
+      "n": 3,
+      "base_weight": 0.15,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 70,
+      "message": "budget_tier=budget has 3 personas in a panel of 30 (design weight 15%). That is too few to reweight reliably. Sample about 70 more personas (panel size 100) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "budget_tier",
+      "level": "mid",
+      "n": 6,
+      "base_weight": 0.35,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 13,
+      "message": "budget_tier=mid has 6 personas in a panel of 30 (design weight 35%). That is too few to reweight reliably. Sample about 13 more personas (panel size 43) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "United Kingdom",
+      "n": 5,
+      "base_weight": 0.2,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 45,
+      "message": "source_market=United Kingdom has 5 personas in a panel of 30 (design weight 20%). That is too few to reweight reliably. Sample about 45 more personas (panel size 75) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "Germany",
+      "n": 4,
+      "base_weight": 0.12,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 95,
+      "message": "source_market=Germany has 4 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "India",
+      "n": 2,
+      "base_weight": 0.14,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 78,
+      "message": "source_market=India has 2 personas in a panel of 30 (design weight 14%). That is too few to reweight reliably. Sample about 78 more personas (panel size 108) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "United Arab Emirates",
+      "n": 2,
+      "base_weight": 0.1,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 120,
+      "message": "source_market=United Arab Emirates has 2 personas in a panel of 30 (design weight 10%). That is too few to reweight reliably. Sample about 120 more personas (panel size 150) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "France",
+      "n": 3,
+      "base_weight": 0.08,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 158,
+      "message": "source_market=France has 3 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "Australia",
+      "n": 2,
+      "base_weight": 0.08,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 158,
+      "message": "source_market=Australia has 2 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "China",
+      "n": 4,
+      "base_weight": 0.06,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 220,
+      "message": "source_market=China has 4 personas in a panel of 30 (design weight 6%). That is too few to reweight reliably. Sample about 220 more personas (panel size 250) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "planning_horizon",
+      "level": "last_minute",
+      "n": 4,
+      "base_weight": 0.08,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 158,
+      "message": "planning_horizon=last_minute has 4 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "planning_horizon",
+      "level": "weeks_1_4",
+      "n": 7,
+      "base_weight": 0.2,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 45,
+      "message": "planning_horizon=weeks_1_4 has 7 personas in a panel of 30 (design weight 20%). That is too few to reweight reliably. Sample about 45 more personas (panel size 75) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "planning_horizon",
+      "level": "months_3_plus",
+      "n": 7,
+      "base_weight": 0.3,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 20,
+      "message": "planning_horizon=months_3_plus has 7 personas in a panel of 30 (design weight 30%). That is too few to reweight reliably. Sample about 20 more personas (panel size 50) so this cell's expected count reaches 15."
+    }
+  ],
+  "base_page_means": {
+    "page:microbrand": 3.3948,
+    "page:primary": 3.3663
+  },
+  "base_product_order": [
+    "e-57724",
+    "mara-4d-nakuru",
+    "mara-6d-naivasha",
+    "mara-5d-lakes",
+    "mara-6d-nakuru",
+    "e-57697",
+    "e-57723",
+    "mara-4d-naivasha",
+    "mara-fly-5-amboseli",
+    "mara-7d",
+    "mara-fly-5",
+    "e-57795",
+    "e-57793",
+    "e-57711"
+  ],
+  "base_top3": [
+    "e-57724",
+    "mara-4d-nakuru",
+    "mara-6d-naivasha"
+  ],
+  "base_bottom3": [
+    "e-57711",
+    "e-57793",
+    "e-57795"
+  ],
+  "rank_stability": {
+    "kendall_tau_mean": 0.9113,
+    "kendall_tau_min": 0.7802,
+    "spearman_mean": 0.975,
+    "spearman_min": 0.9121,
+    "top3_same_rate": 0.775,
+    "bottom3_same_rate": 0.525,
+    "mean_top3_overlap": 2.775,
+    "mean_bottom3_overlap": 2.5125
+  },
+  "gate_flip_rate": 0.0634,
+  "dimension_influence": [
+    {
+      "axis": "source_market",
+      "mean_abs_page_delta": 0.0142,
+      "mean_tau_drop": 0.0673
+    },
+    {
+      "axis": "budget_tier",
+      "mean_abs_page_delta": 0.0131,
+      "mean_tau_drop": 0.0879
+    },
+    {
+      "axis": "planning_horizon",
+      "mean_abs_page_delta": 0.0066,
+      "mean_tau_drop": 0.0742
+    },
+    {
+      "axis": "trip_type",
+      "mean_abs_page_delta": 0.0054,
+      "mean_tau_drop": 0.0769
+    }
+  ],
+  "dirichlet_kendall_mean": 0.8972,
+  "findings": [
+    {
+      "kind": "gate",
+      "code": "cannibalisation_intent",
+      "key": [
+        "e-57697",
+        "mara-4d-naivasha"
+      ],
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "cannibalisation_intent",
+      "key": [
+        "e-57697",
+        "mara-4d-nakuru"
+      ],
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "cannibalisation_intent",
+      "key": [
+        "mara-4d-naivasha",
+        "mara-4d-nakuru"
+      ],
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "cannibalisation_intent",
+      "key": [
+        "mara-6d-naivasha",
+        "mara-6d-nakuru"
+      ],
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "cannibalisation_intent",
+      "key": [
+        "mara-fly-5",
+        "mara-fly-5-amboseli"
+      ],
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "page_intent",
+      "key": "page:microbrand",
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "page_intent",
+      "key": "page:primary",
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "product_intent",
+      "key": "e-57711",
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "product_intent",
+      "key": "e-57793",
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "product_intent",
+      "key": "e-57795",
+      "base_severity": "warn",
+      "hold_rate": 0.7,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "gate",
+      "code": "product_intent",
+      "key": "mara-fly-5",
+      "base_severity": "warn",
+      "hold_rate": 0.5375,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "gate",
+      "code": "relative_rank",
+      "key": "e-57711",
+      "base_severity": "fail",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "relative_rank",
+      "key": "e-57793",
+      "base_severity": "warn",
+      "hold_rate": 0.875,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "gate",
+      "code": "score_compression",
+      "key": null,
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "ranking",
+      "code": "top3",
+      "key": [
+        "e-57724",
+        "mara-4d-nakuru",
+        "mara-6d-naivasha"
+      ],
+      "base_severity": "set",
+      "hold_rate": 0.775,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "ranking",
+      "code": "bottom3",
+      "key": [
+        "e-57711",
+        "e-57793",
+        "e-57795"
+      ],
+      "base_severity": "set",
+      "hold_rate": 0.525,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "segment_rank",
+      "code": "trip_type",
+      "key": "unweighted cells",
+      "orders": {
+        "couple": [
+          "e-57724",
+          "mara-6d-naivasha",
+          "mara-5d-lakes",
+          "mara-4d-nakuru",
+          "mara-4d-naivasha",
+          "mara-6d-nakuru",
+          "e-57723",
+          "e-57697",
+          "e-57795",
+          "mara-7d",
+          "mara-fly-5-amboseli",
+          "mara-fly-5",
+          "e-57793",
+          "e-57711"
+        ],
+        "family_with_kids": [
+          "mara-7d",
+          "mara-4d-nakuru",
+          "mara-6d-naivasha",
+          "mara-5d-lakes",
+          "e-57697",
+          "e-57724",
+          "e-57795",
+          "e-57793",
+          "mara-fly-5-amboseli",
+          "e-57723",
+          "mara-6d-nakuru",
+          "e-57711",
+          "mara-fly-5",
+          "mara-4d-naivasha"
+        ],
+        "friends": [
+          "e-57724",
+          "mara-4d-nakuru",
+          "mara-6d-nakuru",
+          "e-57723",
+          "mara-fly-5-amboseli",
+          "mara-5d-lakes",
+          "e-57697",
+          "mara-4d-naivasha",
+          "mara-fly-5",
+          "mara-6d-naivasha",
+          "e-57793",
+          "e-57711",
+          "e-57795",
+          "mara-7d"
+        ],
+        "solo": [
+          "mara-4d-nakuru",
+          "e-57697",
+          "mara-5d-lakes",
+          "mara-6d-nakuru",
+          "mara-fly-5-amboseli",
+          "e-57724",
+          "mara-6d-naivasha",
+          "e-57723",
+          "mara-fly-5",
+          "mara-4d-naivasha",
+          "mara-7d",
+          "e-57795",
+          "e-57793",
+          "e-57711"
+        ]
+      },
+      "base_severity": "invariant",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST",
+      "note": "Unweighted product order inside this segment. It does not use the mix weights."
+    },
+    {
+      "kind": "segment_rank",
+      "code": "budget_tier",
+      "key": "unweighted cells",
+      "orders": {
+        "budget": [
+          "mara-6d-naivasha",
+          "mara-4d-naivasha",
+          "mara-6d-nakuru",
+          "e-57724",
+          "mara-4d-nakuru",
+          "e-57697",
+          "e-57723",
+          "mara-fly-5",
+          "mara-5d-lakes",
+          "mara-7d",
+          "e-57795",
+          "e-57793",
+          "mara-fly-5-amboseli",
+          "e-57711"
+        ],
+        "luxury": [
+          "e-57724",
+          "mara-5d-lakes",
+          "mara-6d-naivasha",
+          "mara-4d-nakuru",
+          "mara-6d-nakuru",
+          "mara-4d-naivasha",
+          "e-57723",
+          "mara-fly-5-amboseli",
+          "e-57697",
+          "e-57795",
+          "e-57793",
+          "mara-7d",
+          "e-57711",
+          "mara-fly-5"
+        ],
+        "mid": [
+          "mara-4d-naivasha",
+          "mara-4d-nakuru",
+          "e-57724",
+          "e-57697",
+          "mara-6d-nakuru",
+          "e-57723",
+          "mara-fly-5",
+          "mara-5d-lakes",
+          "mara-fly-5-amboseli",
+          "mara-7d",
+          "mara-6d-naivasha",
+          "e-57795",
+          "e-57793",
+          "e-57711"
+        ],
+        "premium": [
+          "mara-4d-nakuru",
+          "mara-5d-lakes",
+          "mara-6d-naivasha",
+          "e-57724",
+          "e-57697",
+          "e-57723",
+          "mara-fly-5-amboseli",
+          "mara-7d",
+          "mara-6d-nakuru",
+          "mara-fly-5",
+          "e-57795",
+          "e-57793",
+          "mara-4d-naivasha",
+          "e-57711"
+        ]
+      },
+      "base_severity": "invariant",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST",
+      "note": "Unweighted product order inside this segment. It does not use the mix weights."
+    }
+  ],
+  "page_level": {
+    "page:microbrand": {
+      "base_mean": 3.3948,
+      "scenario_min": 3.3172,
+      "scenario_max": 3.4304,
+      "share_moving_more_than": 0.025,
+      "move_threshold": 0.05,
+      "verdict": "ROBUST"
+    },
+    "page:primary": {
+      "base_mean": 3.3663,
+      "scenario_min": 3.3412,
+      "scenario_max": 3.3926,
+      "share_moving_more_than": 0.0,
+      "move_threshold": 0.05,
+      "verdict": "ROBUST"
+    }
+  },
+  "page_weight_sensitive": false,
+  "recommendation": null,
+  "segment_ranks_invariant": true,
+  "collection_id": "masai-mara",
+  "mock": false
+}

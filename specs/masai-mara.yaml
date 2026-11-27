@@ -1,0 +1,762 @@
+id: masai-mara
+name: Masai Mara safaris
+destination: Masai Mara National Reserve, Kenya
+ce_id: "7324"
+provenance: live_headout
+provenance_note: >
+  Live Headout collection plus the Headout-operated microbrand
+  masai-mara-safaris.com. This is not a competitor-built proposal. Numeric
+  "from" prices were not rendered for these safaris in the captures below
+  (the public product-card API returned HTTP 403, and the HTML render did not
+  include a currency amount for the Mara cards). Prices are left null on purpose.
+fetched_on: "2026-11-26"
+audience_profile: safari
+primary_surface:
+  page_type: headout.com
+  url: https://www.headout.com/masai-mara-c-7324/
+  hero_title: Experience the best of the Masai Mara from Nairobi
+  hero_copy: >
+    Collection H1 from the public page. The visible trust line under the first
+    cards said travelers can book stress-free with free cancellation and
+    pay-later options on most experiences.
+  usps:
+    - "4.8/5 from 2,196 travellers"
+    - "Safaris from Nairobi, including a private day trip and multi-day stays with entry fees"
+    - "Free cancellation and pay-later called out for most experiences"
+  faqs: []
+  faq_capture: unknown
+  trust_signals:
+    - "4.8/5 from 2,196 travellers on the collection"
+    - "Free cancellation badge on the day-trip and multi-day cards that were visible"
+    - "Page is on headout.com, so the marketplace brand is the site chrome"
+  discloses_headout: true
+  not_official_venue_disclaimer: null
+  authorized_partner_claim: null
+  notes:
+    - "WebFetch returned the hero and the first product cards, then stopped. Later cards and any FAQ below that point were not in the payload. faq_capture is unknown, not confirmed empty."
+microbrand:
+  page_type: microbrand
+  url: https://www.masai-mara-safaris.com/
+  hero_title: Book Masai Mara Safaris
+  hero_copy: >
+    Lions, cheetahs, elephants, and the Great Migration across Kenya's open
+    plains. Choose a safari by days, budget, transport, and how you want to
+    experience the Mara.
+  usps:
+    - "We curate the best ways to experience"
+    - "We partner with the best — every supplier is vetted"
+    - "All the best options, in one place"
+    - "Book with complete peace of mind — free cancellations, flexible payments, and 24/7 support"
+    - "Side-by-side format table from 1-day through 7-day safaris"
+    - "Verified operators — Headout checks licensing, guide experience, vehicle type, and inclusions"
+  faqs:
+    - question: What are Masai Mara safaris like?
+      answer: >
+        They typically combine game drives, accommodation, and meals, with road
+        and fly-in options, shared or private vehicles, and multi-park combinations.
+    - question: How many days do I need?
+      answer: >
+        A 2-day safari can work for a short trip. Three days gives more game-drive
+        time. Four days or longer is a slower pace.
+    - question: When is the best time?
+      answer: >
+        July to October is the main migration season. River crossings are most
+        likely from July to September and are not guaranteed.
+    - question: Should I choose a road or fly-in safari?
+      answer: >
+        Road safaris suit a lower budget or a multi-park route. Fly-in safaris
+        save the 5–6 hour drive.
+    - question: Are safaris suitable for families?
+      answer: >
+        Many camps welcome families, but age rules vary. Private safaris give
+        families more control of the day.
+    - question: Are wildlife sightings guaranteed?
+      answer: No. Longer stays give more chances.
+    - question: Can I combine the Mara with other parks?
+      answer: >
+        Yes. Itineraries add Lake Nakuru, Lake Naivasha, or Amboseli. Road
+        safaris fit multi-park routes.
+    - question: What is included?
+      answer: >
+        Inclusions vary. Packages may include accommodation, meals, game drives,
+        transfers, flights, a guide, and park fees. Check each safari, especially
+        park fees, transfers, and flights.
+  faq_capture: present
+  trust_signals:
+    - "Crafted by Headout, a global experiences brand, on interior pages such as /fly-in-tours/"
+    - "Legal page names Headout Inc., 82 Nassau Street #60351, New York, NY 10038"
+    - "24x7 help"
+    - "Homepage explains Headout curates and vets suppliers rather than pretending to be a single camp"
+  discloses_headout: true
+  not_official_venue_disclaimer: false
+  authorized_partner_claim: false
+  notes:
+    - "The exact sentence 'This is not the venue's website' used on thevaticantickets.com was not observed on the Mara homepage, fly-in page, or legal page in this fetch."
+    - "No 'authorized partner of this venue' badge was observed. The Mara is a reserve with many operators, not a single ticketed monument."
+    - "A later block on the homepage says 'Masai Mara National Reserve (Included with every safari)' and 'Lake Nakuru National Park (included with 4+ days safaris)'. Those lines are stricter than the format table above them, which shows 4-day trips that stay in the Mara only."
+products:
+  - id: e-57711
+    title: "From Nairobi: Private Day Trip to Masai Mara Reserve with Lunch and Entry Fees"
+    type: day_safari
+    positioning: mid
+    price: null
+    currency: null
+    price_label: varies by group size
+    duration: "Card: 17 hrs. Itinerary: 13–14 hours."
+    duration_hours_min: 13
+    duration_hours_max: 17
+    days_min: 1
+    features:
+      - Private 4x4
+      - One game drive
+      - Lunch
+      - Hotel pickup in Nairobi
+    rating: null
+    review_count: null
+    inclusions:
+      - One game drive in a 4x4
+      - Round-trip transfers
+      - Private tour
+      - Professional guide
+      - Lunch
+      - Bottled water
+      - Park entry fees
+    exclusions:
+      - Snacks
+      - Tips
+      - French or Spanish guide on request for an additional USD 20 per booking
+    pickup: Pickup from your hotel in Nairobi is included
+    pickup_status: included
+    cancellation: Free cancellation was badged on the collection card. The cutoff was not quoted in the product extract.
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara/from-nairobi-private-day-trip-masai-mara-reserve-e-57711/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara-c-7324/
+      - https://www.headout.com/masai-mara/from-nairobi-private-day-trip-masai-mara-reserve-e-57711/
+    notes:
+      - "Collection card says 17 hrs. Product itinerary says total duration 13–14 hours, and the know-before block says about 13 hours from pickup to drop-off."
+      - "No numeric from-price. The page says price varies by group size."
+  - id: e-57793
+    title: "From Nairobi: 2-Day Masai Mara Safari with Stays and Entry Fees"
+    type: road_safari
+    positioning: budget
+    price: null
+    currency: null
+    price_label: 18% off shown, amount not rendered
+    duration: 24–25 hours
+    duration_hours_min: 24
+    duration_hours_max: 25
+    days_min: 2
+    features:
+      - Shared or private
+      - Budget, comfort, or luxury stay as an option
+      - Pop-up roof Land Cruiser
+      - One afternoon game drive described on the product page
+    rating: 4.8
+    review_count: 178
+    inclusions:
+      - One afternoon game drive
+      - Park entry fee
+      - English-speaking guide
+      - Round-trip transfers
+      - Full board meals, vegetarian and halal
+      - Bottled water
+    exclusions:
+      - Drinks at the lodge
+      - Hot air balloon ride (stated as $450)
+      - Masai village visit
+      - Gratuities
+      - Airport pickup and drop-off
+    pickup: Nairobi hotel pickup is included. Airport pickup is excluded.
+    pickup_status: included
+    cancellation: Free cancellation up to 3 days before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara/from-nairobi-2-day-masai-mara-safari-e-57793/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara-c-7324/
+      - https://www.headout.com/masai-mara/from-nairobi-2-day-masai-mara-safari-e-57793/
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Positioning is budget because the card leads with a budget stay and an upgrade path. The numeric price was not rendered."
+  - id: e-57795
+    title: "From Nairobi: 3-Day Masai Mara Safari With Stays and Entry Fees"
+    type: road_safari
+    positioning: mixed
+    price: null
+    currency: null
+    price_label: null
+    duration: 60–72 hours
+    duration_hours_min: 60
+    duration_hours_max: 72
+    days_min: 3
+    features:
+      - Three game drives
+      - Budget, comfort, or luxury accommodation
+      - Shared or private safari
+    rating: 4.7
+    review_count: 150
+    inclusions:
+      - 3-day safari
+      - 3 game drives
+      - All park entry fees
+      - Expert guide
+      - Round-trip transfers
+      - 2 nights in a self-contained tent
+      - Meals as per itinerary
+      - Bottled water
+    exclusions:
+      - Tips
+      - Drinks
+      - Pickup from hotels in Naivasha
+    pickup: Nairobi hotel pickup is included
+    pickup_status: included
+    cancellation: Free cancellation was badged on the collection card. Cutoff not quoted in the extract.
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara/from-nairobi-3-day-masai-mara-safari-with-stays-and-entry-fees-e-57795/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara-c-7324/
+      - https://www.headout.com/masai-mara/from-nairobi-3-day-masai-mara-safari-with-stays-and-entry-fees-e-57795/
+  - id: e-57723
+    title: "From Nairobi: Fly-In 3-Day Masai Mara Private Safari with Luxury Stays and Entry Fees"
+    type: fly_in_safari
+    positioning: luxury
+    price: null
+    currency: null
+    price_label: null
+    duration: 60–72 hours
+    duration_hours_min: 60
+    duration_hours_max: 72
+    days_min: 3
+    features:
+      - Private
+      - Flights between Nairobi and the Mara
+      - 4 game drives
+      - Luxury camp or lodge
+      - Optional Masai village, balloon, bush breakfast, sundowners at extra cost
+    rating: 4.9
+    review_count: 83
+    inclusions:
+      - 4 game drives
+      - Park entry fees
+      - Flights during the tour within a fixed budget
+      - Luxury stay
+      - Meals as per itinerary
+      - Drinking water
+      - Round-trip transfers
+    exclusions:
+      - Breakfast on day 1 and dinner on day 3
+      - Spirits and liquor
+      - Spa treatments
+    pickup: Round-trip transfers included. Hotel-versus-airport detail was not spelled out in the extract.
+    pickup_status: included
+    cancellation: null
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara/from-nairobi-fly-in-3-day-masai-mara-private-safari-e-57723/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara-c-7324/
+      - https://www.headout.com/masai-mara/from-nairobi-fly-in-3-day-masai-mara-private-safari-e-57723/
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Rating 4.9 from 83 reviews is from the microbrand card list, not from the product-page extract."
+      - "A free-cancellation line was not in the product extract. Left null rather than copied from neighbouring cards."
+  - id: e-57697
+    title: "From Nairobi: 4-Day Masai Mara Safari with Stays and Entry Fees"
+    type: road_safari
+    positioning: mid
+    price: null
+    currency: null
+    price_label: null
+    duration: 94–96 hours
+    duration_hours_min: 94
+    duration_hours_max: 96
+    days_min: 4
+    features:
+      - 5 game drives
+      - Mara River visit
+      - Optional Masai village at extra cost
+      - Budget, comfort, or luxury stay
+      - Great Rift Valley viewpoint stop
+    rating: 4.8
+    review_count: 460
+    inclusions:
+      - 5 game drives
+      - Park entry fees
+      - Round-trip transfers
+      - Accommodation
+      - Meals and drinking water
+      - Mara River visit
+    exclusions:
+      - Breakfast on day 1 and dinner on day 4
+      - Beverages other than water
+      - Optional Masai village visit
+      - Tips
+    pickup: Round-trip transfers from Nairobi. The card also says hotel pickup is included.
+    pickup_status: included
+    cancellation: Free cancellation was badged on the collection search result. Cutoff not quoted.
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara/from-nairobi-4-day-masai-mara-safari-masai-village-visit-e-57697/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara/from-nairobi-4-day-masai-mara-safari-masai-village-visit-e-57697/
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Mara-only 4-day trip. It does not include Lake Nakuru, despite the microbrand line that Nakuru is included with 4+ day safaris."
+  - id: mara-4d-naivasha
+    title: "From Nairobi: 4-Day Masai Mara and Lake Naivasha Safari With Stays and Entry Fees"
+    type: road_safari
+    positioning: mid
+    price: null
+    currency: null
+    price_label: null
+    duration: 4 days
+    duration_hours_min: 96
+    duration_hours_max: 96
+    days_min: 4
+    features:
+      - Lake Naivasha add-on boat ride at extra cost
+      - Shared group or private upgrade
+      - Budget, comfort, or luxury stays
+    rating: 4.7
+    review_count: 180
+    inclusions:
+      - Game drives
+      - Park fees
+      - Specified meals
+      - Bottled water
+      - Round-trip transfers
+    exclusions: []
+    pickup: Round-trip transfers included. Hotel versus airport was not specified in the card extract.
+    pickup_status: included
+    cancellation: Free cancellation was badged on the collection search result. Cutoff not quoted.
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara-c-7324/
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Product URL was not in the capture. Rating 4.7 (180) is from the microbrand card list."
+      - "Does not include Lake Nakuru."
+  - id: mara-4d-nakuru
+    title: "From Nairobi: 4-Day Masai Mara and Lake Nakuru Safari With Stays and Entry Fees"
+    type: road_safari
+    positioning: mid
+    price: null
+    currency: null
+    price_label: null
+    duration: 4 days
+    duration_hours_min: 96
+    duration_hours_max: 96
+    days_min: 4
+    features:
+      - Lake Nakuru
+      - Masai Mara
+    rating: null
+    review_count: null
+    inclusions:
+      - Stays
+      - Entry fees
+    exclusions: []
+    pickup: null
+    pickup_status: unknown
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Title only, from the microbrand card list. No rating was printed next to this title. Price, pickup, cancellation, and URL were not captured. Inclusions are inferred from the title words 'stays' and 'entry fees', which is weaker than an opened product page."
+  - id: e-57724
+    title: "From Nairobi: Fly-In 4-Day Masai Mara Private Safari with Luxury Stays and Entry Fees"
+    type: fly_in_safari
+    positioning: luxury
+    price: null
+    currency: null
+    price_label: null
+    duration: 4 days
+    duration_hours_min: 96
+    duration_hours_max: 96
+    days_min: 4
+    features:
+      - 6 game drives
+      - 3 nights premium accommodation
+      - KPSGA Silver or Gold driver-guides claimed on the product page
+      - Optional village, balloon, bush breakfast, sundowners
+    rating: 4.9
+    review_count: 70
+    inclusions:
+      - 6 game drives
+      - 3 nights premium accommodation
+      - Gourmet meals as specified
+      - All park fees and government taxes
+      - Open-sided 4x4
+      - Air transfers
+      - Round-trip transfers
+    exclusions:
+      - Some meals and drinks
+      - Tips
+      - Accommodation before and after the tour
+    pickup: Round-trip transfers included
+    pickup_status: included
+    cancellation: null
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara/from-nairobi-fly-in-4-day-masai-mara-private-safari-e-57724/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara/from-nairobi-fly-in-4-day-masai-mara-private-safari-e-57724/
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Rating 4.9 (70) is from the microbrand card list."
+      - "Mara-only. Does not include Lake Nakuru."
+  - id: mara-fly-5
+    title: "From Nairobi: Fly-In 5-Day Masai Mara Private Safari with Luxury Stays and Entry Fees"
+    type: fly_in_safari
+    positioning: luxury
+    price: null
+    currency: null
+    price_label: null
+    duration: 5 days
+    duration_hours_min: 120
+    duration_hours_max: 120
+    days_min: 5
+    features:
+      - Private fly-in
+      - Luxury stay
+      - Mara only, based on the title
+    rating: null
+    review_count: null
+    inclusions: []
+    exclusions: []
+    pickup: null
+    pickup_status: unknown
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Title only, from the microbrand card list. Inclusions, price, rating, pickup, and cancellation were not opened."
+  - id: mara-fly-5-amboseli
+    title: "From Nairobi: Fly-In 5-Day Masai Mara and Amboseli Private Safari with Luxury Stays and Entry Fees"
+    type: fly_in_safari
+    positioning: luxury
+    price: null
+    currency: null
+    price_label: null
+    duration: 5 days
+    duration_hours_min: 120
+    duration_hours_max: 120
+    days_min: 5
+    features:
+      - Amboseli and Masai Mara
+      - Private fly-in
+    rating: 4.8
+    review_count: 449
+    inclusions: []
+    exclusions: []
+    pickup: null
+    pickup_status: unknown
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.masai-mara-safaris.com/
+      - https://www.nairobi-tours.com/
+    notes:
+      - "Rating 4.8 (449) is from the microbrand card list. The same title appears on nairobi-tours.com, another Headout-styled city site. Product URL and price were not captured."
+  - id: mara-5d-lakes
+    title: "From Nairobi: 5-Day Masai Mara, Nakuru, and Naivasha Safari with Stays and Entry Fees"
+    type: road_safari
+    positioning: premium
+    price: null
+    currency: null
+    price_label: null
+    duration: 5 days
+    duration_hours_min: 120
+    duration_hours_max: 120
+    days_min: 5
+    features:
+      - Masai Mara
+      - Lake Nakuru
+      - Lake Naivasha
+    rating: 4.9
+    review_count: 356
+    inclusions:
+      - Stays
+      - Entry fees
+    exclusions: []
+    pickup: null
+    pickup_status: unknown
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Title and rating from the microbrand card list. Inclusions are the words in the title, not an opened product page."
+  - id: mara-6d-nakuru
+    title: "From Nairobi: 6-Day Masai Mara, Lake Nakuru, and Amboseli Safari With Stays and Entry Fees"
+    type: road_safari
+    positioning: premium
+    price: null
+    currency: null
+    price_label: null
+    duration: 6 days
+    duration_hours_min: 144
+    duration_hours_max: 144
+    days_min: 6
+    features:
+      - Masai Mara
+      - Lake Nakuru
+      - Amboseli
+    rating: 4.7
+    review_count: 100
+    inclusions: []
+    exclusions: []
+    pickup: null
+    pickup_status: unknown
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.masai-mara-safaris.com/
+  - id: mara-6d-naivasha
+    title: "From Nairobi: 6-Day Masai Mara, Lake Naivasha, and Amboseli Safari with Stays and Entry Fees"
+    type: road_safari
+    positioning: premium
+    price: null
+    currency: null
+    price_label: null
+    duration: 6 days
+    duration_hours_min: 144
+    duration_hours_max: 144
+    days_min: 6
+    features:
+      - Masai Mara
+      - Lake Naivasha
+      - Amboseli
+    rating: 4.8
+    review_count: 170
+    inclusions: []
+    exclusions: []
+    pickup: null
+    pickup_status: unknown
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.masai-mara-safaris.com/
+  - id: mara-7d
+    title: "From Nairobi: 7-Day Ultimate Kenya Safari to Masai Mara, Nakuru, Naivasha and Amboseli with Stays and Entry Fees"
+    type: road_safari
+    positioning: premium
+    price: null
+    currency: null
+    price_label: null
+    duration: 7 days
+    duration_hours_min: 168
+    duration_hours_max: 168
+    days_min: 7
+    features:
+      - Masai Mara
+      - Lake Nakuru
+      - Lake Naivasha
+      - Amboseli
+      - Great Rift Valley drive
+    rating: null
+    review_count: null
+    inclusions:
+      - Park fees for Masai Mara, Nakuru, Naivasha, and Amboseli
+      - Pop-up roof 4x4 game drives
+      - Accommodation
+      - Meals as per itinerary
+      - Round-trip transfers
+    exclusions: []
+    pickup: Round-trip transfers included. Hotel versus airport was not specified.
+    pickup_status: included
+    cancellation: Free cancellation was badged on the 7-day collection search result. Cutoff not quoted.
+    accessibility_noted: false
+    url: https://www.headout.com/masai-mara-7-day-trip-c-7723/
+    operator: null
+    source_urls:
+      - https://www.headout.com/masai-mara-7-day-trip-c-7723/
+      - https://www.masai-mara-safaris.com/
+    notes:
+      - "Also has its own collection id 7723. Listed on the Mara microbrand. The URL above is that collection, not a single product URL. A product-level rating was not next to this title on the microbrand list."
+price_claims: []
+duration_claims:
+  - product_id: e-57711
+    section: collection_card
+    hours: 17
+    raw: 17 hrs
+    source_url: https://www.headout.com/masai-mara-c-7324/
+  - product_id: e-57711
+    section: product_itinerary
+    hours: 13.5
+    raw: 13–14 hours
+    source_url: https://www.headout.com/masai-mara/from-nairobi-private-day-trip-masai-mara-reserve-e-57711/
+assertions:
+  - id: nakuru-on-4-day-plus
+    type: min_days_must_mention
+    claim: >
+      The microbrand says Lake Nakuru National Park is included with 4+ day
+      safaris. Mara-only itineraries of 4 and 5 days are on the same page.
+    source_url: https://www.masai-mara-safaris.com/
+    min_days: 4
+    keywords:
+      - nakuru
+    severity: fail
+price_bands:
+  currency: USD
+  note: >
+    Bands are unused for coverage until Headout prices are known. Competitor
+    USD prices below are not copied onto Headout products.
+  tiers:
+    - tier: budget
+      min_price: 0
+      max_price: 400
+    - tier: mid
+      min_price: 400
+      max_price: 900
+    - tier: premium
+      min_price: 900
+      max_price: 2000
+    - tier: luxury
+      min_price: 2000
+      max_price: 20000
+assortment_gaps:
+  - id: conservancy-night-drive
+    claim: >
+      Microbrand copy describes private conservancies with fewer vehicles and,
+      on some, night drives, bush walks, or off-road driving. No product title
+      in the captured card list is a conservancy stay.
+    observed_in_assortment: false
+    severity: warn
+    source_url: https://www.masai-mara-safaris.com/
+    note: The format table is about the National Reserve and add-on parks, not conservancies.
+  - id: balloon-as-product
+    claim: >
+      A sunrise balloon is only an optional extra (about USD 450 on the Headout
+      2-day exclusions, about USD 420–540 on Viator and GetYourGuide). It is not
+      its own bookable card in the captured list.
+    observed_in_assortment: false
+    severity: warn
+    source_url: https://www.headout.com/masai-mara/from-nairobi-2-day-masai-mara-safari-e-57793/
+    note: Competitors also sell the balloon as an add-on. This is a packaging note, not a unique Headout miss.
+competitors:
+  - name: 3 days 2 nights budget group safari
+    seller: Viator
+    price_from: 195.56
+    currency: USD
+    duration: 3 days
+    includes:
+      - 2 nights camping
+      - Meals as per itinerary
+      - Pop-roof vehicle
+      - Nairobi hotel pickup
+    url: https://www.viator.com/tours/Nairobi/3-DAYS-2-NIGHTS-BUDGET-GROUP-SAFARI-TO-MAASAI-MARA-NATIONAL-RESERVE/d5280-60115P2
+    fetched_on: "2026-11-26"
+    note: Park entrance fee is excluded. Balloon listed at USD 420. Masai village USD 20. 56 reviews on that page.
+  - name: 3 Days Maasai Mara guided safari
+    seller: Viator
+    price_from: 196
+    currency: USD
+    duration: 3 days
+    includes:
+      - 2 nights ensuite tents
+      - Small group max 7
+      - Meals
+    url: https://www.viator.com/tours/Nairobi/2-nights-Safari-Tour-Maasai-Mara/d5280-15254P2
+    fetched_on: "2026-11-26"
+    note: >
+      Park fees excluded. The page says about USD 200 per person January–June
+      and USD 400 July–December on top. 199 reviews.
+  - name: 3-day Land Cruiser game drive
+    seller: GetYourGuide
+    price_from: 295
+    currency: USD
+    duration: 3 days
+    includes:
+      - Park entry stated as USD 200 (Jan–Jun) or USD 400 (Jul–Dec) for two entries
+      - Pop-up roof Land Cruiser
+      - Camp stay
+    url: https://www.getyourguide.com/nairobi-l267/3days-gamedrive-safari-in-masai-mara-on-4x4-landcruiser-jeep-t679185/
+    fetched_on: "2026-11-26"
+    note: 5.0 from 1 review. Balloon option USD 540. Masai village USD 20.
+  - name: 3-day Masai Mara National Reserve safari
+    seller: GetYourGuide
+    price_from: 390
+    currency: USD
+    duration: 3 days
+    includes:
+      - All entry fees and taxes
+      - AMREF air rescue
+      - English-speaking guide
+    url: https://www.getyourguide.com/nairobi-l267/from-nairobi-3-days-masai-mara-national-reserve-safari-t396317/
+    fetched_on: "2026-11-26"
+    note: Provider named on the page as Safari Links Africa Ltd.
+sources:
+  - url: https://www.headout.com/masai-mara-c-7324/
+    fetched_on: "2026-11-26"
+    what: Headout collection hero and first cards
+  - url: https://www.masai-mara-safaris.com/
+    fetched_on: "2026-11-26"
+    what: Headout microbrand homepage, format table, FAQs, card titles and ratings
+  - url: https://www.masai-mara-safaris.com/fly-in-tours/
+    fetched_on: "2026-11-26"
+    what: Fly-in explainer. Crafted by Headout line. KSh prices on that page were for other Nairobi cards, not copied onto Mara products.
+  - url: https://www.masai-mara-safaris.com/legal/
+    fetched_on: "2026-11-26"
+    what: Headout Inc. legal entity
+  - url: https://www.headout.com/masai-mara/from-nairobi-private-day-trip-masai-mara-reserve-e-57711/
+    fetched_on: "2026-11-26"
+    what: Private day trip product page
+  - url: https://www.headout.com/masai-mara/from-nairobi-2-day-masai-mara-safari-e-57793/
+    fetched_on: "2026-11-26"
+    what: 2-day safari product page
+  - url: https://www.headout.com/masai-mara/from-nairobi-3-day-masai-mara-safari-with-stays-and-entry-fees-e-57795/
+    fetched_on: "2026-11-26"
+    what: 3-day road safari product page
+  - url: https://www.headout.com/masai-mara/from-nairobi-fly-in-3-day-masai-mara-private-safari-e-57723/
+    fetched_on: "2026-11-26"
+    what: 3-day fly-in product page
+  - url: https://www.headout.com/masai-mara/from-nairobi-4-day-masai-mara-safari-masai-village-visit-e-57697/
+    fetched_on: "2026-11-26"
+    what: 4-day Mara safari product page
+  - url: https://www.headout.com/masai-mara/from-nairobi-fly-in-4-day-masai-mara-private-safari-e-57724/
+    fetched_on: "2026-11-26"
+    what: 4-day fly-in product page
+  - url: https://www.headout.com/masai-mara-7-day-trip-c-7723/
+    fetched_on: "2026-11-26"
+    what: 7-day Kenya safari collection
+  - url: https://www.viator.com/tours/Nairobi/3-DAYS-2-NIGHTS-BUDGET-GROUP-SAFARI-TO-MAASAI-MARA-NATIONAL-RESERVE/d5280-60115P2
+    fetched_on: "2026-11-26"
+    what: Viator budget 3-day, park fees excluded
+  - url: https://www.viator.com/tours/Nairobi/2-nights-Safari-Tour-Maasai-Mara/d5280-15254P2
+    fetched_on: "2026-11-26"
+    what: Viator 3-day, seasonal park-fee add-on
+  - url: https://www.getyourguide.com/nairobi-l267/3days-gamedrive-safari-in-masai-mara-on-4x4-landcruiser-jeep-t679185/
+    fetched_on: "2026-11-26"
+    what: GetYourGuide 3-day from USD 295
+  - url: https://www.getyourguide.com/nairobi-l267/from-nairobi-3-days-masai-mara-national-reserve-safari-t396317/
+    fetched_on: "2026-11-26"
+    what: GetYourGuide 3-day from USD 390 with entry fees
+unknowns:
+  - "No numeric Headout from-price was captured for these Mara products. Do not treat competitor USD prices as Headout prices."
+  - "api-ho.headout.com returned HTTP 403, so collection size, currency, and persona tags from the API are unknown."
+  - "Several microbrand cards (4-day Nakuru, 5-day fly-in, both 6-day trips, 5-day lakes) were not opened as product pages. Their URLs, cancellation, and real inclusions are unknown. Title words were not upgraded into a full fact sheet except where noted."
+  - "Whether every card on the microbrand is also on collection 7324 is unknown. The collection fetch was truncated. The 7-day trip has its own collection id 7723."
+  - "A related Headout listing, e-56385, shows KSh 73,000 and excludes park fees (USD 100/day Jan–Jun, USD 200/day Jul–Dec). Its URL is under /day-trips/, and it was not confirmed on collection 7324 or the microbrand card list, so it is not in this assortment."
+  - "Homepage footer legal block (address on the homepage itself, not only /legal/) was not confirmed in the extract."
+  - "KSh amounts on the fly-in page were attached to other Nairobi cards in that render and are not used."
+  - "Cancellation cutoffs are unknown except the 2-day product, which says 3 days."

@@ -1,0 +1,581 @@
+id: milford-sound-cruises
+name: Milford Sound cruises
+destination: Milford Sound, Fiordland, New Zealand
+ce_id: "3945"
+provenance: live_headout
+provenance_note: >
+  Live headout.com collection, not a competitor-built proposal. Prices are the
+  "from" figures rendered on the public pages listed below. The product-card
+  API returned HTTP 403 from this environment, so nothing here came from
+  api-ho.headout.com.
+fetched_on: "2026-11-26"
+audience_profile: fjord_cruise
+primary_surface:
+  page_type: headout.com
+  url: https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+  hero_title: Experience the best cruises in Milford Sound
+  hero_copy: >
+    Get spectacular views and breathtaking panoramas of the Tasman Sea and the
+    Mitre Peak at Milford Sound. Sail along the 16km fiord, and marvel at the
+    beauty of St Annes Point Lighthouse. Get informational commentary onboard
+    and learn about Lion Mountain, Copper Point, Seal Rock and Stirling Falls
+    as you pass them by.
+  usps:
+    - "Collection rating 4.8/5 from 6,363 travellers"
+    - "Long-form compare block: standard scenic, nature and wildlife, overnight, and underwater observatory"
+    - "Morning, afternoon, and late-day cruise guidance on the same page"
+    - "Boarding point spelled out: Milford Sound Visitor Centre and Cruise Terminal, SH94"
+  faqs:
+    - question: How long does the Milford Sound cruise part of the tour take?
+      answer: >
+        The on-water section is usually 1.5–2 hours for a standard scenic or
+        nature cruise. Full-day coach-and-cruise packages from Queenstown or
+        Te Anau take most of the day door-to-door.
+    - question: What's included in a typical Milford Sound sightseeing cruise ticket?
+      answer: >
+        A standard cruise includes the boat trip, indoor lounges and outdoor
+        decks, and live or audio commentary. Some packages add tea and coffee,
+        lunch, or coach transfers. Check the specific ticket.
+    - question: How do I get to the departure point, and is parking available?
+      answer: >
+        Cruises depart from the Milford Sound Visitor Centre/terminal via SH94,
+        coach from Queenstown or Te Anau, or a bundled tour. A car park is about
+        300 meters away.
+    - question: Do I need to book in advance, and can I change it later?
+      answer: >
+        Advance booking is strongly recommended, especially November–April.
+        Most tickets allow changes or cancellations up to a cutoff. Check the
+        product terms.
+    - question: What happens if the weather is bad?
+      answer: >
+        Cruises usually operate in rain. Severe conditions may delay or cancel
+        a sailing, with rebooking or a refund according to policy.
+    - question: Are cruises accessible for wheelchair users or people with limited mobility?
+      answer: >
+        Many vessels offer step-free or ramped boarding and accessible main
+        decks. Upper outdoor decks may require stairs. Mention access needs
+        when booking.
+    - question: Can I bring a stroller or young children?
+      answer: >
+        Yes. Strollers are generally allowed but may need to be folded. Children
+        must be supervised on open decks.
+    - question: Is the cruise suitable for older travellers?
+      answer: >
+        The cruise itself is mostly boarding and moving between decks, with
+        indoor and outdoor seating.
+  trust_signals:
+    - "4.8/5 from 6,363 travellers on the collection"
+    - "Product pages show 100% ticket guarantee, 100% experience guarantee, and 100% assistance guarantee"
+    - "Free cancellation up to 24 hours is stated on the cruise and day-trip products that were opened"
+    - "Marketplace page on headout.com, so it is visibly a Headout booking page rather than an operator domain"
+  discloses_headout: true
+  not_official_venue_disclaimer: null
+  authorized_partner_claim: null
+  notes:
+    - "No Headout-operated Milford Sound microbrand domain was found in this pass."
+    - "FAQ and long-form copy above are from the collection page capture, not from a separate CMS export."
+microbrand: null
+products:
+  - id: e-29695
+    title: Milford Sound Cruise with Optional Lunch
+    type: cruise
+    positioning: budget
+    price: 155
+    currency: NZD
+    price_label: from
+    duration: 1 hr 45 mins – 6 hrs
+    duration_hours_min: 1.75
+    duration_hours_max: 6
+    days_min: 1
+    features:
+      - Open decks and indoor lounges
+      - Live commentary
+      - Optional fly-cruise-fly from Queenstown
+      - Wildlife spotting not guaranteed
+    rating: 4.8
+    review_count: 2079
+    inclusions:
+      - 1-hour 45-minute to 2-hour cruise
+      - Expert skipper commentary
+      - Complimentary tea and coffee
+      - Outdoor viewing decks and indoor lounge
+      - Multi-language audio guide app
+      - Scenic flight transfers from Queenstown if that option is selected
+    exclusions:
+      - Other food and beverages
+    pickup: Pickup available, depending on the option selected
+    pickup_status: optional
+    cancellation: Free cancellation up to 24 hours before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-e-29695/
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+      - https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-e-29695/
+    notes:
+      - "Collection card showed original NZ$179 and a sale price NZ$143.20. The product page showed from NZ$155. Operator is not named in the title."
+      - "Review count was 2,080 on the collection card and 2,079 on the product page during the same fetch."
+  - id: e-18125
+    title: Milford Sound Boutique Small-Boat Cruise
+    type: cruise
+    positioning: mid
+    price: 179
+    currency: NZD
+    price_label: from
+    duration: 2 hrs – 7 hrs
+    duration_hours_min: 2
+    duration_hours_max: 7
+    days_min: 1
+    features:
+      - Maximum 75 passengers
+      - Close-to-waterfall positioning
+      - Optional guided Milford Track walk
+      - Onboard commentary
+    rating: 5.0
+    review_count: 2051
+    inclusions:
+      - 2-hour cruise on a boutique boat
+      - Maximum 75 passengers
+      - Expert skipper and guide
+      - Wildlife encounter opportunities
+      - Guided Milford Track walk only if that option is selected
+    exclusions:
+      - Lunch and personal snacks
+    pickup: null
+    pickup_status: unknown
+    cancellation: Free cancellation up to 24 hours before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/small-group-guided-tour-milford-sound-cruise-e-18125/
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+      - https://www.headout.com/milford-sound-cruise-tickets/small-group-guided-tour-milford-sound-cruise-e-18125/
+    notes:
+      - "Collection card did not render a price in the extract. Product page showed from NZ$179."
+      - "Review count was 2,043 on the collection card and 2,051 on the product page."
+      - "Operator name is not in the Headout title. A third-party comparison names Mitre Peak and Cruise Milford as separate small-boat operators; which one this listing is was not confirmed."
+  - id: e-37309
+    title: Milford Sound Cruise by RealNZ
+    type: cruise
+    positioning: mid
+    price: 179
+    currency: NZD
+    price_label: original
+    duration: 1 hour 45 minutes – 2 hours
+    duration_hours_min: 1.75
+    duration_hours_max: 2
+    days_min: 1
+    features:
+      - Classic and Signature options
+      - Indoor lounges and open decks
+      - Live nature commentary
+      - All-weather sailings
+    rating: 4.7
+    review_count: 377
+    inclusions:
+      - Up to 2-hour cruise
+      - Expert nature guide commentary
+      - Viewing decks
+      - Complimentary tea and coffee
+      - Multi-language audio guide app
+    exclusions:
+      - Food and beverages beyond tea and coffee
+      - Coach transfers
+    pickup: Not included. Exclusions list coach transfers. Departure is the Milford Sound Terminal.
+    pickup_status: excluded
+    cancellation: Free cancellation up to 24 hours before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-by-realnz-e-37309/
+    operator: RealNZ
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+      - https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-by-realnz-e-37309/
+      - https://www.headout.com/realnz-c-7688/
+    notes:
+      - "Collection card showed original price NZ$179 and did not show a discounted from-price in the extract."
+      - "The RealNZ collection page (c-7688) showed from NZ$155 for the same title. That figure is recorded as a separate from-price claim."
+      - "RealNZ's own comparison (10 Nov 2026) lists Classic from NZ$179 for 1 hour 40 minutes and Signature from NZ$199 for 2 hours."
+  - id: e-40298
+    title: Milford Sound Nature Cruise
+    type: cruise
+    positioning: unknown
+    price: null
+    currency: NZD
+    price_label: null
+    duration: 1 hr 45 mins – 2 hrs
+    duration_hours_min: 1.75
+    duration_hours_max: 2
+    days_min: 1
+    features:
+      - Open-top deck and full-height windows on the upgrade
+      - Cascade Lounge reserved seating upgrade
+      - Crew described as having 70 years of experience
+    rating: null
+    review_count: null
+    inclusions:
+      - 2-hour nature cruise
+      - Cascade Lounge, premium food and beverage, dedicated host, and priority boarding only if that option is selected
+    exclusions: []
+    pickup: Pickup based on the option selected
+    pickup_status: optional
+    cancellation: Free cancellation up to 24 hours before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-nature-cruise-with-cascade-lounge-e-40298/
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+      - https://www.headout.com/milford-sound-cruise-tickets/milford-sound-nature-cruise-with-cascade-lounge-e-40298/
+    notes:
+      - "Price was not rendered on the collection extract or the product-page extract."
+      - "Operator is not named. The Cascade Lounge wording matches Southern Discoveries' public branding, but this capture did not confirm the operator."
+  - id: e-23887
+    title: "From Queenstown: Milford Sound Day Trip with Cruise and Return Transfers"
+    type: day_trip
+    positioning: mid
+    price: 309
+    currency: NZD
+    price_label: from
+    duration: 12 hrs – 13 hrs
+    duration_hours_min: 12
+    duration_hours_max: 13
+    days_min: 1
+    features:
+      - Coach, luxury vehicle, or scenic flight options
+      - Hotel pickup on some options
+      - Stops such as Mirror Lakes, Eglinton Valley, and Monkey Creek on some options
+      - Small-boat or three-deck cruise depending on option
+    rating: 4.7
+    review_count: 636
+    inclusions:
+      - Milford Sound cruise with live commentary
+      - Return transfers only for the option selected
+      - Tea and coffee on board only for the option selected
+    exclusions:
+      - Food and drinks not specified in the option
+    pickup: Hotel transfers from Queenstown only if that option is selected
+    pickup_status: optional
+    cancellation: Free cancellation up to 24 hours before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/full-day-tour-of-milford-sound-with-cruise-lunch-return-transfers-e-23887/
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+      - https://www.headout.com/milford-sound-cruise-tickets/full-day-tour-of-milford-sound-with-cruise-lunch-return-transfers-e-23887/
+    notes:
+      - "Collection card showed original price NZ$309. Product page showed from NZ$309 and a 20% off badge, without a second numeric price in the extract."
+      - "Collection review count was 629; product page was 636."
+  - id: e-18103
+    title: "From Te Anau: Milford Sound Day Trip with Cruise and Return Transfers"
+    type: day_trip
+    positioning: mid
+    price: 205
+    currency: NZD
+    price_label: from
+    duration: 8 hrs – 9 hrs
+    duration_hours_min: 8
+    duration_hours_max: 9
+    days_min: 1
+    features:
+      - Shorter day than the Queenstown coach
+      - Live commentary
+      - Photo stops such as Pops Lookout and Christie Falls
+    rating: 4.8
+    review_count: 757
+    inclusions:
+      - Full-day guided tour from Te Anau
+      - 2-hour scenic cruise
+      - English-speaking driver/guide
+      - Return transfers
+    exclusions:
+      - Lunch and refreshments
+    pickup: Return transfers between Te Anau and Milford Sound are included
+    pickup_status: included
+    cancellation: Free cancellation up to 24 hours before the experience
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/day-tour-from-te-anau-to-milford-sound-including-a-cruise-e-18103/
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+      - https://www.headout.com/milford-sound-cruise-tickets/day-tour-from-te-anau-to-milford-sound-including-a-cruise-e-18103/
+    notes:
+      - "Collection card showed original NZ$259 and a sale price NZ$207.20. Product page showed from NZ$205."
+      - "Collection review count was 773; product page was 757."
+  - id: milford-fly-cruise
+    title: "From Queenstown: Milford Sound Scenic Flyover and Cruise"
+    type: fly_cruise
+    positioning: luxury
+    price: 835
+    currency: NZD
+    price_label: from
+    duration: 4 hrs 30 mins – 13 hrs
+    duration_hours_min: 4.5
+    duration_hours_max: 13
+    days_min: 1
+    features:
+      - Scenic flight or mixed coach and flight
+      - About 2 hours on a small boat
+      - Hotel pickup
+      - Window seats and tea, coffee, and water claimed in the card copy
+    rating: 4.7
+    review_count: 337
+    inclusions:
+      - 2-hour small-boat cruise
+      - Round-trip transfers
+      - Hotel pickup
+    exclusions: []
+    pickup: Hotel pickup included
+    pickup_status: included
+    cancellation: null
+    accessibility_noted: false
+    url: null
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+    notes:
+      - "Seen on the collection page. The product URL and a dedicated cancellation line were not in the capture."
+      - "Inclusions above are paraphrased from the collection card, not from an opened product page."
+  - id: milford-pure-queenstown
+    title: "From Queenstown: Milford Sound Day Tour with Scenic Cruise and Lunch by Pure Milford"
+    type: day_trip
+    positioning: mid
+    price: null
+    currency: NZD
+    price_label: null
+    duration: 12 hrs 30 mins
+    duration_hours_min: 12.5
+    duration_hours_max: 12.5
+    days_min: 1
+    features:
+      - Air-conditioned coach
+      - 1 hour 45 minute catamaran cruise
+      - Lunch, tea, and coffee
+      - Short walks and photo stops
+    rating: null
+    review_count: null
+    inclusions:
+      - Pickup in Queenstown
+      - Coach
+      - Cruise
+      - Lunch, tea, and coffee
+    exclusions: []
+    pickup: Pickup in Queenstown included
+    pickup_status: included
+    cancellation: Free cancellation stated on the collection card, cutoff not captured
+    accessibility_noted: false
+    url: null
+    operator: Pure Milford
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+    notes:
+      - "Title, duration, lunch, and free-cancellation badge are from the collection card. Price, rating, and product URL were not in the extract."
+  - id: e-30130
+    title: Milford Sound Ultra Premium Cruise with Gourmet Meal, Reserved Seating, and Sparkling Wine
+    type: cruise
+    positioning: premium
+    price: 389
+    currency: NZD
+    price_label: from
+    duration: 2 hrs – 13 hrs 10 mins
+    duration_hours_min: 2
+    duration_hours_max: 13.17
+    days_min: 1
+    features:
+      - Reserved seating
+      - Canapes and a glass of Cloudy Bay sparkling wine
+      - Optional transfers from Te Anau or Queenstown
+    rating: 4.9
+    review_count: 20
+    inclusions:
+      - 2-hour cruise
+      - Live commentary
+      - Canapes and sparkling wine
+      - Reserved seating
+      - Transfers only if that option is selected
+    exclusions: []
+    pickup: Round-trip transfers from Te Anau or Queenstown only if selected
+    pickup_status: optional
+    cancellation: Free cancellation stated on the product page, cutoff not quoted in the extract
+    accessibility_noted: false
+    url: https://www.headout.com/milford-sound-cruise-tickets/premium-milford-sound-cruise-with-gourmet-canapes-champagne-e-30130/
+    operator: null
+    source_urls:
+      - https://www.headout.com/milford-sound-cruise-tickets/premium-milford-sound-cruise-with-gourmet-canapes-champagne-e-30130/
+    notes:
+      - "URL sits on the collection slug. It was not in the first collection-card block returned by WebFetch, which did not look complete."
+      - "NZ$389 matches the RealNZ Premium from-price on the operator comparison, but the Headout title does not say RealNZ."
+price_claims:
+  - product_id: e-29695
+    section: collection_card
+    price: 143.20
+    currency: NZD
+    kind: from
+    source_url: https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+  - product_id: e-29695
+    section: product_page
+    price: 155
+    currency: NZD
+    kind: from
+    source_url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-e-29695/
+  - product_id: e-18103
+    section: collection_card
+    price: 207.20
+    currency: NZD
+    kind: from
+    source_url: https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+  - product_id: e-18103
+    section: product_page
+    price: 205
+    currency: NZD
+    kind: from
+    source_url: https://www.headout.com/milford-sound-cruise-tickets/day-tour-from-te-anau-to-milford-sound-including-a-cruise-e-18103/
+  - product_id: e-37309
+    section: collection_card
+    price: 179
+    currency: NZD
+    kind: original
+    source_url: https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+  - product_id: e-37309
+    section: realnz_collection_page
+    price: 155
+    currency: NZD
+    kind: from
+    source_url: https://www.headout.com/realnz-c-7688/
+duration_claims: []
+assertions: []
+assortment_gaps:
+  - id: overnight-cruise
+    claim: >
+      The collection long-form describes an overnight Milford cruise (about 18–24
+      hours) and RealNZ sells an overnight cruise from NZ$799, but no bookable
+      overnight product with a price was in the captured cards.
+    observed_in_assortment: false
+    severity: warn
+    source_url: https://www.realnz.com/en/blog/milford-sound-cruise-comparison/
+    note: The long-form is educational copy, not a product card.
+  - id: named-operator-on-lead-card
+    claim: >
+      The first collection card (optional lunch) and the boutique small-boat card
+      do not name the boat operator, while RealNZ, Pure Milford, and Southern
+      Discoveries are named elsewhere.
+    observed_in_assortment: false
+    severity: warn
+    source_url: https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+    note: Treated as a merchandising gap, not a missing tour.
+competitors:
+  - name: RealNZ Classic cruise
+    seller: RealNZ
+    price_from: 179
+    currency: NZD
+    duration: 1 hour 40 minutes
+    includes:
+      - Vessel up to 280 guests
+      - App commentary
+      - Lunch available to buy
+    url: https://www.realnz.com/en/blog/milford-sound-cruise-comparison/
+    fetched_on: "2026-11-26"
+    note: Operator comparison dated 10 November 2026. Signature is from NZ$199 for 2 hours, up to 180 guests.
+  - name: RealNZ Premium
+    seller: RealNZ
+    price_from: 389
+    currency: NZD
+    duration: 2 hours
+    includes:
+      - MV Sinbad, up to 45 guests
+      - 5-course tasting menu
+    url: https://www.realnz.com/en/blog/milford-sound-cruise-comparison/
+    fetched_on: "2026-11-26"
+    note: Business Class with coach is from NZ$699. Overnight is from NZ$799.
+  - name: Southern Discoveries Nature Cruise
+    seller: operator sites via milfordsoundtravel.com roundup
+    price_from: 179
+    currency: NZD
+    duration: about 1 hour 45 minutes
+    includes: []
+    url: https://milfordsoundtravel.com/things-to-do-in-milford-sound/best-milford-sound-cruises/
+    fetched_on: "2026-11-26"
+    note: That roundup says prices were read in October 2026, and that one comparison page showed NZ$139 for this cruise.
+  - name: Cruise Milford boutique small boat
+    seller: Cruise Milford, via the same roundup
+    price_from: 189
+    currency: NZD
+    duration: 1 hour 45 minutes
+    includes:
+      - Tea, coffee, and biscuits
+    url: https://milfordsoundtravel.com/things-to-do-in-milford-sound/best-milford-sound-cruises/
+    fetched_on: "2026-11-26"
+  - name: Viator small-boat and RealNZ listings
+    seller: Viator
+    price_from: 88.24
+    currency: USD
+    duration: 1 hour 45 minutes to 2 hours 15 minutes
+    includes: []
+    url: https://www.viator.com/Fiordland-and-Milford-Sound-tours/Cruises-Sailing-and-Water-Tours/d756-g3
+    fetched_on: "2026-11-26"
+    note: >
+      USD marketplace prices, not NZD. Examples in the same fetch: small boutique
+      from US$110, RealNZ from US$96, Southern Discoveries extended from US$123.
+      Not compared numerically with Headout NZD prices.
+price_bands:
+  currency: NZD
+  note: >
+    Assumption for ladder coverage only. Bands are per adult "from" price for a
+    cruise or a day trip, not a model of willingness to pay.
+  tiers:
+    - tier: budget
+      min_price: 0
+      max_price: 180
+    - tier: mid
+      min_price: 180
+      max_price: 350
+    - tier: premium
+      min_price: 350
+      max_price: 700
+    - tier: luxury
+      min_price: 700
+      max_price: 100000
+sources:
+  - url: https://www.headout.com/milford-sound-cruise-tickets-c-3945/
+    fetched_on: "2026-11-26"
+    what: Headout collection page, hero, cards, long-form, FAQs
+  - url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-e-29695/
+    fetched_on: "2026-11-26"
+    what: Optional-lunch cruise product page
+  - url: https://www.headout.com/milford-sound-cruise-tickets/small-group-guided-tour-milford-sound-cruise-e-18125/
+    fetched_on: "2026-11-26"
+    what: Boutique small-boat product page
+  - url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-cruise-by-realnz-e-37309/
+    fetched_on: "2026-11-26"
+    what: RealNZ cruise product page
+  - url: https://www.headout.com/realnz-c-7688/
+    fetched_on: "2026-11-26"
+    what: RealNZ collection card showing from NZ$155
+  - url: https://www.headout.com/milford-sound-cruise-tickets/milford-sound-nature-cruise-with-cascade-lounge-e-40298/
+    fetched_on: "2026-11-26"
+    what: Nature cruise product page
+  - url: https://www.headout.com/milford-sound-cruise-tickets/full-day-tour-of-milford-sound-with-cruise-lunch-return-transfers-e-23887/
+    fetched_on: "2026-11-26"
+    what: Queenstown day trip product page
+  - url: https://www.headout.com/milford-sound-cruise-tickets/day-tour-from-te-anau-to-milford-sound-including-a-cruise-e-18103/
+    fetched_on: "2026-11-26"
+    what: Te Anau day trip product page
+  - url: https://www.headout.com/milford-sound-cruise-tickets/premium-milford-sound-cruise-with-gourmet-canapes-champagne-e-30130/
+    fetched_on: "2026-11-26"
+    what: Ultra-premium cruise product page
+  - url: https://www.realnz.com/en/blog/milford-sound-cruise-comparison/
+    fetched_on: "2026-11-26"
+    what: Operator price comparison dated 10 November 2026
+  - url: https://milfordsoundtravel.com/things-to-do-in-milford-sound/best-milford-sound-cruises/
+    fetched_on: "2026-11-26"
+    what: Third-party operator price roundup, prices marked October 2026
+  - url: https://www.viator.com/Fiordland-and-Milford-Sound-tours/Cruises-Sailing-and-Water-Tours/d756-g3
+    fetched_on: "2026-11-26"
+    what: Viator cruise category, USD from-prices
+unknowns:
+  - "api-ho.headout.com collection and product-card endpoints returned HTTP 403, so catalog totals, persona tags, and a single currency from the API were not available."
+  - "No Milford Sound microbrand (separate attraction domain operated by Headout) was identified. Gate B reseller-disclaimer checks do not apply to a second surface."
+  - "Product URL, cancellation cutoff, and full inclusions for the fly-cruise card and the Pure Milford Queenstown card were not captured."
+  - "Nature cruise price, rating, and confirmed operator were not on the fetched pages."
+  - "Whether e-30130 is on collection 3945 or only in the same URL folder was not confirmed; the first collection extract did not list it."
+  - "Collection-card review counts and product-page review counts drifted by a few reviews in the same fetch. The spec keeps the product-page count when both existed."
+  - "Viator prices are USD and are context only."
+  - "Accessibility is discussed in the collection FAQ, but individual product cards that were opened did not repeat wheelchair access, so accessibility_noted is false at product level."

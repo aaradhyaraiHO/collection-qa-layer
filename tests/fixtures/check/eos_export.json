@@ -1,0 +1,26 @@
+{
+  "stage": "content_locked",
+  "contentLocked": true,
+  "mmp": {"id": "draft-1", "stage": "content_locked"},
+  "content": {
+    "heroTitle": "Milford Sound draft",
+    "heroCopy": "A draft collection that is not on the live site yet.",
+    "locked": true,
+    "faqs": [
+      {"question": "Can I cancel?", "answer": "You can cancel up to 24 hours before departure."},
+      {"question": "How do I get there?", "answer": "Coach from Queenstown or drive and park at the terminal."},
+      {"question": "Is there wheelchair access?", "answer": "The main deck is step-free. Upper decks have stairs."}
+    ]
+  },
+  "assortment": [
+    {
+      "id": "draft-cruise",
+      "title": "Draft day cruise",
+      "price": 149,
+      "currency": "NZD",
+      "duration": "2 hours",
+      "inclusions": ["Tea"],
+      "highlights": ["Open deck"]
+    }
+  ]
+}
