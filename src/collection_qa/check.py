@@ -10,8 +10,10 @@ from __future__ import annotations
 from pathlib import Path
 
 from collection_qa.eos import (
-    UNCONFIRMED_SELECTORS,
+    EOS_STRUCTURE,
     EosDocument,
+    classify_eos,
+    eos_missing_rows,
     EosParser,
     HeuristicEosAdapter,
     fetch_eos_page,
@@ -271,7 +273,10 @@ def run_check(
             spec.microbrand = spec.microbrand or _micro_surface(manifest.microbrand_url, spec.primary_surface.hero_title, spec.primary_surface.hero_copy)
     elif draft and draft.products:
         spec = spec_from_eos(resolved, draft, fetched_on=fetched_on)
-        if not resolved.page_live:
+        if eos_doc and (eos_doc.live_assortment or eos_doc.is_new_ce or eos_doc.empty_live_assortment):
+            status, eos_stage = classify_eos(eos_doc)
+            stage = eos_stage or stage
+        elif not resolved.page_live:
             status = "IN_PIPELINE"
             stage = stage or (draft.stage if draft else None) or "manual_inputs"
         for product in spec.products:
@@ -279,7 +284,16 @@ def run_check(
                 product.notes.append("please verify — this row was read from a screenshot")
     else:
         spec = None
+    if (
+        eos_doc
+        and status != "LIVE"
+        and (eos_doc.live_assortment or eos_doc.is_new_ce or eos_doc.empty_live_assortment)
+    ):
+        status, eos_stage = classify_eos(eos_doc)
+        stage = eos_stage or stage
     input_rows = ledger_rows(manifest, field_sources if layers or resolved.page_live else {})
+    if eos_doc and (eos_doc.page or eos_doc.ce_id or eos_doc.live_assortment or eos_doc.empty_live_assortment):
+        input_rows.extend(eos_missing_rows())
     gates = gates_for(status=status, content_locked=content_locked, has_content=has_content) if spec else set()
     scorecard = None
     if spec and spec.products and gates:
@@ -335,7 +349,7 @@ def run_check(
                 ["No EOS page was parsed."] if status != "LIVE" else []
             )),
             "field_sources": field_sources,
-            "unconfirmed_selectors": UNCONFIRMED_SELECTORS if eos_doc else "",
+            "eos_structure": EOS_STRUCTURE if eos_doc else "",
         },
     }
     from collection_qa.executive import build_view
@@ -377,9 +391,26 @@ def _load_eos(
         return None
     fetcher = eos_fetcher or fetch_eos_page
     chunks = []
+    errors = []
     for url in urls:
-        chunks.append(fetcher(url, Path(eos_profile) if eos_profile else None))
-    return parser.parse("\n".join(chunks), source=urls[0])
+        try:
+            chunks.append(fetcher(url, Path(eos_profile) if eos_profile else None))
+        except (FileNotFoundError, ValueError) as exc:
+            errors.append(str(exc))
+    if not chunks:
+        return EosDocument(
+            source=urls[0],
+            stage=None,
+            content_locked=False,
+            hero_title=None,
+            hero_copy=None,
+            faqs=[],
+            products=[],
+            notes=errors or ["EOS page was not fetched."],
+        )
+    document = parser.parse("\n".join(chunks), source=urls[0])
+    document.notes.extend(errors)
+    return document
 
 
 def _product_rows(scorecard: dict | None) -> list[dict]:

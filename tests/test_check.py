@@ -101,7 +101,7 @@ def test_pipeline_uses_eos_export_and_slack(tmp_path):
     assert report["verdict"] == "Fix first"
     assert any(row["priority"] == "P0" for row in report["fixes"])
     assert any(row["owner"] for row in report["fixes"])
-    assert "unconfirmed" in " ".join(report["appendix"]["eos_notes"]).lower()
+    assert "export button" in " ".join(report["appendix"]["eos_notes"]).lower()
 
 
 def test_missing_ce_holds_without_asking_the_model(tmp_path):

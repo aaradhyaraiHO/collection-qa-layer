@@ -34,6 +34,24 @@ document.querySelectorAll("[data-back]").forEach((button) => {
 });
 
 let lookupTimer;
+let eosTimer;
+$("eos-mmp").addEventListener("input", () => {
+  clearTimeout(eosTimer);
+  eosTimer = setTimeout(describeEosLink, 300);
+});
+
+async function describeEosLink() {
+  const value = $("eos-mmp").value.trim();
+  const meta = $("eos-link-meta");
+  if (!value) {
+    meta.textContent = "Paste the draft URL. The uuid is not the CE id. Search can create a draft, so this box does not open it.";
+    return;
+  }
+  const response = await fetch("/api/eos-link?url=" + encodeURIComponent(value));
+  const data = await response.json();
+  meta.textContent = data.line;
+}
+
 $("query").addEventListener("input", () => {
   state.query = $("query").value.trim();
   clearTimeout(lookupTimer);

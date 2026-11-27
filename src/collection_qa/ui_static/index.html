@@ -49,7 +49,8 @@
         <h2>What do you already have?</h2>
         <p class="lede">Leave a box empty if you do not have it. The report will say not provided.</p>
         <div class="grid">
-          <label><span>EOS MMP link</span><input id="eos-mmp" type="text" placeholder="https://eos.headout.com/mmp/draft/…"></label>
+          <label><span>EOS MMP link</span><input id="eos-mmp" type="text" placeholder="https://eos.headout.com/mmp/draft/&lt;uuid&gt;/ce-identity" aria-describedby="eos-link-meta"></label>
+          <p id="eos-link-meta" class="lede">Paste the draft URL. The uuid is not the CE id. Search can create a draft, so this box does not open it.</p>
           <label><span>Assortment link</span><input id="eos-assortment" type="text" placeholder="Proposed assortment"></label>
           <label><span>Content link</span><input id="eos-content" type="text" placeholder="Locked content"></label>
           <label><span>Microbrand URL</span><input id="microbrand" type="text" placeholder="https://…"></label>

@@ -1,12 +1,12 @@
-"""Fetch and parse an EOS MMP page with the user's own browser session.
+"""Read an EOS MMP page with the user's own browser session.
 
-EOS is behind the user's Headout sign-in. This module never stores a password.
-`collection-qa eos-login` opens a headed Chromium with a persistent profile
-directory. Later fetches reuse that profile. The directory is local and gitignored.
+EOS is behind the user's Headout sign-in. This module never stores a password
+and never clicks. `collection-qa eos-login` opens a headed Chromium with a
+persistent profile. Later fetches only open a URL the user pasted, or a known
+MMP uuid. Opening a CE from the search box can create a draft, so that path
+is refused.
 
-The DOM of eos.headout.com was not available when this parser was written.
-Selectors and JSON keys below are an adapter contract, not a confirmed map.
-Replace `HeuristicEosAdapter` once someone checks them in a signed-in session.
+Sign-in is Google-only: eos.headout.com redirects to auth.headout.com/ui/login.
 """
 
 from __future__ import annotations
@@ -23,26 +23,83 @@ from typing import Protocol
 DEFAULT_PROFILE = Path.home() / ".collection-qa" / "eos-profile"
 DEFAULT_EOS_URL = "https://eos.headout.com/"
 
-UNCONFIRMED_SELECTORS = """
-Unconfirmed against a signed-in EOS page. Treat parses as best-effort until
-someone verifies these in the browser and updates HeuristicEosAdapter.
+AUTH_LOGIN_URL = "https://auth.headout.com/ui/login"
+EOS_HOME_URL = "https://eos.headout.com/"
 
-HTML, guessed:
-- stage: [data-testid="mmp-stage"], [data-stage]
-- assortment card: [data-testid="assortment-card"], article.assortment-card
-- title: h3, .product-title, [data-field="title"]
-- price: [data-field="price"], .price
-- duration: [data-field="duration"]
-- inclusions: .inclusions li
-- hero: h1, [data-field="hero-title"]
-- hero copy: [data-field="hero-copy"]
-- FAQ: .faq-item, details
-- content lock: [data-content-locked], text "content locked"
+# The MMP uuid is not the CE id. These were read from signed-in draft URLs.
+KNOWN_MMP_UUIDS = {
+    "3945": "f5889f6f-0a8a-4b5e-801f-e7544cb4e623",
+    "7324": "45678f7d-0e69-42b8-9317-3ea10dd79fef",
+}
 
-JSON keys, guessed: stage, contentLocked, assortment, products, tourGroups,
-content.heroTitle, content.heroCopy, content.faqs, content.highlights.
-CSV columns, guessed: id, title, price, currency, duration, inclusions.
+MMP_PAGES = (
+    "ce-identity",
+    "current-assortment",
+    "product-content",
+)
+
+UNMAPPED_SIDEBAR = (
+    "CE deep research",
+    "Keyword research",
+    "Competitor research",
+    "Proposed assortment",
+    "CE level todos",
+    "Supply Onboarding Studio",
+    "Assortment review",
+)
+
+# Confirmed by a signed-in, read-only pass. Not a CSS selector dump: the pages
+# are identified by their headings, tabs, and the columns that were on screen.
+EOS_STRUCTURE = """
+Sign-in: eos.headout.com redirects to auth.headout.com/ui/login. The only
+control is "Sign in with Google".
+
+Home: https://eos.headout.com/ has "Search or jump to…" (Ctrl+K) with tabs
+Tools / Combined entities / MMPs. A result row shows the CE name, city and
+country, the owner email, and the CE id (Milford Sound Cruises 3945, Masai
+Mara 7324). Choosing a result can create a draft MMP. Do not open search.
+Paste an /mmp/draft/<uuid>/<page> URL, or use a known uuid.
+
+Draft URL: https://eos.headout.com/mmp/draft/<mmp-uuid>/<page>
+The uuid is not the CE id. The CE id is in the sidebar title, "Name - 3945".
+Known uuids: 3945 = f5889f6f-0a8a-4b5e-801f-e7544cb4e623,
+7324 = 45678f7d-0e69-42b8-9317-3ea10dd79fef.
+
+ce-identity?subStep=ce-summary: heading "CE identity", tabs CE summary / MB setup.
+Fields: CE ID, Market, Region, General configuration (Collection ID, Collection
+URL to scorpio.headout.com/admin/information_architecture/collection/<id>/change/).
+Tags: Managed, Collection, New CE. New CE means the collection is not live.
+
+current-assortment: tabs Overview / Availability / Custom fields / Pricing / Pax.
+One row per tour group. Columns include Experience/Property/Variant/Vendor,
+Revenue, Rev Share %, Orders, AOV, Clicks, Clicks %, S2O, S2C, C2O, Rev/Click,
+CR %, TR %, Lead time %, Pax/Order. A new CE says "This CE is new, so there is
+no live assortment to review yet."
+
+product-content: steps Assortment overview, Experience names, Content generation,
+Lock content for Hedwig. "Content Generation Status: Not started" or "Locked".
+Groups "Ready for content generation" and "Locked". Columns: Name, Content
+source, Variants ("2/3 ready"). An expanded row shows Current MB highlights,
+Current inclusions, Current exclusions, Variant differentiation, Variant ID,
+Tour ID. Rows can be tagged New or New Variant.
+
+Not on these pages: prices, cancellation, pickup, images, and any export button.
+Those stay in the screenshot, export, and manual placeholders.
+
+Status: a New CE tag or an empty live assortment is IN_PIPELINE. Content status
+Locked means Gate B is ready. Assortment rows that show revenue are LIVE.
 """.strip()
+
+# Older imports used this name. The text is the confirmed map, not a guess list.
+UNCONFIRMED_SELECTORS = EOS_STRUCTURE
+
+EOS_MISSING_FIELDS = (
+    ("price", "EOS has no price on the assortment or content pages. Use a screenshot, a saved export, or assortment.csv."),
+    ("cancellation", "EOS does not show a cancellation cutoff. Add it in the manual notes or a screenshot."),
+    ("pickup", "EOS does not show pickup. Add it in the manual notes or a screenshot."),
+    ("images", "EOS does not show product images on the pages that were mapped."),
+    ("export_button", "No export button was on these pages. Save the page yourself or paste a screenshot."),
+)
 
 
 @dataclass
@@ -57,6 +114,11 @@ class EosProduct:
     cancellation: str | None = None
     pickup: str | None = None
     url: str | None = None
+    revenue: float | None = None
+    variant_id: str | None = None
+    tour_id: str | None = None
+    variants_ready: str | None = None
+    row_tag: str | None = None
 
 
 @dataclass
@@ -70,6 +132,17 @@ class EosDocument:
     products: list[EosProduct]
     notes: list[str] = field(default_factory=list)
     parser_name: str = "heuristic"
+    ce_id: str | None = None
+    ce_name: str | None = None
+    mmp_uuid: str | None = None
+    market: str | None = None
+    region: str | None = None
+    tags: list[str] = field(default_factory=list)
+    is_new_ce: bool = False
+    empty_live_assortment: bool = False
+    live_assortment: bool = False
+    content_status: str | None = None
+    page: str | None = None
 
 
 class EosParser(Protocol):
@@ -194,6 +267,40 @@ class HeuristicEosAdapter:
             return self._from_csv(stripped, source)
         return self._from_html(stripped, source)
 
+    def _from_html(self, document: str, source: str) -> EosDocument:
+        plain = _plain(document)
+        if _is_confirmed_page(plain):
+            return _from_confirmed(plain, source, parser_name=self.name)
+        parser = _CardParser()
+        parser.feed(document)
+        products = []
+        for index, raw in enumerate(parser.products):
+            price, currency = _price_from_text(raw.get("price_text") or "")
+            products.append(
+                EosProduct(
+                    id=f"html-{index + 1}",
+                    title=raw.get("title") or "Untitled",
+                    price=price,
+                    currency=currency,
+                    duration=raw.get("duration"),
+                    inclusions=raw.get("inclusions") or [],
+                )
+            )
+        notes = []
+        if not products and not parser.hero_title:
+            notes.append("HTML parser found no assortment cards or hero.")
+        return EosDocument(
+            source=source,
+            stage=parser.stage,
+            content_locked=parser.content_locked,
+            hero_title=parser.hero_title,
+            hero_copy=parser.hero_copy,
+            faqs=parser.faqs,
+            products=products,
+            notes=notes,
+            parser_name=self.name,
+        )
+
     def _from_json(self, payload, source: str) -> EosDocument:
         if isinstance(payload, list):
             payload = {"assortment": payload}
@@ -218,7 +325,7 @@ class HeuristicEosAdapter:
         )
         products = []
         notes = [
-            "JSON keys are unconfirmed against EOS. See collection_qa.eos.UNCONFIRMED_SELECTORS."
+            "Saved JSON is a manual export. The signed-in EOS pages do not show prices, cancellation, pickup, images, or an export button."
         ]
         if not isinstance(raw_products, list):
             notes.append("Assortment field was present but not a list.")
@@ -284,38 +391,7 @@ class HeuristicEosAdapter:
             hero_copy=None,
             faqs=[],
             products=products,
-            notes=["CSV columns are unconfirmed. Content lock cannot be seen in a product CSV."],
-            parser_name=self.name,
-        )
-
-    def _from_html(self, document: str, source: str) -> EosDocument:
-        parser = _CardParser()
-        parser.feed(document)
-        products = []
-        for index, raw in enumerate(parser.products):
-            price, currency = _price_from_text(raw.get("price_text") or "")
-            products.append(
-                EosProduct(
-                    id=f"html-{index + 1}",
-                    title=raw.get("title") or "Untitled",
-                    price=price,
-                    currency=currency,
-                    duration=raw.get("duration"),
-                    inclusions=raw.get("inclusions") or [],
-                )
-            )
-        notes = [UNCONFIRMED_SELECTORS]
-        if not products and not parser.hero_title:
-            notes.append("HTML parser found no assortment cards or hero. Selectors likely differ.")
-        return EosDocument(
-            source=source,
-            stage=parser.stage,
-            content_locked=parser.content_locked,
-            hero_title=parser.hero_title,
-            hero_copy=parser.hero_copy,
-            faqs=parser.faqs,
-            products=products,
-            notes=notes,
+            notes=["CSV is a manual export. EOS pages do not show price, cancellation, pickup, or images, and there is no export button."],
             parser_name=self.name,
         )
 
@@ -342,6 +418,257 @@ def _num(value) -> float | None:
     return None
 
 
+_MMP_URL = re.compile(
+    r"https://eos\.headout\.com/mmp/draft/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:/([a-z0-9-]+))?",
+    re.IGNORECASE,
+)
+
+
+def parse_mmp_url(url: str) -> tuple[str | None, str | None]:
+    """Return (mmp uuid, page slug) from a pasted draft URL. Neither is the CE id."""
+    match = _MMP_URL.search(url or "")
+    if not match:
+        return None, None
+    return match.group(1).lower(), match.group(2)
+
+
+def ce_id_for_uuid(mmp_uuid: str | None) -> str | None:
+    if not mmp_uuid:
+        return None
+    for ce_id, known in KNOWN_MMP_UUIDS.items():
+        if known == mmp_uuid.lower():
+            return ce_id
+    return None
+
+
+def mmp_url_for(ce_id: str, page: str = "ce-identity") -> str | None:
+    uuid = KNOWN_MMP_UUIDS.get(str(ce_id))
+    if not uuid:
+        return None
+    return f"https://eos.headout.com/mmp/draft/{uuid}/{page}"
+
+
+def prefer_mmp_url(pasted: str, ce_id: str | None = None, page: str = "ce-identity") -> str | None:
+    """Use a pasted draft URL. Fall back to a known uuid. Never build a search URL."""
+    uuid, found_page = parse_mmp_url(pasted)
+    if uuid:
+        return f"https://eos.headout.com/mmp/draft/{uuid}/{found_page or page}"
+    if ce_id:
+        return mmp_url_for(ce_id, page)
+    return None
+
+
+def describe_mmp_link(url: str) -> dict:
+    uuid, page = parse_mmp_url(url)
+    if not uuid:
+        return {
+            "ok": False,
+            "line": (
+                "Paste a URL like https://eos.headout.com/mmp/draft/<uuid>/<page>. "
+                "The search box can create a draft, so this field does not open search."
+            ),
+        }
+    ce_id = ce_id_for_uuid(uuid)
+    line = f"MMP {uuid}"
+    if page:
+        line += f" · {page}"
+    if ce_id:
+        line += f" · CE {ce_id}"
+    line += ". Read-only. Prices, cancellation, pickup, and images are not on these pages."
+    return {"ok": True, "uuid": uuid, "page": page, "ce_id": ce_id, "line": line}
+
+
+def opens_search(url: str) -> bool:
+    """True when following the URL would use the home search instead of a saved draft."""
+    from urllib.parse import urlparse
+
+    parsed = urlparse(url or "")
+    host = parsed.netloc.lower()
+    if host.endswith("auth.headout.com"):
+        return False
+    if not host.endswith("eos.headout.com"):
+        return False
+    path = parsed.path.rstrip("/")
+    if path in {"", "/"}:
+        return True
+    return path.startswith("/search") or "jump" in path
+
+
+def classify_eos(document: EosDocument) -> tuple[str, str | None]:
+    """Map a parsed EOS page to LIVE or IN_PIPELINE, plus a stage name."""
+    if document.live_assortment or any((item.revenue or 0) > 0 for item in document.products):
+        stage = "content_locked" if document.content_locked else (document.stage or "live_assortment")
+        return "LIVE", stage
+    if document.is_new_ce or document.empty_live_assortment:
+        stage = "content_locked" if document.content_locked else (document.stage or "new_ce")
+        return "IN_PIPELINE", stage
+    return "IN_PIPELINE", document.stage
+
+
+def eos_missing_rows() -> list[dict]:
+    return [
+        {"field": name, "status": "not provided", "source": "eos", "detail": detail}
+        for name, detail in EOS_MISSING_FIELDS
+    ]
+
+
+def _plain(document: str) -> str:
+    import html as html_lib
+
+    text = re.sub(r"<[^>]+>", " ", document)
+    text = html_lib.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _is_confirmed_page(text: str) -> bool:
+    lowered = text.lower()
+    return any(
+        marker in lowered
+        for marker in (
+            "ce identity",
+            "current assortment",
+            "content generation status",
+            "no live assortment to review yet",
+            "tgid:",
+        )
+    )
+
+
+def _from_confirmed(text: str, source: str, parser_name: str) -> EosDocument:
+    uuid, page = parse_mmp_url(source)
+    ce_id = None
+    ce_name = None
+    sidebar = re.search(r"([A-Z][A-Za-z0-9' &:.\-]{2,80}?)\s+-\s+(\d{3,6})\b", text)
+    if sidebar and "CE identity" not in sidebar.group(1):
+        ce_name = sidebar.group(1).strip(" -")
+        ce_id = sidebar.group(2)
+    ce_field = re.search(r"\bCE ID\s+(\d{3,6})\b", text)
+    if ce_field:
+        ce_id = ce_field.group(1)
+    ce_id = ce_id or ce_id_for_uuid(uuid)
+    market = _between(text, "Market", "Region")
+    region = _between(text, "Region", "General configuration")
+    tags = []
+    identity_head = text
+    if "CE ID" in text:
+        identity_head = text.split("CE ID", 1)[0]
+    for tag in ("New CE", "Managed", "Collection"):
+        if tag == "Collection" and "CE identity" not in text:
+            continue
+        if tag in identity_head or (tag == "New CE" and tag in text):
+            tags.append(tag)
+    is_new = "New CE" in tags
+    empty = "no live assortment to review yet" in text.lower()
+    content_status = None
+    status_match = re.search(r"Content Generation Status:?\s*(Not started|Locked)", text, re.IGNORECASE)
+    if status_match:
+        content_status = status_match.group(1).capitalize() if status_match.group(1).lower() == "locked" else "Not started"
+        if status_match.group(1).lower() == "locked":
+            content_status = "Locked"
+    locked = content_status == "Locked"
+    products = _tour_groups(text)
+    live = any((item.revenue or 0) > 0 for item in products) and not empty
+    notes = [detail for _name, detail in EOS_MISSING_FIELDS]
+    if empty:
+        notes.append("This CE is new, so there is no live assortment to review yet.")
+    for name in UNMAPPED_SIDEBAR:
+        if name in text:
+            notes.append(f"Sidebar page “{name}” is visible and not mapped yet.")
+    stage = None
+    if locked:
+        stage = "content_locked"
+    elif content_status == "Not started":
+        stage = "content_not_started"
+    elif empty or is_new:
+        stage = "new_ce"
+    elif live:
+        stage = "live_assortment"
+    page_kind = page
+    lowered = text.lower()
+    if "content generation status" in lowered or "product content" in lowered:
+        page_kind = page_kind or "product-content"
+    elif "current assortment" in lowered:
+        page_kind = page_kind or "current-assortment"
+    elif "ce identity" in lowered:
+        page_kind = page_kind or "ce-identity"
+    return EosDocument(
+        source=source,
+        stage=stage,
+        content_locked=locked,
+        hero_title=ce_name,
+        hero_copy=None,
+        faqs=[],
+        products=products,
+        notes=notes,
+        parser_name=parser_name,
+        ce_id=ce_id,
+        ce_name=ce_name,
+        mmp_uuid=uuid,
+        market=market,
+        region=region,
+        tags=tags,
+        is_new_ce=is_new,
+        empty_live_assortment=empty,
+        live_assortment=live,
+        content_status=content_status,
+        page=page_kind,
+    )
+
+
+def _between(text: str, start: str, end: str) -> str | None:
+    match = re.search(rf"{re.escape(start)}\s+(.+?)\s+{re.escape(end)}\b", text)
+    if not match:
+        return None
+    value = match.group(1).strip()
+    return value[:80] or None
+
+
+def _tour_groups(text: str) -> list[EosProduct]:
+    found: dict[str, EosProduct] = {}
+    for match in re.finditer(
+        r"([A-Z][^$]{4,180}?)\s+TGID:\s*(\d+)\s+\$([0-9][0-9,]*)",
+        text,
+    ):
+        title = _clean_title(match.group(1))
+        tgid = match.group(2)
+        revenue = float(match.group(3).replace(",", ""))
+        found[tgid] = EosProduct(id=f"tg-{tgid}", title=title, revenue=revenue, price=None)
+    for match in re.finditer(
+        r"([A-Z][^$]{4,180}?)\s+TGID:\s*(\d+)(?:\s+(New Variant|New))?(?:\s+(\d+/\d+)\s+ready)?",
+        text,
+    ):
+        tgid = match.group(2)
+        title = _clean_title(match.group(1))
+        product = found.get(tgid) or EosProduct(id=f"tg-{tgid}", title=title, price=None)
+        product.row_tag = match.group(3) or product.row_tag
+        product.variants_ready = match.group(4) or product.variants_ready
+        if not product.title:
+            product.title = title
+        found[tgid] = product
+    highlight = re.search(
+        r"Current MB highlights\s+(.+?)\s+Current inclusions\s+(.+?)\s+Current exclusions",
+        text,
+    )
+    variant = re.search(r"Variant ID:\s*(\d+)\s+Tour ID:\s*(\d+)", text)
+    if found and (highlight or variant):
+        first = next(iter(found.values()))
+        if highlight:
+            first.highlights = [part.strip(" •") for part in re.split(r"\s+•\s+", highlight.group(1)) if part.strip()]
+            inclusion = highlight.group(2).strip()
+            if inclusion and inclusion.lower() != "no content available":
+                first.inclusions = [inclusion]
+        if variant:
+            first.variant_id = variant.group(1)
+            first.tour_id = variant.group(2)
+    return list(found.values())
+
+
+def _clean_title(title: str) -> str:
+    title = re.sub(r"\s+", " ", title).strip(" -•")
+    title = re.sub(r"^(Name|Overview|Ready for content generation(?:\s+\d+)?|Locked(?:\s+\d+)?)\s+", "", title)
+    return title.strip()
+
+
 def read_eos_export(path: str, parser: EosParser | None = None) -> EosDocument:
     parser = parser or HeuristicEosAdapter()
     text = Path(path).read_text(encoding="utf-8")
@@ -358,6 +685,11 @@ def eos_login(profile_dir: Path | None = None, start_url: str = DEFAULT_EOS_URL,
 
 
 def fetch_eos_page(url: str, profile_dir: Path | None = None, launcher=None) -> str:
+    if opens_search(url):
+        raise ValueError(
+            "Opening EOS search can create a draft MMP. Paste an "
+            "https://eos.headout.com/mmp/draft/<uuid>/<page> URL instead."
+        )
     profile = Path(profile_dir or DEFAULT_PROFILE)
     if not profile.exists():
         raise FileNotFoundError(
@@ -384,8 +716,9 @@ def _launch_persistent(profile: Path, url: str, *, headless: bool, wait_for_ente
         page = context.pages[0] if context.pages else context.new_page()
         page.goto(url)
         if wait_for_enter:
-            print(f"Sign in to EOS in the browser window ({url}).")
-            print("Press Enter here after the MMP page is visible. The session stays in the profile.")
+            print("Sign in with Google. EOS redirects to auth.headout.com. There is no password field.")
+            print("Press Enter here after you are back on EOS. The session stays in the profile.")
+            print("Do not use search to open a CE. That can create a draft. Paste the MMP URL instead.")
             input()
             html = page.content()
         else:

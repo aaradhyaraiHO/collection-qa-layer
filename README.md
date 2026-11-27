@@ -82,7 +82,7 @@ If the page has no bookable cards, status is **IN_PIPELINE** when Slack or the c
 
 Gate A runs when there is an assortment. Gate B is added when the page is live or the draft says content is locked. The report is `reports/checks/<id>.check.html` plus markdown and JSON: verdict (Go / Fix first / Hold), quotes, a product chart, a fix table (priority, issue, link, change, owner, quote), traveller-type breakdown, microbrand versus Headout, competitors, automated checks, whether the mix can be trusted, and an appendix.
 
-EOS selectors are not confirmed. They are listed in `collection_qa.eos.UNCONFIRMED_SELECTORS`. A parse of a real signed-in page may miss cards until that adapter is checked in the browser. The public product-card JSON shapes are also defensive: the API returned HTTP 403 when the pilot specs were seeded.
+EOS pages were read signed in, read-only. The map is `collection_qa.eos.EOS_STRUCTURE`. Sign-in is Google-only. Paste an `/mmp/draft/<uuid>/<page>` URL; the search box can create a draft, so the tool does not open it. Known MMP uuids: CE 3945 and CE 7324. Prices, cancellation, pickup, images, and an export button were not on those pages, so those stay in the screenshot, export, and manual placeholders. The public product-card API returned HTTP 403 when the pilot specs were seeded.
 
 ### If you are filling this in by hand
 

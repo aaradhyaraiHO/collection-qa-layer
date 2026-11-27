@@ -32,7 +32,7 @@ PLACEHOLDER_FIELDS = (
 )
 
 FIELD_HELP = {
-    "eos_mmp_link": "Browser URL of the MMP draft, like https://eos.headout.com/mmp/draft/<id>/.... Leave blank if you cannot open EOS.",
+    "eos_mmp_link": "Paste https://eos.headout.com/mmp/draft/<uuid>/<page>. The uuid is not the CE id. Do not use the search box; it can create a draft.",
     "eos_assortment_link": "Browser URL of the proposed-assortment screen for this CE. Leave blank to skip.",
     "eos_content_link": "Browser URL of the locked content screen. Leave blank to skip.",
     "eos_exports": "Files you saved from EOS (HTML, JSON, or CSV). Paths are relative to this folder, usually exports/page.html.",

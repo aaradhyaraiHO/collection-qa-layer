@@ -15,6 +15,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from collection_qa.cost import estimate_cost, planned_calls
+from collection_qa.eos import describe_mmp_link
 from collection_qa.headout_lookup import HeadoutLookup
 from collection_qa.inputs import find_manifest, load_manifest, scaffold, slugify
 
@@ -268,6 +269,11 @@ def _start_run(payload: dict) -> str:
             progress("writing", "Saving what you entered")
             token = os.environ.get("SLACK_TOKEN", "")
             slack = EnvSlackClient(token) if token else SkippingSlack()
+            links = [
+                str(payload.get(key) or "").strip()
+                for key in ("eos_mmp_link", "eos_assortment_link", "eos_content_link")
+                if str(payload.get(key) or "").strip()
+            ]
             report = run_check(
                 query,
                 fetch=_public_fetch,
@@ -276,6 +282,7 @@ def _start_run(payload: dict) -> str:
                 mock=bool(payload.get("mock", True)),
                 personas=int(payload.get("personas") or 8),
                 seed=7,
+                eos_urls=links,
                 prompt_fn=None,
                 progress=progress,
             )
@@ -311,6 +318,10 @@ def serve(port: int = 8765) -> None:
                 return
             if parsed.path.startswith("/report/"):
                 self._file(Path("reports/checks") / parsed.path.split("/report/", 1)[1])
+                return
+            if parsed.path == "/api/eos-link":
+                url = parse_qs(parsed.query).get("url", [""])[0]
+                self._json(describe_mmp_link(url))
                 return
             if parsed.path == "/api/lookup":
                 query = parse_qs(parsed.query).get("q", [""])[0]
