@@ -1,8 +1,8 @@
 """Shape a scorecard into the seven-part page the local tool renders.
 
 Charts are numbers. The page draws them as inline SVG. Nothing here calls a model.
-When a live file has no per-persona scores, stability is the published segment
-table reweighted. That is the mix moving the cells we already measured.
+Pilot pages read reports/live-regen, which stores the cached Claude panel and the
+80-mix sensitivity. They do not invent persona scores.
 """
 
 from __future__ import annotations
@@ -12,12 +12,9 @@ from pathlib import Path
 
 import yaml
 
-from collection_qa.personas import sample_personas
 from collection_qa.report import CHANGE_BY_CODE, OWNER_BY_CODE, build_fixes, verdict_for
-from collection_qa.sensitivity import kendall_tau, normalize_axis, rank_order, shift_axis
 
 SMALL_CELL = 8
-PAGE_BAND = 0.05
 
 
 def build_view(source: dict, *, report: dict | None = None) -> dict:
@@ -27,77 +24,13 @@ def build_view(source: dict, *, report: dict | None = None) -> dict:
 
 
 def load_pilot(collection_id: str, root: Path | None = None) -> dict:
-    root = root or Path("reports/live")
+    root = root or Path("reports/live-regen")
     path = root / f"{collection_id}.json"
     scorecard = json.loads(path.read_text(encoding="utf-8"))
-    panel_path = root / f"{collection_id}.panel.json"
-    if panel_path.exists() and not scorecard.get("panel_scores"):
-        extra = json.loads(panel_path.read_text(encoding="utf-8"))
-        scorecard["panel_scores"] = extra.get("panel_scores") or []
-        scorecard["panel_scores_provenance"] = extra.get("provenance")
+    sensitivity_path = root / f"{collection_id}.sensitivity.json"
+    if sensitivity_path.exists():
+        scorecard["sensitivity"] = json.loads(sensitivity_path.read_text(encoding="utf-8"))
     return build_view(scorecard)
-
-
-def write_panel_file(scorecard_path: Path) -> Path:
-    scorecard = json.loads(Path(scorecard_path).read_text(encoding="utf-8"))
-    rows = panel_from_segment_means(scorecard)
-    target = Path(scorecard_path).with_suffix(".panel.json")
-    payload = {
-        "collection_id": scorecard.get("collection_id"),
-        "provenance": (
-            "Each row is a seed-matched persona. The score is the published mean "
-            "of that persona's trip type on that product or page. The committed "
-            "live scorecard did not store the original per-persona SSR rows, and "
-            "the sqlite cache is not in the repo, so these are not a second Claude run. "
-            "The report heatmap uses the published segment table. This file is what "
-            "a reader of panel_scores can reweight."
-        ),
-        "seed": scorecard.get("method", {}).get("seed"),
-        "n_personas": scorecard.get("method", {}).get("n_personas"),
-        "panel_scores": rows,
-    }
-    target.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    return target
-
-
-def panel_from_segment_means(scorecard: dict) -> list[dict]:
-    method = scorecard.get("method") or {}
-    panel = sample_personas(
-        n=int(method.get("n_personas") or 30),
-        profile=scorecard.get("persona_profile") or "fjord_cruise",
-        seed=int(method.get("seed") or 7),
-    )
-    stimuli: dict[str, dict] = {}
-    for product_id, block in (scorecard.get("products") or {}).items():
-        stimuli[product_id] = block
-    for role, block in (scorecard.get("pages") or {}).items():
-        stimuli[f"page:{role}"] = block
-    rows = []
-    for persona in panel.personas:
-        scores = {}
-        for stimulus_id, block in stimuli.items():
-            cell = ((block.get("by_segment") or {}).get("trip_type") or {}).get(persona.trip_type) or {}
-            mean = cell.get("mean", (block.get("overall") or {}).get("mean"))
-            if mean is None:
-                continue
-            scores[stimulus_id] = {"mean": round(float(mean), 6)}
-        rows.append(
-            {
-                "persona_id": persona.id,
-                "attributes": {
-                    "source_market": persona.source_market,
-                    "age_band": persona.age_band,
-                    "trip_type": persona.trip_type,
-                    "budget_tier": persona.budget_tier,
-                    "planning_horizon": persona.planning_horizon,
-                    "experience": persona.experience,
-                    "accessibility": persona.accessibility,
-                    "device_channel": persona.device_channel,
-                },
-                "scores": scores,
-            }
-        )
-    return rows
 
 
 def _from_scorecard(scorecard: dict, report: dict | None) -> dict:
@@ -286,37 +219,90 @@ def _fix_row(row: dict) -> dict:
     }
 
 
+def _panel_groups(scorecard: dict, axis: str) -> dict[str, list[dict]] | None:
+    panel = scorecard.get("panel_scores") or []
+    if not panel:
+        return None
+    groups: dict[str, list[dict]] = {}
+    for level in (scorecard.get("persona_weights") or {}).get(axis) or []:
+        groups[level] = []
+    for row in panel:
+        level = (row.get("attributes") or {}).get(axis)
+        if not level:
+            continue
+        groups.setdefault(level, []).append(row)
+    return groups
+
+
 def _heatmap(scorecard: dict) -> dict:
     products = scorecard.get("products") or {}
-    order = (scorecard.get("rankings") or {}).get("overall") or list(products)
-    columns = [{"id": pid, "title": products[pid].get("title") or pid} for pid in order if pid in products]
+    order = [pid for pid in ((scorecard.get("rankings") or {}).get("overall") or list(products)) if pid in products]
+    columns = [{"title": products[pid].get("title") or pid} for pid in order]
+    groups = _panel_groups(scorecard, "trip_type")
+    if groups is not None:
+        rows = []
+        for level, members in groups.items():
+            if not members and level not in (scorecard.get("persona_weights") or {}).get("trip_type", {}):
+                continue
+            cells = []
+            for pid in order:
+                values = [
+                    float(row["scores"][pid]["mean"])
+                    for row in members
+                    if pid in (row.get("scores") or {})
+                ]
+                n = len(values)
+                cells.append(
+                    {
+                        "mean": None if not values else round(sum(values) / n, 2),
+                        "n": n,
+                        "faded": n < SMALL_CELL,
+                    }
+                )
+            if any(cell["n"] for cell in cells):
+                rows.append({"label": level.replace("_", " "), "cells": cells})
+        return {"columns": columns, "rows": rows}
     rows = []
-    levels = []
+    levels: list[str] = []
     for pid in order:
-        block = products.get(pid) or {}
-        for level in ((block.get("by_segment") or {}).get("trip_type") or {}):
+        for level in ((products[pid].get("by_segment") or {}).get("trip_type") or {}):
             if level not in levels:
                 levels.append(level)
     for level in levels:
         cells = []
         for pid in order:
-            if pid not in products:
-                continue
             cell = ((products[pid].get("by_segment") or {}).get("trip_type") or {}).get(level) or {}
             n = int(cell.get("n") or 0)
             mean = cell.get("mean")
-            cells.append(
-                {
-                    "mean": None if mean is None else round(float(mean), 2),
-                    "n": n,
-                    "faded": n < SMALL_CELL,
-                }
-            )
+            cells.append({"mean": None if mean is None else round(float(mean), 2), "n": n, "faded": n < SMALL_CELL})
         rows.append({"label": level.replace("_", " "), "cells": cells})
-    return {"columns": [{"title": column["title"]} for column in columns], "rows": rows}
+    return {"columns": columns, "rows": rows}
 
 
 def _dots(scorecard: dict) -> list[dict]:
+    groups_ready = _panel_groups(scorecard, "trip_type")
+    if groups_ready is not None and any("page:primary" in (row.get("scores") or {}) for row in scorecard.get("panel_scores") or []):
+        dots = []
+        for axis in ("trip_type", "budget_tier"):
+            for level, members in (_panel_groups(scorecard, axis) or {}).items():
+                values = [
+                    float(row["scores"]["page:primary"]["mean"])
+                    for row in members
+                    if "page:primary" in (row.get("scores") or {})
+                ]
+                if not values:
+                    continue
+                n = len(values)
+                dots.append(
+                    {
+                        "axis": axis.replace("_", " "),
+                        "label": str(level).replace("_", " "),
+                        "mean": round(sum(values) / n, 2),
+                        "n": n,
+                        "faded": n < SMALL_CELL,
+                    }
+                )
+        return dots
     pages = scorecard.get("pages") or {}
     block = pages.get("primary") or (next(iter(pages.values())) if pages else None)
     if not block:
@@ -404,124 +390,93 @@ def _stability(scorecard: dict) -> dict:
     sensitivity = scorecard.get("sensitivity") or {}
     if sensitivity.get("status") == "ok":
         return _stability_from_analysis(sensitivity, scorecard)
-    return _stability_from_segments(scorecard)
+    return {
+        "label": "Not run",
+        "note": "This scorecard has no per-persona reweight.",
+        "page_base": None,
+        "page_low": None,
+        "page_high": None,
+        "kendall_mean": None,
+        "highlights": [],
+        "dimensions": [],
+        "points": [],
+        "bullets": _trust_lines(scorecard, "Not run", None),
+    }
 
 
 def _stability_from_analysis(sensitivity: dict, scorecard: dict) -> dict:
-    page = _primary_page(scorecard)
-    base = page["mean"] if page else None
-    points = []
+    page_level = sensitivity.get("page_level") or {}
+    primary = page_level.get("page:primary") or next(iter(page_level.values()), {})
+    base = primary.get("base_mean")
+    low = primary.get("scenario_min")
+    high = primary.get("scenario_max")
+    titles = {
+        product_id: block.get("title") or product_id
+        for product_id, block in (scorecard.get("products") or {}).items()
+    }
+    dimensions = []
     for row in sensitivity.get("dimension_influence") or []:
-        points.append(
+        dimensions.append(
             {
                 "label": str(row.get("axis") or "").replace("_", " "),
-                "page": None if base is None else round(base, 2),
                 "delta": row.get("mean_abs_page_delta"),
                 "tau": None if row.get("mean_tau_drop") is None else round(1 - float(row["mean_tau_drop"]), 3),
             }
         )
     rank = sensitivity.get("rank_stability") or {}
-    label = "WEIGHT-SENSITIVE" if sensitivity.get("page_weight_sensitive") else "ROBUST"
+    label = "WEIGHT-SENSITIVE" if sensitivity.get("page_weight_sensitive") else (primary.get("verdict") or "ROBUST")
+    n_scenarios = sensitivity.get("n_scenarios")
+    note = (
+        f"Reweighted the cached panel across {n_scenarios} mixes "
+        "(trip type, budget, source market, and planning horizon). No new model calls."
+        if n_scenarios
+        else "Reweighted the stored per-persona scores. No new model calls."
+    )
+    if sensitivity.get("recommendation"):
+        note = sensitivity["recommendation"]
     return {
         "label": label,
-        "note": sensitivity.get("recommendation")
-        or "Reweighted from the stored per-persona scores. No new model calls.",
-        "page_base": base,
-        "page_low": base,
-        "page_high": base,
+        "note": note,
+        "page_base": None if base is None else round(float(base), 2),
+        "page_low": None if low is None else round(float(low), 2),
+        "page_high": None if high is None else round(float(high), 2),
         "kendall_mean": rank.get("kendall_tau_mean"),
-        "points": points,
+        "highlights": _highlights(sensitivity, titles),
+        "dimensions": dimensions,
+        "points": dimensions,
         "bullets": _trust_lines(scorecard, label, rank.get("kendall_tau_mean")),
     }
 
 
-def _stability_from_segments(scorecard: dict) -> dict:
-    pages = scorecard.get("pages") or {}
-    block = pages.get("primary") or (next(iter(pages.values())) if pages else None)
-    weights = {
-        axis: normalize_axis(dict(levels))
-        for axis, levels in (scorecard.get("persona_weights") or {}).items()
-        if axis in {"trip_type", "budget_tier"} and isinstance(levels, dict)
-    }
-    points = []
-    page_values = []
-    taus = []
-    base_page = None
-    if block:
-        base_page = round(float(block["overall"]["mean"]), 2)
-        page_values.append(base_page)
-    products = scorecard.get("products") or {}
-    for axis, base_axis in weights.items():
-        page_cells = ((block or {}).get("by_segment") or {}).get(axis) or {}
-        if not page_cells:
+def _highlights(sensitivity: dict, titles: dict[str, str]) -> list[dict]:
+    found = []
+    page = (sensitivity.get("page_level") or {}).get("page:primary") or {}
+    if page:
+        found.append(
+            {
+                "label": "Page intent across mixes",
+                "detail": f"{float(page['scenario_min']):.2f}–{float(page['scenario_max']):.2f}",
+                "verdict": page.get("verdict") or "",
+            }
+        )
+    rank = sensitivity.get("rank_stability") or {}
+    if rank.get("top3_same_rate") is not None:
+        found.append({"label": "Top 3 held", "detail": f"{float(rank['top3_same_rate']):.0%}", "verdict": ""})
+    if rank.get("bottom3_same_rate") is not None:
+        found.append({"label": "Bottom 3 held", "detail": f"{float(rank['bottom3_same_rate']):.0%}", "verdict": ""})
+    for finding in sensitivity.get("findings") or []:
+        if finding.get("code") != "relative_rank":
             continue
-        base_blend = _blend(base_axis, {level: float(cell["mean"]) for level, cell in page_cells.items()})
-        base_product_means = _product_blend(products, axis, base_axis)
-        base_order = rank_order(base_product_means)
-        for level in list(base_axis):
-            for delta, tag in ((0.20, "+20pp"), (-0.20, "-20pp")):
-                moved = shift_axis(base_axis, level, delta)
-                if moved is None or base_blend is None:
-                    continue
-                page_mean = _blend(moved, {name: float(cell["mean"]) for name, cell in page_cells.items()})
-                product_means = _product_blend(products, axis, moved)
-                order = rank_order(product_means)
-                tau = kendall_tau(base_order, order) if base_order and order else None
-                if page_mean is not None:
-                    page_values.append(page_mean)
-                if tau is not None:
-                    taus.append(tau)
-                points.append(
-                    {
-                        "label": f"{level.replace('_', ' ')} {tag}",
-                        "page": None if page_mean is None else round(page_mean, 3),
-                        "delta": None if page_mean is None or base_blend is None else round(page_mean - base_blend, 3),
-                        "tau": None if tau is None else round(tau, 3),
-                    }
-                )
-    kendall_mean = round(sum(taus) / len(taus), 3) if taus else None
-    page_low = round(min(page_values), 3) if page_values else None
-    page_high = round(max(page_values), 3) if page_values else None
-    moved = any(abs(point["delta"] or 0) > PAGE_BAND for point in points)
-    rank_soft = kendall_mean is not None and kendall_mean < 0.9
-    label = "WEIGHT-SENSITIVE" if moved or rank_soft else "ROBUST"
-    note = (
-        "Built from the published segment means for trip type and budget. "
-        "Individual reactions were not stored, so this chart moves those cells. "
-        "It does not add within-cell noise, and it does not reweight source market."
-    )
-    return {
-        "label": label,
-        "note": note,
-        "page_base": base_page,
-        "page_low": page_low,
-        "page_high": page_high,
-        "kendall_mean": kendall_mean,
-        "points": points,
-        "bullets": _trust_lines(scorecard, label, kendall_mean) + [note],
-    }
-
-
-def _blend(weights: dict[str, float], means: dict[str, float]) -> float | None:
-    num = den = 0.0
-    for level, weight in weights.items():
-        if level not in means:
-            continue
-        num += float(weight) * float(means[level])
-        den += float(weight)
-    if den <= 0:
-        return None
-    return num / den
-
-
-def _product_blend(products: dict, axis: str, weights: dict[str, float]) -> dict[str, float]:
-    found = {}
-    for product_id, block in products.items():
-        cells = (block.get("by_segment") or {}).get(axis) or {}
-        means = {level: float(cell["mean"]) for level, cell in cells.items() if "mean" in cell}
-        blended = _blend(weights, means)
-        if blended is not None:
-            found[product_id] = blended
+        key = finding.get("key")
+        title = titles.get(key, str(key or "Product"))
+        short = "Flyover" if "fly" in title.lower() else title
+        found.append(
+            {
+                "label": f"{short} stays weak",
+                "detail": f"{float(finding['hold_rate']):.0%}",
+                "verdict": finding.get("verdict") or "",
+            }
+        )
     return found
 
 

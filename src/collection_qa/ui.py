@@ -159,12 +159,12 @@ def _quote(value: str) -> str:
 
 
 def pilot_index() -> list[dict]:
-    folder = Path("reports/live")
+    folder = Path("reports/live-regen")
     if not folder.exists():
         return []
     rows = []
     for path in sorted(folder.glob("*.json")):
-        if ".panel." in path.name or path.name.endswith(".panel.json"):
+        if "sensitivity" in path.name or path.name.startswith("all_"):
             continue
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))

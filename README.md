@@ -112,7 +112,7 @@ If the same fact is in more than one place, the tool keeps the signed-in EOS pag
 
 `collection-qa ui` opens a local tool at http://127.0.0.1:8765. It is a four-step page. The results step is the report: likely-to-book bars, traveller quotes, a best-to-worst chart, the fix table, a traveller heatmap with thin cells faded, detail folds, a stability chart, and a collapsed appendix. Charts are inline SVG. Download HTML saves that page. Download PDF uses the browser print dialog. Pilot reports in the side list open the Masai Mara and Milford Sound live scorecards without a new run.
 
-`reports/live/*.panel.json` holds a seed-matched persona roster whose scores are the published trip-type cell means. The original live JSON did not store per-persona SSR rows, and the cache is not in the repo, so these files are not a second Claude run. The heatmap uses the published segment table.
+`reports/live-regen/` is the same live panel rebuilt from the cached Claude replies, with each persona's real scores. Product means match `reports/live/`. The 80-mix sensitivity and all 780 verbatim reactions are in that folder. The original `reports/live/` JSON files stay as first written. Pilot reports in the tool read the regenerated files.
 
 Screenshot reading calls Claude only when you are not in `--mock` and `ANTHROPIC_API_KEY` is set. Tests use a stand-in and do not spend.
 

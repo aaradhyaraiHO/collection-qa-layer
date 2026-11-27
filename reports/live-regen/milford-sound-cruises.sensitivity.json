@@ -1,0 +1,420 @@
+{
+  "status": "ok",
+  "n_personas": 30,
+  "n_scenarios": 80,
+  "n_dirichlet": 40,
+  "shift": 0.2,
+  "concentration": 50.0,
+  "seed": 7,
+  "unreliable_scenarios": [],
+  "small_cells": [
+    {
+      "axis": "trip_type",
+      "level": "solo",
+      "n": 6,
+      "base_weight": 0.16,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 64,
+      "message": "trip_type=solo has 6 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "trip_type",
+      "level": "family_with_kids",
+      "n": 6,
+      "base_weight": 0.26,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 28,
+      "message": "trip_type=family_with_kids has 6 personas in a panel of 30 (design weight 26%). That is too few to reweight reliably. Sample about 28 more personas (panel size 58) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "trip_type",
+      "level": "friends",
+      "n": 7,
+      "base_weight": 0.22,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 39,
+      "message": "trip_type=friends has 7 personas in a panel of 30 (design weight 22%). That is too few to reweight reliably. Sample about 39 more personas (panel size 69) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "budget_tier",
+      "level": "budget",
+      "n": 4,
+      "base_weight": 0.28,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 24,
+      "message": "budget_tier=budget has 4 personas in a panel of 30 (design weight 28%). That is too few to reweight reliably. Sample about 24 more personas (panel size 54) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "budget_tier",
+      "level": "luxury",
+      "n": 5,
+      "base_weight": 0.08,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 158,
+      "message": "budget_tier=luxury has 5 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "United States",
+      "n": 3,
+      "base_weight": 0.16,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 64,
+      "message": "source_market=United States has 3 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "United Kingdom",
+      "n": 4,
+      "base_weight": 0.12,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 95,
+      "message": "source_market=United Kingdom has 4 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "China",
+      "n": 2,
+      "base_weight": 0.12,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 95,
+      "message": "source_market=China has 2 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "New Zealand",
+      "n": 2,
+      "base_weight": 0.12,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 95,
+      "message": "source_market=New Zealand has 2 personas in a panel of 30 (design weight 12%). That is too few to reweight reliably. Sample about 95 more personas (panel size 125) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "Germany",
+      "n": 3,
+      "base_weight": 0.08,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 158,
+      "message": "source_market=Germany has 3 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "Japan",
+      "n": 2,
+      "base_weight": 0.08,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 158,
+      "message": "source_market=Japan has 2 personas in a panel of 30 (design weight 8%). That is too few to reweight reliably. Sample about 158 more personas (panel size 188) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "source_market",
+      "level": "India",
+      "n": 4,
+      "base_weight": 0.06,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 220,
+      "message": "source_market=India has 4 personas in a panel of 30 (design weight 6%). That is too few to reweight reliably. Sample about 220 more personas (panel size 250) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "planning_horizon",
+      "level": "weeks_1_4",
+      "n": 6,
+      "base_weight": 0.34,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 15,
+      "message": "planning_horizon=weeks_1_4 has 6 personas in a panel of 30 (design weight 34%). That is too few to reweight reliably. Sample about 15 more personas (panel size 45) so this cell's expected count reaches 15."
+    },
+    {
+      "axis": "planning_horizon",
+      "level": "months_3_plus",
+      "n": 2,
+      "base_weight": 0.16,
+      "min_cell": 8,
+      "target_cell": 15,
+      "additional_personas": 64,
+      "message": "planning_horizon=months_3_plus has 2 personas in a panel of 30 (design weight 16%). That is too few to reweight reliably. Sample about 64 more personas (panel size 94) so this cell's expected count reaches 15."
+    }
+  ],
+  "base_page_means": {
+    "page:primary": 3.3171
+  },
+  "base_product_order": [
+    "e-18125",
+    "e-37309",
+    "e-29695",
+    "e-40298",
+    "e-23887",
+    "e-18103",
+    "e-30130",
+    "milford-pure-queenstown",
+    "milford-fly-cruise"
+  ],
+  "base_top3": [
+    "e-18125",
+    "e-37309",
+    "e-29695"
+  ],
+  "base_bottom3": [
+    "milford-fly-cruise",
+    "milford-pure-queenstown",
+    "e-30130"
+  ],
+  "rank_stability": {
+    "kendall_tau_mean": 0.9173,
+    "kendall_tau_min": 0.7222,
+    "spearman_mean": 0.9665,
+    "spearman_min": 0.85,
+    "top3_same_rate": 0.7375,
+    "bottom3_same_rate": 0.9875,
+    "mean_top3_overlap": 2.7375,
+    "mean_bottom3_overlap": 2.9875
+  },
+  "gate_flip_rate": 0.0554,
+  "dimension_influence": [
+    {
+      "axis": "budget_tier",
+      "mean_abs_page_delta": 0.0152,
+      "mean_tau_drop": 0.0625
+    },
+    {
+      "axis": "planning_horizon",
+      "mean_abs_page_delta": 0.0141,
+      "mean_tau_drop": 0.0556
+    },
+    {
+      "axis": "source_market",
+      "mean_abs_page_delta": 0.0114,
+      "mean_tau_drop": 0.0729
+    },
+    {
+      "axis": "trip_type",
+      "mean_abs_page_delta": 0.0028,
+      "mean_tau_drop": 0.0833
+    }
+  ],
+  "dirichlet_kendall_mean": 0.9042,
+  "findings": [
+    {
+      "kind": "gate",
+      "code": "cannibalisation_intent",
+      "key": [
+        "e-18125",
+        "e-37309"
+      ],
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "page_intent",
+      "key": "page:primary",
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "product_intent",
+      "key": "milford-fly-cruise",
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "product_intent",
+      "key": "milford-pure-queenstown",
+      "base_severity": "warn",
+      "hold_rate": 0.925,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "relative_rank",
+      "key": "milford-fly-cruise",
+      "base_severity": "fail",
+      "hold_rate": 0.9875,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "gate",
+      "code": "relative_rank",
+      "key": "milford-pure-queenstown",
+      "base_severity": "warn",
+      "hold_rate": 0.7,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "gate",
+      "code": "score_compression",
+      "key": null,
+      "base_severity": "warn",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "ranking",
+      "code": "top3",
+      "key": [
+        "e-18125",
+        "e-37309",
+        "e-29695"
+      ],
+      "base_severity": "set",
+      "hold_rate": 0.7375,
+      "verdict": "WEIGHT-SENSITIVE"
+    },
+    {
+      "kind": "ranking",
+      "code": "bottom3",
+      "key": [
+        "milford-fly-cruise",
+        "milford-pure-queenstown",
+        "e-30130"
+      ],
+      "base_severity": "set",
+      "hold_rate": 0.9875,
+      "verdict": "ROBUST"
+    },
+    {
+      "kind": "segment_rank",
+      "code": "trip_type",
+      "key": "unweighted cells",
+      "orders": {
+        "couple": [
+          "e-18125",
+          "e-37309",
+          "e-29695",
+          "e-23887",
+          "e-40298",
+          "e-18103",
+          "e-30130",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ],
+        "family_with_kids": [
+          "e-18125",
+          "e-29695",
+          "e-37309",
+          "e-40298",
+          "e-18103",
+          "milford-pure-queenstown",
+          "e-23887",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "friends": [
+          "e-18125",
+          "e-23887",
+          "e-29695",
+          "e-18103",
+          "e-37309",
+          "e-40298",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "solo": [
+          "e-40298",
+          "e-37309",
+          "e-29695",
+          "e-18103",
+          "e-30130",
+          "e-23887",
+          "e-18125",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ]
+      },
+      "base_severity": "invariant",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST",
+      "note": "Unweighted product order inside this segment. It does not use the mix weights."
+    },
+    {
+      "kind": "segment_rank",
+      "code": "budget_tier",
+      "key": "unweighted cells",
+      "orders": {
+        "budget": [
+          "e-18125",
+          "e-40298",
+          "e-29695",
+          "e-37309",
+          "e-18103",
+          "e-23887",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "luxury": [
+          "e-30130",
+          "e-18125",
+          "e-29695",
+          "e-18103",
+          "e-37309",
+          "e-40298",
+          "e-23887",
+          "milford-pure-queenstown",
+          "milford-fly-cruise"
+        ],
+        "mid": [
+          "e-29695",
+          "e-23887",
+          "e-40298",
+          "e-37309",
+          "e-18125",
+          "e-18103",
+          "milford-pure-queenstown",
+          "e-30130",
+          "milford-fly-cruise"
+        ],
+        "premium": [
+          "e-18125",
+          "e-37309",
+          "e-23887",
+          "e-18103",
+          "e-40298",
+          "e-29695",
+          "e-30130",
+          "milford-fly-cruise",
+          "milford-pure-queenstown"
+        ]
+      },
+      "base_severity": "invariant",
+      "hold_rate": 1.0,
+      "verdict": "ROBUST",
+      "note": "Unweighted product order inside this segment. It does not use the mix weights."
+    }
+  ],
+  "page_level": {
+    "page:primary": {
+      "base_mean": 3.3171,
+      "scenario_min": 3.2554,
+      "scenario_max": 3.3583,
+      "share_moving_more_than": 0.0125,
+      "move_threshold": 0.05,
+      "verdict": "ROBUST"
+    }
+  },
+  "page_weight_sensitive": false,
+  "recommendation": null,
+  "segment_ranks_invariant": true,
+  "collection_id": "milford-sound-cruises",
+  "mock": false
+}

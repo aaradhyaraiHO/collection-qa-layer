@@ -186,6 +186,13 @@ function renderExecutive(host, view) {
     badge.textContent = trust.label || "";
     const note = document.createElement("p");
     note.textContent = trust.note || "";
+    const chips = document.createElement("div");
+    chips.className = "kpis";
+    (trust.highlights || []).forEach((item) => {
+      const card = document.createElement("div");
+      card.innerHTML = `<span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.detail || "")}</strong>`;
+      chips.append(card);
+    });
     const chart = document.createElement("div");
     chart.className = "chart-block";
     chart.append(Charts.stability(trust));
@@ -197,8 +204,8 @@ function renderExecutive(host, view) {
     });
     const meta = document.createElement("p");
     meta.className = "lede";
-    meta.textContent = `Page intent runs ${trust.page_low ?? "—"} to ${trust.page_high ?? "—"}. Mean rank agreement (Kendall tau) ${trust.kendall_mean ?? "—"}. The band is ±0.05 around the base page number.`;
-    return [badge, note, chart, meta, list];
+    meta.textContent = `Page intent across the mixes runs ${trust.page_low ?? "—"} to ${trust.page_high ?? "—"}. Mean rank agreement (Kendall tau) ${trust.kendall_mean ?? "—"}. Bars under the range are the mean page move on each persona axis.`;
+    return [badge, note, chips, chart, meta, list];
   }));
 
   const appendix = disclosure("7. Appendix · inputs used / missing and pages checked", () => {

@@ -134,30 +134,31 @@ var Charts = (() => {
   }
 
   function stability(trust) {
-    const points = trust.points || [];
+    const dims = trust.dimensions || trust.points || [];
     const width = 680;
-    const height = 220;
+    const height = 168;
     const svg = el("svg", { viewBox: `0 0 ${width} ${height}`, width: "100%", role: "img" });
-    const values = points.map((point) => Number(point.page)).filter((value) => !Number.isNaN(value));
+    const low = Number(trust.page_low);
+    const high = Number(trust.page_high);
     const base = Number(trust.page_base);
-    const low = Math.min(base || 3.2, ...(values.length ? values : [3.2])) - 0.05;
-    const high = Math.max(base || 3.4, ...(values.length ? values : [3.4])) + 0.05;
-    const left = 36;
-    const plotW = width - left - 12;
-    const yOf = (value) => 20 + ((high - value) / Math.max(high - low, 0.05)) * 160;
-    if (!Number.isNaN(base)) {
-      const y = yOf(base);
-      svg.append(el("rect", { x: left, y: yOf(base + 0.05), width: plotW, height: Math.max(2, yOf(base - 0.05) - yOf(base + 0.05)), fill: "#f3e8ff" }));
-      svg.append(el("line", { x1: left, x2: left + plotW, y1: y, y2: y, stroke: "#8000ff", "stroke-dasharray": "4 3" }));
+    svg.append(el("text", { x: 0, y: 16, "font-size": 12, fill: "#5e5670" }, "Page intent across the mixes"));
+    if (![low, high, base].some((value) => Number.isNaN(value))) {
+      const left = 230;
+      const plot = 420;
+      const span = Math.max(high - low, 0.04);
+      const xOf = (value) => left + ((value - (low - span * 0.15)) / (span * 1.3)) * plot;
+      svg.append(el("line", { x1: xOf(low), x2: xOf(high), y1: 48, y2: 48, stroke: "#8000ff", "stroke-width": 8, "stroke-linecap": "round" }));
+      svg.append(el("circle", { cx: xOf(base), cy: 48, r: 6, fill: "#1b1226" }));
+      svg.append(el("text", { x: xOf(low), y: 72, "font-size": 12, fill: "#1b1226", "text-anchor": "middle" }, low.toFixed(2)));
+      svg.append(el("text", { x: xOf(high), y: 72, "font-size": 12, fill: "#1b1226", "text-anchor": "middle" }, high.toFixed(2)));
     }
-    points.forEach((point, index) => {
-      if (point.page == null) return;
-      const x = left + ((index + 0.5) / Math.max(points.length, 1)) * plotW;
-      const moved = Math.abs(Number(point.delta) || 0) > 0.05;
-      svg.append(el("circle", { cx: x.toFixed(1), cy: yOf(point.page).toFixed(1), r: 5, fill: moved ? "#8a5a00" : "#2f7d57" }));
+    const maxDelta = Math.max(0.02, ...dims.map((row) => Number(row.delta) || 0));
+    dims.forEach((row, index) => {
+      const y = 96 + index * 16;
+      const w = ((Number(row.delta) || 0) / maxDelta) * 280;
+      svg.append(el("text", { x: 0, y: y + 10, "font-size": 11, fill: "#1b1226" }, String(row.label)));
+      svg.append(el("rect", { x: 140, y, width: Math.max(w, 2).toFixed(1), height: 10, rx: 3, fill: "#8000ff" }));
     });
-    svg.append(el("text", { x: 8, y: 16, "font-size": 11, fill: "#5e5670" }, high.toFixed(2)));
-    svg.append(el("text", { x: 8, y: 190, "font-size": 11, fill: "#5e5670" }, low.toFixed(2)));
     return svg;
   }
 
