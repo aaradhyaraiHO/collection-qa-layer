@@ -13,3 +13,4 @@ build/
 .collection_qa_cache/
 .collection-qa/
 eos-profile/
+reports/checks/
