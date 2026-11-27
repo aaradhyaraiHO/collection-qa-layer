@@ -169,6 +169,9 @@ $("run").addEventListener("click", startRun);
 
 async function startRun() {
   showStep(3);
+  $("progress-wrap").classList.remove("hidden");
+  $("run-panel").classList.remove("as-report");
+  $("exec").classList.add("hidden");
   document.querySelectorAll(".progress li").forEach((item) => item.className = "");
   const response = await fetch("/api/runs", {
     method: "POST",
@@ -210,23 +213,10 @@ async function startRun() {
 }
 
 function showResult(data) {
-  $("result").classList.remove("hidden");
-  $("frame").src = data.html_url;
-  $("download-html").href = data.html_url;
-  $("download-html").download = data.html_name;
-  $("download-pdf").onclick = () => {
-    const frame = $("frame");
-    frame.contentWindow.focus();
-    frame.contentWindow.print();
-  };
-  const list = $("checklist");
-  list.innerHTML = "";
-  (data.inputs || []).forEach((row) => {
-    const item = document.createElement("li");
-    item.className = row.status === "not provided" ? "missing" : "";
-    item.textContent = `${row.field}: ${row.status}${row.source ? " · " + row.source : ""}`;
-    list.append(item);
-  });
+  if (!data.view) return;
+  $("progress-wrap").classList.add("hidden");
+  $("run-panel").classList.add("as-report");
+  renderExecutive($("exec"), data.view);
   loadHistory();
 }
 
@@ -249,5 +239,27 @@ async function loadHistory() {
   });
 }
 
+async function loadPilots() {
+  const response = await fetch("/api/pilots");
+  const rows = await response.json();
+  const host = $("pilots");
+  host.innerHTML = "";
+  rows.forEach((row) => {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.innerHTML = `${row.name}<small>Live pilot · CE ${row.ce_id || ""}</small>`;
+    button.addEventListener("click", async () => {
+      const loaded = await fetch("/api/pilots/" + encodeURIComponent(row.id));
+      const view = await loaded.json();
+      showStep(3);
+      showResult({ view });
+    });
+    item.append(button);
+    host.append(item);
+  });
+}
+
+loadPilots();
 loadHistory();
 refreshCost();

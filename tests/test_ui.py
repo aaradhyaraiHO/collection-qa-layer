@@ -13,7 +13,12 @@ def test_styles_are_bundled_and_use_the_purple_accent():
     assert "Inter" in css
     assert "Times" not in css
     assert 'data-panel="collection"' in html
-    assert "Inputs used / missing" in html
+    assert "Pilot reports" in html
+    report_js = (root / "report.js").read_text(encoding="utf-8")
+    assert "Would they book?" in report_js
+    assert "Can we trust it?" in report_js
+    assert "Inputs used / missing" in report_js or "inputs used / missing" in report_js
+    assert "cdn" not in (root / "charts.js").read_text(encoding="utf-8").lower()
     assert 'href="/static/app.css"' in html
 
 

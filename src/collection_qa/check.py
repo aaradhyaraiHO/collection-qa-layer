@@ -338,6 +338,9 @@ def run_check(
             "unconfirmed_selectors": UNCONFIRMED_SELECTORS if eos_doc else "",
         },
     }
+    from collection_qa.executive import build_view
+
+    report["view"] = build_view(scorecard, report=report) if scorecard else build_view(report)
     return report
 
 

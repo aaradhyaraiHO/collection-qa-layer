@@ -158,6 +158,30 @@ def _quote(value: str) -> str:
     return '"' + str(value).replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def pilot_index() -> list[dict]:
+    folder = Path("reports/live")
+    if not folder.exists():
+        return []
+    rows = []
+    for path in sorted(folder.glob("*.json")):
+        if ".panel." in path.name or path.name.endswith(".panel.json"):
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if "collection_name" not in payload or "collection_id" not in payload:
+            continue
+        rows.append(
+            {
+                "id": payload["collection_id"],
+                "name": payload["collection_name"],
+                "ce_id": payload.get("ce_id") or "",
+            }
+        )
+    return rows
+
+
 def history_rows() -> list[dict]:
     folder = Path("reports/checks")
     index = folder / "history.json"
@@ -265,8 +289,9 @@ def _start_run(payload: dict) -> str:
                 "html_name": html_path.name,
                 "html_url": "/report/" + html_path.name,
                 "inputs": report.get("inputs") or [],
+                "view": report.get("view"),
             }
-            remember(result)
+            remember({key: value for key, value in result.items() if key != "view"})
             record["result"] = result
         except Exception as exc:
             record["error"] = str(exc)
@@ -300,6 +325,21 @@ def serve(port: int = 8765) -> None:
                 return
             if parsed.path == "/api/history":
                 self._json(history_rows())
+                return
+            if parsed.path == "/api/pilots":
+                self._json(pilot_index())
+                return
+            if parsed.path.startswith("/api/pilots/"):
+                collection_id = parsed.path.split("/api/pilots/", 1)[1].strip("/")
+                if not collection_id or "/" in collection_id or ".." in collection_id:
+                    self.send_error(404)
+                    return
+                from collection_qa.executive import load_pilot
+
+                try:
+                    self._json(load_pilot(collection_id))
+                except FileNotFoundError:
+                    self.send_error(404)
                 return
             if parsed.path.startswith("/api/runs/") and parsed.path.endswith("/events"):
                 run_id = parsed.path.split("/")[3]

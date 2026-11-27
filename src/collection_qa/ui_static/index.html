@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Collection QA</title>
   <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/static/report.css">
 </head>
 <body>
   <div class="app">
@@ -23,6 +24,8 @@
         <li><button type="button" data-go="3"><span class="n">4</span> Run</button></li>
       </ol>
       <section class="history">
+        <h2>Pilot reports</h2>
+        <ul id="pilots"></ul>
         <h2>Past checks</h2>
         <ul id="history"></ul>
       </section>
@@ -107,29 +110,25 @@
         </div>
       </section>
 
-      <section class="card hidden" data-panel="run">
-        <h2>Running</h2>
-        <ol class="progress">
-          <li data-stage="resolving">Resolving the collection <em></em></li>
-          <li data-stage="reading">Reading inputs <em></em></li>
-          <li data-stage="simulating">Simulating travellers <em></em></li>
-          <li data-stage="scoring">Scoring purchase intent <em></em></li>
-          <li data-stage="checks">Checks <em></em></li>
-          <li data-stage="sensitivity">Sensitivity <em></em></li>
-          <li data-stage="writing">Writing the report <em></em></li>
-        </ol>
-        <div id="result" class="hidden">
-          <h2>Inputs used / missing</h2>
-          <ul id="checklist" class="checklist"></ul>
-          <div class="nav">
-            <a class="btn secondary" id="download-html" href="#">Download HTML</a>
-            <button class="btn secondary" id="download-pdf" type="button">Download PDF</button>
-          </div>
-          <iframe id="frame" class="frame" title="Collection QA report"></iframe>
+      <section class="card hidden" data-panel="run" id="run-panel">
+        <div id="progress-wrap">
+          <h2>Running</h2>
+          <ol class="progress">
+            <li data-stage="resolving">Resolving the collection <em></em></li>
+            <li data-stage="reading">Reading inputs <em></em></li>
+            <li data-stage="simulating">Simulating travellers <em></em></li>
+            <li data-stage="scoring">Scoring purchase intent <em></em></li>
+            <li data-stage="checks">Checks <em></em></li>
+            <li data-stage="sensitivity">Sensitivity <em></em></li>
+            <li data-stage="writing">Writing the report <em></em></li>
+          </ol>
         </div>
+        <div id="exec" class="hidden"></div>
       </section>
     </main>
   </div>
+  <script src="/static/charts.js"></script>
+  <script src="/static/report.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>

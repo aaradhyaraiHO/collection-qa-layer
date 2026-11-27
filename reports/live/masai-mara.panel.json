@@ -1,0 +1,1898 @@
+{
+  "collection_id": "masai-mara",
+  "provenance": "Each row is a seed-matched persona. The score is the published mean of that persona's trip type on that product or page. The committed live scorecard did not store the original per-persona SSR rows, and the sqlite cache is not in the repo, so these are not a second Claude run. The report heatmap uses the published segment table. This file is what a reader of panel_scores can reweight.",
+  "seed": 7,
+  "n_personas": 30,
+  "panel_scores": [
+    {
+      "persona_id": "p0001",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "25-34",
+        "trip_type": "family_with_kids",
+        "budget_tier": "budget",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.301334
+        },
+        "e-57793": {
+          "mean": 3.331533
+        },
+        "e-57795": {
+          "mean": 3.332414
+        },
+        "e-57723": {
+          "mean": 3.316226
+        },
+        "e-57697": {
+          "mean": 3.375183
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.151459
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.46745
+        },
+        "e-57724": {
+          "mean": 3.344722
+        },
+        "mara-fly-5": {
+          "mean": 3.247692
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.318803
+        },
+        "mara-5d-lakes": {
+          "mean": 3.389306
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.30392
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.411124
+        },
+        "mara-7d": {
+          "mean": 3.480893
+        },
+        "page:primary": {
+          "mean": 3.370212
+        },
+        "page:microbrand": {
+          "mean": 3.375791
+        }
+      }
+    },
+    {
+      "persona_id": "p0002",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "luxury",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0003",
+      "attributes": {
+        "source_market": "China",
+        "age_band": "18-24",
+        "trip_type": "friends",
+        "budget_tier": "mid",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.284568
+        },
+        "e-57793": {
+          "mean": 3.309174
+        },
+        "e-57795": {
+          "mean": 3.276328
+        },
+        "e-57723": {
+          "mean": 3.412744
+        },
+        "e-57697": {
+          "mean": 3.401977
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.389636
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.481642
+        },
+        "e-57724": {
+          "mean": 3.525092
+        },
+        "mara-fly-5": {
+          "mean": 3.388714
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.409715
+        },
+        "mara-5d-lakes": {
+          "mean": 3.404403
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.43825
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.363033
+        },
+        "mara-7d": {
+          "mean": 3.223986
+        },
+        "page:primary": {
+          "mean": 3.36497
+        },
+        "page:microbrand": {
+          "mean": 3.367877
+        }
+      }
+    },
+    {
+      "persona_id": "p0004",
+      "attributes": {
+        "source_market": "India",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "budget",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0005",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "25-34",
+        "trip_type": "family_with_kids",
+        "budget_tier": "premium",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.301334
+        },
+        "e-57793": {
+          "mean": 3.331533
+        },
+        "e-57795": {
+          "mean": 3.332414
+        },
+        "e-57723": {
+          "mean": 3.316226
+        },
+        "e-57697": {
+          "mean": 3.375183
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.151459
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.46745
+        },
+        "e-57724": {
+          "mean": 3.344722
+        },
+        "mara-fly-5": {
+          "mean": 3.247692
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.318803
+        },
+        "mara-5d-lakes": {
+          "mean": 3.389306
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.30392
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.411124
+        },
+        "mara-7d": {
+          "mean": 3.480893
+        },
+        "page:primary": {
+          "mean": 3.370212
+        },
+        "page:microbrand": {
+          "mean": 3.375791
+        }
+      }
+    },
+    {
+      "persona_id": "p0006",
+      "attributes": {
+        "source_market": "China",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0007",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "35-44",
+        "trip_type": "family_with_kids",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.301334
+        },
+        "e-57793": {
+          "mean": 3.331533
+        },
+        "e-57795": {
+          "mean": 3.332414
+        },
+        "e-57723": {
+          "mean": 3.316226
+        },
+        "e-57697": {
+          "mean": 3.375183
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.151459
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.46745
+        },
+        "e-57724": {
+          "mean": 3.344722
+        },
+        "mara-fly-5": {
+          "mean": 3.247692
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.318803
+        },
+        "mara-5d-lakes": {
+          "mean": 3.389306
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.30392
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.411124
+        },
+        "mara-7d": {
+          "mean": 3.480893
+        },
+        "page:primary": {
+          "mean": 3.370212
+        },
+        "page:microbrand": {
+          "mean": 3.375791
+        }
+      }
+    },
+    {
+      "persona_id": "p0008",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "45-54",
+        "trip_type": "family_with_kids",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.301334
+        },
+        "e-57793": {
+          "mean": 3.331533
+        },
+        "e-57795": {
+          "mean": 3.332414
+        },
+        "e-57723": {
+          "mean": 3.316226
+        },
+        "e-57697": {
+          "mean": 3.375183
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.151459
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.46745
+        },
+        "e-57724": {
+          "mean": 3.344722
+        },
+        "mara-fly-5": {
+          "mean": 3.247692
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.318803
+        },
+        "mara-5d-lakes": {
+          "mean": 3.389306
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.30392
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.411124
+        },
+        "mara-7d": {
+          "mean": 3.480893
+        },
+        "page:primary": {
+          "mean": 3.370212
+        },
+        "page:microbrand": {
+          "mean": 3.375791
+        }
+      }
+    },
+    {
+      "persona_id": "p0009",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "premium",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.192687
+        },
+        "e-57793": {
+          "mean": 3.282311
+        },
+        "e-57795": {
+          "mean": 3.305749
+        },
+        "e-57723": {
+          "mean": 3.39094
+        },
+        "e-57697": {
+          "mean": 3.434483
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.360272
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.442372
+        },
+        "e-57724": {
+          "mean": 3.426136
+        },
+        "mara-fly-5": {
+          "mean": 3.364373
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.42679
+        },
+        "mara-5d-lakes": {
+          "mean": 3.431766
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.429256
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.418969
+        },
+        "mara-7d": {
+          "mean": 3.355868
+        },
+        "page:primary": {
+          "mean": 3.38475
+        },
+        "page:microbrand": {
+          "mean": 3.351065
+        }
+      }
+    },
+    {
+      "persona_id": "p0010",
+      "attributes": {
+        "source_market": "India",
+        "age_band": "55-64",
+        "trip_type": "family_with_kids",
+        "budget_tier": "luxury",
+        "planning_horizon": "weeks_1_4",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.301334
+        },
+        "e-57793": {
+          "mean": 3.331533
+        },
+        "e-57795": {
+          "mean": 3.332414
+        },
+        "e-57723": {
+          "mean": 3.316226
+        },
+        "e-57697": {
+          "mean": 3.375183
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.151459
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.46745
+        },
+        "e-57724": {
+          "mean": 3.344722
+        },
+        "mara-fly-5": {
+          "mean": 3.247692
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.318803
+        },
+        "mara-5d-lakes": {
+          "mean": 3.389306
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.30392
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.411124
+        },
+        "mara-7d": {
+          "mean": 3.480893
+        },
+        "page:primary": {
+          "mean": 3.370212
+        },
+        "page:microbrand": {
+          "mean": 3.375791
+        }
+      }
+    },
+    {
+      "persona_id": "p0011",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0012",
+      "attributes": {
+        "source_market": "China",
+        "age_band": "45-54",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0013",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "35-44",
+        "trip_type": "solo",
+        "budget_tier": "premium",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.192687
+        },
+        "e-57793": {
+          "mean": 3.282311
+        },
+        "e-57795": {
+          "mean": 3.305749
+        },
+        "e-57723": {
+          "mean": 3.39094
+        },
+        "e-57697": {
+          "mean": 3.434483
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.360272
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.442372
+        },
+        "e-57724": {
+          "mean": 3.426136
+        },
+        "mara-fly-5": {
+          "mean": 3.364373
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.42679
+        },
+        "mara-5d-lakes": {
+          "mean": 3.431766
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.429256
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.418969
+        },
+        "mara-7d": {
+          "mean": 3.355868
+        },
+        "page:primary": {
+          "mean": 3.38475
+        },
+        "page:microbrand": {
+          "mean": 3.351065
+        }
+      }
+    },
+    {
+      "persona_id": "p0014",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "repeat",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.192687
+        },
+        "e-57793": {
+          "mean": 3.282311
+        },
+        "e-57795": {
+          "mean": 3.305749
+        },
+        "e-57723": {
+          "mean": 3.39094
+        },
+        "e-57697": {
+          "mean": 3.434483
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.360272
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.442372
+        },
+        "e-57724": {
+          "mean": 3.426136
+        },
+        "mara-fly-5": {
+          "mean": 3.364373
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.42679
+        },
+        "mara-5d-lakes": {
+          "mean": 3.431766
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.429256
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.418969
+        },
+        "mara-7d": {
+          "mean": 3.355868
+        },
+        "page:primary": {
+          "mean": 3.38475
+        },
+        "page:microbrand": {
+          "mean": 3.351065
+        }
+      }
+    },
+    {
+      "persona_id": "p0015",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "25-34",
+        "trip_type": "friends",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.284568
+        },
+        "e-57793": {
+          "mean": 3.309174
+        },
+        "e-57795": {
+          "mean": 3.276328
+        },
+        "e-57723": {
+          "mean": 3.412744
+        },
+        "e-57697": {
+          "mean": 3.401977
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.389636
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.481642
+        },
+        "e-57724": {
+          "mean": 3.525092
+        },
+        "mara-fly-5": {
+          "mean": 3.388714
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.409715
+        },
+        "mara-5d-lakes": {
+          "mean": 3.404403
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.43825
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.363033
+        },
+        "mara-7d": {
+          "mean": 3.223986
+        },
+        "page:primary": {
+          "mean": 3.36497
+        },
+        "page:microbrand": {
+          "mean": 3.367877
+        }
+      }
+    },
+    {
+      "persona_id": "p0016",
+      "attributes": {
+        "source_market": "France",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "app"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.192687
+        },
+        "e-57793": {
+          "mean": 3.282311
+        },
+        "e-57795": {
+          "mean": 3.305749
+        },
+        "e-57723": {
+          "mean": 3.39094
+        },
+        "e-57697": {
+          "mean": 3.434483
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.360272
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.442372
+        },
+        "e-57724": {
+          "mean": 3.426136
+        },
+        "mara-fly-5": {
+          "mean": 3.364373
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.42679
+        },
+        "mara-5d-lakes": {
+          "mean": 3.431766
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.429256
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.418969
+        },
+        "mara-7d": {
+          "mean": 3.355868
+        },
+        "page:primary": {
+          "mean": 3.38475
+        },
+        "page:microbrand": {
+          "mean": 3.351065
+        }
+      }
+    },
+    {
+      "persona_id": "p0017",
+      "attributes": {
+        "source_market": "Australia",
+        "age_band": "45-54",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "weeks_1_4",
+        "experience": "repeat",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0018",
+      "attributes": {
+        "source_market": "France",
+        "age_band": "65+",
+        "trip_type": "friends",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.284568
+        },
+        "e-57793": {
+          "mean": 3.309174
+        },
+        "e-57795": {
+          "mean": 3.276328
+        },
+        "e-57723": {
+          "mean": 3.412744
+        },
+        "e-57697": {
+          "mean": 3.401977
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.389636
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.481642
+        },
+        "e-57724": {
+          "mean": 3.525092
+        },
+        "mara-fly-5": {
+          "mean": 3.388714
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.409715
+        },
+        "mara-5d-lakes": {
+          "mean": 3.404403
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.43825
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.363033
+        },
+        "mara-7d": {
+          "mean": 3.223986
+        },
+        "page:primary": {
+          "mean": 3.36497
+        },
+        "page:microbrand": {
+          "mean": 3.367877
+        }
+      }
+    },
+    {
+      "persona_id": "p0019",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "mobility",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0020",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "25-34",
+        "trip_type": "couple",
+        "budget_tier": "mid",
+        "planning_horizon": "months_1_3",
+        "experience": "repeat",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0021",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "45-54",
+        "trip_type": "friends",
+        "budget_tier": "premium",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.284568
+        },
+        "e-57793": {
+          "mean": 3.309174
+        },
+        "e-57795": {
+          "mean": 3.276328
+        },
+        "e-57723": {
+          "mean": 3.412744
+        },
+        "e-57697": {
+          "mean": 3.401977
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.389636
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.481642
+        },
+        "e-57724": {
+          "mean": 3.525092
+        },
+        "mara-fly-5": {
+          "mean": 3.388714
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.409715
+        },
+        "mara-5d-lakes": {
+          "mean": 3.404403
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.43825
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.363033
+        },
+        "mara-7d": {
+          "mean": 3.223986
+        },
+        "page:primary": {
+          "mean": 3.36497
+        },
+        "page:microbrand": {
+          "mean": 3.367877
+        }
+      }
+    },
+    {
+      "persona_id": "p0022",
+      "attributes": {
+        "source_market": "China",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0023",
+      "attributes": {
+        "source_market": "United States",
+        "age_band": "55-64",
+        "trip_type": "friends",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.284568
+        },
+        "e-57793": {
+          "mean": 3.309174
+        },
+        "e-57795": {
+          "mean": 3.276328
+        },
+        "e-57723": {
+          "mean": 3.412744
+        },
+        "e-57697": {
+          "mean": 3.401977
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.389636
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.481642
+        },
+        "e-57724": {
+          "mean": 3.525092
+        },
+        "mara-fly-5": {
+          "mean": 3.388714
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.409715
+        },
+        "mara-5d-lakes": {
+          "mean": 3.404403
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.43825
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.363033
+        },
+        "mara-7d": {
+          "mean": 3.223986
+        },
+        "page:primary": {
+          "mean": 3.36497
+        },
+        "page:microbrand": {
+          "mean": 3.367877
+        }
+      }
+    },
+    {
+      "persona_id": "p0024",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "55-64",
+        "trip_type": "couple",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0025",
+      "attributes": {
+        "source_market": "United Kingdom",
+        "age_band": "35-44",
+        "trip_type": "solo",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.192687
+        },
+        "e-57793": {
+          "mean": 3.282311
+        },
+        "e-57795": {
+          "mean": 3.305749
+        },
+        "e-57723": {
+          "mean": 3.39094
+        },
+        "e-57697": {
+          "mean": 3.434483
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.360272
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.442372
+        },
+        "e-57724": {
+          "mean": 3.426136
+        },
+        "mara-fly-5": {
+          "mean": 3.364373
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.42679
+        },
+        "mara-5d-lakes": {
+          "mean": 3.431766
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.429256
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.418969
+        },
+        "mara-7d": {
+          "mean": 3.355868
+        },
+        "page:primary": {
+          "mean": 3.38475
+        },
+        "page:microbrand": {
+          "mean": 3.351065
+        }
+      }
+    },
+    {
+      "persona_id": "p0026",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "budget",
+        "planning_horizon": "months_1_3",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0027",
+      "attributes": {
+        "source_market": "United Arab Emirates",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "months_1_3",
+        "experience": "repeat",
+        "accessibility": "none",
+        "device_channel": "mobile_web"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0028",
+      "attributes": {
+        "source_market": "United Arab Emirates",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "premium",
+        "planning_horizon": "months_3_plus",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0029",
+      "attributes": {
+        "source_market": "Germany",
+        "age_band": "35-44",
+        "trip_type": "couple",
+        "budget_tier": "luxury",
+        "planning_horizon": "months_1_3",
+        "experience": "repeat",
+        "accessibility": "mobility",
+        "device_channel": "app"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.075188
+        },
+        "e-57793": {
+          "mean": 3.195644
+        },
+        "e-57795": {
+          "mean": 3.283152
+        },
+        "e-57723": {
+          "mean": 3.368497
+        },
+        "e-57697": {
+          "mean": 3.347559
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.381647
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.394568
+        },
+        "e-57724": {
+          "mean": 3.451084
+        },
+        "mara-fly-5": {
+          "mean": 3.254133
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.27707
+        },
+        "mara-5d-lakes": {
+          "mean": 3.40581
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.369113
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.439612
+        },
+        "mara-7d": {
+          "mean": 3.277554
+        },
+        "page:primary": {
+          "mean": 3.357464
+        },
+        "page:microbrand": {
+          "mean": 3.430036
+        }
+      }
+    },
+    {
+      "persona_id": "p0030",
+      "attributes": {
+        "source_market": "France",
+        "age_band": "25-34",
+        "trip_type": "solo",
+        "budget_tier": "mid",
+        "planning_horizon": "last_minute",
+        "experience": "first_timer",
+        "accessibility": "none",
+        "device_channel": "desktop"
+      },
+      "scores": {
+        "e-57711": {
+          "mean": 3.192687
+        },
+        "e-57793": {
+          "mean": 3.282311
+        },
+        "e-57795": {
+          "mean": 3.305749
+        },
+        "e-57723": {
+          "mean": 3.39094
+        },
+        "e-57697": {
+          "mean": 3.434483
+        },
+        "mara-4d-naivasha": {
+          "mean": 3.360272
+        },
+        "mara-4d-nakuru": {
+          "mean": 3.442372
+        },
+        "e-57724": {
+          "mean": 3.426136
+        },
+        "mara-fly-5": {
+          "mean": 3.364373
+        },
+        "mara-fly-5-amboseli": {
+          "mean": 3.42679
+        },
+        "mara-5d-lakes": {
+          "mean": 3.431766
+        },
+        "mara-6d-nakuru": {
+          "mean": 3.429256
+        },
+        "mara-6d-naivasha": {
+          "mean": 3.418969
+        },
+        "mara-7d": {
+          "mean": 3.355868
+        },
+        "page:primary": {
+          "mean": 3.38475
+        },
+        "page:microbrand": {
+          "mean": 3.351065
+        }
+      }
+    }
+  ]
+}

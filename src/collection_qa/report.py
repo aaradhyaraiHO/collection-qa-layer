@@ -21,6 +21,7 @@ OWNER_BY_CODE = {
     "cannibalisation": "Growth",
     "cannibalisation_intent": "Growth",
     "gap:overnight-cruise": "Growth",
+    "gap:named-operator-on-lead-card": "Growth",
     "microbrand_disclaimer": "Content",
     "microbrand_headout_disclosure": "Content",
     "faq_missing": "Content",
@@ -51,6 +52,8 @@ CHANGE_BY_CODE = {
     "relative_rank": "This product lags the rest of the collection. Differentiate it or take it off the page.",
     "score_compression": "Do not use the absolute pass line. Rank products inside this collection.",
     "segment_page_intent": "The page loses this traveller type. Say how the trip fits them.",
+    "gap:overnight-cruise": "Add a priced overnight cruise, or take the overnight claim out of the long-form.",
+    "gap:named-operator-on-lead-card": "Name the boat operator on the lead cards.",
 }
 
 
@@ -104,13 +107,12 @@ def build_fixes(issues: list[dict], quotes: list[dict], page_url: str | None) ->
 
 
 def _quote_for(quotes: list[dict], product_key) -> str:
-    if not quotes:
+    if not isinstance(product_key, str):
         return ""
-    if isinstance(product_key, str):
-        for quote in quotes:
-            if quote.get("stimulus_id") == product_key:
-                return quote.get("text") or ""
-    return quotes[0].get("text") or ""
+    for quote in quotes:
+        if quote.get("stimulus_id") == product_key:
+            return quote.get("text") or ""
+    return ""
 
 
 def trust_bullets(scorecard: dict | None, *, mock: bool) -> list[str]:

@@ -137,7 +137,7 @@ textarea { min-height: 88px; resize: vertical; }
 .progress li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 12px; background: #faf8fd; }
 .progress li.active { background: var(--accent-soft); }
 .progress li.done { color: var(--good); }
-.frame { width: 100%; min-height: 720px; border: 0; border-radius: 12px; background: white; }
+#run-panel.as-report { background: transparent; box-shadow: none; padding: 0; }
 .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .checklist li { list-style: none; padding: 8px 10px; border-radius: 10px; background: #faf8fd; font-size: 14px; }
 .checklist .missing { color: var(--wait); }
