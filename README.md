@@ -110,7 +110,7 @@ If the same fact is in more than one place, the tool keeps the signed-in EOS pag
 
 `inputs/milford-sound/` is a filled example from the public collection on 2026-11-26. The EOS links in that file are blank.
 
-`collection-qa ui` opens a form at http://127.0.0.1:8765 . It only uses the Python standard library. Paste the CE name and any links, then Run. Drop files into the input folder if you have them. The form does not upload pictures itself.
+`collection-qa ui` opens a local tool at http://127.0.0.1:8765. It is a four-step page (collection, inputs, panel, run) with the status badge, drag-and-drop uploads, a mock switch and cost line, a progress list, and the HTML report in the page. Download HTML saves the file. Download PDF uses the browser print dialog. Past checks stay in the side list. Styles are bundled, so it works offline.
 
 Screenshot reading calls Claude only when you are not in `--mock` and `ANTHROPIC_API_KEY` is set. Tests use a stand-in and do not spend.
 

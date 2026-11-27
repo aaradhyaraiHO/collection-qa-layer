@@ -211,7 +211,13 @@ def run_check(
     fetched_on: str = "2026-11-26",
     inputs_path: str | None = None,
     vision: VisionExtractor | None = None,
+    progress=None,
 ) -> dict:
+    def _note(stage: str, detail: str, current: int | None = None, total: int | None = None) -> None:
+        if progress:
+            progress(stage, detail, current, total)
+
+    _note("resolving", f"Looking up {query}")
     lookup = HeadoutLookup(fetch)
     resolved = lookup.resolve(query)
     slack_summary = summarize_slack(slack, ce_id=resolved.ce_id, name=resolved.name)
@@ -230,6 +236,7 @@ def run_check(
         eos_profile=eos_profile,
         prompt_fn=prompt_fn,
     )
+    _note("reading", "Reading the input folder, exports, and screenshots")
     manifest_path = find_manifest(query, inputs_path)
     manifest = load_manifest(manifest_path) if manifest_path and manifest_path.exists() else None
     if manifest and manifest.microbrand_url and not resolved.microbrand_url:
@@ -284,6 +291,7 @@ def run_check(
                 seed=seed,
                 embedder="lexical" if mock else "sentence-transformers",
                 gates=gates,
+                progress=progress,
             ),
         )
     issues = (scorecard or {}).get("issues") or []

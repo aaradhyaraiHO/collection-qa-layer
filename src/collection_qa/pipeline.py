@@ -7,6 +7,8 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
+import threading
+
 import numpy as np
 
 from collection_qa.anchors import ANCHOR_SETS, DEFAULT_EPSILON, DEFAULT_TEMPERATURE
@@ -55,6 +57,7 @@ class RunConfig:
     max_tokens: int = DEFAULT_MAX_TOKENS
     timeout: float = DEFAULT_TIMEOUT_SECONDS
     max_retries: int = DEFAULT_MAX_RETRIES
+    progress: object | None = None
 
 
 @dataclass
@@ -84,6 +87,13 @@ def _group_summaries(
         axis: {key: _summary(pmfs) for key, pmfs in buckets.items()}
         for axis, buckets in grouped.items()
     }
+
+
+def _progress(config: RunConfig, stage: str, detail: str, current: int | None = None, total: int | None = None) -> None:
+    callback = config.progress
+    if callback is None:
+        return
+    callback(stage, detail, current, total)
 
 
 def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
@@ -133,7 +143,11 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
     surface_by_role = dict(surfaces)
     product_by_id = {product.id: product for product in spec.products}
 
+    done_jobs = 0
+    job_lock = threading.Lock()
+
     def _run(job: _Job) -> tuple[_Job, LLMResult]:
+        nonlocal done_jobs
         product = product_by_id.get(job.product_id) if job.product_id else None
         surface = surface_by_role.get(job.surface_role) if job.surface_role else None
         result = client.complete(
@@ -144,14 +158,20 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
             surface_role=job.surface_role,
             completion_index=job.completion_index,
         )
+        with job_lock:
+            done_jobs += 1
+            _progress(config, "simulating", f"Traveller reactions {done_jobs}/{len(jobs)}", done_jobs, len(jobs))
         return job, result
 
     workers = max(1, config.concurrency)
+    _progress(config, "simulating", f"Traveller reactions 0/{len(jobs)}", 0, len(jobs))
     if jobs:
         with ThreadPoolExecutor(max_workers=workers) as pool:
             completed = list(pool.map(_run, jobs))
     else:
         completed = []
+
+    _progress(config, "scoring", "Mapping reactions onto the booking-intent scale")
 
     vocab = [statement for group in ANCHOR_SETS for statement in group]
     embedder = build_embedder(
@@ -236,6 +256,7 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
     product_z = z_scores(product_means)
     for product_id, score in product_z.items():
         product_block[product_id]["z_vs_collection"] = round(score, 4)
+    _progress(config, "checks", "Running price, duration, and content checks")
     issues = [issue.model_dump() for issue in run_deterministic_checks(spec)]
     if "A" in config.gates and product_means:
         titles = {product_id: block["title"] for product_id, block in product_block.items()}
@@ -334,6 +355,7 @@ def run_collection(spec: CollectionSpec, config: RunConfig) -> dict:
     titles = {product_id: block["title"] for product_id, block in product_block.items()}
     sensitivity = None
     if panel_scores and (product_ids or page_ids):
+        _progress(config, "sensitivity", "Reweighting the persona mix")
         sensitivity = analyze_panel(
             panel_scores,
             panel.weights,

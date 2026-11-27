@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collection QA</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">Q</div>
+        <div>
+          <h1>Collection QA</h1>
+          <p>Pre-launch check for growth</p>
+        </div>
+      </div>
+      <ol class="steps">
+        <li><button type="button" data-go="0" aria-current="step"><span class="n">1</span> Collection</button></li>
+        <li><button type="button" data-go="1"><span class="n">2</span> Inputs</button></li>
+        <li><button type="button" data-go="2"><span class="n">3</span> Panel</button></li>
+        <li><button type="button" data-go="3"><span class="n">4</span> Run</button></li>
+      </ol>
+      <section class="history">
+        <h2>Past checks</h2>
+        <ul id="history"></ul>
+      </section>
+    </aside>
+    <main class="main">
+      <section class="card" data-panel="collection">
+        <h2>Which collection?</h2>
+        <p class="lede">Type the CE name or the numeric collection id. The status updates from the public site.</p>
+        <label>
+          <span>CE name or id</span>
+          <input id="query" type="text" autocomplete="off" placeholder="Milford Sound or 3945">
+        </label>
+        <div class="lookup">
+          <span id="badge" class="badge idle">Waiting</span>
+          <div id="lookup-meta">Type a collection name or a numeric CE id.</div>
+        </div>
+        <div class="nav"><button class="btn" type="button" data-next>Continue</button></div>
+      </section>
+
+      <section class="card hidden" data-panel="inputs">
+        <h2>What do you already have?</h2>
+        <p class="lede">Leave a box empty if you do not have it. The report will say not provided.</p>
+        <div class="grid">
+          <label><span>EOS MMP link</span><input id="eos-mmp" type="text" placeholder="https://eos.headout.com/mmp/draft/…"></label>
+          <label><span>Assortment link</span><input id="eos-assortment" type="text" placeholder="Proposed assortment"></label>
+          <label><span>Content link</span><input id="eos-content" type="text" placeholder="Locked content"></label>
+          <label><span>Microbrand URL</span><input id="microbrand" type="text" placeholder="https://…"></label>
+        </div>
+        <div class="grid" style="margin-top:14px">
+          <div>
+            <div class="field-label" id="export-label">Exports</div>
+            <div class="drop" id="export-drop" aria-labelledby="export-label">
+              Drop HTML, JSON, or CSV here
+              <input id="export-file" type="file" accept=".html,.json,.csv,.txt" multiple aria-label="Upload exports">
+              <div class="thumbs"></div>
+            </div>
+          </div>
+          <div>
+            <div class="field-label" id="shot-label">Screenshots</div>
+            <div class="drop" id="shot-drop" aria-labelledby="shot-label">
+              Drop PNG or JPG of the EOS pages
+              <input id="shot-file" type="file" accept="image/png,image/jpeg" multiple aria-label="Upload screenshots">
+              <div class="thumbs"></div>
+            </div>
+          </div>
+        </div>
+        <label style="margin-top:14px">
+          <span>Competitor URLs</span>
+          <input id="competitor" type="text" placeholder="Paste a URL and press Enter">
+        </label>
+        <div id="competitor-chips" class="chips"></div>
+        <label>
+          <span>Slack threads</span>
+          <input id="thread" type="text" placeholder="Paste a thread link and press Enter">
+        </label>
+        <div id="thread-chips" class="chips"></div>
+        <label>
+          <span>Notes</span>
+          <textarea id="notes" placeholder="Season, price caveats, who to ask"></textarea>
+        </label>
+        <div class="nav">
+          <button class="btn secondary" type="button" data-back>Back</button>
+          <button class="btn" type="button" data-next>Continue</button>
+        </div>
+      </section>
+
+      <section class="card hidden" data-panel="panel">
+        <h2>Who should we ask?</h2>
+        <p class="lede">A smaller panel is cheaper. Mock mode writes template reactions and does not call Claude.</p>
+        <label>
+          <span>Personas</span>
+          <input id="personas" type="number" min="2" max="60" value="8">
+        </label>
+        <label class="switch" style="margin-top:16px">
+          <input id="mock" type="checkbox" checked role="switch">
+          <span>Mock reactions</span>
+        </label>
+        <p id="cost" class="cost"></p>
+        <div class="nav">
+          <button class="btn secondary" type="button" data-back>Back</button>
+          <button class="btn" id="run" type="button">Run check</button>
+        </div>
+      </section>
+
+      <section class="card hidden" data-panel="run">
+        <h2>Running</h2>
+        <ol class="progress">
+          <li data-stage="resolving">Resolving the collection <em></em></li>
+          <li data-stage="reading">Reading inputs <em></em></li>
+          <li data-stage="simulating">Simulating travellers <em></em></li>
+          <li data-stage="scoring">Scoring purchase intent <em></em></li>
+          <li data-stage="checks">Checks <em></em></li>
+          <li data-stage="sensitivity">Sensitivity <em></em></li>
+          <li data-stage="writing">Writing the report <em></em></li>
+        </ol>
+        <div id="result" class="hidden">
+          <h2>Inputs used / missing</h2>
+          <ul id="checklist" class="checklist"></ul>
+          <div class="nav">
+            <a class="btn secondary" id="download-html" href="#">Download HTML</a>
+            <button class="btn secondary" id="download-pdf" type="button">Download PDF</button>
+          </div>
+          <iframe id="frame" class="frame" title="Collection QA report"></iframe>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
